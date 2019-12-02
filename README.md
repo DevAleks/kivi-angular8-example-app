@@ -30,6 +30,7 @@
 Обработка данных из форм производится PHP скриптом. 
 При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также скрипт модифицирует полученные данные, что служит маркером их успешного получения и отправляет их обратно в приложение.
 При ошибке записи данных в БД сервер отправляет в приложение сообщение об ошибке.
+Путь к скрипту обработки форм: [/backend/formbottom.php](https://github.com/DevAleks/Kivi/tree/master/backend/formbottom.php)
 
 ### Интеграции со сторонним кодом
 В верстке страниц присутствуют:
@@ -54,7 +55,7 @@
 * - [/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/question-form/)
 * - [/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/top-form/)
 * Получение данных из Json файла [/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/src/app/components/first-block/first-block.component.ts) (строка 25)
-* Вывод <script ...> в шаблонах [/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/src/app/components/scripthack) и [/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/src/app/components/subscribe-block/subscribe-block.component.html)
+* Вывод <script ...> в шаблонах. Обеспечивающий компонент[/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/src/app/components/scripthack) и пример вывода в шаблоне [/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/src/app/components/subscribe-block/subscribe-block.component.html)
   
 
 
