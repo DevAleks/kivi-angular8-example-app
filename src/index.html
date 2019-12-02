@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- meta -->
+  <meta charset="utf-8">
+  <base href="/" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">  
+  <!-- / meta -->
+
+  <title>Кивиниеми - база рафтинга и активного отдыха. Лосево, Ленинградская область</title>
+  <meta name="description" content="Активный отдых, рафтинг, аренда площадок и проведение корпоративных мероприятий в Лосево. Почувствуйте вкус лета!" />
+  <meta name="keywords" content="активный отдых, база рафтинга, проведение мероприятий, аренда площадок" />
+  <meta property="og:title" content="Кивиниеми - база рафтинга и активного отдыха. Почувствуй вкус лета!"/>
+  <meta property="og:description" content="Активный отдых, рафтинг, аренда площадок и проведение корпоративных мероприятий в Лосево."/>
+  <meta property="og:image" content="http://kiviniemi.ru/img/glavnaya/1.jpg"/>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:url" content= "http://kiviniemi.ru/" />      
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="Кивиниеми, база рафтинга" />
+  <meta property="og:video" content="https://www.youtube.com/watch?v=LzkDYkvDnlI" /> 
+  
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- asset -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">  
+  <style type="text/css">
+  .carousel-wrapper5.custom .owl-carousel .owl-stage-outer .owl-stage .item .zagolovok {
+    min-height: 20px;
+    font-weight: bold;
+  }
+  </style>
+  <!-- / asset -->
+
+</head>
+<body>
+
+  <div class="back-to-top" id="go-top" style="display: block;"><img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAeUExURQAAAP///////////////////////////////////yR8m5UAAAAJdFJOUwCXrtnrCh4Vc6w8nd8AAACeSURBVEjH7dRJEsAgCARAzKb8/8NZjUZRhnOcWw5dg2iFaGSkSghWMTE7szCaSzBPuHD8xBk7DCYToPkIyBQCMK+YZ9AkQbRAJomVyCMmCX9+brr5dJxReyqhGkEos4miaxqiY5riOI98px3R2EFXiLMpQjD5u2qkmK14JUCPOlVtMJHvOrZoIvXEyXQRTTw/Im7zbDmgfzjvAo38OzvebQ7AG84jrAAAAABJRU5ErkJggg=="></div>
+
+  <app-root>Загрузка...</app-root>
+
+  
+<script src="assets/js/jquery/3.2.1/jquery.min.js"></script>
+<script src="assets/js/owlCarousel/2.2.1/js/owl.carousel.min.js"></script>
+<script src="assets/js/fancybox/3.2.0/js/jquery.fancybox.min.js"></script>
+<script src="assets/js/jquery.validate.min.js"></script>
+
+
+
+<!-- Scripts -->
+
+<script>
+    $(function(){
+       $(window).scroll(function() {
+          if ($(this).scrollTop() > 1){
+          $('.navbar-fixed-top').addClass("sticky");
+             }
+          else{
+             $('.navbar-fixed-top').removeClass("sticky");
+          }
+       });	 
+   
+   
+   $(function() {
+        $.fn.scrollToTop = function() {
+            $(this).hide().removeAttr("href");
+            if ($(window).scrollTop() != "0") {
+                $(this).fadeIn("slow")
+            }
+            var scrollDiv = $(this);
+            $(window).scroll(function() {
+                if ($(window).scrollTop() == "0") {
+                    $(scrollDiv).fadeOut("slow")
+                } else {
+                    $(scrollDiv).fadeIn("slow")
+                }
+            });
+            $(this).click(function() {
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow")
+            })
+        }
+    });
+    $(function() {
+        $("#go-top").scrollToTop();
+    });
+    $(function() {
+        $(window).resize(function() {
+            var width = $(window).outerWidth();
+            if (width < 1025) {
+                $("#go-top").addClass("go-top");
+            } else {
+                $("#go-top").removeClass("go-top");
+            }
+        });
+        $(window).resize();
+    });
+   
+   
+   $("#questions .more a").click(function(e) {
+      e.preventDefault();
+      $(this).closest(".question").addClass("question-expanded");
+     });
+     
+     $("#questions  .link-hide-wrapper a").click(function(e) {
+      e.preventDefault();
+      $(this).closest(".question").removeClass("question-expanded");
+     });
+   
+   
+   $("#nav-mobile #nav-mobile-panel-toggle").click(function(){
+      $("#nav-mobile-body").slideToggle();
+      $(this).toggleClass("active");
+      $("body").toggleClass("nav-open");
+    });
+    
+    var slider1 = $("#slider1");
+    slider1.on('initialize.owl.carousel initialized.owl.carousel resized.owl.carousel changed.owl.carousel',function(elem){
+      $(elem.currentTarget).find(".owl-item.cloned > .item > a").removeAttr("data-fancybox").removeAttr("data-type").removeAttr("data-srcset");
+    });
+    
+    slider1.owlCarousel({
+      items:1,
+      loop:true,
+      nav:true,
+      margin: 15,
+      responsive : {
+        0: {
+          items : 1
+        },
+        576: {
+          items : 2
+        },				
+        768: {
+          items : 3
+        },
+        992: {
+          margin: 25,
+          items : 3
+        }
+      }
+    });
+    
+    $("[data-fancybox='test-srcset']").fancybox({
+      transitionEffect : "slide",
+      loop : true
+    });
+    
+    
+    
+    $('#slider2').owlCarousel({
+      items:1,
+      loop:true,
+      nav:true,
+      margin: 5,
+      responsive : {
+        0: {
+          items : 1
+        },					
+        500: {
+          items : 2
+        },				
+        768: {
+          items : 3
+        },
+        992: {
+          items : 4
+        },
+        1200: {
+          items : 5
+        }
+      }
+    });
+    
+    $('#slider3').owlCarousel({
+      items:1,
+      loop:true,
+      nav:true				
+    });
+    
+    $('#slider4').owlCarousel({
+      items:1,
+      loop:true,
+      nav:true				
+    });
+    
+    
+    var slider5 = $("#slider5");
+    slider5.on('initialize.owl.carousel initialized.owl.carousel resized.owl.carousel changed.owl.carousel',function(elem){      
+    });
+    
+    slider5.owlCarousel({
+      items:1,
+      loop:true,
+      nav:true,
+      margin: 15,
+      responsive : {
+        0: {
+          items : 1
+        },
+        576: {
+          items : 2
+        },				
+        768: {
+          items : 3
+        },
+        992: {
+          margin: 25,
+          items : 3
+        }
+      }
+    });	
+    
+    var slider6 = $("#slider6");
+    slider6.on('initialize.owl.carousel initialized.owl.carousel resized.owl.carousel changed.owl.carousel',function(elem){
+      
+    });
+    
+    slider6.owlCarousel({
+      items:1,
+      loop:true,
+      nav:true,
+      margin: 15,
+      responsive : {
+        0: {
+          items : 1
+        },
+        576: {
+          items : 2
+        },				
+        768: {
+          items : 3
+        },
+        992: {
+          margin: 25,
+          items : 3
+        }
+      }
+    });	
+    
+    
+    $("[data-fancybox='test-srcset2']").fancybox({
+      transitionEffect : "slide",
+      loop : true
+    });
+ 
+    
+    });
+    
+    </script>
+
+<!-- / Scripts -->
+
+</body>
+</html>
