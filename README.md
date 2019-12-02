@@ -1,27 +1,83 @@
-# KiviApp
+# Kivi-App, учебное приложение на Angular 8.3.0 
+**Серверная часть на PHP и MySQL / unit-testing Jasmine + Karma / e2e testing Jasmine + Protractor**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
+Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 3 готовые страницы сайта:
+* /
+* /rafting
+* /semeyniy-rafting
 
-## Development server
+На всех страницах отличаются только верхние блоки с контентом.
+Приложение сделано на основе сторонней верстки на Bootstrap 4.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Функционал
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Формы обратной связи
+На каждой станице есть 5 различных форм обратной связи, позволяющих посетителям отправлять заказы услуг. 4 формы в модальных окнах доступны по кнопкам:
+1. Заказать звонок (шапка)
+2. Задать вопрос (шапка)
+3. Заказать (шапка)
+4. Заказать сейчас (контент)
 
-## Build
+Пятая форма расположена внизу страницы.
+Каждая форма умеет проверять введенные данные и подсказывать какие ошибки ввода нужно исправить, если они есть. Если все данные введены корректно, то форма пытается отправить их на сервер и ждет его ответ. После получения ответа сервера он выводится на экран. Как пример обработки ошибок могут быть 3 варианта ответа:
+* Отправка данных прошла успешно
+* Отправить данные не удалось
+* Сервер неверно обработал полученные данные
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+### Серверная часть 
+Обработка данных из форм производится PHP скриптом. 
+При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также скрипт модифицирует полученные данные, что служит маркером их успешного получения и отправляет их обратно в приложение.
+При ошибке записи данных в БД сервер отправляет в приложение сообщение об ошибке.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Интеграции со сторонним кодом
+В верстке страниц присутствуют:
+* Вставка видео с Youtube
+* "Карусель" Fancybox
+* Виджет Vk
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Технологии
+Приложение выполнено на Angular 8.3.0, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, e2e тестирование Jasmine + Protractor.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Элементы Angular
+* Компоненты [/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/)
+* Сервисы [/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/src/app/services/)
+* Pipe [/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/src/app/pipes/)
+* Роутер [/src/app/app.module.ts](https://github.com/DevAleks/Kivi/tree/master/src/app/app.module.ts) (строка 41)
+* Формы - валидатор с обработкой ошибок, отправка данных и получение ответа от сервера:
+* - [/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/callorder-form/)
+* - [/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/first-form/)
+* - [/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/footer-form/)
+* - [/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/question-form/)
+* - [/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/top-form/)
+* Получение данных из Json файла [/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/src/app/components/first-block/first-block.component.ts) (строка 25)
+* Вывод <script ...> в шаблонах [/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/src/app/components/scripthack) и [/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/src/app/components/subscribe-block/subscribe-block.component.html)
+  
+
+
+## Unit тестирование
+Тестами покрыто примерно 80% всех функций. Код тестов содержится рядом с кодом приложения: /src/app/
+
+
+## E2E тестирование
+Разбито на 2 части. Покрыты только некоторые элементы страницы и проверены 3 коротких use case для форм обратной связи.
+Код тестов расположен тут: [/e2e/src/](https://github.com/DevAleks/Kivi/tree/master/e2e/src/)
+
+### Первая часть, элементы страницы
+Тестами покрыта генерация различных типов элементов:
+* Обычные элементы из шаблонов компонентов
+* Элементы, подгружаемые из Json файла при загрузке приложения
+
+А также проверяется корректность работы "карусели" и перехода по ссылке на другую страницу.
+Путь: [/e2e/src/app.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/e2e/src/app.e2e-spec.ts)
+
+### Вторая часть, формы обратной связи
+Выполняется проверка 3 сценариев:
+1. Открытие/закрытие модального окна одной из форм
+2. Обработка 2-х ошибок корректности заполнения формы
+3. Отправка валидных данных на работающий и неработающий сервер
+
+Путь: [/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/e2e/src/app-kivi-test-form.e2e-spec.ts)
