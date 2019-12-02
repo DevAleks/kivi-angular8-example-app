@@ -37,7 +37,7 @@ describe('Kivi-app, elements tests', () => {
 
   it('FancyImg carusel should rotate to the left after left button click', () => {   
     goleft();
-    expect(element(by.css('.owl-stage')).getAttribute('style')).toBe('transform: translate3d(-581px, 0px, 0px); transition: all 0.25s ease 0s; width: 2713px;');
+    expect(element(by.id('slider2')).element(by.css('.owl-stage')).getAttribute('style')).toBe('transform: translate3d(-581px, 0px, 0px); transition: all 0.25s ease 0s; width: 2713px;');
   });  
 
   it('if clicking to link Рафтинг in the top menu it\'ll navigate the url /rafting ', () => {   
