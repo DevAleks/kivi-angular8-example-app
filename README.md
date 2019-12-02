@@ -1,4 +1,4 @@
-# Kivi-App, учебное приложение на Angular 8.3.0 
+# Kivi-App, учебное приложение на Angular 8.3.0 и Typescript
 **Серверная часть на PHP и MySQL / unit-testing Jasmine + Karma / e2e testing Jasmine + Protractor**
 
 Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 3 готовые страницы сайта:
@@ -26,11 +26,6 @@
 * Сервер неверно обработал полученные данные
 
 
-### Серверная часть 
-Обработка данных из форм производится PHP скриптом. 
-При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также скрипт модифицирует полученные данные, что служит маркером их успешного получения и отправляет их обратно в приложение.
-При ошибке записи данных в БД сервер отправляет в приложение сообщение об ошибке.
-Путь к скрипту обработки форм: [/backend/formbottom.php](https://github.com/DevAleks/Kivi/tree/master/backend/formbottom.php)
 
 ### Интеграции со сторонним кодом
 В верстке страниц присутствуют:
@@ -41,7 +36,7 @@
 
 
 ## Технологии
-Приложение выполнено на Angular 8.3.0, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, e2e тестирование Jasmine + Protractor.
+Приложение выполнено на Angular 8.3.0 и Typescript, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, e2e тестирование Jasmine + Protractor.
 
 ### Элементы Angular
 * Компоненты [/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/)
@@ -56,7 +51,13 @@
 * - [/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/top-form/)
 * Получение данных из Json файла [/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/src/app/components/first-block/first-block.component.ts) (строка 25)
 * Вывод <script ...> в шаблонах. Обеспечивающий компонент[/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/src/app/components/scripthack) и пример вывода в шаблоне [/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/src/app/components/subscribe-block/subscribe-block.component.html)
+
   
+### Серверная часть 
+Обработка данных из форм производится PHP скриптом. 
+При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также скрипт модифицирует полученные данные, что служит маркером их успешного получения и отправляет их обратно в приложение.
+При ошибке записи данных в БД сервер отправляет в приложение сообщение об ошибке.
+Путь к скрипту обработки форм: [/backend/formbottom.php](https://github.com/DevAleks/Kivi/tree/master/backend/formbottom.php)
 
 
 ## Unit тестирование
