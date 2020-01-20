@@ -1,11 +1,11 @@
 # Kivi-App, учебное приложение на Angular 8.3.0 и Typescript
-**Серверная часть на PHP и MySQL / unit-testing Jasmine + Karma / e2e testing Jasmine + Protractor**
+**Серверная часть на PHP и MySQL / unit-testing Jasmine + Karma / E2E-testing Jasmine + Protractor**
 
 Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы сайта:
 * /
 * /rafting
 * /semeyniy-rafting
-* стрнаица ошибки 404 
+* страница ошибки 404 
 
 На всех страницах отличаются только верхние блоки с контентом.
 Приложение сделано на основе сторонней верстки на Bootstrap 4.
@@ -26,8 +26,6 @@
 * Отправить данные не удалось
 * Сервер неверно обработал полученные данные
 
-
-
 ### Интеграции со сторонним кодом
 В верстке страниц присутствуют:
 * Вставка видео с Youtube
@@ -35,9 +33,8 @@
 * Виджет Vk
 
 
-
 ## Технологии
-Приложение выполнено на Angular 8.3.0 и Typescript, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, e2e тестирование Jasmine + Protractor.
+Приложение выполнено на Angular 8.3.0 и Typescript, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor.
 
 ### Элементы Angular
 * Компоненты [/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/)
@@ -52,7 +49,6 @@
 * - [/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/top-form/)
 * Получение данных из Json файла [/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/src/app/components/first-block/first-block.component.ts) (строка 25)
 * Вывод <script ...> в шаблонах. Обеспечивающий компонент[/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/src/app/components/scripthack) и пример вывода в шаблоне [/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/src/app/components/subscribe-block/subscribe-block.component.html)
-
   
 ### Серверная часть 
 Обработка данных из форм производится PHP скриптом. 
@@ -72,7 +68,7 @@
 ### Первая часть, элементы страницы
 Тестами покрыта генерация различных типов элементов:
 * Обычные элементы из шаблонов компонентов
-* Элементы, подгружаемые из Json файла при загрузке приложения
+* Элементы, подгружаемые из JSON файла при загрузке приложения
 
 А также проверяется корректность работы "карусели" и перехода по ссылке на другую страницу.
 Путь: [/e2e/src/app.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/e2e/src/app.e2e-spec.ts)
