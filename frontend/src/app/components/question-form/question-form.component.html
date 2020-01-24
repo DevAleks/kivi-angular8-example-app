@@ -1,0 +1,119 @@
+<div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
+    <div class="modal-form-wrapper" [style.display]="modal_switcher==true?'block':'none'">
+      <div class="modal-form">
+        <div class="modal-form-header">Задать вопрос<div class="close" (click)="closeForm()"></div>
+        </div>
+        <div class="modal-form-body">
+          <form [formGroup]="questionForm" novalidate>
+            <div class="gr">
+              <label>Введите вопрос:<span class="req">*</span></label>
+              <textarea type="text" class="form-control" formControlName="userText" #question></textarea>
+              <div class="counter">Осталось символов: <span class="num">{{500 - question.value.length}}</span></div>
+            </div>
+            <div *ngIf="switcher_valid">
+              <div *ngIf="questionForm.controls['userText'].invalid && questionForm.controls['userText'].touched" class="error-form-text">
+                Поле Вопрос заполнено неверно:
+                <div *ngIf="questionForm.controls['userText'].errors?.pattern">
+                  - Использованы некорректные символы
+                </div>
+                <div *ngIf="questionForm.controls['userText'].errors?.minlength">
+                  - Должно быть от 10 до 500 символов
+                </div>
+                <div *ngIf="questionForm.controls['userText'].errors?.maxlength">
+                 -  Должно быть не более 500 символов
+                </div>
+              </div>
+              <div *ngIf="questionForm.controls['userText'].untouched && questionForm.controls['userText'].invalid" class="error-form-text">
+                Поле Вопрос не заполнено
+              </div>
+            </div>
+
+            <div class="gr">
+              <label>Введите телефон:<span class="req">*</span></label>
+              <input name="phone" type="text" formControlName="userPhone" [ngClass]="{gr_error: switcher_valid && questionForm.controls['userPhone'].invalid}" /> 
+            </div>
+            <div *ngIf="switcher_valid">
+              <div *ngIf="questionForm.controls['userPhone'].invalid && questionForm.controls['userPhone'].touched" class="error-form-text">
+                Поле Телефон заполнено неверно:
+                <div *ngIf="questionForm.controls['userPhone'].errors?.pattern">
+                  - Использованы некорректные символы
+                </div>
+                <div *ngIf="questionForm.controls['userPhone'].errors?.minlength">
+                  - Должно быть от 6 до 15 символов
+                </div>
+                <div *ngIf="questionForm.controls['userPhone'].errors?.maxlength">
+                 -  Должно быть не более 15 символов
+                </div>          
+              </div>
+              <div *ngIf="questionForm.controls['userPhone'].untouched" class="error-form-text">
+                Поле Телефон не заполнено
+              </div>
+            </div>
+            
+            <div class="gr">
+              <label>Введите e-mail:</label>
+              <input name="email" type="email" formControlName="userEmail" [ngClass]="{gr_error: switcher_valid && questionForm.controls['userEmail'].invalid}" />  
+            </div>
+            <div *ngIf="switcher_valid">
+              <div *ngIf="questionForm.controls['userEmail'].invalid && questionForm.controls['userEmail'].touched" class="error-form-text">
+                Поле Email заполнено неверно
+              </div>
+            </div> 
+
+            <div class="req-info">Поля отмеченные знаком * обязательны для заполнения</div>
+            
+            <div class="btn-wrapper">					
+              <input type="submit" class="btn-custom btn-send submit" (click)="submitQuestion()" value="Отправить вопрос">
+            </div>
+
+          </form>
+
+          <div class="policy_form">
+            Нажимая на кнопку "Отправить вопрос" вы даете согласие на обработку персональных данных в
+            соответствии с нашей <a href="/policy" target="_blank">политикой конфиденциальности</a>.
+          </div>  
+          
+          <div>
+
+          </div>
+
+          <div *ngIf="switcher && !formValidError && !errServ && !receivedFormQuestion.status">
+            <br><br>
+            <div><b>Заказ успешно отправлен!</b></div>
+            <br>
+            <label>Ответ сервера:</label>
+            <ul>
+              <li>{{receivedFormQuestion?.text}}</li>
+              <li>{{receivedFormQuestion?.phone}}</li>
+              <li>{{receivedFormQuestion?.email}}</li>
+              <li>Тип формы: {{receivedFormQuestion?.typeofform}}</li>
+              <li>Статус ошибки при отправке заказа: {{receivedFormQuestion?.status}}</li>
+            </ul>
+            <br><br>
+            <div class="btn-wrapper">					
+              <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
+            </div>
+          </div>
+
+          <div *ngIf="switcher && errServ">    
+            <br><br>
+            Ошибка отправки данных. Повторите заказ позднее.
+            <br><br>
+            <div class="btn-wrapper">					
+              <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
+            </div>           
+          </div>
+
+          <div *ngIf="switcher && receivedFormQuestion?.status">    
+            <br><br>
+            Ошибка записи в БД. Повторите заказ позднее.
+            <br><br>
+            <div class="btn-wrapper">					
+              <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
+            </div>         
+          </div>
+          
+        </div>
+      </div>
+    </div>  
+  </div>
