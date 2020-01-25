@@ -1,7 +1,7 @@
 version: '3.5'
 services:
-    angular-service:
-      container_name: angular_container
+    angular:
+      container_name: angular_cont
       build: ./frontend
       volumes:
         - './frontend:/usr/src/app' 
