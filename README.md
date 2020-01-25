@@ -7,7 +7,8 @@
 3. Доступные приложения:
 * Angular (frontend) http://localhost:4200/
 * Phpmyadmin (root / root) http://localhost:8081/
-4. Создание БД через php: http://localhost:80/recreateDb.php
+4. Создание БД kiviapp через PMA
+5. Создание структуры БД kiviapp через php: http://localhost:80/recreateDb.php или через PMA (запрос с таблицей лежит в backend/recreateDb.php)
 
 ## Работа с frontend
 1. Зайти в http://localhost:4200/
