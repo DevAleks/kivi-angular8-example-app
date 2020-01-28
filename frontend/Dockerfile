@@ -1,5 +1,6 @@
 FROM node:12
-RUN mkdir /usr/src/app 
 WORKDIR /usr/src/app
-RUN npm install -g @angular/cli 
 COPY . .
+RUN npm install
+CMD node_modules/.bin/ng serve --host 0.0.0.0 --port 4200
+EXPOSE 4200
