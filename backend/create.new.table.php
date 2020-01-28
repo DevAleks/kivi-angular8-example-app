@@ -32,7 +32,7 @@ $mysqli->query($query);
 if ($mysqli->error) {
   echo "Connection NOT ok! ", $mysqli->error;
 } else {
-  echo "Connection ok!";
+  echo 'Connection ok!<br>Created "orders" table.';
 }
 
 $mysqli->close();
