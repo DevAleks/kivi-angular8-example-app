@@ -1,5 +1,5 @@
-# Kivi-App, учебное приложение на Angular 8.3.0 и Typescript
-**Серверная часть на PHP и MySQL / Unit-testing Jasmine + Karma / E2E-testing Jasmine + Protractor / виртуализация Docker и Docker-Compose**
+# Kivi-App, учебное приложение на Angular 8.3.23 и Typescript
+**Unit-testing Jasmine + Karma / E2E-testing Jasmine + Protractor / серверная часть на PHP и MySQL / виртуализация на Docker и Docker-Compose**
 
 Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы сайта:
 * /
@@ -10,12 +10,12 @@
 Приложение сделано на основе сторонней верстки на Bootstrap 4.
 
 
-## Build и запуск приложения
-1. Первый запуск: docker-compose up --build -d
+## Build и запуск приложения (с Docker и Docker-Compose)
+1. Первый build и запуск: docker-compose up --build -d
 Последующие запуски: docker-compose up -d
 2. Создание рабочей БД kiviapp через Phpmyadmin http://localhost:8081/ (root / root), создание структуры БД kiviapp через php: http://localhost:80/create.new.table.php или через Phpmyadmin (запрос с таблицей лежит в backend/create.new.table.php)
 
-## Работа с frontend
+### Работа с frontend
 1. Вход через http://localhost:4200/
 2. Заполнить и отправить любую форму обратной связи. Если все ок, то появится сообщение об успешной отправке запроса.
 
@@ -42,7 +42,7 @@
 
 
 ## Технологии
-Приложение выполнено на Angular 8.3.0 и Typescript, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor, виртуализация Docker и Docker-Compose.
+Приложение выполнено на Angular 8.3.23 и Typescript, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor, виртуализация на Docker и Docker-Compose.
 
 ### Элементы Angular
 * Компоненты [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
@@ -67,6 +67,11 @@
 
 ## Unit тестирование
 Тестами покрыто примерно 80% всех функций. Код тестов содержится рядом с кодом приложения: [frontend/src/app/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/)
+
+### Работа с Unit тестами (с Docker и Docker-Compose)
+1. Запуск: docker-compose -f dc-angular-unit-tests.yaml up -d
+Далее открыть вкладку браузера: http://localhost:9876/
+2. Остановка: docker-compose -f dc-angular-unit-tests.yaml kill;docker-compose -f dc-angular-unit-tests.yaml down
 
 
 ## E2E тестирование
