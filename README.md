@@ -68,7 +68,7 @@
 ## Unit тестирование
 Тестами покрыто примерно 80% всех функций. Код тестов содержится рядом с кодом приложения: [frontend/src/app/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/)
 
-### Работа с Unit тестами (с Docker и Docker-Compose)
+### Работа с Unit тестами (через Docker и Docker-Compose)
 1. Запуск: docker-compose -f dc-angular-unit-tests.yaml up -d
 Далее открыть вкладку браузера: http://localhost:9876/
 2. Остановка: docker-compose -f dc-angular-unit-tests.yaml kill;docker-compose -f dc-angular-unit-tests.yaml down
@@ -91,3 +91,9 @@
 2. Обработка 2-х ошибок корректности заполнения формы
 3. Отправка валидных данных на работающий и неработающий сервер
 Путь: [frontend/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-test-form.e2e-spec.ts)
+
+### Работа с E2E тестами (через Docker и Docker-Compose)
+1. Первый запуск: dc -f dc-angular-e2e-tests.yaml up --build -d
+Последующие запуски: dc -f dc-angular-e2e-tests.yaml up -d
+2. Результаты тестов запишутся в файл frontend/logs.txt
+3. Остановка: dc -f dc-angular-e2e-tests.yaml kill;dc -f dc-angular-e2e-tests.yaml down
