@@ -93,7 +93,7 @@
 Путь: [frontend/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-test-form.e2e-spec.ts)
 
 ### Работа с E2E тестами (через Docker и Docker-Compose)
-1. Первый запуск: dc -f dc-angular-e2e-tests.yaml up --build -d
-Последующие запуски: dc -f dc-angular-e2e-tests.yaml up -d
+1. Первый запуск: docker-compose -f dc-angular-e2e-tests.yaml up --build -d
+Последующие запуски: docker-compose -f dc-angular-e2e-tests.yaml up -d
 2. Результаты тестов запишутся в файл frontend/logs.txt
-3. Остановка: dc -f dc-angular-e2e-tests.yaml kill;dc -f dc-angular-e2e-tests.yaml down
+3. Остановка: docker-compose -f dc-angular-e2e-tests.yaml kill;dc -f dc-angular-e2e-tests.yaml down
