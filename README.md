@@ -1,7 +1,7 @@
 # Kivi-App, учебное приложение на Angular 8.3.23 и Typescript
 **Unit-testing Jasmine + Karma / E2E-testing Jasmine + Protractor / серверная часть на PHP и MySQL / виртуализация на Docker и Docker-Compose**
 
-Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы сайта:
+Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы:
 * /
 * /rafting
 * /semeyniy-rafting
@@ -12,18 +12,20 @@
 <br /> 
   
 ## Инсталяция и запуск
+Для работы с приложением рекомендуется использовать Docker, под него сделаны все необходимые настройки для совместной работы frontend и backend.
+Первым шагом нужно склонировать приложение.
 
-### Инсталяция (с Docker и Docker-Compose)
-docker run --rm -v ${PWD}:/opt/kivi -w /opt/kivi node:12 npm install
+### Инсталяция
+docker run --rm -v ${PWD}/frontend/:/opt/kivi -w /opt/kivi node:12 npm install
 
-### Build и запуск приложения (с Docker и Docker-Compose)
+### Запуск приложения
 1. Первый build и запуск: docker-compose up --build -d  
 Последующие запуски: docker-compose up -d  
 2. Создание рабочей БД kiviapp через Phpmyadmin http://localhost:8081/ (root / root). Создание структуры БД kiviapp через php: http://localhost:80/create.new.table.php или через Phpmyadmin (запрос с таблицей лежит в backend/create.new.table.php)
 
 ### Работа с frontend
 1. Вход через http://localhost:4200/
-2. Заполнить и отправить любую форму обратной связи. Если все ок, то появится сообщение об успешной отправке запроса.
+2. Заполнить и отправить любую форму обратной связи. Если данные из корректно заполненной формы успешно попали на сервер, то появится сообщение об успешной отправке запроса.
   
 <br /> 
   
@@ -80,7 +82,7 @@ docker run --rm -v ${PWD}:/opt/kivi -w /opt/kivi node:12 npm install
 ### Работа с Unit тестами (через Docker и Docker-Compose)
 1. Запуск: docker-compose -f dc-angular-unit-tests.yaml up -d  
 Далее открыть вкладку браузера: http://localhost:9876/
-2. Остановка: docker-compose -f dc-angular-unit-tests.yaml kill;docker-compose -f dc-angular-unit-tests.yaml down
+2. Остановка контейнеров: docker-compose -f dc-angular-unit-tests.yaml kill;docker-compose -f dc-angular-unit-tests.yaml down
   
 <br />   
   
@@ -99,11 +101,17 @@ docker run --rm -v ${PWD}:/opt/kivi -w /opt/kivi node:12 npm install
 Выполняется проверка 3 сценариев:
 1. Открытие/закрытие модального окна одной из форм
 2. Обработка 2-х ошибок корректности заполнения формы
-3. Отправка валидных данных на работающий и неработающий сервер    
+3. Отправка валидных данных на работающий и неработающий backend. Т.е. при работающем или неработающем backend один из тестов будет не пройден.   
 Путь: [frontend/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-test-form.e2e-spec.ts)
 
 ### Работа с E2E тестами (через Docker и Docker-Compose)
 1. Первый запуск: docker-compose -f dc-angular-e2e-tests.yaml up --build -d  
 Последующие запуски: docker-compose -f dc-angular-e2e-tests.yaml up -d
 2. Результаты тестов запишутся в файл frontend/logs.txt
-3. Остановка: docker-compose -f dc-angular-e2e-tests.yaml kill;dc -f dc-angular-e2e-tests.yaml down
+3. Остановка контейнеров: docker-compose -f dc-angular-e2e-tests.yaml kill;dc -f dc-angular-e2e-tests.yaml down
+
+Внимание! Используемый для Е2Е тестов Docker образ trion/ng-cli-e2e работает некорректно с тестами, связанными с передачей запросов на backend. Это тесты 
+* Usecase 3 (send valid data to working server): should have success message
+* Usecase 3 (send valid data to broken server): should have error server data sending message
+Как вариант запускать для них Е2Е тестирование локально: ng e2e    
+При этом можно воспользоваться запущенными в Docker контейнерами с PHP и MySQL.

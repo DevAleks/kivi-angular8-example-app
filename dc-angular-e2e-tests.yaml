@@ -8,18 +8,17 @@ services:
           '/usr/src/app/'
         command: >
           bash -c "ng e2e > logs.txt"
-    backend_e2e:
+    backend:
       build: ./backend
       ports:
         - 80:80
       volumes:
         - './backend:/var/www/html'
-    mysql_e2e:
+    mysql:
       image: mysql
       ports:
         - 33060:33060
       environment:
         MYSQL_ROOT_PASSWORD: root
       volumes:
-        - './mysql-data:/var/lib/mysql'
-      
+        - './mysql-data:/var/lib/mysql'   
