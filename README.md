@@ -11,7 +11,12 @@
   
 <br /> 
   
-## Build и запуск приложения (с Docker и Docker-Compose)
+## Инсталяция и запуск
+
+### Инсталяция (с Docker и Docker-Compose)
+docker run --rm -v ${PWD}:/opt/kivi -w /opt/kivi node:12 npm install
+
+### Build и запуск приложения (с Docker и Docker-Compose)
 1. Первый build и запуск: docker-compose up --build -d  
 Последующие запуски: docker-compose up -d  
 2. Создание рабочей БД kiviapp через Phpmyadmin http://localhost:8081/ (root / root). Создание структуры БД kiviapp через php: http://localhost:80/create.new.table.php или через Phpmyadmin (запрос с таблицей лежит в backend/create.new.table.php)
