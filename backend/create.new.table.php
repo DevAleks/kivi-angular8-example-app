@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS orders (
   order_datetime datetime,
   order_typeofact varchar(20) DEFAULT '',  
   order_name varchar(30) DEFAULT '',
-  order_phone varchar(15) DEFAULT '',
+  order_phone varchar(20) DEFAULT '',
   order_email varchar(64) DEFAULT '',
   order_promo varchar(30) DEFAULT '',
   order_text varchar(500) DEFAULT '',
