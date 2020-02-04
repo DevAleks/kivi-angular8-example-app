@@ -19,7 +19,7 @@ describe('Kivi-app, elements tests', () => {
     expect(element(by.tagName('app-top-block'))).toBeDefined();
   });  
 
-  it('Should have an router-outlet tag', () => {    
+  it('Should have a router-outlet tag', () => {    
     expect(element(by.tagName('router-outlet'))).toBeDefined();
   }); 
 
@@ -40,13 +40,14 @@ describe('Kivi-app, elements tests', () => {
     expect(element(by.id('slider2')).element(by.css('.owl-stage')).getAttribute('style')).toBe('transform: translate3d(-581px, 0px, 0px); transition: all 0.25s ease 0s; width: 2713px;');
   });  
 
-  it('If clicking to link Рафтинг in the top menu it\'ll navigate the url /rafting ', () => {   
+  it('If clicking to link Рафтинг in the top menu it\'ll navigate the url /rafting ', async () => {   
+    debugger;
     element(by.id('rafting-item')).click();
     // Ждем загрузки VK виджета
     browser.wait(function() {
       return element(by.id('vkwidget1')).isPresent();
     }, 8000);    
-    expect(browser.getCurrentUrl()).toBe('http://localhost:4200/rafting');
+    expect(await browser.getCurrentUrl()).toBe('http://localhost:4200/rafting');
   }); 
 
   afterEach(async () => {
