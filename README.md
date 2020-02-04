@@ -106,8 +106,8 @@
 2. Результаты тестов запишутся в файл frontend/logs.txt
 3. Остановка контейнеров: docker-compose -f dc-angular-e2e-tests.yaml kill;dc -f dc-angular-e2e-tests.yaml down
 
-Внимание! Используемый для Е2Е тестов Docker образ trion/ng-cli-e2e работает некорректно с тестами, связанными с передачей запросов на backend. Это тесты 
-* Use case 3 (send valid data to working server): should have success message
-* Use case 3 (send valid data to broken server): should have error server data sending message
-Как вариант запускать для них Е2Е тестирование локально: ng e2e    
+Внимание! Используемый для Е2Е тестов Docker образ trion/ng-cli-e2e работает некорректно с тестами, связанными с передачей запросов на backend. Это тесты:  
+* Use case 3 (send valid data to working server): should have success message  
+* Use case 3 (send valid data to broken server): should have error server data sending message  
+Решает проблему запуск Е2Е тестов локально: ng e2e    
 При этом можно воспользоваться запущенными в Docker контейнерами с PHP и MySQL.
