@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { FormsService } from '../../services/forms.service';
 import { FormBottom } from '../../classes/form-bt-class';
+import { ClickForm } from '../../classes/click-class'
 
 @Component({
   selector: 'app-first-form',
@@ -29,7 +30,7 @@ export class FirstFormComponent implements OnInit {
   constructor(private formsService: FormsService) {  
     
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.subscription = formsService.observableclicks$.subscribe((data) => {
+    this.subscription = formsService.observableclicks$.subscribe((data: ClickForm) => {
       if (data.typeofform == 2) {
         this.modal_switcher = true;
         this.typeofact = data.typeofact;

@@ -7,7 +7,13 @@
     <!-- Рафтинг -->
     <div class="row rafting rafting-section">
         <div class="page-title-wrapper">
-            <h1 class="page-title">{{h1}}</h1>
+            <div *ngIf="!loading; else loadingBlock">
+                <h1 class="page-title">{{h1}}</h1>
+            </div>
+            <ng-template #loadingBlock>
+                <p>Загрузка заголовка H1...</p>
+                <img src="../../assets/img/loader2.svg">
+            </ng-template>
         </div>	
         
         <div class="raft-list">

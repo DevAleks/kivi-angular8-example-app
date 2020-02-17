@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { FormsService } from '../../services/forms.service';
 import { FormBottom } from '../../classes/form-bt-class';
+import { ClickForm } from 'src/app/classes/click-class';
 
 @Component({
   selector: 'app-callorder-form',
@@ -28,7 +28,7 @@ export class CallorderFormComponent implements OnInit {
   constructor(private formsService: FormsService) {
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.subscription = formsService.observableclicks$.subscribe((data) => {
+    this.subscription = formsService.observableclicks$.subscribe((data: ClickForm) => {
       if (data.typeofform == 4) {
         this.modal_switcher = true;
       }      
