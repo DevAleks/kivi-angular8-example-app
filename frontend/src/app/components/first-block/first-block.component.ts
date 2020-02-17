@@ -28,12 +28,12 @@ export class FirstBlockComponent implements OnInit {
 
   ngOnInit() {
     // Включаем отображение индикатора загрузки заголовка H1
-    this.loading = true;
+    this.loading = true; 
     // Получаем значение для заголовка h1 из json файла
     this.getjsonService.getPagesJson()
     .subscribe(
       (data:PagesInt) => {
-        this.h1 = data["index"][0]["h1"],
+        this.h1 = data["index"][0]["h1"]
         this.loading = false // Выключаем отображение индикатора загрузки заголовка H1
       },
       (error:any) => console.log(error)

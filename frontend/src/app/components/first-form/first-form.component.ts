@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
@@ -14,18 +14,29 @@ import { ClickForm } from '../../classes/click-class'
   encapsulation: ViewEncapsulation.None
 })
 
-export class FirstFormComponent implements OnInit {
+export class FirstFormComponent {
 
   modal_switcher: boolean = false; // Свичер для модальных окон новых форм и "ответов" форм
+
   typeofact: string = ''; // Переменная для выбранной услуги
+
   subscription: Subscription; // Переменная для подписки на клики по кнопке открытия окна с формой 
+
   switcher_valid: boolean = false; // Индикатор попытки валидации формы после клика на кнопку отправки
+
   switcher: boolean = false; // Индикатор успешного получения данных с сервера
+
   formValidError: boolean = true; // Статус ошибки валидации формы перед отправкой
+
   errServ: boolean = false; // Статус ошибки передачи данных формы на сервер
+
   formfirst: FormBottom = new FormBottom(); // Данные вводимого заказа для формы firstForm
+
   receivedFormFirst: FormBottom = new FormBottom(); // Данные заказа из формы firstForm, полученные с сервера
+
   firstForm : FormGroup; // Объект FormGroup для формы firstForm
+
+  loading = false; // Переключатель индикатора загрузки ответа формы
  
   constructor(private formsService: FormsService) {  
     
@@ -58,7 +69,6 @@ export class FirstFormComponent implements OnInit {
         Validators.pattern("[0-9а-яА-Яa-zA-Z]{0,21}")
       ])      
     }); 
-
   }
 
   // Закрытие формы кликами мыши
@@ -113,15 +123,23 @@ export class FirstFormComponent implements OnInit {
           status: false
         };
 
+        // Включаем отображение индикатора загрузки
+        this.loading = true;
+
         // Отправка оъекта на сервер и получение ответа от сервера
         this.formsService.postForm(this.formfirst)
                 .subscribe(
                     (data: FormBottom) => {
-                      this.receivedFormFirst=data; // Получаем данные с сервера
-                      this.formValidError = false; // Отключаем проверку ошибок валидации для формы
-                      this.switcher_valid = false; // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
+                      this.receivedFormFirst = data // Получаем данные с сервера
+                      this.formValidError = false // Отключаем проверку ошибок валидации для формы
+                      this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
+                      this.loading = false // Выключаем отображение индикатора загрузки
                     },
-                    error => {console.log(error);this.errServ=true;}
+                    error => {
+                      console.log(error)
+                      this.errServ=true
+                      this.loading = false // Выключаем отображение индикатора загрузки
+                    }
                 );
     }
     this.switcher = true; // Включаем показ окна с результатом отправки формы
@@ -129,15 +147,5 @@ export class FirstFormComponent implements OnInit {
     //setTimeout(() => this.switcher = true, 2000); // Включаем обработку ошибок отправки данных на сервер
 
   }  
-
-  ngOnDestroy() {
-    // предотвращение утечки памяти при уничтожении компонента
-    this.subscription.unsubscribe();
-  }
-  
-  ngOnInit() {   
-
-  } 
-
 
 }
