@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Subject, throwError } from 'rxjs';
+import { Subject, throwError, Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 import { FormBottom } from '../classes/form-bt-class'
@@ -28,13 +28,13 @@ export class FormsService {
       'Что-то пошло не так; попробуйте снова позднее.');
   };
 
-  // Метод и переменная для открытия форм firstForm, topForm, questionForm, callorderForm в модальных окне 
+  // Переменная и стрим для открытия форм firstForm, topForm, questionForm, callorderForm в модальных окне 
   private clicks = new Subject<ClickForm>(); 
   observableclicks$ = this.clicks.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  // Открываем форму callorderForm, кнопка "Заказать звонок"
+  // Передаем в стрим событие открытия формы
   openForm(openClick: ClickForm) {
     this.clicks.next(openClick);
     // this.clicks.next({formtype:4, typeofact:'Проверка !!!'});
@@ -44,7 +44,7 @@ export class FormsService {
   }  
 
   // Отправка и получение данных с сервера для всех форм
-  postForm(formbt: FormBottom){         
+  postForm(formbt: FormBottom): Observable<FormBottom>{         
     const body = {
       name: formbt.name,
       phone: formbt.phone, 
@@ -55,7 +55,7 @@ export class FormsService {
       status: formbt.status,
       text: formbt.text
     };    
-    return this.http.post('http://localhost:80/requests.add.php', body)
+    return this.http.post<FormBottom>('http://localhost:80/requests.add.php', body)
     .pipe( // Обработка ошибок
       retry(2),
       catchError(this.handleError) // Записываем полученные ошибки в специальный объект handleError

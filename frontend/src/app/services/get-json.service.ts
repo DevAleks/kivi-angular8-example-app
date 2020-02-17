@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 //import { enableProdMode } from '@angular/core';
 
@@ -35,7 +35,7 @@ export class GetJsonService {
     constructor(private http: HttpClient) { }
   
     // Отправка запроса и получение данных из json файла
-    getPagesJson() {
+    getPagesJson(): Observable<PagesInt>{
       return this.http.get<PagesInt>('/assets/from-server/pages.json')
       .pipe( // Обработка ошибок
         retry(3), // Пробуем получить успешный ответ 3 раза

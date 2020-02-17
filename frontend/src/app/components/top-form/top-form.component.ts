@@ -29,7 +29,7 @@ export class TopFormComponent implements OnInit {
 
   constructor(private formsService: FormsService) {
 
-    // Получение кликов по кнопке открытия окна с формой
+    // Слушаем стрим для получения клика по кнопке открытия окна с формой
     this.subscription = formsService.observableclicks$.subscribe((data) => {
       if (data.typeofform == 3) {
         this.modal_switcher = true;

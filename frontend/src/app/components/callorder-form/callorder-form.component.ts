@@ -27,7 +27,7 @@ export class CallorderFormComponent implements OnInit {
 
   constructor(private formsService: FormsService) {
 
-    // Получение кликов по кнопке открытия окна с формой
+    // Слушаем стрим для получения клика по кнопке открытия окна с формой
     this.subscription = formsService.observableclicks$.subscribe((data) => {
       if (data.typeofform == 4) {
         this.modal_switcher = true;
