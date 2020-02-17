@@ -1,0 +1,24 @@
+version: '3.5'
+services:
+    angular_e2e:
+        image: trion/ng-cli-e2e:latest
+        volumes:
+          - './frontend:/usr/src/app/'
+        working_dir: 
+          '/usr/src/app/'
+        command: >
+          bash -c "ng e2e > logs.txt"
+    backend:
+      build: ./backend
+      ports:
+        - 80:80
+      volumes:
+        - './backend:/var/www/html'
+    mysql:
+      image: mysql
+      ports:
+        - 33060:33060
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+      volumes:
+        - './mysql-data:/var/lib/mysql'   

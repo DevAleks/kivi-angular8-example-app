@@ -21,37 +21,37 @@ describe('Kivi-app, using topForm', () => {
     browser.get('http://localhost:4200/', 1000);
   });
 
-  it('Usecase 1 (open & close): Opening topForm after click to button Заказать in top menu', () => {    
+  it('Use case 1 (open & close): Opening topForm after click to button Заказать in top menu', () => {    
     openForm();
     expect(element(by.css('.modal-form-header')).getText()).toContain('Заказ услуги');
   });
 
-  it('Usecase 1 (open & close): Closing topForm after click cross icon in right top coner', () => {    
+  it('Use case 1 (open & close): Closing topForm after click cross icon in right top coner', () => {    
     openForm();
     element(by.css('.close')).click();    
     expect(element(by.id('modal-form-bg')).getAttribute('style')).toContain('none');
   });
 
-  it('Usecase 1 (open & close): Closing topForm after press escape button', () => {    
+  it('Use case 1 (open & close): Closing topForm after press escape button', () => {    
     openForm();
     element(by.tagName('body')).sendKeys(protractor.Key.ESCAPE);
     expect(element(by.id('modal-form-bg')).getAttribute('style')).toContain('none');
   });  
 
-  it('Usecase 2 (trying to send wrong data): in the topForm with novalid data after clicking to send button should see the "typeofact" input error', () => {    
+  it('Use case 2 (trying to send wrong data): in the topForm with novalid data after clicking to send button should see the "typeofact" input error', () => {    
     openForm();
     sendOrder();
     expect(element(by.id('sel-er')).getText()).toContain('Для отправки заказа необходимо выбрать услугу');
   });
 
-  it('Usecase 2 (trying to send wrong data): in the topForm with novalid data after clicking to send button should see the "userName" input error', () => {    
+  it('Use case 2 (trying to send wrong data): in the topForm with novalid data after clicking to send button should see the "userName" input error', () => {    
     openForm();
     element(by.id('userNameT')).sendKeys('А');
     sendOrder();
     expect(element(by.id('userNameT-min')).getText()).toContain('- Должно быть от 2 до 30 символов');
   }); 
 
-  it('Usecase 3 (send valid data to broken server): should have error server data sending message', () => {    
+  it('Use case 3 (send valid data to broken server): should have error server data sending message', () => {    
     openForm();
     element(by.tagName("select#serviceTopForm")).element(by.css("#serviceTopForm [value='Рафтинг']")).click();
     element(by.id('userNameT')).sendKeys('Аlex');
@@ -62,7 +62,7 @@ describe('Kivi-app, using topForm', () => {
   });  
 
 
-  it('Usecase 3 (send valid data to working server): should have success message', () => {    
+  it('Use case 3 (send valid data to working server): should have success message', () => {    
     openForm();
     element(by.tagName("select#serviceTopForm")).element(by.css("#serviceTopForm [value='Рафтинг']")).click();
     element(by.id('userNameT')).sendKeys('Аlex');

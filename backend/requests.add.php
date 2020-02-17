@@ -20,7 +20,7 @@ if(isset($formbt['phone']) && isset($formbt['typeofact']) && isset($formbt['type
     if (isset($formbt['promo'])) $formbt_back['promo'] = 'Promo: '.$formbt['promo'];
     if (isset($formbt['text'])) $formbt_back['text'] = 'Вопрос: '.$formbt['text']; 
 
-    $mysqli = new mysqli("localhost", "frontuser", "qazxsw", "kiviapp");
+    $mysqli = new mysqli("mysql", "root", "root", "kiviapp");
 
     // Обработка ошибки соединения с БД
     if (mysqli_connect_errno()) {
@@ -46,4 +46,3 @@ else
     echo "Веденные данные некорректны";
 }
     
-?>

@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+    angular_karma:
+        image: trion/ng-cli-karma:latest
+        volumes:
+          - './frontend:/usr/src/app/'
+        working_dir: 
+          '/usr/src/app/'
+        ports:
+          - '9876:9876'
+        command: >
+          bash -c "ng test"

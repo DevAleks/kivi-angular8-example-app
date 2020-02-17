@@ -55,7 +55,7 @@ export class FormsService {
       status: formbt.status,
       text: formbt.text
     };    
-    return this.http.post('http://localhost/formbottom.php', body)
+    return this.http.post('http://localhost:80/requests.add.php', body)
     .pipe( // Обработка ошибок
       retry(2),
       catchError(this.handleError) // Записываем полученные ошибки в специальный объект handleError

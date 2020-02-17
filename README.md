@@ -1,82 +1,118 @@
-# Kivi-App, учебное приложение на Angular 8.3.0 и Typescript
-**Серверная часть на PHP и MySQL / unit-testing Jasmine + Karma / E2E-testing Jasmine + Protractor**
+# Kivi-App, СѓС‡РµР±РЅРѕРµ РїСЂРёР»РѕР¶РµРЅРёРµ РЅР° Angular 8.3.23 Рё Typescript
+**Unit-testing Jasmine + Karma / E2E-testing Jasmine + Protractor / СЃРµСЂРІРµСЂРЅР°СЏ С‡Р°СЃС‚СЊ РЅР° PHP Рё MySQL / РІРёСЂС‚СѓР°Р»РёР·Р°С†РёСЏ РЅР° Docker Рё Docker-Compose**
 
-Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы сайта:
+РџСЂРёР»РѕР¶РµРЅРёРµ Kivi-App РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ СЃРѕР±РѕР№ "РЅР°Р±СЂРѕСЃРѕРє" Р±СѓРґСѓС‰РµРіРѕ СЃР°Р№С‚Р° Рё СЃРѕРґРµСЂР¶РёС‚ 4 СЃС‚СЂР°РЅРёС†С‹:
 * /
 * /rafting
 * /semeyniy-rafting
-* страница ошибки 404 
+* СЃС‚СЂР°РЅРёС†Р° РѕС€РёР±РєРё 404
 
-На всех страницах отличаются только верхние блоки с контентом.
-Приложение сделано на основе сторонней верстки на Bootstrap 4.
-
-
-## Функционал
-
-### Формы обратной связи
-На каждой станице есть 5 различных форм обратной связи, позволяющих посетителям отправлять заказы услуг. 4 формы в модальных окнах доступны по кнопкам:
-1. Заказать звонок (шапка)
-2. Задать вопрос (шапка)
-3. Заказать (шапка)
-4. Заказать сейчас (контент)
-
-Пятая форма расположена внизу страницы.
-Каждая форма умеет проверять введенные данные и подсказывать какие ошибки ввода нужно исправить, если они есть. Если все данные введены корректно, то форма пытается отправить их на сервер и ждет его ответ. После получения ответа сервера он выводится на экран. Как пример обработки ошибок могут быть 3 варианта ответа:
-* Отправка данных прошла успешно
-* Отправить данные не удалось
-* Сервер неверно обработал полученные данные
-
-### Интеграции со сторонним кодом
-В верстке страниц присутствуют:
-* Вставка видео с Youtube
-* "Карусель" Fancybox
-* Виджет Vk
-
-
-## Технологии
-Приложение выполнено на Angular 8.3.0 и Typescript, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor.
-
-### Элементы Angular
-* Компоненты [/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/)
-* Сервисы [/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/src/app/services/)
-* Pipe [/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/src/app/pipes/)
-* Роутер [/src/app/app.module.ts](https://github.com/DevAleks/Kivi/tree/master/src/app/app.module.ts) (строка 41)
-* Формы - валидатор с обработкой ошибок, отправка данных и получение ответа от сервера:
-* - [/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/callorder-form/)
-* - [/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/first-form/)
-* - [/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/footer-form/)
-* - [/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/question-form/)
-* - [/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/src/app/components/top-form/)
-* Получение данных из Json файла [/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/src/app/components/first-block/first-block.component.ts) (строка 25)
-* Вывод <script ...> в шаблонах. Обеспечивающий компонент[/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/src/app/components/scripthack) и пример вывода в шаблоне [/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/src/app/components/subscribe-block/subscribe-block.component.html)
+РќР° РІСЃРµС… СЃС‚СЂР°РЅРёС†Р°С… РѕС‚Р»РёС‡Р°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ РІРµСЂС…РЅРёРµ Р±Р»РѕРєРё СЃ РєРѕРЅС‚РµРЅС‚РѕРј.  
+РџСЂРёР»РѕР¶РµРЅРёРµ СЃРґРµР»Р°РЅРѕ РЅР° РѕСЃРЅРѕРІРµ СЃС‚РѕСЂРѕРЅРЅРµР№ РІРµСЂСЃС‚РєРё РЅР° Bootstrap 4.  
   
-### Серверная часть 
-Обработка данных из форм производится PHP скриптом. 
-При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также скрипт модифицирует полученные данные, что служит маркером их успешного получения и отправляет их обратно в приложение.
-При ошибке записи данных в БД сервер отправляет в приложение сообщение об ошибке.
-Путь к скрипту обработки форм: [/backend/formbottom.php](https://github.com/DevAleks/Kivi/tree/master/backend/formbottom.php)
+<br /> 
+  
+## РРЅСЃС‚Р°Р»СЏС†РёСЏ Рё Р·Р°РїСѓСЃРє
+Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ РїСЂРёР»РѕР¶РµРЅРёРµРј СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Docker, РїРѕРґ РЅРµРіРѕ СЃРґРµР»Р°РЅС‹ РІСЃРµ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ СЃРѕРІРјРµСЃС‚РЅРѕР№ СЂР°Р±РѕС‚С‹ frontend Рё backend. РРЅСЃС‚Р°Р»СЏС†РёСЏ Рё Р·Р°РїСѓСЃРє РѕРїРёСЃР°РЅС‹ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј Docker. 
+1. РЎРєР»РѕРЅРёСЂРѕРІР°С‚СЊ РїСЂРёР»РѕР¶РµРЅРёРµ.  
+2. docker run --rm -v ${PWD}/frontend/:/opt/kivi -w /opt/kivi node:12 npm install  
+3. РџРµСЂРІС‹Р№ Р·Р°РїСѓСЃРє Рё build РѕР±СЂР°Р·Р°: docker-compose up --build -d  
+РџРѕСЃР»РµРґСѓСЋС‰РёРµ Р·Р°РїСѓСЃРєРё: docker-compose up -d  
+4. РЎРѕР·РґР°РЅРёРµ СЂР°Р±РѕС‡РµР№ Р‘Р” kiviapp С‡РµСЂРµР· Phpmyadmin http://localhost:8081/ (root / root). РЎРѕР·РґР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ Р‘Р” kiviapp С‡РµСЂРµР· php: http://localhost:80/create.new.table.php РёР»Рё С‡РµСЂРµР· Phpmyadmin (Р·Р°РїСЂРѕСЃ СЃ С‚Р°Р±Р»РёС†РµР№ Р»РµР¶РёС‚ РІ backend/create.new.table.php)  
 
+### Р Р°Р±РѕС‚Р° СЃ frontend
+1. Р’С…РѕРґ С‡РµСЂРµР· http://localhost:4200/  
+2. Р—Р°РїРѕР»РЅРёС‚СЊ Рё РѕС‚РїСЂР°РІРёС‚СЊ Р»СЋР±СѓСЋ С„РѕСЂРјСѓ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё. Р•СЃР»Рё РґР°РЅРЅС‹Рµ РёР· РєРѕСЂСЂРµРєС‚РЅРѕ Р·Р°РїРѕР»РЅРµРЅРЅРѕР№ С„РѕСЂРјС‹ СѓСЃРїРµС€РЅРѕ РїРѕРїР°Р»Рё РЅР° СЃРµСЂРІРµСЂ, С‚Рѕ РїРѕСЏРІРёС‚СЃСЏ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± СѓСЃРїРµС€РЅРѕР№ РѕС‚РїСЂР°РІРєРµ Р·Р°РїСЂРѕСЃР°.  
+  
+<br /> 
+  
+## Р¤СѓРЅРєС†РёРѕРЅР°Р»
 
-## Unit тестирование
-Тестами покрыто примерно 80% всех функций. Код тестов содержится рядом с кодом приложения: [/src/app/](https://github.com/DevAleks/Kivi/tree/master/src/app/)
+### Р¤РѕСЂРјС‹ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+РќР° РєР°Р¶РґРѕР№ СЃС‚Р°РЅРёС†Рµ РµСЃС‚СЊ 5 СЂР°Р·Р»РёС‡РЅС‹С… С„РѕСЂРј РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё, РїРѕР·РІРѕР»СЏСЋС‰РёС… РїРѕСЃРµС‚РёС‚РµР»СЏРј РѕС‚РїСЂР°РІР»СЏС‚СЊ Р·Р°РєР°Р·С‹ СѓСЃР»СѓРі. 4 С„РѕСЂРјС‹ РІ РјРѕРґР°Р»СЊРЅС‹С… РѕРєРЅР°С… РґРѕСЃС‚СѓРїРЅС‹ РїРѕ РєРЅРѕРїРєР°Рј:  
+1. Р—Р°РєР°Р·Р°С‚СЊ Р·РІРѕРЅРѕРє (С€Р°РїРєР°)  
+2. Р—Р°РґР°С‚СЊ РІРѕРїСЂРѕСЃ (С€Р°РїРєР°)  
+3. Р—Р°РєР°Р·Р°С‚СЊ (С€Р°РїРєР°)  
+4. Р—Р°РєР°Р·Р°С‚СЊ СЃРµР№С‡Р°СЃ (РєРѕРЅС‚РµРЅС‚)
 
+РџСЏС‚Р°СЏ С„РѕСЂРјР° СЂР°СЃРїРѕР»РѕР¶РµРЅР° РІРЅРёР·Сѓ СЃС‚СЂР°РЅРёС†С‹.  
+РљР°Р¶РґР°СЏ С„РѕСЂРјР° СѓРјРµРµС‚ РїСЂРѕРІРµСЂСЏС‚СЊ РІРІРµРґРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ Рё РїРѕРґСЃРєР°Р·С‹РІР°С‚СЊ РєР°РєРёРµ РѕС€РёР±РєРё РІРІРѕРґР° РЅСѓР¶РЅРѕ РёСЃРїСЂР°РІРёС‚СЊ, РµСЃР»Рё РѕРЅРё РµСЃС‚СЊ. Р•СЃР»Рё РІСЃРµ РґР°РЅРЅС‹Рµ РІРІРµРґРµРЅС‹ РєРѕСЂСЂРµРєС‚РЅРѕ, С‚Рѕ С„РѕСЂРјР° РїС‹С‚Р°РµС‚СЃСЏ РѕС‚РїСЂР°РІРёС‚СЊ РёС… РЅР° СЃРµСЂРІРµСЂ Рё Р¶РґРµС‚ РµРіРѕ РѕС‚РІРµС‚. РџРѕСЃР»Рµ РїРѕР»СѓС‡РµРЅРёСЏ РѕС‚РІРµС‚Р° СЃРµСЂРІРµСЂР° РѕРЅ РІС‹РІРѕРґРёС‚СЃСЏ РЅР° СЌРєСЂР°РЅ. РљР°Рє РїСЂРёРјРµСЂ РѕР±СЂР°Р±РѕС‚РєРё РѕС€РёР±РѕРє РјРѕРіСѓС‚ Р±С‹С‚СЊ 3 РІР°СЂРёР°РЅС‚Р° РѕС‚РІРµС‚Р°:
+* РћС‚РїСЂР°РІРєР° РґР°РЅРЅС‹С… РїСЂРѕС€Р»Р° СѓСЃРїРµС€РЅРѕ
+* РћС‚РїСЂР°РІРёС‚СЊ РґР°РЅРЅС‹Рµ РЅРµ СѓРґР°Р»РѕСЃСЊ
+* РЎРµСЂРІРµСЂ РЅРµРІРµСЂРЅРѕ РѕР±СЂР°Р±РѕС‚Р°Р» РїРѕР»СѓС‡РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ
 
-## E2E тестирование
-Разбито на 2 части. Покрыты только некоторые элементы страницы и проверены 3 коротких use case для форм обратной связи.
-Код тестов расположен тут: [/e2e/src/](https://github.com/DevAleks/Kivi/tree/master/e2e/src/)
+### РРЅС‚РµРіСЂР°С†РёРё СЃРѕ СЃС‚РѕСЂРѕРЅРЅРёРј РєРѕРґРѕРј
+Р’ РІРµСЂСЃС‚РєРµ СЃС‚СЂР°РЅРёС† РїСЂРёСЃСѓС‚СЃС‚РІСѓСЋС‚:
+* Р’СЃС‚Р°РІРєР° РІРёРґРµРѕ СЃ Youtube
+* "РљР°СЂСѓСЃРµР»СЊ" Fancybox
+* Р’РёРґР¶РµС‚ VK
+  
+<br />   
+  
+## РўРµС…РЅРѕР»РѕРіРёРё
+РџСЂРёР»РѕР¶РµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ РЅР° Angular 8.3.23 Рё Typescript, СЃРµСЂРІРµСЂРЅР°СЏ С‡Р°СЃС‚СЊ РЅР° PHP Рё MySQL, unit С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ Jasmine + Karma, E2E С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ Jasmine + Protractor, РІРёСЂС‚СѓР°Р»РёР·Р°С†РёСЏ РЅР° Docker Рё Docker-Compose.
 
-### Первая часть, элементы страницы
-Тестами покрыта генерация различных типов элементов:
-* Обычные элементы из шаблонов компонентов
-* Элементы, подгружаемые из JSON файла при загрузке приложения
+### Р­Р»РµРјРµРЅС‚С‹ Angular
+* РљРѕРјРїРѕРЅРµРЅС‚С‹ [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
+* РЎРµСЂРІРёСЃС‹ [frontend/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/services/)
+* Pipe [frontend/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/pipes/)
+* Р РѕСѓС‚РµСЂ [frontend/src/app/app.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app.module.ts) (СЃС‚СЂРѕРєР° 41)
+* Р¤РѕСЂРјС‹, СЃРѕРґРµСЂР¶Р°С‚ РІР°Р»РёРґР°С‚РѕСЂ СЃ РѕР±СЂР°Р±РѕС‚РєРѕР№ РѕС€РёР±РѕРє, РІС‹РїРѕР»РЅСЏСЋС‚ РѕС‚РїСЂР°РІРєСѓ РґР°РЅРЅС‹С… Рё РїРѕР»СѓС‡РµРЅРёРµ РѕС‚РІРµС‚Р° РѕС‚ СЃРµСЂРІРµСЂР°:
+    * [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
+    * [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
+    * [frontend/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/footer-form/)
+    * [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
+    * [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
+* РџРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… РёР· Json С„Р°Р№Р»Р° [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (СЃС‚СЂРѕРєР° 25)
+* Р’С‹РІРѕРґ С‚РµРіРѕРІ <script ...> РІ С€Р°Р±Р»РѕРЅР°С…. РћР±РµСЃРїРµС‡РёРІР°СЋС‰РёР№ РєРѕРјРїРѕРЅРµРЅС‚[frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) Рё РїСЂРёРјРµСЂ РІС‹РІРѕРґР° РІ С€Р°Р±Р»РѕРЅРµ [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
+  
+### РЎРµСЂРІРµСЂРЅР°СЏ С‡Р°СЃС‚СЊ 
+РћР±СЂР°Р±РѕС‚РєР° РґР°РЅРЅС‹С… РёР· С„РѕСЂРј РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ PHP СЃРєСЂРёРїС‚РѕРј.   
+РџСЂРё РєРѕСЂСЂРµРєС‚РЅРѕРј РІС‹РїРѕР»РЅРµРЅРёРё СЃС†РµРЅР°СЂРёСЏ РґР°РЅРЅС‹Рµ РёР· С„РѕСЂРј Р·Р°РїРёСЃС‹РІР°СЋС‚СЃСЏ РІ Р‘Р” РЅР° MySQL. РўР°РєР¶Рµ СЃРєСЂРёРїС‚ РјРѕРґРёС„РёС†РёСЂСѓРµС‚ РїРѕР»СѓС‡РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ, С‡С‚Рѕ СЃР»СѓР¶РёС‚ РјР°СЂРєРµСЂРѕРј РёС… СѓСЃРїРµС€РЅРѕРіРѕ РїРѕР»СѓС‡РµРЅРёСЏ Рё РѕС‚РїСЂР°РІР»СЏРµС‚ РёС… РѕР±СЂР°С‚РЅРѕ РІ РїСЂРёР»РѕР¶РµРЅРёРµ.  
+РџСЂРё РѕС€РёР±РєРµ Р·Р°РїРёСЃРё РґР°РЅРЅС‹С… РІ Р‘Р” СЃРµСЂРІРµСЂ РѕС‚РїСЂР°РІР»СЏРµС‚ РІ РїСЂРёР»РѕР¶РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ.  
+РџСѓС‚СЊ Рє СЃРєСЂРёРїС‚Сѓ РѕР±СЂР°Р±РѕС‚РєРё С„РѕСЂРј: [backend/requests.add.php](https://github.com/DevAleks/Kivi/tree/master/backend/requests.add.php)
+  
+<br />   
+  
+## Unit С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
+РўРµСЃС‚Р°РјРё РїРѕРєСЂС‹С‚Рѕ РїСЂРёРјРµСЂРЅРѕ 80% РІСЃРµС… С„СѓРЅРєС†РёР№. РљРѕРґ С‚РµСЃС‚РѕРІ СЃРѕРґРµСЂР¶РёС‚СЃСЏ СЂСЏРґРѕРј СЃ РєРѕРґРѕРј РїСЂРёР»РѕР¶РµРЅРёСЏ: [frontend/src/app/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/)
 
-А также проверяется корректность работы "карусели" и перехода по ссылке на другую страницу.
-Путь: [/e2e/src/app.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/e2e/src/app.e2e-spec.ts)
+### Р Р°Р±РѕС‚Р° СЃ Unit С‚РµСЃС‚Р°РјРё (С‡РµСЂРµР· Docker Рё Docker-Compose)
+1. Р—Р°РїСѓСЃРє: docker-compose -f dc-angular-unit-tests.yaml up -d  
+Р”Р°Р»РµРµ РѕС‚РєСЂС‹С‚СЊ РІРєР»Р°РґРєСѓ Р±СЂР°СѓР·РµСЂР°: http://localhost:9876/
+2. РћСЃС‚Р°РЅРѕРІРєР° РєРѕРЅС‚РµР№РЅРµСЂРѕРІ: docker-compose -f dc-angular-unit-tests.yaml kill;docker-compose -f dc-angular-unit-tests.yaml down
+  
+<br />   
+  
+## E2E С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ
+Р Р°Р·Р±РёС‚Рѕ РЅР° 2 С‡Р°СЃС‚Рё. РџРѕРєСЂС‹С‚С‹ С‚РѕР»СЊРєРѕ РЅРµРєРѕС‚РѕСЂС‹Рµ СЌР»РµРјРµРЅС‚С‹ СЃС‚СЂР°РЅРёС†С‹ Рё РїСЂРѕРІРµСЂРµРЅС‹ 3 РєРѕСЂРѕС‚РєРёС… use case РґР»СЏ С„РѕСЂРј РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё.
+РљРѕРґ С‚РµСЃС‚РѕРІ СЂР°СЃРїРѕР»РѕР¶РµРЅ С‚СѓС‚: [frontend/e2e/src/](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/)
 
-### Вторая часть, формы обратной связи
-Выполняется проверка 3 сценариев:
-1. Открытие/закрытие модального окна одной из форм
-2. Обработка 2-х ошибок корректности заполнения формы
-3. Отправка валидных данных на работающий и неработающий сервер
+### РџРµСЂРІР°СЏ С‡Р°СЃС‚СЊ, СЌР»РµРјРµРЅС‚С‹ СЃС‚СЂР°РЅРёС†С‹
+РўРµСЃС‚Р°РјРё РїРѕРєСЂС‹С‚Р° РіРµРЅРµСЂР°С†РёСЏ СЂР°Р·Р»РёС‡РЅС‹С… С‚РёРїРѕРІ СЌР»РµРјРµРЅС‚РѕРІ:
+* РћР±С‹С‡РЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РёР· С€Р°Р±Р»РѕРЅРѕРІ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ
+* Р­Р»РµРјРµРЅС‚С‹, РїРѕРґРіСЂСѓР¶Р°РµРјС‹Рµ РёР· JSON С„Р°Р№Р»Р° РїСЂРё Р·Р°РіСЂСѓР·РєРµ РїСЂРёР»РѕР¶РµРЅРёСЏ
+* РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ СЂР°Р±РѕС‚С‹ "РєР°СЂСѓСЃРµР»Рё" Рё РїРµСЂРµС…РѕРґР° РїРѕ СЃСЃС‹Р»РєРµ РЅР° РґСЂСѓРіСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ.
 
-Путь: [/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/e2e/src/app-kivi-test-form.e2e-spec.ts)
+РџСѓС‚СЊ: [frontend/e2e/src/app-kivi-default.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-default.e2e-spec.ts)
+
+### Р’С‚РѕСЂР°СЏ С‡Р°СЃС‚СЊ, С„РѕСЂРјС‹ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+Р’С‹РїРѕР»РЅСЏРµС‚СЃСЏ РїСЂРѕРІРµСЂРєР° 3 СЃС†РµРЅР°СЂРёРµРІ:
+1. РћС‚РєСЂС‹С‚РёРµ/Р·Р°РєСЂС‹С‚РёРµ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° РѕРґРЅРѕР№ РёР· С„РѕСЂРј
+2. РћР±СЂР°Р±РѕС‚РєР° 2-С… РѕС€РёР±РѕРє РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё Р·Р°РїРѕР»РЅРµРЅРёСЏ С„РѕСЂРјС‹
+3. РћС‚РїСЂР°РІРєР° РІР°Р»РёРґРЅС‹С… РґР°РЅРЅС‹С… РЅР° СЂР°Р±РѕС‚Р°СЋС‰РёР№ Рё РЅРµСЂР°Р±РѕС‚Р°СЋС‰РёР№ backend. Рў.Рµ. РїСЂРё СЂР°Р±РѕС‚Р°СЋС‰РµРј РёР»Рё РЅРµСЂР°Р±РѕС‚Р°СЋС‰РµРј backend РѕРґРёРЅ РёР· С‚РµСЃС‚РѕРІ Р±СѓРґРµС‚ РЅРµ РїСЂРѕР№РґРµРЅ.
+
+РџСѓС‚СЊ: [frontend/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-test-form.e2e-spec.ts)
+
+### Р Р°Р±РѕС‚Р° СЃ E2E С‚РµСЃС‚Р°РјРё (С‡РµСЂРµР· Docker Рё Docker-Compose)
+1. РџРµСЂРІС‹Р№ Р·Р°РїСѓСЃРє: docker-compose -f dc-angular-e2e-tests.yaml up --build -d  
+РџРѕСЃР»РµРґСѓСЋС‰РёРµ Р·Р°РїСѓСЃРєРё: docker-compose -f dc-angular-e2e-tests.yaml up -d
+2. Р РµР·СѓР»СЊС‚Р°С‚С‹ С‚РµСЃС‚РѕРІ Р·Р°РїРёС€СѓС‚СЃСЏ РІ С„Р°Р№Р» frontend/logs.txt
+3. РћСЃС‚Р°РЅРѕРІРєР° РєРѕРЅС‚РµР№РЅРµСЂРѕРІ: docker-compose -f dc-angular-e2e-tests.yaml kill;dc -f dc-angular-e2e-tests.yaml down
+
+Р’РЅРёРјР°РЅРёРµ! РСЃРїРѕР»СЊР·СѓРµРјС‹Р№ РґР»СЏ Р•2Р• С‚РµСЃС‚РѕРІ Docker РѕР±СЂР°Р· trion/ng-cli-e2e СЂР°Р±РѕС‚Р°РµС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ СЃ С‚РµСЃС‚Р°РјРё, СЃРІСЏР·Р°РЅРЅС‹РјРё СЃ РїРµСЂРµРґР°С‡РµР№ Р·Р°РїСЂРѕСЃРѕРІ РЅР° backend. Р­С‚Рѕ С‚РµСЃС‚С‹:  
+* Use case 3 (send valid data to working server): should have success message  
+* Use case 3 (send valid data to broken server): should have error server data sending message
+
+Р РµС€Р°РµС‚ РїСЂРѕР±Р»РµРјСѓ Р·Р°РїСѓСЃРє Р•2Р• С‚РµСЃС‚РѕРІ Р»РѕРєР°Р»СЊРЅРѕ: ng e2e    
+РџСЂРё СЌС‚РѕРј РјРѕР¶РЅРѕ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ Р·Р°РїСѓС‰РµРЅРЅС‹РјРё РІ Docker РєРѕРЅС‚РµР№РЅРµСЂР°РјРё СЃ PHP Рё MySQL.
