@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, delay } from 'rxjs/operators';
 //import { enableProdMode } from '@angular/core';
 
 import { PagesInt } from '../interfaces/pages-int';
@@ -38,6 +38,7 @@ export class GetJsonService {
     getPagesJson(): Observable<PagesInt>{
       return this.http.get<PagesInt>('/assets/from-server/pages.json')
       .pipe( // Обработка ошибок
+        delay(1500), // Делаем задержку для отображения индикатора загрузки
         retry(3), // Пробуем получить успешный ответ 3 раза
         catchError(this.handleError) // Записываем полученные ошибки в специальный объект handleError
       );  
