@@ -1,8 +1,12 @@
 <div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher == true ? 'block' : 'none'">
     <div class="modal-form-wrapper" [style.display]="modal_switcher == true ? 'block' : 'none'">
-      <div class="modal-form">
-        <div class="modal-form-header">Заказ услуги <span class="no-wrap">{{typeofact}}</span><div class="close" (click)="closeForm()"></div>
+      <div *ngIf="!switcher" class="modal-form">
+        
+        <div class="modal-form-header">
+          Заказ услуги <span class="no-wrap">{{typeofact}}</span>
+          <div class="close" (click)="closeForm()"></div>
         </div>
+
         <div class="modal-form-body">
           <form [formGroup]="firstForm" novalidate>
             <div class="gr">
@@ -91,7 +95,20 @@
             соответствии с нашей <a href="/policy" target="_blank">политикой конфиденциальности</a>.
           </div>          
 
-          <div *ngIf="switcher && !formValidError && !errServ && !receivedFormFirst.status">
+        </div>
+
+      </div>
+      
+      <div *ngIf="switcher" class="modal-form">
+
+        <div *ngIf="!loading; else loadingBlock">
+
+          <div class="modal-form-header">
+            Заказ услуги <span class="no-wrap">{{typeofact}}</span>
+            <div class="close" (click)="closeForm()"></div>
+          </div>
+
+          <div *ngIf="switcher && !formValidError && !errServ && !receivedFormFirst.status"  class="modal-form-body">
             <br><br>
             <div><b>Заказ успешно отправлен!</b></div>
             <br>
@@ -111,7 +128,7 @@
             </div>
           </div>
 
-          <div *ngIf="switcher && errServ">    
+          <div *ngIf="switcher && errServ" class="modal-form-body center">                  
             <br><br>
             Ошибка отправки данных. Повторите заказ позднее.
             <br><br>
@@ -120,7 +137,7 @@
             </div>           
           </div>
 
-          <div *ngIf="switcher && receivedFormFirst?.status">    
+          <div *ngIf="switcher && receivedFormFirst?.status" class="modal-form-body center">    
             <br><br>
             Ошибка записи в БД. Повторите заказ позднее.
             <br><br>
@@ -128,8 +145,14 @@
               <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
             </div>         
           </div>
-          
         </div>
+
+        <ng-template #loadingBlock>
+          <div class="formloader">
+            <img src="../../assets/img/formloader200.svg">
+          </div>
+        </ng-template>
+
       </div>
     </div>  
-  </div>    
+  </div>  

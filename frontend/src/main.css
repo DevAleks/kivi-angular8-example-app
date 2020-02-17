@@ -7934,8 +7934,23 @@ a.policy_link_foot:hover {text-decoration:none}
 .ft_forms, .ft_forms:hover {cursor:pointer !important;}
 .ft_forms {text-decoration: underline !important;}
 .ft_forms:hover {text-decoration: none !important;}
-.mainloader {text-align: center}
-
+.center {text-align: center}
+.formloader {
+  display: block; 
+  text-align: center; 
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 2500;
+}
+.formloader img {  
+  display: inline-block;
+  text-align: center; 
+  margin-top: 250px;
+}
 
 /* / Alex Css */
 
