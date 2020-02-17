@@ -11,7 +11,7 @@ import { ClickForm } from '../classes/click-class'
 })
 export class FormsService {
 
-  // Определяем объект для обработки ошибок получения данных с сервера
+  // Определяем методы ля обработки ошибок получения данных с сервера
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // Обработка ошибки на стороне клиента или при передаче данных
