@@ -21,6 +21,7 @@
 ## Инсталяция и запуск
 Для работы с приложением рекомендуется использовать Docker, под него сделаны все необходимые настройки для совместной работы frontend и backend. Инсталяция и запуск описаны с использованием Docker. 
 1. Склонировать приложение.  
+  
 2. Установить зависимости:  
  ```bash
  docker run --rm -v ${PWD}/frontend/:/opt/kivi -w /opt/kivi node:12 npm install
@@ -29,7 +30,7 @@
  ```bash
  docker-compose up --build -d
  ```
-Последующие запуски:  
+  Последующие запуски:  
  ```bash
  docker-compose up -d
  ```
@@ -131,11 +132,11 @@
  ```bash
  docker-compose -f dc-angular-e2e-tests.yaml up --build -d
  ``` 
-Последующие запуски:
+  Последующие запуски:
  ```bash
  docker-compose -f dc-angular-e2e-tests.yaml up -d
- ``` 
-2. Результаты тестов запишутся в файл frontend/logs.txt
+ ```  
+2. Результаты тестов запишутся в файл frontend/logs.txt  
 3. Остановка и очистка контейнеров Docker: 
  ```bash
  docker-compose -f dc-angular-e2e-tests.yaml kill
