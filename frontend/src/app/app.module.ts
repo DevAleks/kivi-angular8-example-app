@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
@@ -74,7 +75,8 @@ const appRoutes: Routes = [
     AppRoutingModule,
     HttpClientModule, 
     FormsModule,
-    ReactiveFormsModule    
+    ReactiveFormsModule,
+    LazyLoadImageModule   
   ],
   providers: [GetJsonService, FormsService],
   bootstrap: [AppComponent, ]
