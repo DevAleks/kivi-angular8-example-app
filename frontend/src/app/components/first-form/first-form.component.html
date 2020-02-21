@@ -1,158 +1,160 @@
 <div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher == true ? 'block' : 'none'">
-    <div class="modal-form-wrapper" [style.display]="modal_switcher == true ? 'block' : 'none'">
-      <div *ngIf="!switcher" class="modal-form">
-        
+  <div class="modal-form-wrapper" [style.display]="modal_switcher == true ? 'block' : 'none'">
+    <div *ngIf="!switcher" class="modal-form">
+      
+      <div class="modal-form-header">
+        Заказ услуги <span class="no-wrap">{{typeofact}}</span>
+        <div class="close" (click)="closeForm()"></div>
+      </div>
+
+      <div class="modal-form-body">
+        <form [formGroup]="firstForm" novalidate>
+          <div class="gr">
+            <label>Введите ваше имя:<span class="req">*</span></label>
+            <input name="name" type="text" formControlName="userName" [ngClass]="{gr_error: switcher_valid && firstForm.controls['userName'].invalid}" />  
+          </div>
+          <div *ngIf="switcher_valid">
+            <div *ngIf="firstForm.controls['userName'].invalid && firstForm.controls['userName'].touched" class="error-form-text">
+              Поле Имя заполнено неверно:
+              <div *ngIf="firstForm.controls['userName'].errors?.pattern">
+                - Использованы некорректные символы
+              </div>
+              <div *ngIf="firstForm.controls['userName'].errors?.minlength">
+                - Должно быть от 2 до 30 символов
+              </div>
+              <div *ngIf="firstForm.controls['userName'].errors?.maxlength">
+               -  Должно быть не более 30 символов
+              </div>
+            </div>
+            <div *ngIf="firstForm.controls['userName'].untouched && firstForm.controls['userName'].invalid" class="error-form-text">
+              Поле Имя не заполнено
+            </div>
+          </div>
+
+          <div class="gr">
+            <label>Введите телефон:<span class="req">*</span></label>
+            <input name="phone" type="text" formControlName="userPhone" [ngClass]="{gr_error: switcher_valid && firstForm.controls['userPhone'].invalid}" /> 
+          </div>
+          <div *ngIf="switcher_valid">
+            <div *ngIf="firstForm.controls['userPhone'].invalid && firstForm.controls['userPhone'].touched" class="error-form-text">
+              Поле Телефон заполнено неверно:
+              <div *ngIf="firstForm.controls['userPhone'].errors?.pattern">
+                - Использованы некорректные символы
+              </div>
+              <div *ngIf="firstForm.controls['userPhone'].errors?.minlength">
+                - Должно быть от 6 до 15 символов
+              </div>
+              <div *ngIf="firstForm.controls['userPhone'].errors?.maxlength">
+               -  Должно быть не более 15 символов
+              </div>          
+            </div>
+            <div *ngIf="firstForm.controls['userPhone'].untouched" class="error-form-text">
+              Поле Телефон не заполнено
+            </div>
+          </div>
+         
+          <div class="gr">
+            <label>Введите e-mail:</label>
+            <input name="email" type="email" formControlName="userEmail" [ngClass]="{gr_error: switcher_valid && firstForm.controls['userEmail'].invalid}" />  
+          </div>
+          <div *ngIf="switcher_valid">
+            <div *ngIf="firstForm.controls['userEmail'].invalid && firstForm.controls['userEmail'].touched" class="error-form-text">
+              Поле Email заполнено неверно
+            </div>
+          </div> 
+
+          <div class="gr">
+            <label>Введите промокод (если он есть):</label>
+            <input name="promo" type="text" formControlName="userPromo" [ngClass]="{gr_error: switcher_valid && firstForm.controls['userPromo'].invalid}" />  
+          </div>
+          <div *ngIf="switcher_valid">
+            <div *ngIf="firstForm.controls['userPromo'].invalid && firstForm.controls['userPromo'].touched" class="error-form-text">
+              Поле Промокод заполнено неверно:
+              <div *ngIf="firstForm.controls['userPromo'].errors?.pattern">
+                - Использованы некорректные символы
+              </div>
+              <div *ngIf="firstForm.controls['userPromo'].errors?.minlength">
+                - Должно быть от 3 до 20 символов
+              </div>
+              <div *ngIf="firstForm.controls['userPromo'].errors?.maxlength">
+               -  Должно быть не более 20 символов
+              </div>
+            </div>  
+          </div>	
+              
+          <div class="req-info">Поля отмеченные знаком * обязательны для заполнения</div>
+          
+          <div class="btn-wrapper">					
+            <input type="submit" class="btn-custom btn-send submit" (click)="submitFirst()" value="Заказать сейчас">
+          </div>
+
+        </form>
+
+        <div class="policy_form">
+          Нажимая на кнопку "Заказать сейчас" вы даете согласие на обработку персональных данных в
+          соответствии с нашей <a href="/policy" target="_blank">политикой конфиденциальности</a>.
+        </div>          
+
+      </div>
+
+    </div>
+    
+    <div *ngIf="switcher" class="modal-form">
+
+      <div *ngIf="!loading; else loadingBlock">
+
         <div class="modal-form-header">
           Заказ услуги <span class="no-wrap">{{typeofact}}</span>
           <div class="close" (click)="closeForm()"></div>
         </div>
 
-        <div class="modal-form-body">
-          <form [formGroup]="firstForm" novalidate>
-            <div class="gr">
-              <label>Введите ваше имя:<span class="req">*</span></label>
-              <input name="name" type="text" formControlName="userName" [ngClass]="{gr_error: switcher_valid && firstForm.controls['userName'].invalid}" />  
-            </div>
-            <div *ngIf="switcher_valid">
-              <div *ngIf="firstForm.controls['userName'].invalid && firstForm.controls['userName'].touched" class="error-form-text">
-                Поле Имя заполнено неверно:
-                <div *ngIf="firstForm.controls['userName'].errors?.pattern">
-                  - Использованы некорректные символы
-                </div>
-                <div *ngIf="firstForm.controls['userName'].errors?.minlength">
-                  - Должно быть от 2 до 30 символов
-                </div>
-                <div *ngIf="firstForm.controls['userName'].errors?.maxlength">
-                 -  Должно быть не более 30 символов
-                </div>
-              </div>
-              <div *ngIf="firstForm.controls['userName'].untouched && firstForm.controls['userName'].invalid" class="error-form-text">
-                Поле Имя не заполнено
-              </div>
-            </div>
-
-            <div class="gr">
-              <label>Введите телефон:<span class="req">*</span></label>
-              <input name="phone" type="text" formControlName="userPhone" [ngClass]="{gr_error: switcher_valid && firstForm.controls['userPhone'].invalid}" /> 
-            </div>
-            <div *ngIf="switcher_valid">
-              <div *ngIf="firstForm.controls['userPhone'].invalid && firstForm.controls['userPhone'].touched" class="error-form-text">
-                Поле Телефон заполнено неверно:
-                <div *ngIf="firstForm.controls['userPhone'].errors?.pattern">
-                  - Использованы некорректные символы
-                </div>
-                <div *ngIf="firstForm.controls['userPhone'].errors?.minlength">
-                  - Должно быть от 6 до 15 символов
-                </div>
-                <div *ngIf="firstForm.controls['userPhone'].errors?.maxlength">
-                 -  Должно быть не более 15 символов
-                </div>          
-              </div>
-              <div *ngIf="firstForm.controls['userPhone'].untouched" class="error-form-text">
-                Поле Телефон не заполнено
-              </div>
-            </div>
-           
-            <div class="gr">
-              <label>Введите e-mail:</label>
-              <input name="email" type="email" formControlName="userEmail" [ngClass]="{gr_error: switcher_valid && firstForm.controls['userEmail'].invalid}" />  
-            </div>
-            <div *ngIf="switcher_valid">
-              <div *ngIf="firstForm.controls['userEmail'].invalid && firstForm.controls['userEmail'].touched" class="error-form-text">
-                Поле Email заполнено неверно
-              </div>
-            </div> 
-
-            <div class="gr">
-              <label>Введите промокод (если он есть):</label>
-              <input name="promo" type="text" formControlName="userPromo" [ngClass]="{gr_error: switcher_valid && firstForm.controls['userPromo'].invalid}" />  
-            </div>
-            <div *ngIf="switcher_valid">
-              <div *ngIf="firstForm.controls['userPromo'].invalid && firstForm.controls['userPromo'].touched" class="error-form-text">
-                Поле Промокод заполнено неверно:
-                <div *ngIf="firstForm.controls['userPromo'].errors?.pattern">
-                  - Использованы некорректные символы
-                </div>
-                <div *ngIf="firstForm.controls['userPromo'].errors?.minlength">
-                  - Должно быть от 3 до 20 символов
-                </div>
-                <div *ngIf="firstForm.controls['userPromo'].errors?.maxlength">
-                 -  Должно быть не более 20 символов
-                </div>
-              </div>  
-            </div>	
-            		
-            <div class="req-info">Поля отмеченные знаком * обязательны для заполнения</div>
-            
-            <div class="btn-wrapper">					
-              <input type="submit" class="btn-custom btn-send submit" (click)="submitFirst()" value="Заказать сейчас">
-            </div>
-
-          </form>
-
-          <div class="policy_form">
-            Нажимая на кнопку "Заказать сейчас" вы даете согласие на обработку персональных данных в
-            соответствии с нашей <a href="/policy" target="_blank">политикой конфиденциальности</a>.
-          </div>          
-
-        </div>
-
-      </div>
-      
-      <div *ngIf="switcher" class="modal-form">
-
-        <div *ngIf="!loading; else loadingBlock">
-
-          <div class="modal-form-header">
-            Заказ услуги <span class="no-wrap">{{typeofact}}</span>
-            <div class="close" (click)="closeForm()"></div>
-          </div>
-
-          <div *ngIf="switcher && !formValidError && !errServ && !receivedFormFirst.status"  class="modal-form-body">
-            <br><br>
-            <div><b>Заказ успешно отправлен!</b></div>
-            <br>
-            <label>Ответ сервера:</label>
-            <ul>
-              <li>{{receivedFormFirst.name}}</li>
-              <li>{{receivedFormFirst.phone}}</li>
-              <li>{{receivedFormFirst.email}}</li>
-              <li>{{receivedFormFirst.typeofact}}</li>
-              <li>{{receivedFormFirst.promo}}</li>
-              <li>Тип формы: {{receivedFormFirst.typeofform}}</li>
-              <li>Статус ошибки при отправке заказа: {{receivedFormFirst.status}}</li>
-            </ul>
-            <br><br>
-            <div class="btn-wrapper">					
-              <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-            </div>
-          </div>
-
-          <div *ngIf="switcher && errServ" class="modal-form-body center">                  
-            <br><br>
-            Ошибка отправки данных. Повторите заказ позднее.
-            <br><br>
-            <div class="btn-wrapper">					
-              <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-            </div>           
-          </div>
-
-          <div *ngIf="switcher && receivedFormFirst?.status" class="modal-form-body center">    
-            <br><br>
-            Ошибка записи в БД. Повторите заказ позднее.
-            <br><br>
-            <div class="btn-wrapper">					
-              <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-            </div>         
+        <div *ngIf="switcher && !formValidError && !errServ && !receivedFormFirst.status" class="modal-form-body">
+          <br><br>
+          <div><b>Заказ успешно отправлен!</b></div>
+          <br>
+          <label>Ответ сервера:</label>
+          <ul>
+            <li>{{receivedFormFirst.name}}</li>
+            <li>{{receivedFormFirst.phone}}</li>
+            <li>{{receivedFormFirst.email}}</li>
+            <li>{{receivedFormFirst.typeofact}}</li>
+            <li>{{receivedFormFirst.promo}}</li>
+            <li>Тип формы: {{receivedFormFirst.typeofform}}</li>
+            <li>Статус ошибки при отправке заказа: {{receivedFormFirst.status}}</li>
+          </ul>
+          <br><br>
+          <div class="btn-wrapper">					
+            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
           </div>
         </div>
 
-        <ng-template #loadingBlock>
-          <div class="formloader">
-            <img src="../../assets/img/formloader200.svg">
-          </div>
-        </ng-template>
+        <div *ngIf="switcher && errServ" class="modal-form-body center">                  
+          <br><br>
+          Ошибка отправки данных. Повторите заказ позднее.
+          <br><br>
+          <div class="btn-wrapper">					
+            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
+          </div>           
+        </div>
+
+        <div *ngIf="switcher && receivedFormFirst?.status" class="modal-form-body center">    
+          <br><br>
+          Ошибка записи в БД. Повторите заказ позднее.
+          <br><br>
+          <div class="btn-wrapper">					
+            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
+          </div>         
+        </div>
 
       </div>
-    </div>  
+
+      <ng-template #loadingBlock>
+        <div class="modal-form-body center">
+          <p>Отправка...</p>
+          <img src="../../assets/img/formloader200.svg">
+        </div>
+      </ng-template>
+
+    </div>
   </div>  
+</div>  

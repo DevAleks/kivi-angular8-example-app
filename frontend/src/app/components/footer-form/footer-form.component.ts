@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormsService } from '../../services/forms.service';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { FormBottom } from '../../classes/form-bt-class'
-import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-footer-form',
@@ -12,18 +10,28 @@ import { HostListener } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 
-export class FooterFormComponent implements OnInit {
+export class FooterFormComponent {
 
     // Виды услуг для селектора в шаблоне
   typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];  
+
   switcher_valid: boolean = false; // Индикатор попытки валидации формы после клика на кнопку отправки
+  
   switcher: boolean = false; // Индикатор успешного получения данных с сервера
+
   modal_switcher: boolean = false; //Свичер для модальных окон новых форм и "ответов" форм
+
   formValidError: boolean = true; // Статус ошибки валидации формы перед отправкой
+
   errServ: boolean = false; // Статус ошибки передачи данных формы на сервер
+
   formfooter: FormBottom = new FormBottom(); // Данные вводимого заказа для формы footerForm
+
   receivedFormFooter: FormBottom = new FormBottom(); // Данные заказа, полученные с сервера
+
   footerForm : FormGroup; // Объект FormGroup для формы footerForm
+
+  loading = false; // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {   
 
@@ -94,22 +102,27 @@ export class FooterFormComponent implements OnInit {
           status: false
         };
 
+        // Включаем отображение индикатора загрузки
+        this.loading = true;
+
         this.formsService.postForm(this.formfooter)
                 .subscribe(
                     (data: FormBottom) => {
-                      this.receivedFormFooter = data;
-                      this.formValidError = false; // Отключаем проверку ошибок валидации для формы
-                      this.switcher_valid = false; // Отключаем вызов проверки ошибок при получении
+                      this.receivedFormFooter = data
+                      this.formValidError = false // Отключаем проверку ошибок валидации для формы
+                      this.switcher_valid = false // Отключаем вызов проверки ошибок при получении
+                      this.loading = false // Выключаем отображение индикатора загрузки
                     },
-                    error => {console.log(error);this.errServ=true;}
+                    error => {
+                      console.log(error)
+                      this.errServ = true
+                      this.loading = false // Выключаем отображение индикатора загрузки
+                    }
                 );
        
         this.switcher = true; // Включаем показ результатов отправки формы
         this.modal_switcher = true; // Включаем модальное окно для показа результатов отправки формы    
     }
-  }   
-
-  ngOnInit() {
-  }
+  }  
 
 }

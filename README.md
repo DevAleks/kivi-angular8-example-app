@@ -1,4 +1,10 @@
-# Kivi-App, учебное приложение на Angular 8.3.23 и Typescript
+<p align="center">
+  <a href="https://angular.io/">
+    <img src="https://www.angularexampleapp.com/assets/images/angular.svg" alt="Logo" width=72 height=72>
+  </a>
+  <h1 align="center">Kivi-App, учебное приложение на Angular 8.3.23 и Typescript</h1>
+</p>
+
 **Unit-testing Jasmine + Karma / E2E-testing Jasmine + Protractor / серверная часть на PHP и MySQL / виртуализация на Docker и Docker-Compose**
 
 Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы:
@@ -15,9 +21,19 @@
 ## Инсталяция и запуск
 Для работы с приложением рекомендуется использовать Docker, под него сделаны все необходимые настройки для совместной работы frontend и backend. Инсталяция и запуск описаны с использованием Docker. 
 1. Склонировать приложение.  
-2. docker run --rm -v ${PWD}/frontend/:/opt/kivi -w /opt/kivi node:12 npm install  
-3. Первый запуск и build образа: docker-compose up --build -d  
-Последующие запуски: docker-compose up -d  
+  
+2. Установить зависимости:  
+ ```bash
+ docker run --rm -v ${PWD}/frontend/:/opt/kivi -w /opt/kivi node:12 npm install
+ ```
+3. Первый запуск и build образа:  
+ ```bash
+ docker-compose up --build -d
+ ```
+  Последующие запуски:  
+ ```bash
+ docker-compose up -d
+ ```
 4. Создание рабочей БД kiviapp через Phpmyadmin http://localhost:8081/ (root / root). Создание структуры БД kiviapp через php: http://localhost:80/create.new.table.php или через Phpmyadmin (запрос с таблицей лежит в backend/create.new.table.php)  
 
 ### Работа с frontend
@@ -53,18 +69,18 @@
 Приложение выполнено на Angular 8.3.23 и Typescript, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor, виртуализация на Docker и Docker-Compose.
 
 ### Элементы Angular
-* Компоненты [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
-* Сервисы [frontend/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/services/)
-* Pipe [frontend/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/pipes/)
-* Роутер [frontend/src/app/app.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app.module.ts) (строка 41)
-* Формы, содержат валидатор с обработкой ошибок, выполняют отправку данных и получение ответа от сервера:
+- [x] Компоненты [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
+- [x] Сервисы [frontend/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/services/)
+- [x] Pipe [frontend/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/pipes/)
+- [x] Роутер [frontend/src/app/app.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app.module.ts) (строка 41)
+- [x] Формы, содержат валидатор с обработкой ошибок, выполняют отправку данных и получение ответа от сервера:
     * [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
     * [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
     * [frontend/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/footer-form/)
     * [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
     * [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
-* Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 25)
-* Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент[frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
+- [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 25)
+- [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент[frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
   
 ### Серверная часть 
 Обработка данных из форм производится PHP скриптом.   
@@ -78,10 +94,17 @@
 Тестами покрыто примерно 80% всех функций. Код тестов содержится рядом с кодом приложения: [frontend/src/app/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/)
 
 ### Работа с Unit тестами (через Docker и Docker-Compose)
-1. Запуск: docker-compose -f dc-angular-unit-tests.yaml up -d  
-Далее открыть вкладку браузера: http://localhost:9876/
-2. Остановка контейнеров: docker-compose -f dc-angular-unit-tests.yaml kill;docker-compose -f dc-angular-unit-tests.yaml down
-  
+1. Запуск: 
+ ```bash
+ docker-compose -f dc-angular-unit-tests.yaml up -d 
+ ```  
+Далее открыть вкладку браузера: http://localhost:9876/    
+2. Остановка и очистка контейнеров Docker: 
+ ```bash
+ docker-compose -f dc-angular-unit-tests.yaml kill
+ docker-compose -f dc-angular-unit-tests.yaml down 
+ ```  
+
 <br />   
   
 ## E2E тестирование
@@ -105,14 +128,27 @@
 Путь: [frontend/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-test-form.e2e-spec.ts)
 
 ### Работа с E2E тестами (через Docker и Docker-Compose)
-1. Первый запуск: docker-compose -f dc-angular-e2e-tests.yaml up --build -d  
-Последующие запуски: docker-compose -f dc-angular-e2e-tests.yaml up -d
-2. Результаты тестов запишутся в файл frontend/logs.txt
-3. Остановка контейнеров: docker-compose -f dc-angular-e2e-tests.yaml kill;dc -f dc-angular-e2e-tests.yaml down
+1. Первый запуск с созданием образа: 
+ ```bash
+ docker-compose -f dc-angular-e2e-tests.yaml up --build -d
+ ``` 
+  Последующие запуски:
+ ```bash
+ docker-compose -f dc-angular-e2e-tests.yaml up -d
+ ```  
+2. Результаты тестов запишутся в файл frontend/logs.txt  
+3. Остановка и очистка контейнеров Docker: 
+ ```bash
+ docker-compose -f dc-angular-e2e-tests.yaml kill
+ docker-compose -f dc-angular-e2e-tests.yaml down
+ ``` 
 
 Внимание! Используемый для Е2Е тестов Docker образ trion/ng-cli-e2e работает некорректно с тестами, связанными с передачей запросов на backend. Это тесты:  
 * Use case 3 (send valid data to working server): should have success message  
 * Use case 3 (send valid data to broken server): should have error server data sending message
 
-Решает проблему запуск Е2Е тестов локально: ng e2e    
+Решает проблему запуск Е2Е тестов локально: 
+ ```bash
+ ng e2e
+ ``` 
 При этом можно воспользоваться запущенными в Docker контейнерами с PHP и MySQL.

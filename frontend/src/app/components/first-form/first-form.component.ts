@@ -1,6 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { FormsService } from '../../services/forms.service';
@@ -137,7 +136,7 @@ export class FirstFormComponent {
                     },
                     error => {
                       console.log(error)
-                      this.errServ=true
+                      this.errServ = true
                       this.loading = false // Выключаем отображение индикатора загрузки
                     }
                 );

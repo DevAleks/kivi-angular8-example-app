@@ -1,4 +1,3 @@
-<!-- Начало формы -->
 <div class="title">Оставить заявку</div>
 <form [formGroup]="footerForm" novalidate>
     <div class="textareas">                 
@@ -71,13 +70,21 @@
     <input type="submit" class="submit" (click)="submitFooter()" value="Заказать">
 </form>
 
-<div *ngIf="switcher && !formValidError && !receivedFormFooter?.status && !errServ">
-  <div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
-    <div class="modal-form-wrapper" id="form1-box" [style.display]="modal_switcher==true?'block':'none'">
-      <div class="modal-form">
-        <div class="modal-form-header">Заказ успешно <span class="no-wrap">отправлен!</span><div class="close" (click)="closeForm()"></div>
-        </div>
-        <div class="modal-form-body">
+<div *ngIf="switcher" id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
+  <div class="modal-form-wrapper" id="form1-box" [style.display]="modal_switcher==true?'block':'none'">
+    <div class="modal-form">
+
+      <div *ngIf="!loading; else loadingBlock">
+
+        <div class="modal-form-header">
+          Заказ услуги <span class="no-wrap">{{ footerForm.value['userTypeofact'] }}</span>
+          <div class="close" (click)="closeForm()"></div>
+        </div>      
+  
+        <div *ngIf="switcher && !formValidError && !receivedFormFooter?.status && !errServ" class="modal-form-body">
+          <br><br>
+          <div class="txt_blc"><b>Заказ успешно отправлен!</b></div>
+          <br>
           <div class="col-black">
             <label>Ответ сервера:</label>
             <ul>
@@ -91,51 +98,40 @@
           </div>
           <div class="btn-wrapper">					
             <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-          </div>
+          </div>          
         </div>
-      </div>
-    </div>
-  </div>          
-</div>
-<div *ngIf="switcher && errServ">    
-  <div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
-    <div class="modal-form-wrapper" id="form1-box" [style.display]="modal_switcher==true?'block':'none'">
-      <div class="modal-form">
-        <div class="modal-form-header">
-          <div class="close" (click)="closeForm()"></div>
-        </div>
-        <div class="modal-form-body">
+
+        <div *ngIf="switcher && errServ" class="modal-form-body center">
           <div class="col-black">
             Ошибка отправки данных. Повторите заказ позднее.
             <br><br>
           </div>
           <div class="btn-wrapper">					
             <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-          </div>
+          </div>          
         </div>
-      </div>
-    </div>
-  </div>           
-</div>
-<div *ngIf="switcher && receivedFormFooter?.status">    
-  <div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
-    <div class="modal-form-wrapper" id="form1-box" [style.display]="modal_switcher==true?'block':'none'">
-      <div class="modal-form">
-        <div class="modal-form-header">
-          <div class="close" (click)="closeForm()"></div>
-        </div>
-        <div class="modal-form-body">          
+
+        <div *ngIf="switcher && receivedFormFooter?.status" class="modal-form-body center"> 
           <div class="col-black">         
             Ошибка записи в БД. Повторите заказ позднее.
             <br><br>
           </div>
           <div class="btn-wrapper">					
             <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-          </div>
+          </div> 
         </div>
+    
       </div>
-    </div>
-  </div>          
-</div>
+    
+      <ng-template #loadingBlock>
+        <div class="modal-form-body center">
+          <p class="txt_blc">Отправка...</p>
+          <img src="../../assets/img/formloader200.svg">
+        </div>
+      </ng-template>
 
-<!-- Конец формы  -->
+    </div>
+  
+  </div>  
+
+</div>
