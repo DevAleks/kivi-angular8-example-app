@@ -1,6 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { FormsService } from '../../services/forms.service';
