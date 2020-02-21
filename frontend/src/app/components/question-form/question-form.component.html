@@ -1,7 +1,8 @@
 <div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
     <div class="modal-form-wrapper" [style.display]="modal_switcher==true?'block':'none'">
-      <div class="modal-form">
-        <div class="modal-form-header">Задать вопрос<div class="close" (click)="closeForm()"></div>
+      <div *ngIf="!switcher" class="modal-form">
+        <div class="modal-form-header">
+          Задать вопрос<div class="close" (click)="closeForm()"></div>
         </div>
         <div class="modal-form-body">
           <form [formGroup]="questionForm" novalidate>
@@ -72,12 +73,20 @@
             Нажимая на кнопку "Отправить вопрос" вы даете согласие на обработку персональных данных в
             соответствии с нашей <a href="/policy" target="_blank">политикой конфиденциальности</a>.
           </div>  
-          
-          <div>
 
+        </div>
+
+      </div>
+      
+      <div *ngIf="switcher" class="modal-form">
+  
+        <div *ngIf="!loading; else loadingBlock">          
+
+          <div class="modal-form-header">
+            Задать вопрос<div class="close" (click)="closeForm()"></div>
           </div>
 
-          <div *ngIf="switcher && !formValidError && !errServ && !receivedFormQuestion.status">
+          <div *ngIf="switcher && !formValidError && !errServ && !receivedFormQuestion.status" class="modal-form-body">
             <br><br>
             <div><b>Заказ успешно отправлен!</b></div>
             <br>
@@ -95,7 +104,7 @@
             </div>
           </div>
 
-          <div *ngIf="switcher && errServ">    
+          <div *ngIf="switcher && errServ" class="modal-form-body center">    
             <br><br>
             Ошибка отправки данных. Повторите заказ позднее.
             <br><br>
@@ -104,7 +113,7 @@
             </div>           
           </div>
 
-          <div *ngIf="switcher && receivedFormQuestion?.status">    
+          <div *ngIf="switcher && receivedFormQuestion?.status" class="modal-form-body center">    
             <br><br>
             Ошибка записи в БД. Повторите заказ позднее.
             <br><br>
@@ -114,6 +123,14 @@
           </div>
           
         </div>
+        
+        <ng-template #loadingBlock>
+          <div class="modal-form-body center">
+            <p>Отправка...</p>
+            <img src="../../assets/img/formloader200.svg">
+          </div>
+        </ng-template>
+
       </div>
     </div>  
   </div>
