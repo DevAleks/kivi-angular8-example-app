@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { FormsService } from '../../services/forms.service';
@@ -13,20 +12,30 @@ import { ClickForm } from 'src/app/classes/click-class';
   styleUrls: ['./top-form.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class TopFormComponent implements OnInit {
+export class TopFormComponent {
 
   modal_switcher: boolean = false; // Свичер для модальных окон новых форм и "ответов" форм
+
   subscription: Subscription; // Переменная для подписки на клики по кнопке открытия окна с формой 
 
   // Виды услуг для селектора в шаблоне
   typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
+
   switcher_valid: boolean = false; // Индикатор попытки валидации формы после клика на кнопку отправки
+
   switcher: boolean = false; // Индикатор успешного получения данных с сервера
+
   formValidError: boolean = true; // Статус ошибки валидации формы перед отправкой
+
   errServ: boolean = false; // Статус ошибки передачи данных формы на сервер
+
   topFormToServ: FormBottom = new FormBottom(); // Данные вводимого заказа для формы topForm
+
   receivedFormTop: FormBottom = new FormBottom(); // Данные заказа из формы topForm, полученные с сервера
+
   topForm: FormGroup; // Объект FormGroup для формы topForm
+
+  loading = false; // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {
 
@@ -115,28 +124,27 @@ export class TopFormComponent implements OnInit {
           status: false
         };
 
+        // Включаем отображение индикатора загрузки
+        this.loading = true;
+
         // Отправка оъекта на сервер и получение ответа от сервера
         this.formsService.postForm(this.topFormToServ)
                 .subscribe(
                     (data: FormBottom) => {
-                      this.receivedFormTop = data; // Получаем данные с сервера
-                      this.formValidError = false; // Отключаем проверку ошибок валидации для формы
-                      this.switcher_valid = false; // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+                      this.receivedFormTop = data // Получаем данные с сервера
+                      this.formValidError = false // Отключаем проверку ошибок валидации для формы
+                      this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+                      this.loading = false // Выключаем отображение индикатора загрузки
                     },
-                    error => {console.log(error);this.errServ=true;}
+                    error => {
+                      console.log(error)
+                      this.errServ = true
+                      this.loading = false // Выключаем отображение индикатора загрузки
+                    }
                 );
     }
     this.switcher = true; // Включаем показ окна с результатом отправки формы    
-    
-    //setTimeout(() => this.switcher = true, 2000); // Включаем обработку ошибок отправки данных на сервер    
-  }
-
-  ngOnDestroy() {
-    // предотвращение утечки памяти при уничтожении компонента
-    this.subscription.unsubscribe();
-  }
-
-  ngOnInit() {
+        
   }
 
 }

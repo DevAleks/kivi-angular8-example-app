@@ -136,7 +136,7 @@ export class FirstFormComponent {
                     },
                     error => {
                       console.log(error)
-                      this.errServ=true
+                      this.errServ = true
                       this.loading = false // Выключаем отображение индикатора загрузки
                     }
                 );
