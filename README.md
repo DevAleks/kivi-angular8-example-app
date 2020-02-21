@@ -80,6 +80,7 @@
     * [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
     * [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
 - [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 25)
+- [x] Ленивая загрузка изображений с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
 - [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент[frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
   
 ### Серверная часть 

@@ -28,7 +28,7 @@
                                 <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Семейный рафтинг'})" value="Заказать сейчас" />
                              </div>
                          </div>
-                         <img class="raft-photo" src="../../assets/img/family.jpg" alt="Семейный рафтинг - катаем детей от 7-ми лет, аквапарк на природе!">
+                         <img class="raft-photo" [defaultImage]="defaultImage1" [lazyLoad]="lazyLoad1" alt="Семейный рафтинг - катаем детей от 7-ми лет, аквапарк на природе!">
                      </div>
                      <div class="item-add">Катаем детей от 7-ми лет, <br>аквапарк на природе</div>					
                 </div>
@@ -49,7 +49,7 @@
                                 <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Классический рафтинг'})" value="Заказать сейчас" />                                
                              </div>
                          </div>
-                         <img class="raft-photo" src="../../assets/img/classic.jpg" alt="Классический рафтинг - сплав на рафтах для всех!">
+                         <img class="raft-photo" [defaultImage]="defaultImage2" [lazyLoad]="lazyLoad2" alt="Классический рафтинг - сплав на рафтах для всех!">
                      </div>
                      <div class="item-add">Сплав на рафтах для всех</div>					
                 </div>
@@ -70,7 +70,7 @@
                                 <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Экстрим рафтинг'})" value="Заказать сейчас" />
                              </div>
                          </div>
-                         <img class="raft-photo" src="../../assets/img/extrim.jpg" alt="Экстрим рафтинг - море позитива и адреналина!">
+                         <img class="raft-photo" [defaultImage]="defaultImage3" [lazyLoad]="lazyLoad3" alt="Экстрим рафтинг - море позитива и адреналина!">
                      </div>
                      <div class="item-add">Море позитива и адреналина</div>					
                 </div> 
