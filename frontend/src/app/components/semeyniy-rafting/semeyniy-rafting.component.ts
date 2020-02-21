@@ -8,7 +8,7 @@ import { ClickForm } from '../../classes/click-class'
   templateUrl: './semeyniy-rafting.component.html',
   styleUrls: ['./semeyniy-rafting.component.css']
 })
-export class SemeyniyRaftingComponent implements OnInit {
+export class SemeyniyRaftingComponent {
 
   modal_switcher: boolean; // Свитчер включения окна с формой 
 
@@ -17,9 +17,6 @@ export class SemeyniyRaftingComponent implements OnInit {
   // Обрабатываем клики для открытия в модальном окне форм topForm, questionForm, callorderForm
   openFormClick(openClick: ClickForm) {
     this.formsService.openForm(openClick);
-  }
-
-  ngOnInit() {
   }
 
 }
