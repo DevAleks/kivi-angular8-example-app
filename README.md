@@ -5,14 +5,49 @@
   <h1 align="center">Kivi-App, учебное приложение на Angular 8.3.23 и Typescript</h1>
 </p>
 
-**Unit-testing Jasmine + Karma / E2E-testing Jasmine + Protractor / серверная часть на PHP и MySQL / виртуализация на Docker и Docker-Compose**
+## Технологии  
+Приложение выполнено на Angular 8.3.23 и Typescript, серверная часть на PHP и MySQL, Unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor, виртуализация на Docker и Docker-Compose.  
+
+### Элементы Angular  
+- [x] Компоненты [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
+- [x] Сервисы [frontend/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/services/)
+- [x] Pipe [frontend/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/pipes/)
+- [x] Роутер [frontend/src/app/app.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app.module.ts) (строка 41)
+- [x] Формы, содержат валидатор с обработкой ошибок, выполняют отправку данных и получение ответа от сервера:
+    * [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
+    * [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
+    * [frontend/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/footer-form/)
+    * [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
+    * [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
+- [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 25)
+- [x] Ленивая загрузка изображений с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
+- [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент[frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
+- [x] Unit тестирование Jasmine + Karma
+- [x] End-to-end тестирование Jasmine + Protractor
+  
+### Серверная часть   
+Обработка данных из форм производится PHP скриптом.   
+При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также PHP скрипт модифицирует полученные данные перед отправкой их обратно в приложение, что служит маркером успешного получения этих данных.  
+При ошибке записи данных в БД сервер отправляет в приложение сообщение об ошибке.  
+Путь к скрипту обработки форм: [backend/requests.add.php](https://github.com/DevAleks/Kivi/tree/master/backend/requests.add.php)  
+  
+### Виртуализация 
+- [x] Выполнена на Docker и Docker-Compose
+- [x] 3 комплекта конфигов на Docker-Compose, используемых для:  
+    * разработки приложения [docker-compose.yaml](https://github.com/DevAleks/Kivi/tree/master/docker-compose.yaml)  
+    * Unit тестирования [dc-angular-unit-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-unit-tests.yaml)  
+    * E2E тестирования [dc-angular-e2e-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-e2e-tests.yaml)  
+  
+<br />  
+
+## Приложение  
 
 Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы:
-* /
-* /rafting
-* /semeyniy-rafting
-* страница ошибки 404
-
+* /  
+* /rafting  
+* /semeyniy-rafting  
+* страница ошибки 404  
+  
 На всех страницах отличаются только верхние блоки с контентом.  
 Приложение сделано на основе сторонней верстки на Bootstrap 4.  
   
@@ -40,6 +75,12 @@
 1. Вход через http://localhost:4200/  
 2. Заполнить и отправить любую форму обратной связи. Если данные из корректно заполненной формы успешно попали на сервер, то появится сообщение об успешной отправке запроса.  
   
+### Остановка приложения и очистка контейнеров Docker
+ ```bash
+ docker-compose kill
+ docker-compose down 
+ ```  
+  
 <br /> 
   
 ## Функционал
@@ -62,32 +103,6 @@
 * Вставка видео с Youtube
 * "Карусель" Fancybox
 * Виджет VK
-  
-<br />   
-  
-## Технологии
-Приложение выполнено на Angular 8.3.23 и Typescript, серверная часть на PHP и MySQL, unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor, виртуализация на Docker и Docker-Compose.
-
-### Элементы Angular
-- [x] Компоненты [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
-- [x] Сервисы [frontend/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/services/)
-- [x] Pipe [frontend/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/pipes/)
-- [x] Роутер [frontend/src/app/app.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app.module.ts) (строка 41)
-- [x] Формы, содержат валидатор с обработкой ошибок, выполняют отправку данных и получение ответа от сервера:
-    * [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
-    * [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
-    * [frontend/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/footer-form/)
-    * [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
-    * [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
-- [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 25)
-- [x] Ленивая загрузка изображений с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
-- [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент[frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
-  
-### Серверная часть 
-Обработка данных из форм производится PHP скриптом.   
-При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также скрипт модифицирует полученные данные, что служит маркером их успешного получения и отправляет их обратно в приложение.  
-При ошибке записи данных в БД сервер отправляет в приложение сообщение об ошибке.  
-Путь к скрипту обработки форм: [backend/requests.add.php](https://github.com/DevAleks/Kivi/tree/master/backend/requests.add.php)
   
 <br />   
   
