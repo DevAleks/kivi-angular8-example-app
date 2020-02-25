@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-
-// Modules
 import { AppRoutingModule } from './app-routing.module';
 
 // Components
@@ -28,23 +25,12 @@ import { RaftingComponent } from './components/rafting/rafting.component';
 import { MainComponent } from './components/main/main.component';
 import { SemeyniyRaftingComponent } from './components/semeyniy-rafting/semeyniy-rafting.component';
 
-//Тестовый компонент
-// import { TestzoneComponent } from './testzone/testzone.component'; 
-
 // Sevices
 import { GetJsonService } from './services/get-json.service';
 import { FormsService } from './services/forms.service';
 
 // Pipes
 import { SafePipe } from './pipes/safePipe';
-
-// Роутинг
-const appRoutes: Routes = [
-  {path: '', component: MainComponent},
-  {path: 'rafting', component: RaftingComponent},
-  {path: 'semeyniy-rafting', component: SemeyniyRaftingComponent},
-  {path: '**', component: Error404Component}
-];
 
 @NgModule({
   declarations: [
@@ -71,7 +57,6 @@ const appRoutes: Routes = [
   
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
     AppRoutingModule,
     HttpClientModule, 
     FormsModule,

@@ -6505,6 +6505,14 @@ hr {
   color: #006dce !important;
   border-color: #006dce;
 }
+.header .cur,
+.header .cur:active,
+.header .cur:focus
+ {
+  background-color: white;
+  color: #006dce !important;
+  border-color: #006dce;
+}
 .header-right-block {
   display: flex;
   flex-wrap: wrap;
@@ -6605,6 +6613,12 @@ hr {
   text-transform: uppercase;
   font-size: 15px;
   margin: 0px;
+}
+
+.menu .navbar-nav .cur,
+.menu .navbar-nav .cur:active,
+.menu .navbar-nav .cur:focus {
+  color: #ccc;  
 }
 .nav-with-slash::after {
   content: '//';

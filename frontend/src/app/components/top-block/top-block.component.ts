@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsService } from '../../services/forms.service';
 
 import { ClickForm } from '../../classes/click-class'
@@ -8,7 +8,9 @@ import { ClickForm } from '../../classes/click-class'
   templateUrl: './top-block.component.html',
   styleUrls: ['./top-block.component.css']
 })
-export class TopBlockComponent implements OnInit {
+export class TopBlockComponent {
+
+  navMobToggle = false // Переключатель состояния мобильного меню
 
   constructor(private formsService: FormsService) { }
 
@@ -18,9 +20,6 @@ export class TopBlockComponent implements OnInit {
     console.log('----- Component ------');
     console.log(openClick.typeofform);
     console.log(openClick.typeofact);
-  }
-
-  ngOnInit() {
   }
 
 }

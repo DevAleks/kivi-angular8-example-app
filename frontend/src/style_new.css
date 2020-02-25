@@ -153,6 +153,11 @@ body.nav-open {
   display: block;
   padding: 10px 38px;
 }
+
+.nav-mobile-body .nav > li > a > .cur {
+  color: #ccc !important;
+}
+
 .nav-mobile-body .nav > li > a::before {
   content: "";
   position: absolute;
