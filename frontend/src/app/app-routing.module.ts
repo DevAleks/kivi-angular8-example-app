@@ -10,7 +10,8 @@ const appRoutes: Routes = [
   {path: '', component: MainComponent},
   {path: 'rafting', component: RaftingComponent},
   {path: 'semeyniy-rafting', component: SemeyniyRaftingComponent},
-  {path: '**', component: Error404Component}
+  {path: 'error404', component: Error404Component},
+  {path: '**', redirectTo: '/error404'}
 ];
 
 @NgModule({
