@@ -17,7 +17,7 @@
                             </li>								
                         </ul>
                     </div>
-                    <div class="cell cell-toggle">
+                    <div class="cell cell-toggle" (click)="navMobToggle=true">
                         <div class="nav-mobile-panel-toggle" id="nav-mobile-panel-toggle">
                             <i></i><i></i><i></i>
                         </div>
@@ -26,18 +26,18 @@
             </div>
         </div><!--/nav-mobile-panel-->
     
-        <div class="nav-mobile-body" id="nav-mobile-body">
+        <div class="nav-mobile-body" id="nav-mobile-body" [style.display]="navMobToggle ? 'block' : 'none'">
             <div class="nav-mobile-body-inner">
                 <ul class="nav menu">
                     <li>
-                        <a href="/"><span class="container">Главная</span></a>
+                        <a [routerLink]="['/']" (click)="navMobToggle=false"><span class="container" routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}">Главная</span></a>
                     </li>
                     <li class="parent">
                         <span><span class="container">Услуги</span></span>
                         <div class="container">
                             <ul class="nav-child">
                                 <li>
-                                    <a href="/rafting"><span id="rafting" class="link-inner">Рафтинг</span></a>
+                                    <a [routerLink]="['/rafting']" (click)="navMobToggle=false"><span id="rafting" class="link-inner">Рафтинг</span></a>
                                 </li>
                                 <li>
                                     <a href="/arenda-ploshadok-dlya-meropriyatiy"><span class="link-inner">Аренда площадок</span></a>
@@ -70,7 +70,7 @@
                         <a href="/skidki" class="yellow-item"><span class="container">Скидки</span></a>
                     </li>	
                     <li>
-                        <a href="/novosti" class="yellow-item"><span class="container">Новости</span></a>
+                        <a href="/novosti"><span class="container">Новости</span></a>
                     </li>						
                     <li>
                         <a href="/kontakti"><span class="container">Контакты</span></a>
@@ -85,10 +85,12 @@
     <div id="top-nav" class="container header navbar-fixed-top">
      <div class="row">
         <div class="logo col-sm-2 col-xs-3 nopadding">
-           <a href="/"><img src="../../assets/img/logo.png" title="База рафтинга в Лосево «Кивиниеми»" alt="База рафтинга в Лосево «Кивиниеми»"></a>
+          <a [routerLink]="['/']">
+            <img src="../../assets/img/logo.png" title="База рафтинга в Лосево «Кивиниеми»" alt="База рафтинга в Лосево «Кивиниеми»">
+          </a>
         </div>
         <div class="top-menu col-sm-6 col-xs-9">
-           <a href="/rafting" class="btn btn-secondary">Рафтинг</a>
+           <a [routerLink]="['/rafting']" routerLinkActive="cur" class="btn btn-secondary">Рафтинг</a>
            <a href="/arenda-ploshadok-dlya-meropriyatiy" class="btn btn-secondary">Аренда площадок</a>
            <a href="/provedenie-meropriyatiy" class="btn btn-secondary">Проведение мероприятий</a>
            <a href="/arenda-baydarok-i-kayakov" class="btn btn-secondary">Аренда байдарок</a>
@@ -118,7 +120,7 @@
       <div class="container nopadding">
         <nav class="menu navbar navbar-light bg-faded">
            <ul class="nav navbar-nav text-center" align="center" style="text-align: center">
-              <li class="nav-item"><a href="/" class="nav-link nav-with-slash">Главная <span class="sr-only">(current)</span></a> </li>
+              <li class="nav-item"><a [routerLink]="['/']" routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav-with-slash">Главная <span class="sr-only">(current)</span></a> </li>
               <li class="nav-item"><a href="/otzivi" class="nav-link nav-with-slash">Отзывы</a></li>
               <li class="nav-item"><a href="/skidki" class="nav-link nav-with-slash yellow-item">Скидки</a></li>
               <li class="nav-item"><a href="/novosti" class="nav-link nav-with-slash">Новости</a></li>                  
@@ -129,3 +131,4 @@
         </nav>
       </div>
     </div>
+    

@@ -12,7 +12,7 @@
 - [x] Компоненты [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
 - [x] Сервисы [frontend/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/services/)
 - [x] Pipe [frontend/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/pipes/)
-- [x] Роутер [frontend/src/app/app.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app.module.ts) (строка 41)
+- [x] Роутер [frontend/src/app/app-routing.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app-routing.module.ts)
 - [x] Формы, содержат валидатор с обработкой ошибок, выполняют отправку данных и получение ответа от сервера:
     * [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
     * [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
