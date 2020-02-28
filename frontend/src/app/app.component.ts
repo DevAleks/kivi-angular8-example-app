@@ -9,15 +9,15 @@ import { Title, Meta } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  
+ 
   constructor (
     private title: Title, 
     private meta: Meta
   ) {
-    this.title.setTitle('Кивиниеми - база рафтинга и активного отдыха. Лосево, Ленинградская область');
+    this.title.setTitle('Кивиниеми - база рафтинга и активного отдыха. Лосево, Ленинградская область')
     this.meta.addTags([
       {charset: 'UTF-8'},
-      {httpEquiv: 'X-UA-Compatible', content: 'IE=edge'},
+      {httpEquiv: 'X-UA-Compatible', content: 'IE=edge', title: '123'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {name: 'decriptions', content: 'Активный отдых, рафтинг, аренда площадок и проведение корпоративных мероприятий в Лосево. Почувствуйте вкус лета!'},
       {name: 'keywords', content: 'активный отдых, база рафтинга, проведение мероприятий, аренда площадок'},
@@ -30,6 +30,8 @@ export class AppComponent {
       {property: 'og:locale', content: 'ru_RU'},
       {property: 'og:site_name', content: 'Кивиниеми, база рафтинга'},
       {property: 'og:video', content: 'https://www.youtube.com/watch?v=LzkDYkvDnlI'},  
-    ], true);
-  }
+    ], true)
+    
+  }  
+
 }

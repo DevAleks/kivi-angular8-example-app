@@ -11,6 +11,7 @@ describe('AppComponent', () => {
   
   let title: Title;
   let meta: Meta;
+  let metatags: HTMLMetaElement[];
   let comp: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   
@@ -41,9 +42,18 @@ describe('AppComponent', () => {
     expect(title.getTitle()).toBe("Кивиниеми - база рафтинга и активного отдыха. Лосево, Ленинградская область");
   });
 
-  it(`should have a metatag charset=UTF-8`, () => {
+  it(`should have a metatag name=keywords with content='активный отдых, база рафтинга, проведение мероприятий, аренда площадок'`, () => {
     meta = TestBed.get(Meta);
-    expect(meta.getTag('charset=UTF-8')).toBeDefined();
+    expect(meta.getTag('name=keywords').content).toBe('активный отдых, база рафтинга, проведение мероприятий, аренда площадок');
   });
-  
+
+  it(`should have a metatag httpEquiv=X-UA-Compatible with content: 'IE=edge', title: '123'`, () => {
+    metatags = TestBed.get(Meta).getTags('httpEquiv=X-UA-Compatible');
+    metatags.forEach(el => {
+      expect(el.content).toBe('IE=edge');
+      expect(el.title).toBe('123');
+    });
+    
+  });
+
 });
