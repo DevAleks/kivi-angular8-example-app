@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { defer } from "rxjs";
+import { delay } from 'rxjs/operators';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { FirstBlockComponent } from './first-block.component';
 import { FormsService } from '../../services/forms.service';
@@ -31,7 +34,7 @@ describe('FirstBlockComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FirstBlockComponent ],
-      imports: [ HttpClientTestingModule ],
+      imports: [ RouterTestingModule, HttpClientTestingModule, LazyLoadImageModule ],
       providers: [ 
         { provide: FormsService, useValue: openFormStub },
         { provide: GetJsonService, useValue: getJsonStub }
@@ -67,13 +70,10 @@ describe('FirstBlockComponent', () => {
     });
   }));
 
-  it('should get H1 by GetJsonService.getPagesJson()', async(async() => {
-    const pageTitle = fixture.nativeElement.querySelector('h1.page-title');
-    await fixture.whenStable();
-    fixture.detectChanges();
-    expect(pageTitle.textContent).toBe('База рафтинга и активного отдыха "Кивиниеми"');
-    // Тоже рабочий вариант
-    // expect(fixture.nativeElement.querySelector('h1.page-title').textContent).toContain('База рафтинга и активного отдыха "Кивиниеми"');    
+  it('should get H1 База рафтинга и активного отдыха "Кивиниеми"', async(async() => {  
+    await fixture.whenStable().then(() => {
+      expect(component.h1).toContain('База рафтинга и активного отдыха "Кивиниеми"');
+    });
   }));
 
 /*  
@@ -88,9 +88,8 @@ describe('FirstBlockComponent', () => {
       expect(component.h1).toContain('База рафтинга и активного отдыха "Кивиниеми"');
     });
   }));
-*/
 
-  /*
+
   // Пример стаба для асинхронного метода 
   const getJsonStub = {
     getPagesJson() {

@@ -88,12 +88,5 @@ describe('CallorderFormComponent', () => {
     //fixture.debugElement.triggerEventHandler('keydown', {code: 'Escape'});
   }); 
 */
-
-  it('should unsubscribe() when destroyed', () => {
-    spy = spyOn(component.subscription, 'unsubscribe');
-    fixture.detectChanges();
-    fixture.destroy();
-    expect(spy).toHaveBeenCalled();
-  });
   
 });

@@ -75,11 +75,4 @@ describe('TopFormComponent', () => {
     expect(component.receivedFormTop).toEqual(expectForm); 
   });
 
-  it('should unsubscribe() when destroyed', () => {
-    spy = spyOn(component.subscription, 'unsubscribe');
-    fixture.detectChanges();
-    fixture.destroy();
-    expect(spy).toHaveBeenCalled();
-  });  
-
 });
