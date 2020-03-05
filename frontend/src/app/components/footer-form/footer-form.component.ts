@@ -42,13 +42,13 @@ export class FooterFormComponent {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(30),
-          Validators.pattern("[а-яА-Яa-zA-Z]{0,31}")
+          Validators.pattern("^[а-яА-Яa-zA-Z\ ]*$")
         ]),
         userPhone: new FormControl('', [
           Validators.required, 
           Validators.minLength(6),
           Validators.maxLength(20),
-          Validators.pattern("^[0-9\-\+\ \(\)\s]{0,21}$")
+          Validators.pattern("^[0-9\-\+\ \(\)]*$")
         ]),
         userEmail: new FormControl('', Validators.email)      
     }); 
@@ -93,35 +93,35 @@ export class FooterFormComponent {
     this.footerForm.controls['userPhone'].valid && 
     this.footerForm.controls['userEmail'].valid) 
     {        
-        this.formfooter = {
-          typeofact: this.footerForm.value['userTypeofact'], 
-          name: this.footerForm.value['userName'], 
-          phone: this.footerForm.value['userPhone'],
-          email: this.footerForm.value['userEmail'],
-          typeofform: 1,
-          status: false
-        };
+      // Заполнение отправляемого на сервер объекта данными из формы
+      this.formfooter = {
+        typeofact: this.footerForm.value['userTypeofact'], 
+        name: this.footerForm.value['userName'].trim(), 
+        phone: this.footerForm.value['userPhone'].trim(),
+        email: this.footerForm.value['userEmail'].trim(),
+        typeofform: 1,
+        status: false
+      };
+      
+      this.loading = true // Включаем отображение индикатора загрузки
+      this.switcher = true // Включаем показ результатов отправки формы
 
-        // Включаем отображение индикатора загрузки
-        this.loading = true;
-
-        this.formsService.postForm(this.formfooter)
-                .subscribe(
-                    (data: FormBottom) => {
-                      this.receivedFormFooter = data
-                      this.formValidError = false // Отключаем проверку ошибок валидации для формы
-                      this.switcher_valid = false // Отключаем вызов проверки ошибок при получении
-                      this.loading = false // Выключаем отображение индикатора загрузки
-                    },
-                    error => {
-                      console.log(error)
-                      this.errServ = true
-                      this.loading = false // Выключаем отображение индикатора загрузки
-                    }
-                );
-       
-        this.switcher = true; // Включаем показ результатов отправки формы
-        this.modal_switcher = true; // Включаем модальное окно для показа результатов отправки формы    
+      this.formsService.postForm(this.formfooter)
+        .subscribe(
+          (data: FormBottom) => {
+            this.receivedFormFooter = data
+            this.formValidError = false // Отключаем проверку ошибок валидации для формы
+            this.switcher_valid = false // Отключаем вызов проверки ошибок при получении
+            this.loading = false // Выключаем отображение индикатора загрузки
+          },
+          error => {
+            console.log(error)
+            this.errServ = true
+            this.loading = false // Выключаем отображение индикатора загрузки
+          }
+        );                       
+      
+      this.modal_switcher = true; // Включаем модальное окно для показа результатов отправки формы            
     }
   }  
 

@@ -42,10 +42,10 @@
                 - Использованы некорректные символы
               </div>
               <div *ngIf="firstForm.controls['userPhone'].errors?.minlength">
-                - Должно быть от 6 до 15 символов
+                - Должно быть от 6 до 20 символов
               </div>
               <div *ngIf="firstForm.controls['userPhone'].errors?.maxlength">
-               -  Должно быть не более 15 символов
+               -  Должно быть не более 20 символов
               </div>          
             </div>
             <div *ngIf="firstForm.controls['userPhone'].untouched" class="error-form-text">
@@ -74,10 +74,10 @@
                 - Использованы некорректные символы
               </div>
               <div *ngIf="firstForm.controls['userPromo'].errors?.minlength">
-                - Должно быть от 3 до 20 символов
+                - Должно быть от 3 до 30 символов
               </div>
               <div *ngIf="firstForm.controls['userPromo'].errors?.maxlength">
-               -  Должно быть не более 20 символов
+               -  Должно быть не более 30 символов
               </div>
             </div>  
           </div>	

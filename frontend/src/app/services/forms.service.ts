@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subject, throwError, Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, delay } from 'rxjs/operators';
 
 import { FormBottom } from '../classes/form-bt-class'
 import { ClickForm } from '../classes/click-class'
@@ -56,7 +56,8 @@ export class FormsService {
       text: formbt.text
     };    
     return this.http.post<FormBottom>('http://localhost:80/requests.add.php', body)
-    .pipe( // Обработка ошибок
+    .pipe( // Обработка ошибо
+      delay(2000), // Задержка для отображения индикатора загрузки
       retry(2),
       catchError(this.handleError) // Записываем полученные ошибки в специальный объект handleError
     );      
