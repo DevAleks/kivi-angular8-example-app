@@ -25,7 +25,7 @@ describe('FormsService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('подписка на клик для открытие форм работает', fakeAsync( 
+  it('подписка на клик для открытия форм работает', fakeAsync( 
     inject([FormsService], (service: FormsService) => {
       const click: ClickForm ={
         typeofform: 2,
