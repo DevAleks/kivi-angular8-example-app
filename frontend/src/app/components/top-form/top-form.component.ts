@@ -53,19 +53,19 @@ export class TopFormComponent {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        Validators.pattern("[а-яА-Яa-zA-Z]{0,31}")
+        Validators.pattern("^[а-яА-Яa-zA-Z\ ]*$")
       ]),
       userPhone: new FormControl('', [
         Validators.required, 
         Validators.minLength(6),
         Validators.maxLength(20),
-        Validators.pattern("^[0-9\-\+\ \(\)\s]{0,21}$")
+        Validators.pattern("^[0-9\-\+\ \(\)]*$")
       ]),
       userEmail: new FormControl('', Validators.email),
       userPromo: new FormControl('', [
         Validators.minLength(3),
         Validators.maxLength(20),
-        Validators.pattern("[0-9а-яА-Яa-zA-Z]{0,21}")
+        Validators.pattern("^[0-9а-яА-Яa-zA-Z\ ]*$")
       ])      
     });
 
@@ -112,38 +112,37 @@ export class TopFormComponent {
     this.topForm.controls['userEmail'].valid && 
     this.topForm.controls['userPromo'].valid) 
     {      
+      // Заполнение отправляемого на сервер объекта данными из формы
+      this.topFormToServ = {
+        typeofact: this.topForm.value['userTypeofact'], 
+        name: this.topForm.value['userName'].trim(), 
+        phone: this.topForm.value['userPhone'].trim(),
+        email: this.topForm.value['userEmail'].trim(),
+        promo: this.topForm.value['userPromo'].trim(),
+        typeofform: 3,
+        status: false
+      };
 
-        // Заполнение отправляемого на сервер объекта с данными формы
-        this.topFormToServ = {
-          typeofact: this.topForm.value['userTypeofact'], 
-          name: this.topForm.value['userName'], 
-          phone: this.topForm.value['userPhone'],
-          email: this.topForm.value['userEmail'],
-          promo: this.topForm.value['userPromo'],
-          typeofform: 3,
-          status: false
-        };
+      this.loading = true // Включаем отображение индикатора загрузки
+      this.switcher = true // Включаем показ окна с результатом отправки формы  
 
-        // Включаем отображение индикатора загрузки
-        this.loading = true;
-
-        // Отправка оъекта на сервер и получение ответа от сервера
-        this.formsService.postForm(this.topFormToServ)
-                .subscribe(
-                    (data: FormBottom) => {
-                      this.receivedFormTop = data // Получаем данные с сервера
-                      this.formValidError = false // Отключаем проверку ошибок валидации для формы
-                      this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-                      this.loading = false // Выключаем отображение индикатора загрузки
-                    },
-                    error => {
-                      console.log(error)
-                      this.errServ = true
-                      this.loading = false // Выключаем отображение индикатора загрузки
-                    }
-                );
-    }
-    this.switcher = true; // Включаем показ окна с результатом отправки формы    
+      // Отправка оъекта на сервер и получение ответа от сервера
+      this.formsService.postForm(this.topFormToServ)
+        .subscribe(
+          (data: FormBottom) => {
+            this.receivedFormTop = data // Получаем данные с сервера
+            this.formValidError = false // Отключаем проверку ошибок валидации для формы
+            this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+            this.loading = false // Выключаем отображение индикатора загрузки
+          },
+          error => {
+            console.log(error)
+            this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
+            this.loading = false // Выключаем отображение индикатора загрузки
+          }
+        ); 
+                       
+    }      
         
   }
 

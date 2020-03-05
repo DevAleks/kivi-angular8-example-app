@@ -40,10 +40,10 @@
                       - Использованы некорректные символы
                     </div>
                     <div *ngIf="callorderForm.controls['userPhone'].errors?.minlength">
-                      - Должно быть от 6 до 15 символов
+                      - Должно быть от 6 до 20 символов
                     </div>
                     <div *ngIf="callorderForm.controls['userPhone'].errors?.maxlength">
-                     -  Должно быть не более 15 символов
+                     -  Должно быть не более 20 символов
                     </div>          
                   </div>
                   <div *ngIf="callorderForm.controls['userPhone'].untouched" class="error-form-text">
@@ -79,7 +79,7 @@
               
               <div *ngIf="switcher && !formValidError && !errServ && !receivedFormCallOrder.status" class="modal-form-body">
                 <br><br>
-                <div id="success">Заказ успешно отправлен</div>
+                <div id="success"><b>Заказ успешно отправлен!</b></div>
                 <br>
                 <label>Ответ сервера:</label>
                 <ul>

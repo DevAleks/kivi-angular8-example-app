@@ -49,13 +49,13 @@ export class CallorderFormComponent {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        Validators.pattern("[а-яА-Яa-zA-Z]{0,31}")
+        Validators.pattern("^[а-яА-Яa-zA-Z]*$")
       ]),
       userPhone: new FormControl('', [
         Validators.required, 
         Validators.minLength(6),
         Validators.maxLength(20),
-        Validators.pattern("^[0-9\-\+\ \(\)\s]{0,21}$")
+        Validators.pattern("^[0-9\-\+\ \(\)]*$")
       ])
     });
   }
@@ -93,35 +93,36 @@ export class CallorderFormComponent {
     if (this.callorderForm.controls['userName'].valid && 
     this.callorderForm.controls['userPhone'].valid) 
     { 
-        // Заполнение отправляемого на сервер объекта с данными формы
-        this.formcallorder = {
-          typeofact: 'Заказать звонок', 
-          name: this.callorderForm.value['userName'], 
-          phone: this.callorderForm.value['userPhone'],
-          typeofform: 4,
-          status: false
-        };
+      // Заполнение отправляемого на сервер объекта данными из формы
+      this.formcallorder = {
+        typeofact: 'Заказать звонок', 
+        name: this.callorderForm.value['userName'].trim(), 
+        phone: this.callorderForm.value['userPhone'].trim(),
+        typeofform: 4,
+        status: false
+      }; 
 
-        // Включаем отображение индикатора загрузки
-        this.loading = true;
+      this.loading = true // Включаем отображение индикатора загрузки
+      this.switcher = true // Включаем показ окна с результатом отправки формы
 
-        // Отправка оъекта на сервер и получение ответа от сервера
-        this.formsService.postForm(this.formcallorder)
-                .subscribe(
-                    (data: FormBottom) => {
-                      this.receivedFormCallOrder = data // Получаем данные с сервера
-                      this.formValidError = false // Отключаем проверку ошибок валидации для формы
-                      this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-                      this.loading = false // Выключаем отображение индикатора загрузки
-                    },
-                    error => {
-                      console.log(error)
-                      this.errServ = true
-                      this.loading = false // Выключаем отображение индикатора загрузки
-                    }
-                );
+      // Отправка оъекта на сервер и получение ответа от сервера
+      this.formsService.postForm(this.formcallorder)
+        .subscribe(
+          (data: FormBottom) => {
+            this.receivedFormCallOrder = data // Получаем данные с сервера
+            this.formValidError = false // Отключаем проверку ошибок валидации для формы
+            this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+            this.loading = false // Выключаем отображение индикатора загрузки
+          },
+          error => {
+            console.log(error)
+            this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
+            this.loading = false // Выключаем отображение индикатора загрузки
+          }
+        );        
+        
     }
-    this.switcher = true; // Включаем показ окна с результатом отправки формы    
+        
   }
 
 }

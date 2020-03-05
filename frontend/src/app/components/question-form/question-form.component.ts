@@ -1,5 +1,6 @@
 import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { FormsService } from '../../services/forms.service';
@@ -50,13 +51,13 @@ export class QuestionFormComponent {
         Validators.required, 
         Validators.minLength(6),
         Validators.maxLength(20),
-        Validators.pattern("^[0-9\-\+\ \(\)\s]{0,21}$")
+        Validators.pattern("^[0-9\-\+\ \(\)]*$")
       ]),
       userText: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(500),
-        Validators.pattern("^[а-яА-Яa-zA-Z0-9\-\+\ \(\)]{0,501}$")
+        Validators.pattern("^[а-яА-Яa-zA-Z0-9\-\+\(\)\:\ \n]*$")
       ]),
       userEmail: new FormControl('', Validators.email)  
     });
@@ -91,45 +92,46 @@ export class QuestionFormComponent {
     console.log(this.questionForm.value['userText']);
     console.log(this.questionForm.value['userPhone']);
     console.log(this.questionForm.value['userEmail']);
-    //console.log(this.switcher);    
+    console.log('switcher = ',this.switcher);
+    console.log('switcher = ',this.switcher);
+    console.log('switcher = ',this.switcher);    
 
     // Условие отправки данных из формы на сервер
     if (this.questionForm.controls['userText'].valid && 
     this.questionForm.controls['userPhone'].valid &&
     this.questionForm.controls['userEmail'].valid) 
     {    
+      // Заполнение отправляемого на сервер объекта данными из формы
+      this.formquestion = {
+        typeofact: 'Задать вопрос', 
+        phone: this.questionForm.value['userPhone'].trim(),
+        email: this.questionForm.value['userEmail'].trim(),
+        text: this.questionForm.value['userText'].trim(),
+        typeofform: 5,
+        status: false
+      };
+      
+      this.loading = true // Включаем отображение индикатора загрузки
+      this.switcher = true // Включаем показ окна с индикатором загрузки и результатом отправки формы 
 
-        // Заполнение отправляемого на сервер объекта с данными формы
-        this.formquestion = {
-          typeofact: 'Задать вопрос', 
-          phone: this.questionForm.value['userPhone'],
-          email: this.questionForm.value['userEmail'],
-          text: this.questionForm.value['userText'],
-          typeofform: 5,
-          status: false
-        };
+      // Отправка оъекта на сервер и получение ответа от сервера
+      this.formsService.postForm(this.formquestion)      
+        .subscribe(
+          (data: FormBottom) => {
+            this.receivedFormQuestion = data // Получаем данные с сервера
+            this.formValidError = false // Отключаем проверку ошибок валидации для формы
+            this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"              
+            this.loading = false // Выключаем отображение индикатора загрузки                            
+          },
+          error => {
+            console.log(error)
+            this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
+            this.loading = false // Выключаем отображение индикатора загрузки              
+          }
+        )
 
-        // Включаем отображение индикатора загрузки
-        this.loading = true;        
-
-        // Отправка оъекта на сервер и получение ответа от сервера
-        this.formsService.postForm(this.formquestion)
-                .subscribe(
-                    (data: FormBottom) => {
-                      this.receivedFormQuestion = data // Получаем данные с сервера
-                      this.formValidError = false // Отключаем проверку ошибок валидации для формы
-                      this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-                      this.loading = false // Выключаем отображение индикатора загрузки
-                    },
-                    error => {
-                      console.log(error)
-                      this.errServ = true
-                      this.loading = false // Выключаем отображение индикатора загрузки
-                    }
-                );  
     }
-    this.switcher = true; // Включаем показ окна с результатом отправки формы 
- 
+     
   }
 
 }
