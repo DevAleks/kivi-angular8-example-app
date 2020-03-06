@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { FormsService } from '../../services/forms.service';
 import { FormBottom } from '../../classes/form-bt-class';
 import { ClickForm } from 'src/app/classes/click-class';
+import { FormValidators } from '../../shared/form.validators'
 
 @Component({
   selector: 'app-top-form',
@@ -53,19 +54,19 @@ export class TopFormComponent {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        Validators.pattern("^[а-яА-Яa-zA-Z\ ]*$")
+        FormValidators.userName
       ]),
       userPhone: new FormControl('', [
         Validators.required, 
         Validators.minLength(6),
         Validators.maxLength(20),
-        Validators.pattern("^[0-9\-\+\ \(\)]*$")
+        FormValidators.userPhone
       ]),
       userEmail: new FormControl('', Validators.email),
       userPromo: new FormControl('', [
         Validators.minLength(3),
         Validators.maxLength(20),
-        Validators.pattern("^[0-9а-яА-Яa-zA-Z\ ]*$")
+        FormValidators.userPromo
       ])      
     });
 

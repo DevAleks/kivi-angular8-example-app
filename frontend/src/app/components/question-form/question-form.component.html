@@ -1,5 +1,5 @@
-<div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
-    <div class="modal-form-wrapper" [style.display]="modal_switcher==true?'block':'none'">
+<div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher ? 'block' : 'none'">
+    <div class="modal-form-wrapper" [style.display]="modal_switcher ? 'block' : 'none'">
       <div *ngIf="!switcher" class="modal-form">
         <div class="modal-form-header">
           Задать вопрос<div class="close" (click)="closeForm()"></div>
@@ -14,7 +14,7 @@
             <div *ngIf="switcher_valid">
               <div *ngIf="questionForm.controls['userText'].invalid && questionForm.controls['userText'].touched" class="error-form-text">
                 Поле Вопрос заполнено неверно:
-                <div *ngIf="questionForm.controls['userText'].errors?.pattern">
+                <div *ngIf="questionForm.controls['userText'].errors?.userTextPattern">
                   - Использованы некорректные символы
                 </div>
                 <div *ngIf="questionForm.controls['userText'].errors?.minlength">
@@ -36,7 +36,7 @@
             <div *ngIf="switcher_valid">
               <div *ngIf="questionForm.controls['userPhone'].invalid && questionForm.controls['userPhone'].touched" class="error-form-text">
                 Поле Телефон заполнено неверно:
-                <div *ngIf="questionForm.controls['userPhone'].errors?.pattern">
+                <div *ngIf="questionForm.controls['userPhone'].errors?.userPhonePattern">
                   - Использованы некорректные символы
                 </div>
                 <div *ngIf="questionForm.controls['userPhone'].errors?.minlength">
