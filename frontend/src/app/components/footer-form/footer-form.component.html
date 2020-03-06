@@ -70,8 +70,8 @@
     <input type="submit" class="submit" (click)="submitFooter()" value="Заказать">
 </form>
 
-<div *ngIf="switcher" id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
-  <div class="modal-form-wrapper" id="form1-box" [style.display]="modal_switcher==true?'block':'none'">
+<div *ngIf="switcher" id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher ? 'block' : 'none'">
+  <div class="modal-form-wrapper" id="form1-box" [style.display]="modal_switcher ? 'block' : 'none'">
     <div class="modal-form">
 
       <div *ngIf="!loading; else loadingBlock">

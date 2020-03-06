@@ -1,5 +1,5 @@
-<div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher==true?'block':'none'">
-        <div class="modal-form-wrapper" [style.display]="modal_switcher==true?'block':'none'">
+<div id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher ? 'block' : 'none'">
+        <div class="modal-form-wrapper" [style.display]="modal_switcher ? 'block' : 'none'">
           <div *ngIf="!switcher" class="modal-form">
             <div class="modal-form-header">
               Заказать обратный звонок
