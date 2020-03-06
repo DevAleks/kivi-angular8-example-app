@@ -59,19 +59,8 @@ describe('VideoBlockComponent', () => {
 
   it('should get Url by GetJsonService.getPagesJson()', async(async() => {  
     await fixture.whenStable().then(() => {
-      //const iframeElem = fixture.nativeElement.querySelector('iframe.inner');
       expect(component.videourl).toBe('https://www.youtube.com/embed/LzkDYkvDnlI');
-      //expect(iframeElem.src).toBe('https://www.youtube.com/embed/LzkDYkvDnlI');
     });
   }));
-
-/*
-  it('should get Url by GetJsonService.getPagesJson()', async(async() => {
-    const iframeElem = fixture.nativeElement.querySelector('iframe.inner');
-    await fixture.whenStable();
-    fixture.detectChanges();
-    expect(iframeElem.src).toBe('https://www.youtube.com/embed/LzkDYkvDnlI');  
-  }));
-*/
 
 });
