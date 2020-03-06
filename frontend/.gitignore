@@ -50,3 +50,6 @@ Thumbs.db
 
 # Others
 frontend
+
+# Unit tests
+coverage
