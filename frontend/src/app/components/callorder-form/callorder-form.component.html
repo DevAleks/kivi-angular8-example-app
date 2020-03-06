@@ -14,7 +14,7 @@
                 <div *ngIf="switcher_valid">
                   <div *ngIf="callorderForm.controls['userName'].invalid && callorderForm.controls['userName'].touched" class="error-form-text">
                     Поле Имя заполнено неверно:
-                    <div *ngIf="callorderForm.controls['userName'].errors?.pattern">
+                    <div *ngIf="callorderForm.controls['userName'].errors?.userNamePattern">
                       - Использованы некорректные символы
                     </div>
                     <div *ngIf="callorderForm.controls['userName'].errors?.minlength">
@@ -36,7 +36,7 @@
                 <div *ngIf="switcher_valid">
                   <div *ngIf="callorderForm.controls['userPhone'].invalid && callorderForm.controls['userPhone'].touched" class="error-form-text">
                     Поле Телефон заполнено неверно:
-                    <div *ngIf="callorderForm.controls['userPhone'].errors?.pattern">
+                    <div *ngIf="callorderForm.controls['userPhone'].errors?.userPhonePattern">
                       - Использованы некорректные символы
                     </div>
                     <div *ngIf="callorderForm.controls['userPhone'].errors?.minlength">

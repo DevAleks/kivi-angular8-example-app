@@ -1,11 +1,11 @@
 import { Component, HostListener, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { FormsService } from '../../services/forms.service';
 import { FormBottom } from '../../classes/form-bt-class';
 import { ClickForm } from 'src/app/classes/click-class';
+import { FormValidators } from '../../shared/form.validators'
 
 @Component({
   selector: 'app-question-form',
@@ -51,13 +51,13 @@ export class QuestionFormComponent {
         Validators.required, 
         Validators.minLength(6),
         Validators.maxLength(20),
-        Validators.pattern("^[0-9\-\+\ \(\)]*$")
+        FormValidators.userPhone
       ]),
       userText: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(500),
-        Validators.pattern("^[а-яА-Яa-zA-Z0-9\-\+\(\)\:\ \n]*$")
+        FormValidators.userText
       ]),
       userEmail: new FormControl('', Validators.email)  
     });

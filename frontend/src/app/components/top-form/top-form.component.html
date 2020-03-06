@@ -31,7 +31,7 @@
           <div *ngIf="switcher_valid">
             <div *ngIf="topForm.controls['userName'].invalid && topForm.controls['userName'].touched" class="error-form-text">
               Поле Имя заполнено неверно:
-              <div *ngIf="topForm.controls['userName'].errors?.pattern">
+              <div *ngIf="topForm.controls['userName'].errors?.userNamePattern">
                 - Использованы некорректные символы
               </div>
               <div id="userNameT-min" *ngIf="topForm.controls['userName'].errors?.minlength">
@@ -53,7 +53,7 @@
           <div *ngIf="switcher_valid">
             <div *ngIf="topForm.controls['userPhone'].invalid && topForm.controls['userPhone'].touched" class="error-form-text">
               Поле Телефон заполнено неверно:
-              <div *ngIf="topForm.controls['userPhone'].errors?.pattern">
+              <div *ngIf="topForm.controls['userPhone'].errors?.userPhonePattern">
                 - Использованы некорректные символы
               </div>
               <div *ngIf="topForm.controls['userPhone'].errors?.minlength">
@@ -85,7 +85,7 @@
           <div *ngIf="switcher_valid">
             <div *ngIf="topForm.controls['userPromo'].invalid && topForm.controls['userPromo'].touched" class="error-form-text">
               Поле Промокод заполнено неверно:
-              <div *ngIf="topForm.controls['userPromo'].errors?.pattern">
+              <div *ngIf="topForm.controls['userPromo'].errors?.userPromoPattern">
                 - Использованы некорректные символы
               </div>
               <div *ngIf="topForm.controls['userPromo'].errors?.minlength">
