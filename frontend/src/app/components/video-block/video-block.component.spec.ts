@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { defer } from "rxjs";
+import { delay } from "rxjs/operators";
 
 // Для обработки pipe safe в шаблоне VideoBlockComponent:
 import { NO_ERRORS_SCHEMA } from '@angular/core'; 
@@ -56,11 +57,21 @@ describe('VideoBlockComponent', () => {
     });
   }));
 
+  it('should get Url by GetJsonService.getPagesJson()', async(async() => {  
+    await fixture.whenStable().then(() => {
+      //const iframeElem = fixture.nativeElement.querySelector('iframe.inner');
+      expect(component.videourl).toBe('https://www.youtube.com/embed/LzkDYkvDnlI');
+      //expect(iframeElem.src).toBe('https://www.youtube.com/embed/LzkDYkvDnlI');
+    });
+  }));
+
+/*
   it('should get Url by GetJsonService.getPagesJson()', async(async() => {
     const iframeElem = fixture.nativeElement.querySelector('iframe.inner');
     await fixture.whenStable();
     fixture.detectChanges();
     expect(iframeElem.src).toBe('https://www.youtube.com/embed/LzkDYkvDnlI');  
   }));
-  
+*/
+
 });
