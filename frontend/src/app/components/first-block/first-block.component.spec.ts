@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { defer } from "rxjs";
-import { delay } from 'rxjs/operators';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 
