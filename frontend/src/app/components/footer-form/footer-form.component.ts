@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
-import { FormBottom } from '../../classes/form-bt-class'
-import { FormsService } from '../../services/forms.service';
+import { FormBottom } from '../../shared/classes/form-bt-class'
+import { FormsService } from '../../shared/services/forms.service';
 import { FormValidators } from '../../shared/form.validators'
 
 @Component({

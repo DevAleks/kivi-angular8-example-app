@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormsService } from '../../services/forms.service';
+import { FormsService } from '../../shared/services/forms.service';
 
-import { ClickForm } from '../../classes/click-class'
+import { ClickForm } from '../../shared/classes/click-class'
 
 @Component({
   selector: 'app-top-block',

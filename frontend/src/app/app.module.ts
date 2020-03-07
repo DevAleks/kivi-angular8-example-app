@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -20,17 +18,10 @@ import { FirstFormComponent } from './components/first-form/first-form.component
 import { TopFormComponent } from './components/top-form/top-form.component';
 import { QuestionFormComponent } from './components/question-form/question-form.component';
 import { CallorderFormComponent } from './components/callorder-form/callorder-form.component';
-import { Error404Component } from './components/error404/error404.component';
-import { RaftingComponent } from './components/rafting/rafting.component';
-import { MainComponent } from './components/main/main.component';
-import { SemeyniyRaftingComponent } from './components/semeyniy-rafting/semeyniy-rafting.component';
-
-// Sevices
-import { GetJsonService } from './services/get-json.service';
-import { FormsService } from './services/forms.service';
-
-// Pipes
-import { SafePipe } from './pipes/safePipe';
+import { Error404Component } from './error404/error404.component';
+import { RaftingComponent } from './rafting/rafting.component';
+import { MainComponent } from './main/main.component';
+import { SemeyniyRaftingComponent } from './semeyniy-rafting/semeyniy-rafting.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +29,7 @@ import { SafePipe } from './pipes/safePipe';
     FirstBlockComponent,      
     VideoBlockComponent,
     TopBlockComponent,
-    FourIconsBlockComponent,
-    SafePipe,
+    FourIconsBlockComponent,    
     GuidesBlockComponent,
     SubscribeBlockComponent,
     ScriptHackComponent,
@@ -58,12 +48,8 @@ import { SafePipe } from './pipes/safePipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
-    FormsModule,
-    ReactiveFormsModule,
-    LazyLoadImageModule   
+    SharedModule     
   ],
-  providers: [GetJsonService, FormsService],
   bootstrap: [AppComponent, ]
 })
 

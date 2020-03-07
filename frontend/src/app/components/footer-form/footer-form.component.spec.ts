@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormsService } from '../../services/forms.service';
-import { FormBottom } from '../../classes/form-bt-class';
+import { FormsService } from '../../shared/services/forms.service';
+import { FormBottom } from '../../shared/classes/form-bt-class';
 
 import { FooterFormComponent } from './footer-form.component';
 

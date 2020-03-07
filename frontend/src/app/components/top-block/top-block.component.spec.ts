@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { TopBlockComponent } from './top-block.component';
-import { FormsService } from '../../services/forms.service';
-import { ClickForm } from '../../classes/click-class'
+import { FormsService } from '../../shared/services/forms.service';
+import { ClickForm } from '../../shared/classes/click-class'
 
 describe('TopBlockComponent', () => {
   let component: TopBlockComponent;

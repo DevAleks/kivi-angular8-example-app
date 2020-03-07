@@ -5,8 +5,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core'; 
 
 import { RaftingComponent } from './rafting.component';
-import { FormsService } from '../../services/forms.service';
-import { ClickForm } from '../../classes/click-class'
+import { FormsService } from '../shared/services/forms.service';
+import { ClickForm } from '../shared/classes/click-class'
 
 describe('RaftingComponent', () => {
   let component: RaftingComponent;

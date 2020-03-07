@@ -2,9 +2,9 @@ import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
-import { FormsService } from '../../services/forms.service';
-import { FormBottom } from '../../classes/form-bt-class';
-import { ClickForm } from '../../classes/click-class'
+import { FormsService } from '../../shared/services/forms.service';
+import { FormBottom } from '../../shared/classes/form-bt-class';
+import { ClickForm } from '../../shared/classes/click-class'
 import { FormValidators } from '../../shared/form.validators'
 
 @Component({
