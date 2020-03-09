@@ -7,10 +7,10 @@ import { delay } from "rxjs/operators";
 import { NO_ERRORS_SCHEMA } from '@angular/core'; 
 
 // Pipes
-import { SafePipe } from '../../pipes/safePipe';
+import { SafePipe } from '../../shared/pipes/safePipe';
 
 import { VideoBlockComponent } from './video-block.component';
-import { GetJsonService } from '../../services/get-json.service';
+import { GetJsonService } from '../../shared/services/get-json.service';
 
 // Функция для создания асинхронного observable stub
 export function fakeAsyncResponse<T>(data: T) {

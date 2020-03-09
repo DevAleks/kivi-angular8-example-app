@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GetJsonService } from '../../services/get-json.service';
-import { FormsService } from '../../services/forms.service';
+import { GetJsonService } from '../../shared/services/get-json.service';
+import { FormsService } from '../../shared/services/forms.service';
 
-import { ClickForm } from '../../classes/click-class'
-import { PagesInt } from 'src/app/interfaces/pages-int';
+import { ClickForm } from '../../shared/classes/click-class'
+import { PagesInt } from 'src/app/shared/interfaces/pages-int';
 
 @Component({
   selector: 'app-first-block',

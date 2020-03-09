@@ -1,6 +1,6 @@
 import { DomSanitizer } from "@angular/platform-browser";
 import { DomSanitizerImpl } from "@angular/platform-browser/esm2015/src/security/dom_sanitization_service";
-import { SafePipe } from '../pipes/safePipe';
+import { SafePipe } from './safePipe';
 
 describe('SafePipe', () => {
     let sanitizer: DomSanitizer = new DomSanitizerImpl(null);

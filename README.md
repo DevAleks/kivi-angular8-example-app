@@ -7,18 +7,41 @@
 
 ## Технологии  
 Приложение выполнено на Angular 8.3.23 и Typescript, серверная часть на PHP и MySQL, Unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor, виртуализация на Docker и Docker-Compose.  
-
+  
+<br /> 
+   
+## Приложение  
+Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы:
+* /  
+* /rafting  
+* /semeyniy-rafting  
+* страница ошибки 404  
+    
+На всех страницах отличаются только верхние блоки с контентом.  
+Приложение сделано на основе сторонней верстки на Bootstrap 4.  
+  
+<br /> 
+   
 ### Элементы Angular  
 - [x] Компоненты [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
-- [x] Сервисы [frontend/src/app/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/services/)
-- [x] Pipe [frontend/src/app/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/pipes/)
+- [x] Сервисы [frontend/src/app/shared/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/services/)
+- [x] Pipe [frontend/src/app/shared/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/pipes/)
 - [x] Роутер [frontend/src/app/app-routing.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app-routing.module.ts)
-- [x] Формы, содержат валидатор с обработкой ошибок, выполняют отправку данных и получение ответа от сервера:
+- [x] Формы обратной связи, содержат валидатор с обработкой ошибок, выполняют отправку данных и получение ответа от сервера:
     * [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
     * [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
     * [frontend/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/footer-form/)
     * [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
     * [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
+    * Кастомные валидаторы для форм: [frontend/src/app/shared/form.validators.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/form.validators.ts)
+- [x] Модули, 4 для страниц приложения и 2 для более удобной и оптимизированной группировки прочих сущностей Angular:
+    * Главная страница: [frontend/src/app/main/main.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/main/main.module.ts)
+    * Страница /rafting: [frontend/src/app/rafting/rafting.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/rafting/rafting.module.ts)
+    * Страница /semeyniy-rafting: [frontend/src/app/semeyniy-rafting/semeyniy-rafting.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/semeyniy-rafting/semeyniy-rafting.module.ts)
+    * Страница ошибки 404: [frontend/src/app/error404/error404.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/error404/error404.module.ts)
+    * Модуль для основных сущностей: [frontend/src/app/shared/shared.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/shared.module.ts)
+    * Модуль для доп. сущностей на 3-х основных страницах: [frontend/src/app/shared/pages.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/pages.module.ts)
+
 - [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 25)
 - [x] Ленивая загрузка изображений с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
 - [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент[frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
@@ -40,19 +63,6 @@
   
 <br />  
 
-## Приложение  
-
-Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы:
-* /  
-* /rafting  
-* /semeyniy-rafting  
-* страница ошибки 404  
-  
-На всех страницах отличаются только верхние блоки с контентом.  
-Приложение сделано на основе сторонней верстки на Bootstrap 4.  
-  
-<br /> 
-  
 ## Инсталяция и запуск
 Для работы с приложением рекомендуется использовать Docker, под него сделаны все необходимые настройки для совместной работы frontend и backend. Инсталяция и запуск описаны с использованием Docker. 
 1. Склонировать приложение.  

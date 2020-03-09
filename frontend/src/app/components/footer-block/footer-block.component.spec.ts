@@ -4,8 +4,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'; 
 
 import { FooterBlockComponent } from './footer-block.component';
-import { FormsService } from '../../services/forms.service';
-import { ClickForm } from '../../classes/click-class'
+import { FormsService } from '../../shared/services/forms.service';
+import { ClickForm } from '../../shared/classes/click-class'
 
 describe('FooterBlockComponent', () => {
   let component: FooterBlockComponent;
