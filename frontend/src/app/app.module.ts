@@ -9,10 +9,13 @@ import { AppComponent } from './app.component';
 import { TopBlockComponent } from './components/top-block/top-block.component';
 import { FooterBlockComponent } from './components/footer-block/footer-block.component';
 import { FooterFormComponent } from './components/footer-form/footer-form.component';
-import { FirstFormComponent } from './components/first-form/first-form.component';
 import { TopFormComponent } from './components/top-form/top-form.component';
 import { QuestionFormComponent } from './components/question-form/question-form.component';
 import { CallorderFormComponent } from './components/callorder-form/callorder-form.component';
+
+// PWA
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,6 @@ import { CallorderFormComponent } from './components/callorder-form/callorder-fo
     TopBlockComponent,
     FooterBlockComponent,
     FooterFormComponent,
-    FirstFormComponent,
     TopFormComponent,
     QuestionFormComponent,
     CallorderFormComponent,
@@ -29,7 +31,8 @@ import { CallorderFormComponent } from './components/callorder-form/callorder-fo
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    PagesModule     
+    PagesModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })     
   ],
   bootstrap: [AppComponent, ]
 })

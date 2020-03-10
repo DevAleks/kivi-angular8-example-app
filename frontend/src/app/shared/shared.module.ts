@@ -18,14 +18,14 @@ import { SafePipe } from './pipes/safePipe';
         HttpClientModule, 
         FormsModule,
         ReactiveFormsModule,
-        LazyLoadImageModule  
+        LazyLoadImageModule,
     ],
     exports: [
         HttpClientModule, 
         FormsModule,
         ReactiveFormsModule,
         SafePipe,
-        LazyLoadImageModule
+        LazyLoadImageModule,
     ],
     providers: [GetJsonService, FormsService]
 })

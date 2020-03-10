@@ -10,7 +10,7 @@ import { FirstBlockComponent } from '../components/first-block/first-block.compo
 @NgModule ({
     declarations: [
         MainComponent, 
-        FirstBlockComponent
+        FirstBlockComponent        
     ],
     imports: [
         CommonModule,
