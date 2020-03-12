@@ -6,7 +6,11 @@
 </p>
 
 ## Технологии  
-Приложение выполнено на Angular 8.3.23 и Typescript, серверная часть на PHP и MySQL, Unit тестирование Jasmine + Karma, E2E тестирование Jasmine + Protractor, виртуализация на Docker и Docker-Compose.  
+- [x] Frontend: Angular 8.3.23 и Typescript
+- [x] Backend: PHP и MySQL
+- [x] Unit тестирование: Jasmine + Karma
+- [x] E2E тестирование: Jasmine + Protractor
+- [x] Виртуализация: Docker и Docker-Compose
   
 <br /> 
    
@@ -41,10 +45,9 @@
     * Страница ошибки 404: [frontend/src/app/error404/error404.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/error404/error404.module.ts)
     * Модуль для основных сущностей: [frontend/src/app/shared/shared.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/shared.module.ts)
     * Модуль для доп. сущностей на 3-х основных страницах: [frontend/src/app/shared/pages.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/pages.module.ts)
-
 - [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 25)
 - [x] Ленивая загрузка изображений с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
-- [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент[frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
+- [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент [frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
 - [x] Поддержка PWA. Если собрать приложение в режиме prod, то оно будет работать как PWA, с использованием встроенного Service Worker
 - [x] Unit тестирование Jasmine + Karma
 - [x] End-to-end тестирование Jasmine + Protractor
