@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormsService } from '../../shared/services/forms.service';
-import { FormBottom } from '../../shared/classes/form-bt-class';
+import { FormsService } from '../../services/forms.service';
+import { FormBottom } from '../../classes/form-bt-class';
 
-import { QuestionFormComponent } from './question-form.component';
-import { ClickForm } from '../../shared/classes/click-class'
+import { FirstFormComponent } from './first-form.component';
+import { ClickForm } from '../../classes/click-class'
 
-describe('QuestionFormComponent', () => {
-  let component: QuestionFormComponent;
-  let fixture: ComponentFixture<QuestionFormComponent>;
+describe('FirstFormComponent', () => {
+  let component: FirstFormComponent;
+  let fixture: ComponentFixture<FirstFormComponent>;
   let forms: FormsService;
   let spy: jasmine.Spy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ ReactiveFormsModule, HttpClientTestingModule ],
-      declarations: [ QuestionFormComponent ],
+      declarations: [ FirstFormComponent ],
       providers: [ FormsService ]
     })
     .compileComponents();
@@ -24,7 +24,7 @@ describe('QuestionFormComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuestionFormComponent);
+    fixture = TestBed.createComponent(FirstFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -41,11 +41,11 @@ describe('QuestionFormComponent', () => {
     });
   }));
 
-  it('should have typeofform == 5 after observableclicks$.subscribe() call', async((done: DoneFn) => {
-    const openClick: ClickForm = {typeofform: 5, typeofact: 'Рафтинг'};
+  it('should have typeofform == 2 after observableclicks$.subscribe() call', async((done: DoneFn) => {
+    const openClick: ClickForm = {typeofform: 2, typeofact: 'Рафтинг'};
     forms.openForm(openClick); 
     forms.observableclicks$.subscribe((data) => {
-      expect(data.typeofform).toBe(5);
+      expect(data.typeofform).toBe(2);
       done();                      
     });     
   }));
@@ -56,22 +56,23 @@ describe('QuestionFormComponent', () => {
     expect(component.switcher).toBe(false); 
     expect(component.errServ).toBe(false);  
     expect(component.formValidError).toBe(true); 
-    expect(component.receivedFormQuestion.status).toBe(false); 
+    expect(component.receivedFormFirst.status).toBe(false); 
     expect(component.switcher_valid).toBe(false);     
   });
 
   it('should post and recived form data success from FormsService', () => {
-    const expectForm:FormBottom = {
-      typeofact: 'Задать вопрос', 
+    const expectForm: FormBottom = {
+      typeofact: 'Тип активности: Рафтинг', 
+      name: 'Имя: Алекс', 
       phone: 'Телефон: +7(933) 888-99-00',
       email: 'Email: test@mail.com',
-      text: 'Text: Текст Текст Текст',
-      typeofform: 5,
+      promo: 'Promo: Promo 123',
+      typeofform: 2,
       status: false
     };
     const spyObj = jasmine.createSpyObj('FormsService', {postForm: expectForm});
-    component.receivedFormQuestion = spyObj.postForm();
-    expect(component.receivedFormQuestion).toEqual(expectForm); 
+    component.receivedFormFirst = spyObj.postForm();
+    expect(component.receivedFormFirst).toEqual(expectForm); 
   });
 
 });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetJsonService } from '../../shared/services/get-json.service';
+import { GetJsonService } from '../../services/get-json.service';
 import { ViewEncapsulation } from '@angular/core';
 
 @Component({

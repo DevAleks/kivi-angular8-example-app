@@ -6,12 +6,12 @@ import { PagesModule } from './shared/pages.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { TopBlockComponent } from './components/top-block/top-block.component';
-import { FooterBlockComponent } from './components/footer-block/footer-block.component';
-import { FooterFormComponent } from './components/footer-form/footer-form.component';
-import { TopFormComponent } from './components/top-form/top-form.component';
-import { QuestionFormComponent } from './components/question-form/question-form.component';
-import { CallorderFormComponent } from './components/callorder-form/callorder-form.component';
+import { TopBlockComponent } from './shared/components/top-block/top-block.component';
+import { FooterBlockComponent } from './shared/components/footer-block/footer-block.component';
+import { FooterFormComponent } from './shared/components/footer-form/footer-form.component';
+import { TopFormComponent } from './shared/components/top-form/top-form.component';
+import { QuestionFormComponent } from './shared/components/question-form/question-form.component';
+import { CallorderFormComponent } from './shared/components/callorder-form/callorder-form.component';
 
 // PWA
 import { ServiceWorkerModule } from '@angular/service-worker';

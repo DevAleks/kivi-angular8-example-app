@@ -5,9 +5,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { FirstBlockComponent } from './first-block.component';
-import { FormsService } from '../../shared/services/forms.service';
-import { GetJsonService } from '../../shared/services/get-json.service';
-import { ClickForm } from '../../shared/classes/click-class'
+import { FormsService } from '../../services/forms.service';
+import { GetJsonService } from '../../services/get-json.service';
+import { ClickForm } from '../../classes/click-class'
 
 // Функция для создания асинхронного observable stub
 export function fakeAsyncResponse<T>(data: T) {

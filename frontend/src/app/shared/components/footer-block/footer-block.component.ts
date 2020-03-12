@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsService } from '../../shared/services/forms.service';
+import { FormsService } from '../../services/forms.service';
 
-import { ClickForm } from '../../shared/classes/click-class'
+import { ClickForm } from '../../classes/click-class'
 
 @Component({
   selector: 'app-footer-block',
