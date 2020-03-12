@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { FormsService } from '../../shared/services/forms.service';
 import { FormBottom } from '../../shared/classes/form-bt-class';
-import { ClickForm } from '../../shared/classes/click-class'
+import { ClickForm } from 'src/app/shared/classes/click-class'
 import { FormValidators } from '../../shared/form.validators'
 
 @Component({
@@ -13,7 +13,6 @@ import { FormValidators } from '../../shared/form.validators'
   styleUrls: ['./first-form.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-
 export class FirstFormComponent {
 
   modal_switcher: boolean = false; // Свичер для модальных окон новых форм и "ответов" форм
@@ -42,6 +41,9 @@ export class FirstFormComponent {
     
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
     this.subscription = formsService.observableclicks$.subscribe((data: ClickForm) => {
+      console.log('----- First-form component ------');
+      console.log(data.typeofform);
+      console.log(data.typeofact);
       if (data.typeofform == 2) {
         this.modal_switcher = true;
         this.typeofact = data.typeofact;

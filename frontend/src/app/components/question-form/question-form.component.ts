@@ -38,7 +38,6 @@ export class QuestionFormComponent {
   constructor(private formsService: FormsService) { 
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-
     this.subscription = formsService.observableclicks$.subscribe((data: ClickForm) => {
       if (data.typeofform == 5) {
         this.modal_switcher = true;

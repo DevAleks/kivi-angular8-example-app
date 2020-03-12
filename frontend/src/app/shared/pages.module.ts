@@ -7,6 +7,7 @@ import { ScriptHackComponent } from '../components/scripthack/scripthack.compone
 import { FourIconsBlockComponent } from '../components/four-icons-block/four-icons-block.component';
 import { GuidesBlockComponent } from '../components/guides-block/guides-block.component';
 import { SubscribeBlockComponent } from '../components/subscribe-block/subscribe-block.component';
+import { FirstFormComponent } from '../components/first-form/first-form.component';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { SubscribeBlockComponent } from '../components/subscribe-block/subscribe
         FourIconsBlockComponent,    
         GuidesBlockComponent,
         SubscribeBlockComponent,
+        FirstFormComponent
     ],
     exports: [
         VideoBlockComponent,
@@ -22,6 +24,7 @@ import { SubscribeBlockComponent } from '../components/subscribe-block/subscribe
         FourIconsBlockComponent,    
         GuidesBlockComponent,
         SubscribeBlockComponent,
+        FirstFormComponent
     ],    
     imports: [
         CommonModule,
