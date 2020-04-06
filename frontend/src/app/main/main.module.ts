@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesModule } from '../shared/pages.module';
 
 import { MainComponent } from './main.component';
-import { FirstBlockComponent } from '../components/first-block/first-block.component';
+import { FirstBlockComponent } from '../shared/components/first-block/first-block.component';
 
 @NgModule ({
     declarations: [
