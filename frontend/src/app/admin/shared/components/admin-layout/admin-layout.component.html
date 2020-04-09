@@ -1,9 +1,12 @@
 <nav class="navbar bg-primary">
-    <a routerLink="/">Admin Panel</a>
+    <h1>Admin Panel</h1>    
     <ul>
         <li>
             <a [routerLink]="['/admin', 'dashboard']">Главная</a>
         </li>
+        <li>
+            <a routerLink="/">Back to site</a>
+        </li>     
         <li>
             <a href="#" (click)="logout()">Выход</a>
         </li>        
