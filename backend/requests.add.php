@@ -24,7 +24,8 @@ if(isset($formbt['phone']) && isset($formbt['typeofact']) && isset($formbt['type
 
     // Обработка ошибки соединения с БД
     if (mysqli_connect_errno()) {
-      echo json_encode ("Ошибка подключения к БД: %s\n".mysqli_connect_error(), JSON_UNESCAPED_UNICODE);
+      echo json_encode ("Ошибка подключения к БД", JSON_UNESCAPED_UNICODE);
+      error_log(mysqli_connect_error());
     }
     
     // Запись в БД        
