@@ -1,14 +1,20 @@
-<nav class="navbar bg-primary">
-    <a routerLink="/">Admin Panel</a>
-    <ul>
-        <li>
-            <a [routerLink]="['/admin', 'dashboard']">Главная</a>
-        </li>
-        <li>
-            <a href="#" (click)="logout()">Выход</a>
-        </li>        
-    </ul>
-</nav>
+<div class="main-container">
+    <nav class="navbar-admin bg-primary-admin">
+        <h1>Admin Panel</h1>    
+        <ul>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/admin', 'dashboard']">Главная</a>
+            </li>
+            <li>
+                <a routerLink="/">Back to site</a>
+            </li>     
+            <li>
+                <a href="#" (click)="logout($event)">Выход</a>
+            </li>        
+        </ul>
+    </nav>
 
-<h1>Admin Layout</h1>
-<router-outlet></router-outlet>
+    <div class="container-admin"> 
+        <router-outlet></router-outlet>
+    </div>
+</div>

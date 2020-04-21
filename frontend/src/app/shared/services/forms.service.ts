@@ -11,7 +11,7 @@ import { ClickForm } from '../classes/click-class'
 })
 export class FormsService {
 
-  // Определяем методы ля обработки ошибок получения данных с сервера
+  // Определяем методы для обработки ошибок получения данных с сервера
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // Обработка ошибки на стороне клиента или при передаче данных
@@ -56,7 +56,7 @@ export class FormsService {
       text: formbt.text
     };    
     return this.http.post<FormBottom>('http://localhost:80/requests.add.php', body)
-    .pipe( // Обработка ошибо
+    .pipe( // Обработка ошибок
       delay(2000), // Задержка для отображения индикатора загрузки
       retry(2),
       catchError(this.handleError) // Записываем полученные ошибки в специальный объект handleError
