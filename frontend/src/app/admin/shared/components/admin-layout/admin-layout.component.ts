@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+
+  }
 
   logout(event: Event) {
     event.preventDefault()
