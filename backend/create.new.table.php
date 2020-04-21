@@ -27,6 +27,34 @@ CREATE TABLE IF NOT EXISTS orders (
   PRIMARY KEY (order_id));
 ";
 
+/*
+CREATE TABLE IF NOT EXISTS users (
+  id int(11) unsigned NOT NULL auto_increment,
+  firstname varchar(256) NOT NULL AFTER username,
+  lastname varchar(256) NOT NULL AFTER firstname,
+  email varchar(256) NOT NULL,
+  password varchar(2048) NOT NULL,
+  created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id_autoriz)
+);
+
+ALTER TABLE autorization ADD created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER regist_username; 
+ALTER TABLE autorization ADD modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER created;
+
+ALTER TABLE autorization MODIFY id_autoriz int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE autorization ADD firstname varchar(256) NOT NULL AFTER username;
+ALTER TABLE autorization ADD lastname varchar(256) NOT NULL AFTER firstname;
+
+ALTER TABLE autorization ADD email varchar(256) NOT NULL AFTER lastname;
+ALTER TABLE autorization ADD password varchar(2048) NOT NULL AFTER email;
+
+RENAME TABLE autorization TO users;
+
+*/
+
+
 // Обработка ошибки запроса в Бд
 $mysqli->query($query);
 if ($mysqli->error) {

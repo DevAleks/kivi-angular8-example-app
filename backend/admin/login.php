@@ -16,11 +16,18 @@ if ((isset($_POST['login']) && isset($_POST['paswd'])) && (strlen($_POST['login'
 
 	if ($rul2!='')
 	{		
-		session_start();
+		
+		session_cache_limiter('private');
+		session_cache_expire(3);
+		ini_set('session.gc_maxlifetime', 180);
+		ini_set('session.cookie_lifetime', 0);
+		session_set_cookie_params(0);		
+
 		$hash=md5(session_id());
-		setcookie('hash', $hash, (time()+12000));
+		setcookie('hash', $hash, (time()+11000)); //12000 = 20 мин+
 		$_SESSION['rul']=$rul2;
 		$_SESSION['login']=$hash_login;
+		session_start();
 		header("location:index.php");
 	}
 	else
