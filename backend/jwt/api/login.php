@@ -1,6 +1,6 @@
 <?php
 // заголовки 
-header("Access-Control-Allow-Origin: http://localhost/jwt/");
+header("Access-Control-Allow-Origin: http://localhost:4200");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
@@ -57,9 +57,15 @@ if ( $email_exists && password_verify($data->password, $user->password) ) {
     // создание jwt 
     $jwt = JWT::encode($token, $key);
     echo json_encode(
-        array(
-            "message" => "Успешный вход в систему.",
-            "jwt" => $jwt
+        array(           
+            "displayName" => "",
+            "email" => $user->email,
+            "expiresIn" => "3600",
+            "jwt" => $jwt,
+            "kind" => "VerifyPasswordResponse",
+            "message" => "Успешный вход в систему",
+            "localId" => "123localId",
+            "registered" => true                        
         )
     );
  

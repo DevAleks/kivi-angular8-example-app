@@ -40,7 +40,7 @@ export class LoginPageComponent implements OnInit {
       password: this.form.value.password
     }
     this.auth.login(user).subscribe(()=> {
-      this.form.reset
+      this.form.reset()
       this.router.navigate(['/admin','dashboard'])
     })
 
