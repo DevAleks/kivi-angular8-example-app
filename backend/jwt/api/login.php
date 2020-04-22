@@ -79,6 +79,18 @@ else {
   http_response_code(401);
 
   // сказать пользователю что войти не удалось 
-  echo json_encode(array("message" => "Ошибка входа."));
+  //echo json_encode(array("message" => "Ошибка входа:".$email_exists));
+  
+  // Возвращаем ошибку INVALID_EMAIL
+  if(!$email_exists) {
+    echo json_encode(array("message" => "INVALID_EMAIL"));
+  }
+  // Возвращаем ошибку INVALID_PASSWORD
+  elseif(!password_verify($data->password, $user->password)) {
+    echo json_encode(array("message" => "INVALID_PASSWORD"));
+  }
+
 }
+
+
 ?>
