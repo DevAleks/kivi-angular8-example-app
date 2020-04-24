@@ -43,6 +43,7 @@ if ( $email_exists && password_verify($data->password, $user->password) ) {
        "aud" => $aud,
        "iat" => $iat,
        "nbf" => $nbf,
+       "exp" => $exp,
        "data" => array(
            "id" => $user->id,
            "firstname" => $user->firstname,
@@ -54,18 +55,21 @@ if ( $email_exists && password_verify($data->password, $user->password) ) {
     // код ответа 
     http_response_code(200);
  
+    //$expiresIn='"'.strval($expired_after).'"';
+
     // создание jwt 
     $jwt = JWT::encode($token, $key);
     echo json_encode(
         array(           
             "displayName" => "",
             "email" => $user->email,
-            "expiresIn" => "3600",
+            "expiresIn" => $expired_after,
             "jwt" => $jwt,
             "kind" => "VerifyPasswordResponse",
             "message" => "Успешный вход в систему",
             "localId" => "123localId",
-            "registered" => true                        
+            "registered" => true,
+            "exp" => $exp                       
         )
     );
  
