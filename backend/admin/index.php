@@ -1,11 +1,22 @@
 <?php
 
-session_cache_limiter('private');
-session_cache_expire(360);
 session_start();
+session_cache_expire(3);
+/*
+session_cache_limiter('private');
+ini_set('session.gc_maxlifetime', 180);
+ini_set('session.cookie_lifetime', 0);
+session_set_cookie_params(0);
+*/
+/*
+$hours = date('H')+3;
+$m_s = date("i:s");
+$_SESSION['time'] = $hours.":".$m_s;
+*/
 
 require("logpas/page.inc");
-$rul=autoriz();
+//$rul=autoriz();
+$rul = $_SESSION['rul'];
 if ($rul>0)
 {
 	require("logpas/connect.php"); // MySQL connect
@@ -23,16 +34,20 @@ if ($rul>0)
 
 <?php
   
-	echo "<span class='zag1'>Одминко :)</span><br><br>
+	echo "<span class='zag1'>Одминко :)</span><br><br>";
+	echo "rul = ".$rul."<br>";
+	//echo "s_SESSION[time] = ".$_SESSION['time']."<br>";
+	echo "
 	<p>
 	<span class='pos8'>Пользователь : <b>".autoriz_username()."</b></span>
 	</p>
 	<p>
 	<span class='pos5'><a class=link href='logout.php'>Выход из системы</a></span><br>
-	<p>";	
+	<p>
+	";	
 
 
-//phpinfo(32);
+phpinfo();
 }
 elseif ($rul<1)
 {

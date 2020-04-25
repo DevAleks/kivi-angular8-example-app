@@ -1,7 +1,7 @@
 <div class="main-container">
     <nav class="navbar-admin bg-primary-admin">
         <h1>Admin Panel</h1>    
-        <ul>
+        <ul *ngIf="auth.isAuthenticated()">
             <li routerLinkActive="active">
                 <a [routerLink]="['/admin', 'dashboard']">Главная</a>
             </li>

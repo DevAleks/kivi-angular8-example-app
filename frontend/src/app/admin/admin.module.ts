@@ -8,6 +8,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { EditOrderPageComponent } from './edit-order-page/edit-order-page.component';
 import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from './shared/services/auth.guard';
 
 @NgModule({
     declarations: [
@@ -25,14 +26,14 @@ import { AuthService } from './shared/services/auth.service';
             path: '', component: AdminLayoutComponent, children: [
               {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
               {path: 'login', component: LoginPageComponent},
-              {path: 'dashboard', component: DashboardPageComponent},
-              {path: 'order/:id/edit', component: EditOrderPageComponent}
+              {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
+              {path: 'order/:id/edit', component: EditOrderPageComponent, canActivate: [AuthGuard]}
             ]
           }
         ])
     ],
     exports: [RouterModule],
-    providers: [AuthService]
+    providers: [AuthService, AuthGuard]
     
 })
 export class AdminModule {
