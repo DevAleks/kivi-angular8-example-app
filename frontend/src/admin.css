@@ -240,6 +240,9 @@ img {
   color: #dc3545;
 }
 
+.form-control label {
+  padding-top:1rem;
+}
 
 input[type='text'],
 input[type='email'],
@@ -313,4 +316,7 @@ table th {
   color: #f4f4f4;
 }
 
+.red {
+  color: red;
+}
 
