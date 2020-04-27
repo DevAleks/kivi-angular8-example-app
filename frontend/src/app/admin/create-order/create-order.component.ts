@@ -34,7 +34,11 @@ export class CreateOrderComponent implements OnInit {
       order_email: new FormControl(null, [
         Validators.email
       ]),
-      order_typeofact: new FormControl('', Validators.required),
+      order_typeofact: new FormControl(null, Validators.required),
+      order_text: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(500)
+      ]),
       order_promo: new FormControl(null, [
         Validators.minLength(3),
         Validators.maxLength(30),
@@ -49,15 +53,17 @@ export class CreateOrderComponent implements OnInit {
     }  
 
     const order: FormBottom = {      
-      name: this.form.value.order_name.trim(), 
-      phone: this.form.value.order_phone.trim(),
-      email: this.form.value.order_email.trim(),
+      name: this.form.value.order_name, 
+      phone: this.form.value.order_phone,
+      email: this.form.value.order_email,
       typeofact: this.form.value.order_typeofact, 
-      text: this.form.value.order_text.trim(), 
-      promo: this.form.value.order_promo.trim(),
+      text: this.form.value.order_text, 
+      promo: this.form.value.order_promo,
       typeofform: 6,
       status: false
     }
+
+    console.log(order)
 
   }
 
