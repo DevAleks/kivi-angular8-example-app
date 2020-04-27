@@ -1,103 +1,115 @@
-<form>
+<form [formGroup]="form">
     <h1>Создание нового заказа</h1>
 
     <div 
-        [ngClass]="{invalid: form.get('order_email').touched && form.get('order_email').invalid}"
+        [ngClass]="{invalid: form.get('order_name').touched && form.get('order_name').invalid}"
         class="form-control"
     >
         <label>Введите имя клиента: <span class="red">*</span></label>
-        <input name="order_name" type="text" formControlName="order_name" [ngClass]="{gr_error: switcher_valid && form.controls['order_name'].invalid}" />         
-        <div *ngIf="form.controls['order_name'].invalid && form.controls['order_name'].touched" class="error-form-text">
-          Поле Имя заполнено неверно:
-          <div *ngIf="form.controls['order_name'].errors?.userNamePattern">
-            - Использованы некорректные символы
-          </div>
-          <div *ngIf="form.controls['order_name'].errors?.minlength">
-            - Должно быть от 2 до 30 символов
-          </div>
-          <div *ngIf="form.controls['order_name'].errors?.maxlength">
-           -  Должно быть не более 30 символов
-          </div>
-        </div>
-        <div *ngIf="form.controls['order_name'].untouched && form.controls['order_name'].invalid" class="error-form-text">
-          Поле Имя не заполнено
-        </div>
-
-        <label>Введите телефон клиента: <span class="red">*</span></label>
-        <input name="order_phone" type="text" formControlName="order_phone" [ngClass]="{gr_error: switcher_valid && form.controls['order_phone'].invalid}" /> 
+        <input id="order_name" type="text" formControlName="order_name">         
         <div 
-            *ngIf="form.controls['order_phone'].invalid && form.controls['order_phone'].touched"
-            class="error-form-text"
+          *ngIf="form.get('order_name').invalid && form.get('order_name').touched" 
+          class="validation"
         >
-            Поле Телефон заполнено неверно:
-            <div *ngIf="form.controls['order_phone'].errors?.userPhonePattern">
-             - Использованы некорректные символы
-            </div>
-            <div *ngIf="form.controls['order_phone'].errors?.minlength">
-              - Должно быть от 6 до 20 символов
-            </div>
-            <div *ngIf="form.controls['order_phone'].errors?.maxlength">
-             - Должно быть не более 20 символов
-            </div> 
-        </div>          
-        <div *ngIf="form.controls['userPhone'].untouched" class="error-form-text">
-          Поле Телефон не заполнено
+            <small *ngIf="form.get('order_name').errors?.required">
+              Введите поле Имя клиента
+            </small>
+            <small *ngIf="form.get('order_name').errors?.userNamePattern">
+                Использованы некорректные символы
+            </small>
+            <small *ngIf="form.get('order_name').errors?.minlength">
+                Должно быть от 2 до 30 символов
+            </small>
+            <small *ngIf="form.get('order_name').errors?.maxlength">
+                Должно быть не более 30 символов
+            </small>
         </div>
+    </div>
 
+    <div 
+      [ngClass]="{invalid: form.get('order_phone').touched && form.get('order_phone').invalid}"
+      class="form-control"
+    >   
+        <label>Введите телефон клиента: <span class="red">*</span></label>
+        <input id="order_phone" type="text" formControlName="order_phone"          
+        > 
+        <div 
+            *ngIf="form.get('order_phone').invalid && form.get('order_phone').touched"
+            class="validation"
+        >
+            <small *ngIf="form.get('order_phone').errors.required">
+                Введите поле Телефон клиента
+            </small>
+            <small *ngIf="form.get('order_phone').errors.userPhonePattern">
+                Использованы некорректные символы
+            </small>
+            <small *ngIf="form.get('order_phone').errors.minlength">
+                Должно быть от 6 до 20 символов
+            </small>
+            <small *ngIf="form.get('order_phone').errors.maxlength">
+                Должно быть не более 20 символов
+            </small> 
+        </div>
+    </div>
 
-        <label for="order_email">Email клиента:</label>
-        <input id="order_email" type="text" formControlName="order_email">
+    <div 
+      [ngClass]="{invalid: form.get('order_email').touched && form.get('order_email').invalid}"
+      class="form-control"
+    >  
+        <label for="order_email">Введите email клиента:</label>
+        <input 
+          id="order_email" 
+          type="text" 
+          formControlName="order_email">
         <div 
             *ngIf="form.get('order_email').touched && form.get('order_email').invalid"
             class="validation"
         >
-            <small *ngIf="form.get('order_email').errors.required">
-                Введите поле Email клиента
-            </small>
             <small *ngIf="form.get('order_email').errors.email">
                 Недопустимый формат поля Email
             </small>            
         </div>        
+    </div>
 
-
-        <label for="order_promo">Введите промокод:</label>
-        <input name="order_promo" type="text" formControlName="order_promo" [ngClass]="{gr_error: switcher_valid && form.controls['order_promo'].invalid}" />  
-        <div *ngIf="switcher_valid">
-          <div 
-            *ngIf="form.controls['order_promo'].invalid && form.controls['order_promo'].touched"
-            class="error-form-text"
-          >
-            Поле Промокод заполнено неверно:
-            <small *ngIf="form.controls['order_promo'].errors?.userPromoPattern">
-              - Использованы некорректные символы
+    <div 
+      [ngClass]="{invalid: form.get('order_promo').touched && form.get('order_promo').invalid}"
+      class="form-control"
+    >
+        <label for="order_promo">Введите промокод клиента:</label>
+        <input 
+          id="order_promo" 
+          type="text" 
+          formControlName="order_promo"
+        >  
+        <div 
+          *ngIf="form.get('order_promo').invalid && form.get('order_promo').touched"
+          class="validation"
+        >
+            <small *ngIf="form.get('order_promo').errors?.userPromoPattern">
+                Использованы некорректные символы
             </small>
-            <small *ngIf="form.controls['order_promo'].errors?.minlength">
-              - Должно быть от 3 до 30 символов
+            <small *ngIf="form.get('order_promo').errors?.minlength">
+                Должно быть от 3 до 30 символов
             </small>
-            <small *ngIf="form.controls['order_phone'].errors?.maxlength">
-             -  Должно быть не более 30 символов
+            <small *ngIf="form.get('order_phone').errors?.maxlength">
+                Должно быть не более 30 символов
             </small>
-          </div>  
-        </div>	
-    
-
-    
-    
-
-
-
-
+        </div>    
     </div>
 
     <div class="form-control">
         <label>Текст заказа</label>
     </div>
 
+    <div *ngIf="form.invalid">
+        form.invalid !!!
+    </div>
+    
     <button
         type="submit"
         class="btn btn-block btn-dark"
         [disabled]="form.invalid"
-    >Создать заказ</button>
+    >Создать заказ</button>    
 <!--
 
 order_form_type	(6 - добавлена вручную)
@@ -111,7 +123,6 @@ order_author
 
 
 -->
-    
-
 </form>
+<p>&nbsp;</p>
 

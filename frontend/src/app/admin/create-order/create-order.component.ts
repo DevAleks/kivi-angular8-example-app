@@ -15,33 +15,26 @@ export class CreateOrderComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup ({
-      email: new FormControl(null, [
-        Validators.email,
-        Validators.required
-      ]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(6)
-      ]),
-      userName: new FormControl(null, [
+      order_name: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
         FormValidators.userName
       ]),
-      userPhone: new FormControl(null, [
+      order_phone: new FormControl(null, [
         Validators.required, 
         Validators.minLength(6),
         Validators.maxLength(20),
         FormValidators.userPhone
       ]),
-      userPromo: new FormControl(null, [
+      order_email: new FormControl(null, [
+        Validators.email
+      ]),
+      order_promo: new FormControl(null, [
         Validators.minLength(3),
         Validators.maxLength(30),
         FormValidators.userPromo
       ])   
-
-
     })
   }
 
