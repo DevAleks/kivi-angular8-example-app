@@ -38,15 +38,15 @@
             *ngIf="form.get('password').touched && form.get('password').invalid"
             class="validation"
         >
-        <small *ngIf="form.get('password').errors.required">
-            Введите пароль 
-        </small>
-        <small *ngIf="form.get('password').errors.minlength">
-            Должно быть не менее 
-            {{form.get('password').errors.minlength.requiredLength}}
-            символов, сейчас введено только
-            {{form.get('password').errors.minlength.actualLength}}            
-        </small>             
+            <small *ngIf="form.get('password').errors.required">
+                Введите пароль 
+            </small>
+            <small *ngIf="form.get('password').errors.minlength">
+                Должно быть не менее 
+                {{form.get('password').errors.minlength.requiredLength}}
+                символов, сейчас введено только
+                {{form.get('password').errors.minlength.actualLength}}            
+            </small>             
 
         </div>
     </div>

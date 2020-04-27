@@ -16,7 +16,9 @@ export class FormValidators {
     // Валидатор для userPhone
     static userPhone(control: FormControl): {[key: string]: boolean} {
 
-        const pattern = /^[0-9\-\+\ \(\)]*$/;
+        const pattern = /^[0-9a-z\-\+\(\)\ ]*$/;
+        
+        //const pattern = /^[0-9\-\+\(\)\ ]*$/;
 
         if (pattern.test(control.value)) {
           return null

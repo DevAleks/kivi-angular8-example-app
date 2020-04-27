@@ -13,7 +13,7 @@ if (mysqli_connect_errno()) {
 }
 
 // Создаем таблицу kiviapp        
-$query="
+$query_orders = "
 CREATE TABLE IF NOT EXISTS orders (
   order_id smallint(6) unsigned NOT NULL auto_increment,
   order_form_type tinyint(2) DEFAULT '0',
@@ -27,18 +27,27 @@ CREATE TABLE IF NOT EXISTS orders (
   PRIMARY KEY (order_id));
 ";
 
-/*
+// Создаем таблицу orders
+$mysqli->query($query_orders);
+if ($mysqli->error) {
+  echo "Connection NOT ok! ", $mysqli->error;
+} else {
+  echo 'Succefully created "orders" table!<br>';
+}
+
+$query_users = "
 CREATE TABLE IF NOT EXISTS users (
   id int(11) unsigned NOT NULL auto_increment,
-  firstname varchar(256) NOT NULL AFTER username,
-  lastname varchar(256) NOT NULL AFTER firstname,
+  firstname varchar(256) NOT NULL,
+  lastname varchar(256) NOT NULL,
   email varchar(256) NOT NULL,
   password varchar(2048) NOT NULL,
   created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id_autoriz)
-);
+  PRIMARY KEY (id_autoriz));  
+";
 
+/*
 ALTER TABLE autorization ADD created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER regist_username; 
 ALTER TABLE autorization ADD modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER created;
 
@@ -51,16 +60,14 @@ ALTER TABLE autorization ADD email varchar(256) NOT NULL AFTER lastname;
 ALTER TABLE autorization ADD password varchar(2048) NOT NULL AFTER email;
 
 RENAME TABLE autorization TO users;
-
 */
 
-
-// Обработка ошибки запроса в Бд
-$mysqli->query($query);
+// Создаем таблицу users
+$mysqli->query($query_users);
 if ($mysqli->error) {
   echo "Connection NOT ok! ", $mysqli->error;
 } else {
-  echo 'Connection ok!<br>Created "orders" table.';
+  echo 'Succefully created "users" table!<br>';
 }
 
 $mysqli->close();

@@ -83,7 +83,7 @@
  ```bash
  docker-compose up -d
  ```
-4. Создание рабочей БД kiviapp через Phpmyadmin http://localhost:8081/ (root / root). Создание структуры БД kiviapp через php: http://localhost:80/create.new.table.php или через Phpmyadmin (запрос с таблицей лежит в backend/create.new.table.php)  
+4. Создание рабочей БД kiviapp через PhpMyAdmin http://localhost:8081/ (root / root). Создание структуры БД kiviapp через php: http://localhost:80/create.new.table.php или через PhpMyAdmin (запросы с таблицами лежат в файле [backend/create.new.table.php](https://github.com/DevAleks/Kivi/tree/master/backend/create.new.table.php))  
 
 ### Работа с frontend
 1. Вход через http://localhost:4200/  

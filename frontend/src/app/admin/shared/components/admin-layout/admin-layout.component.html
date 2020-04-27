@@ -5,8 +5,11 @@
             <li routerLinkActive="active">
                 <a [routerLink]="['/admin', 'dashboard']">Главная</a>
             </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/admin', 'create-order']">Создать новый заказ</a>
+            </li> 
             <li>
-                <a routerLink="/">Back to site</a>
+                <a routerLink="/">Вернуться на сайт</a>
             </li>     
             <li>
                 <a href="#" (click)="logout($event)">Выход</a>
