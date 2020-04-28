@@ -17,13 +17,14 @@ $query_orders = "
 CREATE TABLE IF NOT EXISTS orders (
   order_id smallint(6) unsigned NOT NULL auto_increment,
   order_form_type tinyint(2) DEFAULT '0',
-  order_datetime datetime,
   order_typeofact varchar(20) DEFAULT '',  
   order_name varchar(30) DEFAULT '',
   order_phone varchar(20) DEFAULT '',
   order_email varchar(64) DEFAULT '',
   order_promo varchar(30) DEFAULT '',
   order_text varchar(500) DEFAULT '',
+  order_created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  order_modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (order_id));
 ";
 
@@ -48,6 +49,11 @@ CREATE TABLE IF NOT EXISTS users (
 ";
 
 /*
+ALTER TABLE orders ADD order_created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER order_text; 
+ALTER TABLE orders ADD order_modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER order_created;
+
+
+
 ALTER TABLE autorization ADD created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER regist_username; 
 ALTER TABLE autorization ADD modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER created;
 

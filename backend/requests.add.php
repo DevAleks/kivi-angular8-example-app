@@ -28,7 +28,21 @@ if(isset($formbt['phone']) && isset($formbt['typeofact']) && isset($formbt['type
     }
     
     // Запись в БД        
-    $query="INSERT INTO orders (order_form_type, order_datetime, order_typeofact, order_name, order_phone, order_email, order_promo, order_text) VALUES('".$formbt['typeofform']."', '".date('Y-m-d H:i:s')."', '".$formbt['typeofact']."', '".$formbt['name']."', '".$formbt['phone']."', '".$formbt['email']."', '".$formbt['promo']."', '".$formbt['text']."');";
+    $query="INSERT INTO orders (
+      order_form_type, 
+      order_typeofact, 
+      order_name, 
+      order_phone, 
+      order_email, 
+      order_promo, 
+      order_text) VALUES(
+      '".$formbt['typeofform']."', 
+      '".$formbt['typeofact']."', 
+      '".$formbt['name']."', 
+      '".$formbt['phone']."', 
+      '".$formbt['email']."', 
+      '".$formbt['promo']."', 
+      '".$formbt['text']."');";
     
     // Обработка ошибки запроса в Бд
     $mysqli->query($query);
