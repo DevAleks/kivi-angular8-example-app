@@ -110,7 +110,7 @@
         </div>
 
         <div class="form-control">
-            <label>Текст заказа:</label>
+            <label>Текст заказа: <span class="red">*</span></label>
             <quill-editor formControlName="order_text"></quill-editor>
             <div 
                 *ngIf="form.get('order_text').invalid && form.get('order_text').touched"
