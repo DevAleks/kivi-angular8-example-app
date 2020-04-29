@@ -17,7 +17,7 @@ $query_orders = "
 CREATE TABLE IF NOT EXISTS orders (
   order_id smallint(6) unsigned NOT NULL auto_increment,
   order_form_type tinyint(2) DEFAULT '0',
-  order_typeofact varchar(20) DEFAULT '',  
+  order_typeofact varchar(30) DEFAULT '',  
   order_name varchar(30) DEFAULT '',
   order_phone varchar(20) DEFAULT '',
   order_email varchar(64) DEFAULT '',
