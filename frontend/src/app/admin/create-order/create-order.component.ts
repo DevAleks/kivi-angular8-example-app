@@ -53,6 +53,8 @@ export class CreateOrderComponent implements OnInit {
       return  
     }  
 
+    //console.log('Form is valid')
+
     const order: FormBottom = {      
       name: this.form.value.order_name, 
       phone: this.form.value.order_phone,
@@ -60,14 +62,14 @@ export class CreateOrderComponent implements OnInit {
       typeofact: this.form.value.order_typeofact, 
       text: this.form.value.order_text, 
       promo: this.form.value.order_promo,
-      typeofform: 6,
+      typeofform: 6
       /*status: false*/
     }
 
-    console.log(order)
+    // console.log(order)
 
     this.ordersService.create(order).subscribe(()=> {
-      console.log('Новый заказ отправлен на бекэнд')
+      //console.log('Новый заказ отправлен на бекэнд')
       this.form.reset()
     })
 

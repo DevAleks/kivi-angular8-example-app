@@ -32,7 +32,7 @@ import { QuillModule } from 'ngx-quill';
               {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
               {path: 'login', component: LoginPageComponent},
               {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
-              {path: 'create-order', component: CreateOrderComponent, canActivate: [AuthGuard]},
+              {path: 'create-order', component: CreateOrderComponent/*, canActivate: [AuthGuard]*/},
               {path: 'order/:id/edit', component: EditOrderPageComponent, canActivate: [AuthGuard]}
             ]
           }

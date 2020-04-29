@@ -44,7 +44,10 @@ class Order {
         $this->order_phone=htmlspecialchars(strip_tags($this->order_phone));
         $this->order_typeofact=htmlspecialchars(strip_tags($this->order_typeofact));
         $this->order_email=htmlspecialchars(strip_tags($this->order_email));
-        $this->order_text=htmlspecialchars(strip_tags($this->order_text));
+
+        // из order_text убарно удаление html тегов и преобразование символов
+        $this->order_text=$this->order_text;
+
         $this->order_promo=htmlspecialchars(strip_tags($this->order_promo));
         $this->order_form_type=htmlspecialchars(strip_tags($this->order_form_type));
         
@@ -58,7 +61,7 @@ class Order {
         $stmt->bindParam(':order_form_type', $this->order_form_type);  
     
         // Выполняем запрос 
-        // Если выполнение успешно, то информация о пользователе будет сохранена в базе данных 
+        // Если выполнение успешно, то информация о новом заказе будет сохранена в базе данных 
         if($stmt->execute()) {
             return true;
         }
