@@ -22,8 +22,8 @@ class Order {
     }
 
     // Создание нового заказа 
-    function create() {
-    
+    function createOrder() {
+        
         // Вставляем запрос 
         $query = "INSERT INTO " . $this->table_name . "
                 SET
@@ -33,11 +33,15 @@ class Order {
                     order_email = :order_email,
                     order_text = :order_text,
                     order_promo = :order_promo,
-                    order_form_type = :order_form_type                                        
-        ";       
+                    order_form_type = :order_form_type";       
 
-        // подготовка запроса 
-        $stmt = $this->conn->prepare($query);
+        // подготовка запроса в БД и обработка ошибок
+        try {
+            $stmt = $this->conn->prepare($query);
+        } catch (Exception $exception) {
+            error_log("Unable to prepare statement: " . $exception->getMessage());
+            return false;
+        }
     
         // инъекция 
         $this->order_name=htmlspecialchars(strip_tags($this->order_name));
@@ -46,7 +50,7 @@ class Order {
         $this->order_email=htmlspecialchars(strip_tags($this->order_email));
 
         // из order_text убарно удаление html тегов и преобразование символов
-        $this->order_text=$this->order_text;
+        //$this->order_text=htmlspecialchars(strip_tags($this->order_text));
 
         $this->order_promo=htmlspecialchars(strip_tags($this->order_promo));
         $this->order_form_type=htmlspecialchars(strip_tags($this->order_form_type));
@@ -60,13 +64,16 @@ class Order {
         $stmt->bindParam(':order_promo', $this->order_promo);   
         $stmt->bindParam(':order_form_type', $this->order_form_type);  
     
-        // Выполняем запрос 
-        // Если выполнение успешно, то информация о новом заказе будет сохранена в базе данных 
-        if($stmt->execute()) {
-            return true;
+        // Выполняем запрос и ловим возможные ошибки
+        // Если выполнение успешно, то информация о новом заказе будет сохранена в базе данных
+        try {
+            $stmt->execute();
+        } catch (Exception $exception) {
+            error_log("Unable to execute statement: " . $exception->getMessage());
+            return false;
         }
-    
-        return false;
+
+        return true;
     }
 
 /*
