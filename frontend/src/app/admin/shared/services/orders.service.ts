@@ -11,21 +11,17 @@ export class OrdersService {
 
     constructor(private http: HttpClient) { }
 
-    // 'http://localhost/jwt/api/create_order.php' 
-
     create(order: FormBottom):Observable<FormBottom> {
 
-        return this.http.post<FormBottom>(`${environment.dbUrl}create_order.php`, order)
+        return this.http.post(`${environment.dbUrl}create_order.php`, order)
             .pipe(                
-                /*
                 map((response: OrderCreateResponse) => {
                     return {
                         ...order,
-                        id:response.name,
-                        date: new Date(order.date)
+                        id:response.message,
+                        date: new Date()
                     }
                 }),
-                */
                 //catchError(this.handleError)
             )
     }

@@ -9,8 +9,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { EditOrderPageComponent } from './edit-order-page/edit-order-page.component';
-import { AuthService } from './shared/services/auth.service';
-import { AuthGuard } from './shared/services/auth.guard';
+import { AuthGuard } from './shared/auth.guard';
 import { OrdersService } from './shared/services/orders.service';
 
 @NgModule({
@@ -39,7 +38,7 @@ import { OrdersService } from './shared/services/orders.service';
         ])
     ],
     exports: [RouterModule, QuillModule],
-    providers: [AuthService, AuthGuard, OrdersService]
+    providers: [AuthGuard, OrdersService]
     
 })
 export class AdminModule {
