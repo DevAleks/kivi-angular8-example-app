@@ -110,4 +110,5 @@ else {
     http_response_code(401);
  
     // сообщить пользователю что доступ запрещен 
-    echo json_encode(array("message" => "Доступ закрыт."));?>
+    echo json_encode(array("message" => "Доступ закрыт."));
+}
