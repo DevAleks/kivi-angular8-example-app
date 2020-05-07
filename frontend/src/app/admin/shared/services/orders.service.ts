@@ -6,7 +6,7 @@ import { FormBottom } from 'src/app/shared/classes/form-bt-class';
 import { environment } from 'src/environments/environment';
 import { OrderCreateResponse } from '../interfaces';
 
-@Injectable({providedIn:'root'}) 
+@Injectable()
 export class OrdersService {
 
     constructor(private http: HttpClient) { }
