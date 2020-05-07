@@ -10,5 +10,6 @@ export interface AdminAuthResponse {
 }
 
 export interface OrderCreateResponse {
-    name: string
+    //name: string
+    message: string
 }
