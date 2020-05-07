@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError, delay } from 'rxjs/operators';
+import { map, catchError} from 'rxjs/operators';
 import { FormBottom } from 'src/app/shared/classes/form-bt-class';
 import { environment } from 'src/environments/environment';
 import { OrderCreateResponse } from '../interfaces';
@@ -26,6 +26,7 @@ export class OrdersService {
             )
     }
 
+    /*
     // Определяем методы для обработки ошибок получения данных с сервера
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
@@ -41,5 +42,6 @@ export class OrdersService {
         // Возвращает наблюдаемый объект с сообщением об ошибке пользователя
         return throwError('Что-то пошло не так; попробуйте снова позднее.');
     }
+*/
 
 }
