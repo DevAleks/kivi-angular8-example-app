@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './shared/pages.module';
@@ -14,10 +17,15 @@ import { TopFormComponent } from './shared/components/top-form/top-form.componen
 import { QuestionFormComponent } from './shared/components/question-form/question-form.component';
 import { CallorderFormComponent } from './shared/components/callorder-form/callorder-form.component';
 
-// PWA
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { AuthInterceptor } from './shared/auth.interceptor';
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+}
 
 @NgModule({
   declarations: [
@@ -37,6 +45,7 @@ import { environment } from '../environments/environment';
     PagesModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })     
   ],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent, ]
 })
 

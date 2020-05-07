@@ -9,5 +9,6 @@ export class FormBottom {
     status?: boolean
     promo?: string
     text?: string
-    order_datetime?: Date
+    date?: Date
+    id?: string
 }

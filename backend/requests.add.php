@@ -14,11 +14,31 @@ if(isset($formbt['phone']) && isset($formbt['typeofact']) && isset($formbt['type
     $formbt_back['typeofform'] = $formbt['typeofform']; // Тип формы
     $formbt_back['status'] = false; // Статус ошибки запроса в БД   
     
-    // Обрабатываем и отправляем обратно в приложение НЕОБЯЗАТЕЛЬЫЕ данные из формы, если они есть
-    if (isset($formbt['name'])) $formbt_back['name'] = 'Имя: '.$formbt['name'];
-    if (isset($formbt['email'])) $formbt_back['email'] = 'Email: '.$formbt['email'];
-    if (isset($formbt['promo'])) $formbt_back['promo'] = 'Promo: '.$formbt['promo'];
-    if (isset($formbt['text'])) $formbt_back['text'] = 'Вопрос: '.$formbt['text']; 
+    // Обрабатываем и отправляем обратно в приложение НЕОБЯЗАТЕЛЬНЫЕ данные из формы,
+    // если они есть
+    if (isset($formbt['name'])) {
+      $formbt_back['name'] = 'Имя: '.$formbt['name']; 
+    } else { 
+      $formbt['name'] = ''; 
+    }
+    
+    if (isset($formbt['email'])) {
+      $formbt_back['email'] = 'Email: '.$formbt['email'];
+    } else {
+      $formbt['email'] = '';
+    }
+    
+    if (isset($formbt['promo'])) {
+      $formbt_back['promo'] = 'Promo: '.$formbt['promo'];
+    } else {
+      $formbt['promo'] = '';
+    }   
+
+    if (isset($formbt['text'])) {
+      $formbt_back['text'] = 'Вопрос: '.$formbt['text']; 
+    } else {
+      $formbt['text'] = '';
+    }      
 
     $mysqli = new mysqli("mysql", "root", "root", "kiviapp");
 
@@ -28,9 +48,16 @@ if(isset($formbt['phone']) && isset($formbt['typeofact']) && isset($formbt['type
       error_log(mysqli_connect_error());
     }
     
-    // Запись в БД        
-    $query="INSERT INTO orders (order_form_type, order_datetime, order_typeofact, order_name, order_phone, order_email, order_promo, order_text) VALUES('".$formbt['typeofform']."', '".date('Y-m-d H:i:s')."', '".$formbt['typeofact']."', '".$formbt['name']."', '".$formbt['phone']."', '".$formbt['email']."', '".$formbt['promo']."', '".$formbt['text']."');";
-    
+    // Запись в БД 
+    $query = "INSERT INTO orders (order_form_type, order_typeofact, order_name, order_phone, order_email, order_promo, order_text) VALUES(
+      '".$formbt['typeofform']."', 
+      '".$formbt['typeofact']."', 
+      '".$formbt['name']."', 
+      '".$formbt['phone']."', 
+      '".$formbt['email']."', 
+      '".$formbt['promo']."', 
+      '".$formbt['text']."');";     
+  
     // Обработка ошибки запроса в Бд
     $mysqli->query($query);
     if ($mysqli->error) {

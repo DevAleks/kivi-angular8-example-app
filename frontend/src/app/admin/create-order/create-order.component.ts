@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormValidators } from '../../shared/form.validators'
 import { FormBottom } from '../../shared/classes/form-bt-class';
+import { OrdersService } from '../shared/services/orders.service';
 
 @Component({
   selector: 'app-create-order',
@@ -15,7 +16,7 @@ export class CreateOrderComponent implements OnInit {
   // Виды услуг для селектора в шаблоне
   typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
 
-  constructor() { }
+  constructor(private ordersService: OrdersService) { }
 
   ngOnInit() {
     this.form = new FormGroup ({
@@ -52,6 +53,8 @@ export class CreateOrderComponent implements OnInit {
       return  
     }  
 
+    //console.log('Form is valid')
+
     const order: FormBottom = {      
       name: this.form.value.order_name, 
       phone: this.form.value.order_phone,
@@ -59,11 +62,16 @@ export class CreateOrderComponent implements OnInit {
       typeofact: this.form.value.order_typeofact, 
       text: this.form.value.order_text, 
       promo: this.form.value.order_promo,
-      typeofform: 6,
-      status: false
+      typeofform: 6
+      /*status: false*/
     }
 
-    console.log(order)
+    // console.log(order)
+
+    this.ordersService.create(order).subscribe(()=> {
+      //console.log('Новый заказ отправлен на бекэнд')
+      this.form.reset()
+    })
 
   }
 

@@ -8,3 +8,8 @@ export interface AdminAuthResponse {
     jwt: string
     expiresIn: string
 }
+
+export interface OrderCreateResponse {
+    //name: string
+    message: string
+}

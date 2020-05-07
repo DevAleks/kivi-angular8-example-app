@@ -11,23 +11,6 @@ import { ClickForm } from '../classes/click-class'
 })
 export class FormsService {
 
-  // Определяем методы для обработки ошибок получения данных с сервера
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // Обработка ошибки на стороне клиента или при передаче данных
-      console.error('Произошла ошибка:', error.error.message);
-    } else {
-      // Backend вернул код неудачного запроса
-      // Запрос может содержать ключи ошибок
-      console.error(
-        `Backend вернул код ${error.status}, ` +
-        `тело запроса: ${error.error}`);
-    }
-    // Возвращает наблюдаемый объект с сообщением об ошибке пользователя
-    return throwError(
-      'Что-то пошло не так; попробуйте снова позднее.');
-  };
-
   // Переменная и стрим для открытия форм firstForm, topForm, questionForm, callorderForm в модальных окне 
   private clicks = new Subject<ClickForm>(); 
   observableclicks$ = this.clicks.asObservable();
@@ -56,11 +39,28 @@ export class FormsService {
       text: formbt.text
     };    
     return this.http.post<FormBottom>('http://localhost:80/requests.add.php', body)
-    .pipe( // Обработка ошибок
-      delay(2000), // Задержка для отображения индикатора загрузки
-      retry(2),
-      catchError(this.handleError) // Записываем полученные ошибки в специальный объект handleError
-    );      
+      .pipe( // Обработка ошибок
+        delay(2000), // Задержка для отображения индикатора загрузки
+        retry(2),
+        catchError(this.handleError) // Записываем полученные ошибки в специальный объект handleError
+      );      
   }
+
+  // Определяем методы для обработки ошибок получения данных с сервера
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // Обработка ошибки на стороне клиента или при передаче данных
+      console.error('Произошла ошибка:', error.error.message);
+    } else {
+      // Backend вернул код неудачного запроса
+      // Запрос может содержать ключи ошибок
+      console.error(
+        `Backend вернул код ${error.status}, ` +
+        `тело запроса: ${error.error}`);
+    }
+    // Возвращает наблюдаемый объект с сообщением об ошибке пользователя
+    return throwError('Что-то пошло не так; попробуйте снова позднее.');
+  }
+
 
 }
