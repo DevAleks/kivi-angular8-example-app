@@ -5,16 +5,35 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL); 
 
-$mysqli = new mysqli("mysql", "root", "root", "kiviapp");
+$mysqli = new mysqli("mysql", "root", "root");
 
 // Обработка ошибки соединения с БД
 if (mysqli_connect_errno()) {
   echo "Ошибка подключения к БД: %s\n".mysqli_connect_error();
 }
 
-// Создаем таблицу kiviapp        
-$query_orders = "
-CREATE TABLE IF NOT EXISTS orders (
+// Создаем БД kiviapp
+$query = "CREATE DATABASE kiviapp;";
+
+$mysqli->query($query);
+if ($mysqli->error) {
+  echo "Connection NOT ok! ", $mysqli->error;
+} else {
+  echo 'Succefully created "kiviapp" DB!<br>';
+}
+
+// Выбираем БД kiviapp
+$query = "USE kiviapp;";
+
+$mysqli->query($query);
+if ($mysqli->error) {
+  echo "Connection NOT ok! ", $mysqli->error;
+} else {
+  echo 'Succefully selected "kiviapp" DB!<br>';
+}
+
+// Создаем таблицу orders
+$query = "CREATE TABLE IF NOT EXISTS orders (
   order_id smallint(6) unsigned NOT NULL auto_increment,
   order_form_type tinyint(2) DEFAULT '0',
   order_typeofact varchar(30) DEFAULT '',  
@@ -28,15 +47,15 @@ CREATE TABLE IF NOT EXISTS orders (
   PRIMARY KEY (order_id));
 ";
 
-// Создаем таблицу orders
-$mysqli->query($query_orders);
+$mysqli->query($query);
 if ($mysqli->error) {
   echo "Connection NOT ok! ", $mysqli->error;
 } else {
   echo 'Succefully created "orders" table!<br>';
 }
 
-$query_users = "
+// Создаем таблицу users
+$query = "
 CREATE TABLE IF NOT EXISTS users (
   id int(11) unsigned NOT NULL auto_increment,
   firstname varchar(256) NOT NULL,
@@ -45,8 +64,15 @@ CREATE TABLE IF NOT EXISTS users (
   password varchar(2048) NOT NULL,
   created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id_autoriz));  
+  PRIMARY KEY (id));  
 ";
+
+$mysqli->query($query);
+if ($mysqli->error) {
+  echo "Connection NOT ok! ", $mysqli->error;
+} else {
+  echo 'Succefully created "users" table!<br>';
+}
 
 /*
 ALTER TABLE orders ADD order_created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER order_text; 
@@ -67,13 +93,5 @@ ALTER TABLE autorization ADD password varchar(2048) NOT NULL AFTER email;
 
 RENAME TABLE autorization TO users;
 */
-
-// Создаем таблицу users
-$mysqli->query($query_users);
-if ($mysqli->error) {
-  echo "Connection NOT ok! ", $mysqli->error;
-} else {
-  echo 'Succefully created "users" table!<br>';
-}
 
 $mysqli->close();
