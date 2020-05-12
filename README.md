@@ -4,7 +4,7 @@
   </a>
   <h1 align="center">Kivi-App, учебное приложение на Angular 8.3.23 и Typescript</h1>
 </p>
-
+  
 ## Технологии  
 - [x] Frontend: Angular 8.3.23 и Typescript
 - [x] Backend: PHP и MySQL
@@ -15,62 +15,83 @@
 <br /> 
    
 ## Приложение  
-Приложение Kivi-App представляет собой "набросок" будущего сайта и содержит 4 страницы:
-* /  
-* /rafting  
-* /semeyniy-rafting  
-* страница ошибки 404  
-    
+Приложение Kivi-App представляет собой "набросок" будущего сайта с панелью администрирования.  
+- [x] Пользовательская часть сайта имеет 4 страницы:  
+ * /  
+ * /rafting  
+ * /semeyniy-rafting  
+ * /error404 (страница ошибки 404)      
+  
 На всех страницах отличаются только верхние блоки с контентом.  
-Приложение сделано на основе сторонней верстки на Bootstrap 4.  
+- [x] Панель администрирования имеет 3 страницы:  
+ * /admin/login (страница входа)
+ * /admin/dashboard (страница со списком заказов)
+ * /admin/create-order (страница создания нового заказа)
   
 <br /> 
    
-### Элементы Angular  
-- [x] Компоненты [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
-- [x] Сервисы [frontend/src/app/shared/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/services/)
+### Frontend, элементы Angular  
+- [x] Компоненты  
+ * Пользовательская часть: [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
+ * Админка: [frontend/src/app/admin/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/)
+- [x] Сервисы   
+ * Пользовательская часть: [frontend/src/app/shared/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/services/)
+ * Админка: [frontend/src/app/admin/shared/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/shared/services/)
 - [x] Pipe [frontend/src/app/shared/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/pipes/)
-- [x] Роутер [frontend/src/app/app-routing.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app-routing.module.ts)
-- [x] Формы обратной связи, содержат валидатор с обработкой ошибок, выполняют отправку данных и получение ответа от сервера:
-    * [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
-    * [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
-    * [frontend/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/footer-form/)
-    * [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
-    * [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
-    * Кастомные валидаторы для форм: [frontend/src/app/shared/form.validators.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/form.validators.ts)
-- [x] Модули, 4 для страниц приложения и 2 для более удобной и оптимизированной группировки прочих сущностей Angular:
-    * Главная страница: [frontend/src/app/main/main.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/main/main.module.ts)
-    * Страница /rafting: [frontend/src/app/rafting/rafting.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/rafting/rafting.module.ts)
-    * Страница /semeyniy-rafting: [frontend/src/app/semeyniy-rafting/semeyniy-rafting.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/semeyniy-rafting/semeyniy-rafting.module.ts)
-    * Страница ошибки 404: [frontend/src/app/error404/error404.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/error404/error404.module.ts)
-    * Модуль для основных сущностей: [frontend/src/app/shared/shared.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/shared.module.ts)
-    * Модуль для доп. сущностей на 3-х основных страницах: [frontend/src/app/shared/pages.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/pages.module.ts)
-- [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 25)
+- [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 58)
+- [x] Роутеры:  
+ * Пользовательской части [frontend/src/app/app-routing.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app-routing.module.ts)
+ * Админки с защитой роутов [frontend/src/app/admin/admin.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/admin.module.ts)
+- [x] Формы обратной связи, содержат валидатор с обработкой ошибок, выполняют отправку данных, получают и обрабатывают ответ от сервера:
+ * Форма заказа 1 [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
+ * Форма заказа 2 [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
+ * Форма заказа 3 [frontend/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/footer-form/)
+ * Форма заказа 4 [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
+ * Форма заказа 5 [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
+ * Форма входа в админку: [frontend/src/app/admin/login-page/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/login-page/)  
+ * Форма создания заказа в админке: [frontend/src/app/admin/create-order/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/create-order/) 
+ * Кастомные валидаторы для форм: [frontend/src/app/shared/form.validators.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/form.validators.ts)
+- [x] Модули, 4 для пользовательских страниц приложения, 1 для админки и 2 для более удобной и оптимизированной группировки прочих сущностей Angular:
+ * Главная страница: [frontend/src/app/main/main.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/main/main.module.ts)
+ * Страница /rafting: [frontend/src/app/rafting/rafting.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/rafting/rafting.module.ts)
+ * Страница /semeyniy-rafting: [frontend/src/app/semeyniy-rafting/semeyniy-rafting.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/semeyniy-rafting/semeyniy-rafting.module.ts)
+ * Страница ошибки 404: [frontend/src/app/error404/error404.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/error404/error404.module.ts)
+ * Модуль для основных сущностей: [frontend/src/app/shared/shared.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/shared.module.ts)
+ * Модуль для доп. сущностей на 3-х основных страницах: [frontend/src/app/shared/pages.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/pages.module.ts)
+ * Модуль для панели администрирования: [frontend/src/app/admin/admin.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/admin.module.ts)
+- [x] Механизм авторизации через JWT токены для админки: 
+ * Получение токена, его хранение в Local Storage и удаление токена
+ * Проверка валидности токена
+ * Обработка ошибок
+- [x] Интерсептор для проверки валидности текущего токена в админке: [frontend/src/app/shared/auth.interceptor.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/auth.interceptor.ts) 
 - [x] Ленивая загрузка изображений с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
+- [x] WYSIWYG редактор [Quill](https://www.npmjs.com/package/quill) для формы создания новых заказов в админке
 - [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент [frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
-- [x] Поддержка PWA. Если собрать приложение в режиме prod, то оно будет работать как PWA, с использованием встроенного Service Worker
-- [x] Unit тестирование Jasmine + Karma
-- [x] End-to-end тестирование Jasmine + Protractor
+- [x] Поддержка PWA. Если собрать приложение в режиме prodact, то оно будет работать как PWA, с использованием встроенного Service Worker
+- [x] Unit тестирование пользовательской части Jasmine + Karma
+- [x] End-to-end тестирование пользовательской части Jasmine + Protractor
   
-### Серверная часть   
-Обработка данных из форм производится PHP скриптом.   
-При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также PHP скрипт модифицирует полученные данные перед отправкой их обратно в приложение, что служит маркером успешного получения этих данных.  
-При ошибке записи данных в БД сервер отправляет в приложение сообщение об ошибке.  
-Путь к скрипту обработки форм: [backend/requests.add.php](https://github.com/DevAleks/Kivi/tree/master/backend/requests.add.php)  
+### Backend 
+- [x] Бекенд работает на PHP и MySQL.    
+ * В пользовательской части сайта обработка данных из форм заказа производится PHP скриптом: [backend/requests.add.php](https://github.com/DevAleks/Kivi/tree/master/backend/requests.add.php). При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также PHP скрипт модифицирует полученные данные перед отправкой их обратно на frontend, что служит маркером успешного получения этих данных. При ошибке записи данных в БД сервер также отправляет на frontend сообщение о возникшей проблеме.   
+ * Панель администрирования обменивается данными с бекендом через 3 endpoints:
+  * Страница входа в админку (/admin/login), endpoint: [backend/jwt/api/login.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/login.php)  
+  * Страница создания нового заказа (/admin/create-order), endpoint: [backend/jwt/api/create_order.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/create_order.php)  
+  * !!! Будущая страница списка заказов (/admin/dashboard), endpoint: [backend/jwt/api/dashboard.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/dashboard.php)  
+- [x] Аутентификация c токенами через [библиотеку JWT](https://github.com/firebase/php-jwt) 
   
 ### Виртуализация 
 - [x] Выполнена на Docker и Docker-Compose
-- [x] 3 комплекта конфигов на Docker-Compose, используемых для:  
-    * разработки приложения [docker-compose.yaml](https://github.com/DevAleks/Kivi/tree/master/docker-compose.yaml)  
-    * Unit тестирования [dc-angular-unit-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-unit-tests.yaml)  
-    * E2E тестирования [dc-angular-e2e-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-e2e-tests.yaml)  
+- [x] 3 комплекта конфигов для Docker-Compose, используемых для:  
+ * разработки приложения [docker-compose.yaml](https://github.com/DevAleks/Kivi/tree/master/docker-compose.yaml)  
+ * Unit тестирования [dc-angular-unit-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-unit-tests.yaml)  
+ * E2E тестирования [dc-angular-e2e-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-e2e-tests.yaml)  
   
 <br />  
 
 ## Инсталяция и запуск
-Для работы с приложением рекомендуется использовать Docker, под него сделаны все необходимые настройки для совместной работы frontend и backend. Инсталяция и запуск описаны с использованием Docker. 
+Для работы с приложением рекомендуется использовать Docker, под него сделаны все необходимые настройки для совместной работы frontend и backend. Инсталяция и запуск приложения описаны для Docker. 
 1. Склонировать приложение.  
-  
 2. Установить зависимости:  
  ```bash
  docker run --rm -v ${PWD}/frontend/:/opt/kivi -w /opt/kivi node:12 npm install
@@ -83,11 +104,10 @@
  ```bash
  docker-compose up -d
  ```
-4. Создание рабочей БД kiviapp через PhpMyAdmin http://localhost:8081/ (root / root). Создание структуры БД kiviapp через php: http://localhost:80/create.new.table.php или через PhpMyAdmin (запросы с таблицами лежат в файле [backend/create.new.table.php](https://github.com/DevAleks/Kivi/tree/master/backend/create.new.table.php))  
-
-### Работа с frontend
-1. Вход через http://localhost:4200/  
-2. Заполнить и отправить любую форму обратной связи. Если данные из корректно заполненной формы успешно попали на сервер, то появится сообщение об успешной отправке запроса.  
+4. Создание рабочей БД kiviapp для приложения.
+Создание структуры БД kiviapp и пользователя админки admin@kiviapp.com / 11111111 возможно 2-мя способами:
+* Запустив скрипт: http://localhost:80/create.new.table.php 
+* Через PhpMyAdmin, http://localhost:8081/ (root / root), запросы с таблицами лежат в файле [backend/create.new.table.php](https://github.com/DevAleks/Kivi/tree/master/backend/create.new.table.php))  
   
 ### Остановка приложения и очистка контейнеров Docker
  ```bash
@@ -97,89 +117,94 @@
   
 <br /> 
   
-## Функционал
-
-### Формы обратной связи
+## Функционал приложения
+  
+### Демонстрация возможностей приложения  
+1. Вход в пользовательску часть: http://localhost:4200/. Здесь можно заполнить и отправить любую форму обратной связи. Если данные из корректно заполненной формы успешно попали на сервер, то появится сообщение об успешной отправке запроса.  
+2. Вход в панель администрирования: http://localhost:4200/admin/login (admin@kiviapp.com / 11111111). Здесь можно создать новый заказ на странице "Новый заказ" http://localhost:4200/admin/create-order.  
+  
+### Формы обратной связи в пользовательской части
 На каждой станице есть 5 различных форм обратной связи, позволяющих посетителям отправлять заказы услуг. 4 формы в модальных окнах доступны по кнопкам:  
-1. Заказать звонок (шапка)  
-2. Задать вопрос (шапка)  
-3. Заказать (шапка)  
-4. Заказать сейчас (контент)
-
+ * Заказать звонок (шапка)  
+ * Задать вопрос (шапка)  
+ * Заказать (шапка)  
+ * Заказать сейчас (контент)  
 Пятая форма расположена внизу страницы.  
-Каждая форма умеет проверять введенные данные и подсказывать какие ошибки ввода нужно исправить, если они есть. Если все данные введены корректно, то форма пытается отправить их на сервер и ждет его ответ. После получения ответа сервера он выводится на экран. Как пример обработки ошибок могут быть 3 варианта ответа:
-* Отправка данных прошла успешно
-* Отправить данные не удалось
-* Сервер неверно обработал полученные данные
-
-### Интеграции со сторонним кодом
-В верстке страниц присутствуют:
-* Вставка видео с Youtube
-* Виджет VK
+  
+Каждая форма умеет проверять введенные данные и подсказывать какие ошибки ввода нужно исправить, если они есть. Если все данные введены корректно, то форма пытается отправить их на сервер и ждет его ответ. После получения ответа сервера он выводится на экран. Как пример обработки ошибок могут быть 3 варианта ответа:  
+* Отправка данных прошла успешно  
+* Отправить данные не удалось  
+* Сервер неверно обработал полученные данные  
+  
+### Интеграции со сторонним кодом  
+В верстке страниц присутствуют:  
+* Вставка видео с Youtube  
+* Виджет VK  
   
 <br />   
   
-## Unit тестирование
-Тестами покрыто примерно 80% всех функций. Код тестов содержится рядом с кодом приложения: [frontend/src/app/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/)
-
-### Работа с Unit тестами (через Docker и Docker-Compose)
-1. Запуск: 
+## Unit тестирование  
+Тестами покрыто примерно 80% всех функций. Код тестов содержится рядом с кодом приложения: [frontend/src/app/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/)  
+  
+### Работа с Unit тестами (через Docker и Docker-Compose)  
+1. Запуск:  
  ```bash
  docker-compose -f dc-angular-unit-tests.yaml up -d 
  ```  
 Далее открыть вкладку браузера: http://localhost:9876/, ждем 10-15 секунд и перегружаем ее (в некоторых случаях 2-3 раза). Если все сработало, то во вкладке должна отобразиться информация о ходе тесирования.    
 Для повторного запуска тестов нужно перезагрузить эту же вкладку браузера.    
-
-2. Остановка и очистка контейнеров Docker после завершения Unit тестирования: 
+  
+2. Остановка и очистка контейнеров Docker после завершения Unit тестирования:  
  ```bash
  docker-compose -f dc-angular-unit-tests.yaml kill
  docker-compose -f dc-angular-unit-tests.yaml down 
  ```  
-
+  
 <br />   
   
-## E2E тестирование
+## E2E тестирование  
 Разбито на 2 части. Покрыты только некоторые элементы страницы и проверены 3 коротких use case для форм обратной связи.
-Код тестов расположен тут: [frontend/e2e/src/](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/)
-
+Код тестов расположен тут: [frontend/e2e/src/](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/)  
+  
 ### Первая часть, элементы страницы
-Тестами покрыта генерация различных типов элементов:
-* Обычные элементы из шаблонов компонентов
-* Элементы, подгружаемые из JSON файла при загрузке приложения
-* Проверка корректность работы "карусели" и перехода по ссылке на другую страницу.
-
-Путь: [frontend/e2e/src/app-kivi-default.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-default.e2e-spec.ts)
-
-### Вторая часть, формы обратной связи
-Выполняется проверка 3 сценариев:
-1. Открытие/закрытие модального окна одной из форм
-2. Обработка 2-х ошибок корректности заполнения формы
-3. Отправка валидных данных на работающий и неработающий backend. Т.е. при работающем или неработающем backend один из тестов будет не пройден.
-
-Путь: [frontend/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-test-form.e2e-spec.ts)
-
-### Работа с E2E тестами (через Docker и Docker-Compose)
-1. Первый запуск с созданием образа: 
+Тестами покрыта генерация различных типов элементов:  
+* Обычные элементы из шаблонов компонентов  
+* Элементы, подгружаемые из JSON файла при загрузке приложения  
+* Проверка корректность работы "карусели" и перехода по ссылке на другую страницу.  
+  
+Путь: [frontend/e2e/src/app-kivi-default.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-default.e2e-spec.ts)  
+  
+### Вторая часть, формы обратной связи  
+Выполняется проверка 3 сценариев:  
+1. Открытие/закрытие модального окна одной из форм  
+2. Обработка 2-х ошибок корректности заполнения формы  
+3. Отправка валидных данных на работающий и неработающий backend. Т.е. при работающем или неработающем backend один из тестов будет не пройден.  
+  
+Путь: [frontend/e2e/src/app-kivi-test-form.e2e-spec.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/e2e/src/app-kivi-test-form.e2e-spec.ts)  
+  
+### Работа с E2E тестами (через Docker и Docker-Compose)  
+1. Первый запуск с созданием образа:  
  ```bash
  docker-compose -f dc-angular-e2e-tests.yaml up --build -d
  ``` 
-  Последующие запуски:
+  Последующие запуски:  
  ```bash
  docker-compose -f dc-angular-e2e-tests.yaml up -d
  ```  
 2. Результаты тестов запишутся в файл frontend/logs.txt  
-3. Остановка и очистка контейнеров Docker: 
+3. Остановка и очистка контейнеров Docker:  
  ```bash
  docker-compose -f dc-angular-e2e-tests.yaml kill
  docker-compose -f dc-angular-e2e-tests.yaml down
  ``` 
-
+  
 Внимание! Используемый для Е2Е тестов Docker образ trion/ng-cli-e2e работает некорректно с тестами, связанными с передачей запросов на backend. Это тесты:  
 * Use case 3 (send valid data to working server): should have success message  
-* Use case 3 (send valid data to broken server): should have error server data sending message
-
-Решает проблему запуск Е2Е тестов локально: 
+* Use case 3 (send valid data to broken server): should have error server data sending message  
+  
+Решает проблему запуск Е2Е тестов локально:  
  ```bash
  ng e2e
  ``` 
-При этом можно воспользоваться запущенными в Docker контейнерами с PHP и MySQL.
+При этом можно воспользоваться запущенными в Docker контейнерами с PHP и MySQL.  
+  
