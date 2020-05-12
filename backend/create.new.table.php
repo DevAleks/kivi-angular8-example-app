@@ -10,6 +10,7 @@ $mysqli = new mysqli("mysql", "root", "root");
 // Обработка ошибки соединения с БД
 if (mysqli_connect_errno()) {
   echo "Ошибка подключения к БД: %s\n".mysqli_connect_error();
+  echo "<br>";
 }
 
 // Создаем БД kiviapp
@@ -18,6 +19,7 @@ $query = "CREATE DATABASE kiviapp;";
 $mysqli->query($query);
 if ($mysqli->error) {
   echo "Connection NOT ok! ", $mysqli->error;
+  echo "<br>";
 } else {
   echo 'Succefully created "kiviapp" DB!<br>';
 }
@@ -28,6 +30,7 @@ $query = "USE kiviapp;";
 $mysqli->query($query);
 if ($mysqli->error) {
   echo "Connection NOT ok! ", $mysqli->error;
+  echo "<br>";
 } else {
   echo 'Succefully selected "kiviapp" DB!<br>';
 }
@@ -50,6 +53,7 @@ $query = "CREATE TABLE IF NOT EXISTS orders (
 $mysqli->query($query);
 if ($mysqli->error) {
   echo "Connection NOT ok! ", $mysqli->error;
+  echo "<br>";
 } else {
   echo 'Succefully created "orders" table!<br>';
 }
@@ -70,9 +74,34 @@ CREATE TABLE IF NOT EXISTS users (
 $mysqli->query($query);
 if ($mysqli->error) {
   echo "Connection NOT ok! ", $mysqli->error;
+  echo "<br>";
 } else {
   echo 'Succefully created "users" table!<br>';
 }
+
+
+// Создаем запись администратора
+$query = 'INSERT INTO users (
+  firstname, 
+  lastname, 
+  email, 
+  password
+  ) VALUES (
+    "Ivan", 
+    "Ivanov", 
+    "admin@kiviapp.com", 
+    "$2y$10$oSl06bCbW0Ci01n0pecw0etI18wI6Jm6f2i8ubIrtlQLd43.YQs2O");
+';
+       
+
+$mysqli->query($query);
+if ($mysqli->error) {
+  echo "The administrator user creation is NOT ok! ", $mysqli->error;
+  echo "<br>";
+} else {
+  echo 'Succefully created the administrator user!<br>';
+}
+
 
 /*
 ALTER TABLE orders ADD order_created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER order_text; 
