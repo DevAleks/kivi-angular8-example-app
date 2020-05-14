@@ -82,7 +82,10 @@
   
 ### Виртуализация 
 - [x] Выполнена на Docker и Docker-Compose
-- [x] 3 комплекта конфигов для Docker-Compose, используемых для:  
+- [x] 2 Dockerfile для:
+ * frontend [frontend/Dockerfile](https://github.com/DevAleks/Kivi/tree/master/frontend/Dockerfile)
+  * backend [backend/Dockerfile](https://github.com/DevAleks/Kivi/tree/master/backend/Dockerfile)
+- [x] 3 конфига Docker-Compose, используемых для:  
  * разработки приложения [docker-compose.yaml](https://github.com/DevAleks/Kivi/tree/master/docker-compose.yaml)  
  * Unit тестирования [dc-angular-unit-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-unit-tests.yaml)  
  * E2E тестирования [dc-angular-e2e-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-e2e-tests.yaml)  
