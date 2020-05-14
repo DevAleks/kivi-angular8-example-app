@@ -1,6 +1,6 @@
 // Класс для данных из всех форм
 export class FormBottom {
-    order_id?: string
+    id?: string
     name?: string 
     phone: string 
     email?: string
@@ -9,6 +9,5 @@ export class FormBottom {
     status?: boolean
     promo?: string
     text?: string
-    date?: Date
-    id?: string
+    date?: Date    
 }
