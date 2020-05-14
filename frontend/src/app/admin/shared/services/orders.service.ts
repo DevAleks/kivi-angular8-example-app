@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError} from 'rxjs/operators';
+import { map, catchError, delay} from 'rxjs/operators';
 import { FormBottom } from 'src/app/shared/classes/form-bt-class';
 import { environment } from 'src/environments/environment';
 import { OrderCreateResponse } from '../interfaces';
@@ -12,7 +12,6 @@ export class OrdersService {
     constructor(private http: HttpClient) { }
 
     create(order: FormBottom):Observable<FormBottom> {
-
         return this.http.post(`${environment.dbUrl}create_order.php`, order)
             .pipe(                
                 map((response: OrderCreateResponse) => {
@@ -26,6 +25,26 @@ export class OrdersService {
             )
     }
 
+    getOrders():Observable<FormBottom[]> {
+        return this.http.get(`${environment.dbUrl}get_orders.php`)
+            .pipe(
+                map( (response: {[key: string]: any}) => {
+                    console.log(response)
+                    return Object
+                        .keys(response)
+                        .map(key => ({
+                            ...response[key],
+                            //id: key,
+                            date: new Date(response[key].date)
+                        }))
+                }),
+                delay(2500)
+            )
+                
+
+    }
+
+    
     /*
     // Определяем методы для обработки ошибок получения данных с сервера
     private handleError(error: HttpErrorResponse) {
@@ -43,5 +62,7 @@ export class OrdersService {
         return throwError('Что-то пошло не так; попробуйте снова позднее.');
     }
 */
+
+
 
 }

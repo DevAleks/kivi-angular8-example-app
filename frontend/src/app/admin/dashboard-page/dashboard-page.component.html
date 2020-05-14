@@ -1,3 +1,41 @@
-<p>dashboard-page works!</p>
+<h1>Список заказов</h1>
+<div *ngIf="orders?.length; else loadingBlock">
+    <div class="form-control">
+        <input type="text" placeholder="Найти заказ...">
+    </div>
 
-<button (click)="test()">Test token</button>
+    <table>
+        <thead>
+            <th>#</th>
+            <th>ID заказа</th>
+            <th>Тип заказа</th>
+            <th>Источник</th> 
+            <th>Дата</th>
+            <th>Действие</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ order.id }}</td>
+                <td>{{ order.typeofact }}</td>
+                <td>{{ order.typeofform }}</td>
+                <td>{{ order.date }}</td>
+                <td>
+                    <button 
+                        class="btn btn-link open"
+                        [routerLink]="['/admin', 'order', order.id, 'edit']"
+                    >
+                        Открыть
+                    </button>
+                    <a (click)="remove(order.id)">Удалить</a>
+                </td>                                    
+            </tr>
+        </tbody>
+    </table> 
+</div>
+<ng-template #loadingBlock>
+    <p class="text-center">
+        Идет загрузка...<br>    
+        <img src="../../assets/img/loader2.svg">
+    </p>    
+</ng-template>
