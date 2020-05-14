@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetJsonService } from '../../services/get-json.service';
 import { FormsService } from '../../services/forms.service';
 
 import { ClickForm } from '../../classes/click-class'
 import { PagesInt } from 'src/app/shared/interfaces/pages-int';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-first-block',
@@ -11,13 +12,15 @@ import { PagesInt } from 'src/app/shared/interfaces/pages-int';
   styleUrls: ['./first-block.component.css']  
 })
 
-export class FirstBlockComponent implements OnInit {
+export class FirstBlockComponent implements OnInit, OnDestroy {
   
-  h1:any; // Заголовок h1
+  h1:any // Заголовок h1
   
-  modal_switcher: boolean; // Свитчер включения окна с формой  
+  modal_switcher: boolean // Свитчер включения окна с формой  
   
-  loading = false; // Переключатель индикатора загрузки заголовка H1
+  loading = false // Переключатель индикатора загрузки заголовка h1
+
+  jsonSub: Subscription // Переменная для подписки на получение заголовка h1 из json файла
 
   // Images LazyLoader
   // Рафтинг
@@ -48,25 +51,36 @@ export class FirstBlockComponent implements OnInit {
   defaultImage7 = '../../assets/img/img-ldr-wht-312px.svg'
   lazyLoad7 = '../../assets/img/podarochnie-sertifikati.jpg'
 
-  constructor(private getjsonService: GetJsonService, private formsService: FormsService) { }
+  constructor(
+    private getjsonService: GetJsonService, 
+    private formsService: FormsService
+  ) { }
 
   // Обрабатываем клики для открытия формы firstForm в модальном окне
   openFormClick(openClick: ClickForm) {
-    this.formsService.openForm(openClick);
+    this.formsService.openForm(openClick)
   }
 
   ngOnInit() {
-    // Включаем отображение индикатора загрузки заголовка H1
-    this.loading = true; 
+    // Включаем отображение индикатора загрузки заголовка Hh1
+    this.loading = true 
     // Получаем значение для заголовка h1 из json файла
     this.getjsonService.getPagesJson()
-    .subscribe(
-      (data:PagesInt) => {
-        this.h1 = data["index"][0]["h1"]
-        this.loading = false // Выключаем отображение индикатора загрузки заголовка H1
-      },
-      (error:any) => console.log(error)
-    );
+      .subscribe(
+        (data:PagesInt) => {
+          this.h1 = data["index"][0]["h1"]
+          this.loading = false // Выключаем отображение индикатора загрузки заголовка h1
+        },
+        (error:any) => console.log(error)
+      )
+  }
+
+  ngOnDestroy() {
+    // удаляем подписку на продолжение получения заголовка h1 из json файла
+    if (this.jsonSub) {
+      this.jsonSub.unsubscribe()
+    }
+
   }
 
 }
