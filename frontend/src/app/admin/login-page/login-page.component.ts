@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../admin/shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup
 
   submitted = false
 
   message: string
+
+  submitSubcr: Subscription // Переменная для подписки на ответ сервера после попытки авторизации
 
   constructor(
     public auth: AuthService,
@@ -55,7 +58,7 @@ export class LoginPageComponent implements OnInit {
       email: this.form.value.email,
       password: this.form.value.password
     }
-    this.auth.login(user).subscribe(()=> {
+    this.submitSubcr = this.auth.login(user).subscribe(()=> {
         this.form.reset()
         this.router.navigate(['/admin','dashboard'])
         this.submitted = false      
@@ -63,6 +66,13 @@ export class LoginPageComponent implements OnInit {
         this.submitted = false
     })    
 
+  }
+
+  ngOnDestroy() {
+    // удаляем подписку на продолжение получения ответа сервера
+    if (this.submitSubcr) {
+      this.submitSubcr.unsubscribe()
+    }    
   }
 
 }

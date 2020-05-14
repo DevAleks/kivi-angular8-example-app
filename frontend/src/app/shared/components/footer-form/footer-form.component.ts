@@ -1,9 +1,10 @@
-import { Component, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, ViewEncapsulation, HostListener, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { FormBottom } from '../../classes/form-bt-class'
 import { FormsService } from '../../services/forms.service';
 import { FormValidators } from '../../form.validators'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-footer-form',
@@ -12,28 +13,30 @@ import { FormValidators } from '../../form.validators'
   encapsulation: ViewEncapsulation.None
 })
 
-export class FooterFormComponent {
+export class FooterFormComponent implements OnDestroy {
 
     // Виды услуг для селектора в шаблоне
-  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];  
+  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"]  
 
-  switcher_valid: boolean = false; // Индикатор попытки валидации формы после клика на кнопку отправки
+  servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы
+
+  switcher_valid: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
   
-  switcher: boolean = false; // Индикатор успешного получения данных с сервера
+  switcher: boolean = false // Индикатор успешного получения данных с сервера
 
-  modal_switcher: boolean = false; //Свичер для модальных окон новых форм и "ответов" форм
+  modal_switcher: boolean = false //Свичер для модальных окон новых форм и "ответов" форм
 
-  formValidError: boolean = true; // Статус ошибки валидации формы перед отправкой
+  formValidError: boolean = true // Статус ошибки валидации формы перед отправкой
 
-  errServ: boolean = false; // Статус ошибки передачи данных формы на сервер
+  errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  formfooter: FormBottom = new FormBottom(); // Данные вводимого заказа для формы footerForm
+  formfooter: FormBottom = new FormBottom() // Данные вводимого заказа для формы footerForm
 
-  receivedFormFooter: FormBottom = new FormBottom(); // Данные заказа, полученные с сервера
+  receivedFormFooter: FormBottom = new FormBottom() // Данные заказа, полученные с сервера
 
-  footerForm : FormGroup; // Объект FormGroup для формы footerForm
+  footerForm : FormGroup // Объект FormGroup для формы footerForm
 
-  loading = false; // Переключатель индикатора загрузки ответа формы
+  loading = false // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {   
 
@@ -53,42 +56,44 @@ export class FooterFormComponent {
           FormValidators.userPhone
         ]),
         userEmail: new FormControl('', Validators.email)      
-    }); 
+    }) 
 
   }
   
   // Выключаем всплывающие окно нажатием на крестик или кнопку Закрыть окно
   closeForm() {
-    this.modal_switcher = false; // Закрываем модальное окно с формой
-    this.switcher = false; // Сбрасываем индикатор успешного получения данных с сервера
-    this.errServ = false; // Сбрасываем ошибку работы с сервером 
-    this.formValidError = true; // Сбрасываем ошибки валидации формы  
-    this.receivedFormFooter.status = false; // Сбрасываем ошибку записи данных из формы в БД на сервере  
-    this.switcher_valid = false; // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"  
+    this.modal_switcher = false // Закрываем модальное окно с формой
+    this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.formValidError = true // Сбрасываем ошибки валидации формы  
+    this.receivedFormFooter.status = false // Сбрасываем ошибку записи данных из формы в БД на сервере  
+    this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"  
   }
 
   // Выключаем всплывающие окна нажатием Esc
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.keyCode === 27) { // 27===ESC
-      this.closeForm();
+      this.closeForm()
     }
   }
 
   submitFooter() {
-    this.errServ = false; // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true; // Кнопка отправки нажата, но форма не прошла валидацию    
-    //this.receivedFormTop['status'] = false;
-    //console.log(this.footerForm);
-    console.log(this.footerForm.controls['userTypeofact'].valid);
-    console.log(this.footerForm.controls['userName'].valid);
-    console.log(this.footerForm.controls['userPhone'].valid);
-    console.log(this.footerForm.controls['userEmail'].valid);
-    console.log(this.footerForm.value['userTypeofact']);
-    console.log(this.footerForm.value['userName']);
-    console.log(this.footerForm.value['userPhone']);
-    console.log(this.footerForm.value['userEmail']);
-    //console.log(this.switcher);    
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию    
+    
+    // Проверки
+    //this.receivedFormTop['status'] = false
+    //console.log(this.footerForm)
+    console.log(this.footerForm.controls['userTypeofact'].valid)
+    console.log(this.footerForm.controls['userName'].valid)
+    console.log(this.footerForm.controls['userPhone'].valid)
+    console.log(this.footerForm.controls['userEmail'].valid)
+    console.log(this.footerForm.value['userTypeofact'])
+    console.log(this.footerForm.value['userName'])
+    console.log(this.footerForm.value['userPhone'])
+    console.log(this.footerForm.value['userEmail'])
+    //console.log(this.switcher)    
 
     if (this.footerForm.controls['userTypeofact'].valid &&
     this.footerForm.controls['userName'].valid && 
@@ -103,18 +108,19 @@ export class FooterFormComponent {
         email: this.footerForm.value['userEmail'].trim(),
         typeofform: 1,
         status: false
-      };
+      }
       
       this.loading = true // Включаем отображение индикатора загрузки
       this.switcher = true // Включаем показ результатов отправки формы
 
-      this.formsService.postForm(this.formfooter)
+      this.servRespSub = this.formsService.postForm(this.formfooter)
         .subscribe(
           (data: FormBottom) => {
             this.receivedFormFooter = data
             this.formValidError = false // Отключаем проверку ошибок валидации для формы
             this.switcher_valid = false // Отключаем вызов проверки ошибок при получении
             this.loading = false // Выключаем отображение индикатора загрузки
+            this.footerForm.reset() // Очищаем значения успешно отправленной формы
           },
           error => {
             console.log(error)
@@ -123,8 +129,16 @@ export class FooterFormComponent {
           }
         );                       
       
-      this.modal_switcher = true; // Включаем модальное окно для показа результатов отправки формы            
+      this.modal_switcher = true // Включаем модальное окно для показа результатов отправки формы            
     }
   }  
+
+  ngOnDestroy() {
+    // удаляем подписку на продолжение получения ответа сервера 
+    if (this.servRespSub) {
+      this.servRespSub.unsubscribe()
+    }
+
+  }
 
 }

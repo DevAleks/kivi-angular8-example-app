@@ -15,37 +15,39 @@ import { FormValidators } from '../../form.validators'
 })
 export class TopFormComponent {
 
-  modal_switcher: boolean = false; // Свичер для модальных окон новых форм и "ответов" форм
+  modal_switcher: boolean = false // Свичер для модальных окон новых форм и "ответов" форм
 
-  subscription: Subscription; // Переменная для подписки на клики по кнопке открытия окна с формой 
+  clicksSub: Subscription // Переменная для подписки на клики по кнопке открытия окна с формой 
+
+  servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы  
 
   // Виды услуг для селектора в шаблоне
-  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
+  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"]
 
-  switcher_valid: boolean = false; // Индикатор попытки валидации формы после клика на кнопку отправки
+  switcher_valid: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
 
-  switcher: boolean = false; // Индикатор успешного получения данных с сервера
+  switcher: boolean = false // Индикатор успешного получения данных с сервера
 
-  formValidError: boolean = true; // Статус ошибки валидации формы перед отправкой
+  formValidError: boolean = true // Статус ошибки валидации формы перед отправкой
 
-  errServ: boolean = false; // Статус ошибки передачи данных формы на сервер
+  errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  topFormToServ: FormBottom = new FormBottom(); // Данные вводимого заказа для формы topForm
+  topFormToServ: FormBottom = new FormBottom() // Данные вводимого заказа для формы topForm
 
-  receivedFormTop: FormBottom = new FormBottom(); // Данные заказа из формы topForm, полученные с сервера
+  receivedFormTop: FormBottom = new FormBottom() // Данные заказа из формы topForm, полученные с сервера
 
-  topForm: FormGroup; // Объект FormGroup для формы topForm
+  topForm: FormGroup // Объект FormGroup для формы topForm
 
-  loading = false; // Переключатель индикатора загрузки ответа формы
+  loading = false // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.subscription = formsService.observableclicks$.subscribe((data: ClickForm) => {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickForm) => {
       if (data.typeofform == 3) {
-        this.modal_switcher = true;
+        this.modal_switcher = true
       }      
-    }); 
+    }) 
 
     // Валидация формы
     this.topForm = new FormGroup({
@@ -68,43 +70,44 @@ export class TopFormComponent {
         Validators.maxLength(20),
         FormValidators.userPromo
       ])      
-    });
+    })
 
   }
 
   // Закрытие формы кликами мыши
   closeForm() {
-    this.modal_switcher = false; // Закрываем модальное окно с формой
-    this.switcher = false; // Сбрасываем индикатор успешного получения данных с сервера
-    this.errServ = false; // Сбрасываем ошибку работы с сервером 
-    this.formValidError = true; // Сбрасываем ошибки валидации формы  
-    this.receivedFormTop.status = false; // Сбрасываем ошибку записи данных из формы в БД на сервере
-    this.switcher_valid = false; // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
+    this.modal_switcher = false // Закрываем модальное окно с формой
+    this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.formValidError = true // Сбрасываем ошибки валидации формы  
+    this.receivedFormTop.status = false // Сбрасываем ошибку записи данных из формы в БД на сервере
+    this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
   }  
 
   // Закрытие формы кнопкой ESC
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.keyCode === 27) { // 27===ESC
-      this.closeForm();
+      this.closeForm()
     }
   }
 
   submitTop() {  
-    this.errServ = false; // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true; // Кнопка отправки нажата, но форма не прошла валидацию
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
+    
     // Проверки:
-    console.log(this.topForm.controls['userTypeofact'].valid);
-    console.log(this.topForm.controls['userName'].valid);
-    console.log(this.topForm.controls['userPhone'].valid);
-    console.log(this.topForm.controls['userEmail'].valid);
-    console.log(this.topForm.controls['userPromo'].valid);
-    console.log(this.topForm.value['userTypeofact']);
-    console.log(this.topForm.value['userName']);
-    console.log(this.topForm.value['userPhone']);
-    console.log(this.topForm.value['userEmail']);
-    console.log(this.topForm.value['userPromo']);
-    console.log(this.switcher);    
+    console.log(this.topForm.controls['userTypeofact'].valid)
+    console.log(this.topForm.controls['userName'].valid)
+    console.log(this.topForm.controls['userPhone'].valid)
+    console.log(this.topForm.controls['userEmail'].valid)
+    console.log(this.topForm.controls['userPromo'].valid)
+    console.log(this.topForm.value['userTypeofact'])
+    console.log(this.topForm.value['userName'])
+    console.log(this.topForm.value['userPhone'])
+    console.log(this.topForm.value['userEmail'])
+    console.log(this.topForm.value['userPromo'])
+    console.log(this.switcher)    
 
     // Условие отправки данных из формы на сервер
     if (this.topForm.controls['userTypeofact'].valid &&
@@ -122,29 +125,42 @@ export class TopFormComponent {
         promo: this.topForm.value['userPromo'].trim(),
         typeofform: 3,
         status: false
-      };
+      }
 
       this.loading = true // Включаем отображение индикатора загрузки
       this.switcher = true // Включаем показ окна с результатом отправки формы  
 
       // Отправка оъекта на сервер и получение ответа от сервера
-      this.formsService.postForm(this.topFormToServ)
+      this.servRespSub = this.formsService.postForm(this.topFormToServ)
         .subscribe(
           (data: FormBottom) => {
             this.receivedFormTop = data // Получаем данные с сервера
             this.formValidError = false // Отключаем проверку ошибок валидации для формы
             this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
             this.loading = false // Выключаем отображение индикатора загрузки
+            this.topForm.reset() // Очищаем значения успешно отправленной формы
           },
           error => {
             console.log(error)
             this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
             this.loading = false // Выключаем отображение индикатора загрузки
           }
-        ); 
-                       
+        )                        
     }      
         
   }
+
+  ngOnDestroy() {
+    // удаляем подписку на продолжение получения кликов по кнопке открытия формы
+    if (this.clicksSub) {
+      this.clicksSub.unsubscribe()
+    }
+
+    // удаляем подписку на продолжение получения ответа сервера
+    if (this.servRespSub) {
+      this.servRespSub.unsubscribe()
+    }
+
+  }  
 
 }
