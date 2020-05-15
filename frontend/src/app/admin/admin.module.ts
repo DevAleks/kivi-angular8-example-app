@@ -11,6 +11,7 @@ import { CreateOrderComponent } from './create-order/create-order.component';
 import { EditOrderPageComponent } from './edit-order-page/edit-order-page.component';
 import { AuthGuard } from './shared/auth.guard';
 import { OrdersService } from './shared/services/orders.service';
+import { SearchPipe } from './shared/search.pipe';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { OrdersService } from './shared/services/orders.service';
         LoginPageComponent,
         DashboardPageComponent,
         EditOrderPageComponent,
-        CreateOrderComponent
+        CreateOrderComponent,
+        SearchPipe
     ],
     imports: [
         CommonModule,

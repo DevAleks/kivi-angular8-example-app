@@ -1,7 +1,7 @@
 <h1>Список заказов</h1>
 <div *ngIf="orders?.length; else loadingBlock">
     <div class="form-control">
-        <input type="text" placeholder="Найти заказ...">
+        <input type="text" placeholder="Найти заказ..." [(ngModel)]="searchStr">
     </div>
 
     <table>
@@ -14,7 +14,7 @@
             <th>Действие</th>
         </thead>
         <tbody>
-            <tr *ngFor="let order of orders; let idx = index">
+            <tr *ngFor="let order of orders | searchOrders:searchStr ; let idx = index">
                 <td>{{ idx + 1 }}</td>
                 <td>{{ order.id }}</td>
                 <td>{{ order.typeofact }}</td>
