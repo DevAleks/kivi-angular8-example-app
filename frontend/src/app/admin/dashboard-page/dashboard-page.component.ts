@@ -10,7 +10,9 @@ import { Subscription } from 'rxjs';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
 
-  orders: FormBottom[]
+  orders: FormBottom[] = []
+
+  typeofform: string
 
   ordersSub: Subscription
 
@@ -22,6 +24,40 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     this.ordersSub = this.ordersService.getOrders().subscribe( orders => {
       this.orders = orders
     })
+
+    // Настраиваем вывод типов форм словами
+    switch(this.orders['typeofform']) { 
+      case 1: { 
+        this.typeofform = "1"
+        break; 
+      } 
+      case 2: { 
+        this.typeofform = "Форма в<br>круглом блоке" 
+        break; 
+      } 
+      case 3: {
+        this.typeofform = "3" 
+        break;    
+      } 
+      case 4: { 
+        this.typeofform = "4" 
+        break; 
+      }
+      case 5: { 
+        this.typeofform = "5" 
+        break; 
+      }
+      case 6: { 
+        this.typeofform = "6" 
+        break; 
+      }             
+      default: { 
+        this.typeofform = "<span class='red'>Форма не<br>определена!</span>" 
+        break;              
+      } 
+    
+    }
+
   }
 
   remove(id: string) {
