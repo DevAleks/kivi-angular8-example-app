@@ -17,8 +17,8 @@ export class OrdersService {
                 map((response: OrderCreateResponse) => {
                     return {
                         ...order,
-                        id:response.message,
-                        date: new Date()
+                        id: response.message, // Странная строчка :)
+                        date: new Date(order.date) // Нужен ли order.date?.. 
                     }
                 }),
                 //catchError(this.handleError)
@@ -47,6 +47,20 @@ export class OrdersService {
         return this.http.delete<void>(`${environment.dbUrl}delete_order.php?id=${id}`)
     }
 
+    getById(id:string):Observable<FormBottom> {
+        return this.http.get<FormBottom>(`${environment.dbUrl}get_orders.php?id=${id}`)
+            .pipe(                
+                map( (order: FormBottom) => {
+                    return {
+                        ...order,
+                        id,
+                        date: new Date(order.date)
+                    }
+                }),
+                //catchError(this.handleError)
+            )
+
+    }
     
     /*
     // Определяем методы для обработки ошибок получения данных с сервера
