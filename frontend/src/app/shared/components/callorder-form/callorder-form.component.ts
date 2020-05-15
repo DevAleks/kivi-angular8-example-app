@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
@@ -13,34 +13,36 @@ import { FormValidators } from '../../form.validators'
   styleUrls: ['./callorder-form.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class CallorderFormComponent {
+export class CallorderFormComponent implements OnDestroy {
 
-  modal_switcher: boolean = false; // Свичер для модальных окон новых форм и "ответов" форм
+  modal_switcher: boolean = false // Свичер для модальных окон новых форм и "ответов" форм
 
-  subscription: Subscription; // Переменная для подписки на клики по кнопке открытия окна с формой 
+  clicksSub: Subscription // Переменная для подписки на клики по кнопке открытия окна с формой 
 
-  switcher_valid: boolean = false; // Индикатор попытки валидации формы после клика на кнопку отправки
+  servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы 
 
-  switcher: boolean = false; // Индикатор успешного получения данных с сервера
+  switcher_valid: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
 
-  formValidError: boolean = true; // Статус ошибки валидации формы перед отправкой
+  switcher: boolean = false // Индикатор успешного получения данных с сервера
 
-  errServ: boolean = false; // Статус ошибки передачи данных формы на сервер
+  formValidError: boolean = true // Статус ошибки валидации формы перед отправкой
 
-  formcallorder: FormBottom = new FormBottom(); // Данные вводимого заказа для формы callorderForm
+  errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  receivedFormCallOrder: FormBottom = new FormBottom(); // Данные заказа из формы callorderForm, полученные с сервера
+  formcallorder: FormBottom = new FormBottom() // Данные вводимого заказа для формы callorderForm
 
-  callorderForm : FormGroup; // Объект FormGroup для формы callorderForm
+  receivedFormCallOrder: FormBottom = new FormBottom() // Данные заказа из формы callorderForm, полученные с сервера
 
-  loading = false; // Переключатель индикатора загрузки ответа формы
+  callorderForm : FormGroup // Объект FormGroup для формы callorderForm
+
+  loading = false // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.subscription = formsService.observableclicks$.subscribe((data: ClickForm) => {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickForm) => {
       if (data.typeofform == 4) {
-        this.modal_switcher = true;
+        this.modal_switcher = true
       }      
     }); 
 
@@ -63,32 +65,33 @@ export class CallorderFormComponent {
 
   // Закрытие формы кликами мыши
   closeForm() {
-    this.modal_switcher = false; // Закрываем модальное окно с формой
-    this.switcher = false; // Сбрасываем индикатор успешного получения данных с сервера
-    this.errServ = false; // Сбрасываем ошибку работы с сервером 
-    this.formValidError = true; // Сбрасываем ошибки валидации формы  
-    this.receivedFormCallOrder.status = false; // Сбрасываем ошибку записи данных из формы в БД на сервере
-    this.switcher_valid = false; // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
+    this.modal_switcher = false // Закрываем модальное окно с формой
+    this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.formValidError = true // Сбрасываем ошибки валидации формы  
+    this.receivedFormCallOrder.status = false // Сбрасываем ошибку записи данных из формы в БД на сервере
+    this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
   }  
 
   // Закрытие формы кнопкой ESC
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.keyCode === 27) { // 27===ESC
-      this.closeForm();
+      this.closeForm()
     }
   }
 
   submitCallOrder() {  
-    this.errServ = false; // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true; // Кнопка отправки нажата, но форма не прошла валидацию
-    //console.log(this.callorderForm);
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
+    
     // Проверки:
-    console.log(this.callorderForm.controls['userName'].valid);
-    console.log(this.callorderForm.controls['userPhone'].valid);
-    console.log(this.callorderForm.value['userName']);
-    console.log(this.callorderForm.value['userPhone']);
-    //console.log(this.switcher);    
+    //console.log(this.callorderForm)
+    console.log(this.callorderForm.controls['userName'].valid)
+    console.log(this.callorderForm.controls['userPhone'].valid)
+    console.log(this.callorderForm.value['userName'])
+    console.log(this.callorderForm.value['userPhone'])
+    //console.log(this.switcher)    
 
     // Условие отправки данных из формы на сервер
     if (this.callorderForm.controls['userName'].valid && 
@@ -107,23 +110,36 @@ export class CallorderFormComponent {
       this.switcher = true // Включаем показ окна с результатом отправки формы
 
       // Отправка оъекта на сервер и получение ответа от сервера
-      this.formsService.postForm(this.formcallorder)
+      this.servRespSub = this.formsService.postForm(this.formcallorder)
         .subscribe(
           (data: FormBottom) => {
             this.receivedFormCallOrder = data // Получаем данные с сервера
             this.formValidError = false // Отключаем проверку ошибок валидации для формы
             this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
             this.loading = false // Выключаем отображение индикатора загрузки
+            this.callorderForm.reset() // Очищаем значения успешно отправленной формы
           },
           error => {
             console.log(error)
             this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
             this.loading = false // Выключаем отображение индикатора загрузки
           }
-        );        
-        
+        )        
     }
         
+  }
+
+  ngOnDestroy() {
+    // удаляем подписку на продолжение получения кликов по кнопке открытия формы
+    if (this.clicksSub) {
+      this.clicksSub.unsubscribe()
+    }
+
+    // удаляем подписку на продолжение получения ответа сервера
+    if (this.servRespSub) {
+      this.servRespSub.unsubscribe()
+    }
+
   }
 
 }

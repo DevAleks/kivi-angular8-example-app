@@ -6,10 +6,6 @@ header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-   return 0;
-}
-
 // Переменная для кода ответа сервер
 $httpResponseCode = 500;
 
@@ -55,42 +51,55 @@ if($jwt) {
         // создание объекта 'Order' 
         $order = new Order($db);
         
-        // получаем данные 
-        $data = json_decode(file_get_contents("php://input"));
+        // запрашиваем заказы 
+        $stmt = $order->read();
+        $num = $stmt->rowCount();
 
-        // устанавливаем значения для записи в БД
-        $order->order_form_type = $data->typeofform;
-        $order->order_typeofact = $data->typeofact;
-        $order->order_name = $data->name;
-        $order->order_phone = $data->phone;
-        $order->order_email = $data->email;
-        $order->order_promo = $data->promo;
-        $order->order_text = $data->text;
+        // проверка, найдено ли больше 0 записей заказов
+        if ($num>0) {
 
-        // создание нового заказа 
-        if (
-            !empty($order->order_name) &&
-            !empty($order->order_phone) &&
-            !empty($order->order_typeofact) &&
-            !empty($order->order_text) &&
-            $order->createOrder()
-        ) {
+            // массив заказов 
+            $orders_arr=array();
+            //$orders_arr["records"]=array();
+
+            // получаем содержимое таблицы 
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+                // извлекаем строку 
+                extract($row);
+
+                $order_item=array(
+                    "id" => $order_id,
+                    "name" => $order_name,
+                    "phone" => $order_phone,                                        
+                    "email" => $order_email,
+                    "typeofact" => $order_typeofact,
+                    "typeofform" => $order_form_type,
+                    "promo" => $order_promo,
+                    "text" => $order_text,
+                    "date" => $order_created
+                );
+
+                //array_push($orders_arr["records"], $order_item);
+                array_push($orders_arr, $order_item);
+            }
+
             // устанавливаем код ответа 
             $httpResponseCode = 200;
         
-            // покажем сообщение о том, что новый заказ был создан 
-            $answer = json_encode(array(
-                "message" => "A new order was successfully created"
-            ));
+            // выводим данные о заказах в формате JSON  
+            $answer = json_encode($orders_arr);
         }
- 
-        // сообщение, если не удаётся создать новый заказ 
-        else {    
+
+        // Если заказы не найдены
+        else {
+
             // устанавливаем код ответа 
-            $httpResponseCode = 400;
+            $httpResponseCode = 404;
         
             // покажем сообщение о том, что создать новый заказ не удалось 
-            $answer = json_encode(array("message" => "Can't create a new order"));
+            $answer = json_encode(array("message" => "Товары не найдены."), JSON_UNESCAPED_UNICODE);
+        
         }
 
     }

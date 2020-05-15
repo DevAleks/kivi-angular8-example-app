@@ -1,0 +1,15 @@
+.open {
+    margin: 10px;
+}
+table,
+table th,
+table td {
+    border:1px black solid;
+    text-align: center;
+}
+table {
+    margin-bottom: 40px;
+}
+a.redlink {
+    color:red;
+}

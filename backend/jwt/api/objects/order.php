@@ -14,7 +14,8 @@ class Order {
     public $order_phone;
     public $order_email;
     public $order_promo;
-    public $order_text;    
+    public $order_text;  
+    public $order_created;   
  
     // конструктор класса Order 
     public function __construct($db) {
@@ -74,5 +75,45 @@ class Order {
 
         return true;
     }
+
+    // Получение товаров 
+    function read() {
+
+        // выбираем все записи 
+        $query = "SELECT
+                    order_id,
+                    order_form_type,
+                    order_typeofact,
+                    order_name,
+                    order_phone,
+                    order_email,
+                    order_promo,
+                    order_text,  
+                    order_created                      
+                FROM
+                    " . $this->table_name . " 
+                ORDER BY
+                    order_id DESC";
+
+        // подготовка запроса в БД и обработка ошибок
+        try {
+            $stmt = $this->conn->prepare($query);
+        } catch (Exception $exception) {
+            error_log("Unable to prepare statement: " . $exception->getMessage());
+            return false;
+        }        
+        
+        // Выполняем запрос и ловим возможные ошибки
+        // Если выполнение успешно, то отправляем информацию о всех заказах
+        try {
+            $stmt->execute();
+        } catch (Exception $exception) {
+            error_log("Unable to execute statement: " . $exception->getMessage());
+            return false;
+        }
+
+        return $stmt;
+    }
+
 
 }
