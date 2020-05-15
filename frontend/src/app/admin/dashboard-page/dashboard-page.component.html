@@ -6,7 +6,6 @@
 
     <table>
         <thead>
-            <th>#</th>
             <th>ID заказа</th>
             <th>Тип заказа</th>
             <th>Источник</th> 
@@ -14,8 +13,7 @@
             <th>Действие</th>
         </thead>
         <tbody>
-            <tr *ngFor="let order of orders | searchOrders:searchStr ; let idx = index">
-                <td>{{ idx + 1 }}</td>
+            <tr *ngFor="let order of orders | searchOrders:searchStr; let idx = index">
                 <td>{{ order.id }}</td>
                 <td>{{ order.typeofact }}</td>
                 <td>

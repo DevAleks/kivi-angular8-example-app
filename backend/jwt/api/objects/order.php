@@ -83,12 +83,7 @@ class Order {
         $query = "SELECT
                     order_id,
                     order_form_type,
-                    order_typeofact,
-                    order_name,
-                    order_phone,
-                    order_email,
-                    order_promo,
-                    order_text,  
+                    order_typeofact,  
                     order_created                      
                 FROM
                     " . $this->table_name . " 
