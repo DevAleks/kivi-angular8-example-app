@@ -10,3 +10,6 @@ table td {
 table {
     margin-bottom: 40px;
 }
+a.redlink {
+    color:red;
+}
