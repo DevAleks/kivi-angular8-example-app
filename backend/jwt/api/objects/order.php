@@ -115,5 +115,38 @@ class Order {
         return $stmt;
     }
 
+    // метод delete - удаление заказа 
+    function delete() {
+
+        // запрос для удаления заказа 
+        $query = "DELETE FROM " . $this->table_name . " WHERE order_id = ?";
+
+        // подготовка запроса в БД и обработка ошибок
+        try {
+            $stmt = $this->conn->prepare($query);
+        } catch (Exception $exception) {
+            error_log("Unable to prepare statement: " . $exception->getMessage());
+            return false;
+        }   
+        
+        // очистка id
+        $this->order_id = htmlspecialchars(strip_tags($this->order_id));
+
+        // привязываем id записи для удаления 
+        $stmt->bindParam(1, $this->order_id);
+
+        // Выполняем запрос и ловим возможные ошибки
+        // Если выполнение успешно, то отправляем информацию о всех заказах
+        try {
+            $stmt->execute();
+        } catch (Exception $exception) {
+            error_log("Unable to execute statement: " . $exception->getMessage());
+            return false;
+        }
+
+        return true;
+
+    }
+
 
 }

@@ -39,9 +39,12 @@ export class OrdersService {
                         }))
                 }),
                 delay(2500)
-            )
-                
+            )                
 
+    }
+
+    removeOrder(id:string):Observable<void> {
+        return this.http.delete<void>(`${environment.dbUrl}delete_order.php?id=${id}`)
     }
 
     

@@ -13,6 +13,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   orders: FormBottom[] = []
 
   ordersSub: Subscription
+  delSub: Subscription
 
   searchStr = ''
 
@@ -27,13 +28,19 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   }
 
   remove(id: string) {
-
+    this.delSub = this.ordersService.removeOrder(id).subscribe( () => {
+      this.orders = this.orders.filter( order => order.id !== id)
+    })
   }
 
   ngOnDestroy() {
     if (this.ordersSub) {
       this.ordersSub.unsubscribe()
     }
+
+    if (this.delSub) {
+      this.delSub.unsubscribe()
+    }    
     
   }
 }
