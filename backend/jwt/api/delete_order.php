@@ -66,7 +66,7 @@ if($jwt) {
                 $httpResponseCode = 200;
                 
                 // выводим данные о заказах в формате JSON  
-                $answer = json_encode(array("message" => "Deleted order id = ".$_GET['id']));
+                $answer = json_encode(array("message" => "Deleted an order id = ".$_GET['id']));
             }
 
             // Если заказы не найдены

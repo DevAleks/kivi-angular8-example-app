@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormValidators } from '../../shared/form.validators'
 import { FormBottom } from '../../shared/classes/form-bt-class';
 import { OrdersService } from '../shared/services/orders.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-order',
   templateUrl: './create-order.component.html',
   styleUrls: ['./create-order.component.css']
 })
-export class CreateOrderComponent implements OnInit {
+export class CreateOrderComponent implements OnInit, OnDestroy {
 
   form: FormGroup
+
+  createSub: Subscription
 
   // Виды услуг для селектора в шаблоне
   typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
@@ -63,16 +66,23 @@ export class CreateOrderComponent implements OnInit {
       text: this.form.value.order_text, 
       promo: this.form.value.order_promo,
       typeofform: 6
-      /*status: false*/
     }
 
     // console.log(order)
 
-    this.ordersService.create(order).subscribe(()=> {
+    this.createSub = this.ordersService.create(order).subscribe(()=> {
       //console.log('Новый заказ отправлен на бекэнд')
       this.form.reset()
     })
 
   }
+
+  ngOnDestroy() {
+    if (this.createSub) {
+      this.createSub.unsubscribe()
+    } 
+    
+  }
+
 
 }

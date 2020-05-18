@@ -67,7 +67,7 @@ if($jwt) {
         $order->order_promo = $data->promo;
         $order->order_text = $data->text;
 
-        // создание нового заказа 
+        // создание нового заказа c проверкой наличия необходимых значений
         if (
             !empty($order->order_name) &&
             !empty($order->order_phone) &&
