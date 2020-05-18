@@ -1,21 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OrdersService } from '../shared/services/orders.service';
 import { switchMap } from 'rxjs/operators';
 import { FormBottom } from 'src/app/shared/classes/form-bt-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormValidators } from 'src/app/shared/form.validators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-order-page',
   templateUrl: './edit-order-page.component.html',
   styleUrls: ['./edit-order-page.component.css']
 })
-export class EditOrderPageComponent implements OnInit {
+export class EditOrderPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup
 
-  order_id = ''
+  order: FormBottom
+
+  submitted = false
+
+  updateSub: Subscription
+
+  // Виды услуг для селектора в шаблоне
+  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +36,7 @@ export class EditOrderPageComponent implements OnInit {
         return this.orderService.getById(params['id'])
       })
     ).subscribe( (order: FormBottom) => {
+      this.order = order,
       this.form = new FormGroup({
         order_name: new FormControl(order.name, [
           Validators.required,
@@ -54,14 +63,36 @@ export class EditOrderPageComponent implements OnInit {
           Validators.maxLength(30),
           FormValidators.userPromo
         ]) 
-      }),
-      this.order_id = order.id
-
+      })
     }) 
   }
 
   submit() {
+    if(this.form.invalid) {
+      return 
+    }
 
+    this.submitted = true
+
+    this.updateSub = this.orderService.updateOrder({
+      ...this.order,
+      name: this.form.value.order_name, 
+      phone: this.form.value.order_phone,
+      email: this.form.value.order_email,
+      typeofact: this.form.value.order_typeofact, 
+      text: this.form.value.order_text, 
+      promo: this.form.value.order_promo
+    }).subscribe( ()=> {
+      this.submitted = false
+    })
+
+  }
+
+  ngOnDestroy() {
+    if (this.updateSub) {
+      this.updateSub.unsubscribe()
+    } 
+    
   }
 
 }

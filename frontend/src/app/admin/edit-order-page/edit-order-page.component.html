@@ -1,6 +1,6 @@
 <div *ngIf="form; else loadingBlock">
     <form [formGroup]="form" (ngSubmit)="submit()">
-        <h1>Редактирование заказа № {{ order_id }}</h1>
+        <h1>Редактирование заказа № {{ order.id }}</h1>
 
         <div 
             [ngClass]="{invalid: form.get('order_name').touched && form.get('order_name').invalid}"
@@ -162,12 +162,11 @@
 
         <button
             type="submit"
-            class="btn btn-primary"
-            [disabled]="form.invalid"
+            class="btn btn-primary mb40"
+            [disabled]="form.invalid || submitted"
         >   
             Создать заказ
-        </button>  
-
+        </button>         
 
     </form>
 </div>

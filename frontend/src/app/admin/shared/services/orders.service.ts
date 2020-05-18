@@ -38,7 +38,7 @@ export class OrdersService {
                             date: new Date(response[key].date)
                         }))
                 }),
-                delay(2500)
+                delay(1000)
             )                
 
     }
@@ -48,7 +48,7 @@ export class OrdersService {
     }
 
     getById(id:string):Observable<FormBottom> {
-        return this.http.get<FormBottom>(`${environment.dbUrl}get_orders.php?id=${id}`)
+        return this.http.get<FormBottom>(`${environment.dbUrl}update_order.php?get_id=${id}`)
             .pipe(                
                 map( (order: FormBottom) => {
                     return {
@@ -60,6 +60,10 @@ export class OrdersService {
                 //catchError(this.handleError)
             )
 
+    }
+
+    updateOrder(order: FormBottom):Observable<FormBottom> {
+        return this.http.patch<FormBottom>(`${environment.dbUrl}update_order.php?update_id=${order.id}`, order)
     }
     
     /*
