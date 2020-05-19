@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrdersService } from '../shared/services/orders.service';
 import { FormBottom } from 'src/app/shared/classes/form-bt-class';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -19,7 +20,8 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   searchStr = ''
 
   constructor(
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   remove(id: string) {
     this.delSub = this.ordersService.removeOrder(id).subscribe( () => {
       this.orders = this.orders.filter( order => order.id !== id)
+      this.alertService.warning(`Удален заказ № ${id}`)
     })
   }
 

@@ -4,6 +4,7 @@ import { FormValidators } from '../../shared/form.validators'
 import { FormBottom } from '../../shared/classes/form-bt-class';
 import { OrdersService } from '../shared/services/orders.service';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-create-order',
@@ -19,7 +20,10 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
   // Виды услуг для селектора в шаблоне
   typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
 
-  constructor(private ordersService: OrdersService) { }
+  constructor(
+    private ordersService: OrdersService,
+    private alertService: AlertService
+  ) { }
 
   ngOnInit() {
     this.form = new FormGroup ({
@@ -73,6 +77,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
     this.createSub = this.ordersService.create(order).subscribe(()=> {
       //console.log('Новый заказ отправлен на бекэнд')
       this.form.reset()
+      this.alertService.success('Новый заказ создан')
     })
 
   }

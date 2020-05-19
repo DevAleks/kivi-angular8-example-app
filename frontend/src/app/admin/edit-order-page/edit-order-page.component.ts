@@ -6,6 +6,7 @@ import { FormBottom } from 'src/app/shared/classes/form-bt-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormValidators } from 'src/app/shared/form.validators';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-edit-order-page',
@@ -27,7 +28,8 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -84,6 +86,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
       promo: this.form.value.order_promo
     }).subscribe( ()=> {
       this.submitted = false
+      this.alertService.warning(`Заказ № ${this.order.id} был обновлен`)
     })
 
   }
