@@ -12,6 +12,8 @@ import { EditOrderPageComponent } from './edit-order-page/edit-order-page.compon
 import { AuthGuard } from './shared/auth.guard';
 import { OrdersService } from './shared/services/orders.service';
 import { SearchPipe } from './shared/search.pipe';
+import { AlertComponent } from './shared/components/alert/alert.component';
+import { AlertService } from './shared/services/alert.service';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,8 @@ import { SearchPipe } from './shared/search.pipe';
         DashboardPageComponent,
         EditOrderPageComponent,
         CreateOrderComponent,
-        SearchPipe
+        AlertComponent,
+        SearchPipe        
     ],
     imports: [
         CommonModule,
@@ -40,7 +43,7 @@ import { SearchPipe } from './shared/search.pipe';
         ])
     ],
     exports: [RouterModule, QuillModule],
-    providers: [AuthGuard, OrdersService]
+    providers: [AuthGuard, OrdersService, AlertService]
     
 })
 export class AdminModule {
