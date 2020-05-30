@@ -25,7 +25,7 @@
                     <span *ngIf="order.typeofform==6">Форма 6,<br>из админки</span>
                     <span *ngIf="order.typeofform==0" class="red">Форма не задана</span>                                                                                
                 </td>
-                <td>{{ order.date | date: 'medium' }}</td>
+                <td>{{ order.date | date: 'medium':'GMT+3':'ru' }}</td>
                 <td>
                     <button 
                         class="btn btn-link open"

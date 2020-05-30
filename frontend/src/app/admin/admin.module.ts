@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import ruLocale from '@angular/common/locales/ru';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
@@ -14,6 +15,8 @@ import { OrdersService } from './shared/services/orders.service';
 import { SearchPipe } from './shared/search.pipe';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from './shared/services/alert.service';
+
+registerLocaleData(ruLocale, 'ru')
 
 @NgModule({
     declarations: [
