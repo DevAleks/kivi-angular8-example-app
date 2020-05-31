@@ -19,27 +19,40 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   searchStr = ''
 
+  noOrders: boolean // Флаг наличия хоят бы одного заказа
+
   constructor(
-    public ordersService: OrdersService,
+    private ordersService: OrdersService,
     private alertService: AlertService
   ) { }
 
   ngOnInit() { 
-    console.log(this.ordersService.errorOrdersList$)
 
     this.ordersSub = this.ordersService.getOrders().subscribe( orders => {
-      this.orders = orders
+      this.orders = orders 
       
-    })
+      // Проверяем есть ли хотя бы один заказ
+      if (!this.orders) {
+        this.noOrders = true
+      }  
 
+    })
 
   }
 
-  remove(id: string) {
+  remove(id: string) {  
+
     this.delSub = this.ordersService.removeOrder(id).subscribe( () => {
       this.orders = this.orders.filter( order => order.id !== id)
       this.alertService.warning(`Удален заказ № ${id}`)
+
+      // Проверяем осталься ли хотя бы один заказ после удаления
+      if (this.orders.length < 1 && !this.orders.length) {
+        this.noOrders = true
+      }  
+
     })
+
   }
 
   ngOnDestroy() {

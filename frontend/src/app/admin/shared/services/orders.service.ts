@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, Subject } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError, delay} from 'rxjs/operators';
 import { FormBottom } from 'src/app/shared/classes/form-bt-class';
 import { environment } from 'src/environments/environment';
@@ -8,8 +8,6 @@ import { OrderCreateResponse } from '../interfaces';
 
 @Injectable()
 export class OrdersService {
-
-    public errorOrdersList$: Subject<string> = new Subject<string>()
 
     constructor(private http: HttpClient) { }
 
@@ -30,50 +28,27 @@ export class OrdersService {
     getOrders():Observable<FormBottom[]> {
         return this.http.get(`${environment.dbUrl}get_orders.php`)
             .pipe(                
-                    map(              
-                        (response: {[key: string]: any}) => {                       
+                map(              
+                    (response: {[key: string]: any}) => {                        
+                  
+                    // Прекращаем получение данных если backend вернул ошибку
+                    if (response.message === 'ORDERS_NOT_FOUND') {
+                        return 
+                    }
 
-
-                        console.log(response)
-
-                        return Object
-                            .keys(response)
-                            .map(key => ({
-                                ...response[key],
-                                //id: key,
-                                date: new Date(response[key].date)
-                            }))
+                    return Object
+                        .keys(response)
+                        .map(key => ({
+                            ...response[key],
+                            //id: key,
+                            date: new Date(response[key].date)
+                        }))                    
                        
-                           
-                        },                        
-                        //catchError(this.handleError)                     
-                    ),
-                    delay(1000),
-                    catchError(this.handleError.bind(this))
-
-                
-            )                
-
+                    }                  
+                ),
+                delay(1000)                  
+            )
     }
-
-    private handleError(error: HttpErrorResponse) {
-
-        const message = error.error.message
-
-        console.log('Ошибка поймана')
-
-        // Сделал switch для обработки других возможных ошибок
-        switch (message) {          
-            case 'ORDERS_NOT_FOUND':
-                this.errorOrdersList$.next('Заказов не найдено')
-                break            
-        }
-
-        return throwError(error)
-    }
-
-
-
 
     removeOrder(id:string):Observable<void> {
         return this.http.delete<void>(`${environment.dbUrl}delete_order.php?id=${id}`)

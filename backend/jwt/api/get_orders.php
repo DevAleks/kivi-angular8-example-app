@@ -90,7 +90,7 @@ if($jwt) {
         else {
 
             // устанавливаем код ответа 
-            $httpResponseCode = 404;
+            $httpResponseCode = 200;
         
             // покажем сообщение о том, что создать новый заказ не удалось 
             $answer = json_encode(array("message" => "ORDERS_NOT_FOUND"), JSON_UNESCAPED_UNICODE);

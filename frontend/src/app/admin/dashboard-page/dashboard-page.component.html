@@ -1,52 +1,57 @@
 <h1>Список заказов</h1>
-<div >
-<!-- *ngIf="orders?.length; else loadingBlock" -->
-    <div class="form-control">
-        <input type="text" placeholder="Найти заказ..." [(ngModel)]="searchStr">
-    </div>
 
-    <div class="alert alert-danger" *ngIf="ordersService.errorOrdersList$ | async as error">
-        {{ error }} 123
-    </div>
-
-    <table>
-        <thead>
-            <th>ID заказа</th>
-            <th>Тип заказа</th>
-            <th>Источник</th> 
-            <th>Дата</th>
-            <th>Действие</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let order of orders | searchOrders:searchStr; let idx = index">
-                <td>{{ order.id }}</td>
-                <td>{{ order.typeofact }}</td>
-                <td>
-                    <span *ngIf="order.typeofform==1">Форма 1,<br>подвал</span>
-                    <span *ngIf="order.typeofform==2">Форма 2,<br>круглый блок</span>
-                    <span *ngIf="order.typeofform==3">Форма 3,<br>шапка</span>
-                    <span *ngIf="order.typeofform==4">Форма 4,<br>заказать звонок</span>
-                    <span *ngIf="order.typeofform==5">Форма 5,<br>задать вопрос</span>
-                    <span *ngIf="order.typeofform==6">Форма 6,<br>из админки</span>
-                    <span *ngIf="order.typeofform==0" class="red">Форма не задана</span>                                                                                
-                </td>
-                <td>{{ order.date | date: 'medium':'GMT+3':'ru' }}</td>
-                <td>
-                    <button 
-                        class="btn btn-link open"
-                        [routerLink]="['/admin', 'order', order.id, 'edit']"
-                    >
-                        Открыть
-                    </button>
-                    <a (click)="remove(order.id)" class="redlink">Удалить</a>
-                </td>                                    
-            </tr>
-        </tbody>
-    </table> 
+<div class="alert alert-danger" *ngIf="noOrders; else ordersList">    
+    Заказов не найдено
 </div>
-<ng-template #loadingBlock>
-    <p class="text-center">
-        Идет загрузка...<br>    
-        <img src="../../assets/img/loader2.svg">
-    </p>    
+
+<ng-template #ordersList>
+    <div *ngIf="orders?.length; else loadingBlock">
+        <div class="form-control">
+            <input type="text" placeholder="Найти заказ..." [(ngModel)]="searchStr">
+        </div>
+
+        <table>
+            <thead>
+                <th>ID заказа</th>
+                <th>Тип заказа</th>
+                <th>Источник</th> 
+                <th>Дата</th>
+                <th>Действие</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders | searchOrders:searchStr; let idx = index">
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.typeofact }}</td>
+                    <td>
+                        <span *ngIf="order.typeofform==1">Форма 1,<br>подвал</span>
+                        <span *ngIf="order.typeofform==2">Форма 2,<br>круглый блок</span>
+                        <span *ngIf="order.typeofform==3">Форма 3,<br>шапка</span>
+                        <span *ngIf="order.typeofform==4">Форма 4,<br>заказать звонок</span>
+                        <span *ngIf="order.typeofform==5">Форма 5,<br>задать вопрос</span>
+                        <span *ngIf="order.typeofform==6">Форма 6,<br>из админки</span>
+                        <span *ngIf="order.typeofform==0" class="red">Форма не задана</span>                                                                                
+                    </td>
+                    <td>{{ order.date | date: 'medium':'GMT+3':'ru' }}</td>
+                    <td>
+                        <button 
+                            class="btn btn-link open"
+                            [routerLink]="['/admin', 'order', order.id, 'edit']"
+                        >
+                            Открыть
+                        </button>
+                        <a (click)="remove(order.id)" class="redlink">Удалить</a>
+                    </td>                                    
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+
+    <ng-template #loadingBlock>
+        <p class="text-center">
+            Идет загрузка...<br>    
+            <img src="../../assets/img/loader2.svg">
+        </p>    
+    </ng-template>
+
+
 </ng-template>
