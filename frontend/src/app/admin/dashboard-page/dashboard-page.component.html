@@ -1,7 +1,12 @@
 <h1>Список заказов</h1>
-<div *ngIf="orders?.length; else loadingBlock">
+<div >
+<!-- *ngIf="orders?.length; else loadingBlock" -->
     <div class="form-control">
         <input type="text" placeholder="Найти заказ..." [(ngModel)]="searchStr">
+    </div>
+
+    <div class="alert alert-danger" *ngIf="ordersService.errorOrdersList$ | async as error">
+        {{ error }} 123
     </div>
 
     <table>

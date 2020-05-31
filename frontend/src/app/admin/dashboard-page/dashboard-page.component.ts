@@ -20,14 +20,19 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   searchStr = ''
 
   constructor(
-    private ordersService: OrdersService,
+    public ordersService: OrdersService,
     private alertService: AlertService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    console.log(this.ordersService.errorOrdersList$)
+
     this.ordersSub = this.ordersService.getOrders().subscribe( orders => {
       this.orders = orders
+      
     })
+
+
   }
 
   remove(id: string) {
