@@ -4,6 +4,7 @@ import ruLocale from '@angular/common/locales/ru';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -26,7 +27,8 @@ registerLocaleData(ruLocale, 'ru')
         EditOrderPageComponent,
         CreateOrderComponent,
         AlertComponent,
-        SearchPipe        
+        SearchPipe,
+        JwPaginationComponent        
     ],
     imports: [
         CommonModule,

@@ -19,7 +19,9 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   searchStr = ''
 
-  noOrders: boolean // Флаг наличия хоят бы одного заказа
+  noOrders: boolean // Флаг наличия хотя бы одного заказа
+
+  pageOfItems: Array<any>
 
   constructor(
     private ordersService: OrdersService,
@@ -38,6 +40,11 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
     })
 
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
   }
 
   remove(id: string) {  

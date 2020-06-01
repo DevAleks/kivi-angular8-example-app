@@ -10,6 +10,10 @@
             <input type="text" placeholder="Найти заказ..." [(ngModel)]="searchStr">
         </div>
 
+        <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="orders" (changePage)="onChangePage($event)"></jw-pagination>
+        </div>
+
         <table>
             <thead>
                 <th>ID заказа</th>
@@ -19,7 +23,8 @@
                 <th>Действие</th>
             </thead>
             <tbody>
-                <tr *ngFor="let order of orders | searchOrders:searchStr; let idx = index">
+                <tr *ngFor="let order of pageOfItems | searchOrders:searchStr; let idx = index">
+                <!-- *ngFor="let order of orders | searchOrders:searchStr; let idx = index" -->
                     <td>{{ order.id }}</td>
                     <td>{{ order.typeofact }}</td>
                     <td>
@@ -44,6 +49,12 @@
                 </tr>
             </tbody>
         </table> 
+
+        <div class="card-footer pb-0 pt-3">
+            <jw-pagination [items]="orders" (changePage)="onChangePage($event)"></jw-pagination>
+        </div>
+
+
     </div>
 
     <ng-template #loadingBlock>
