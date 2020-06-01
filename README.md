@@ -21,8 +21,8 @@
  * /rafting  
  * /semeyniy-rafting  
  * /error404 (страница ошибки 404)      
-  
-На всех страницах отличаются только верхние блоки с контентом.  
+На всех страницах отличаются только верхние блоки с контентом.    
+     
 - [x] Панель администрирования имеет 3 страницы:  
  * /admin/login (страница входа)
  * /admin/dashboard (страница со списком заказов)
@@ -32,22 +32,22 @@
    
 ### Frontend, элементы Angular  
 - [x] Компоненты  
- * Пользовательская часть: [frontend/src/app/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/)
+ * Пользовательская часть: [frontend/src/app/shared/components/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/)
  * Админка: [frontend/src/app/admin/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/)
 - [x] Сервисы   
  * Пользовательская часть: [frontend/src/app/shared/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/services/)
  * Админка: [frontend/src/app/admin/shared/services/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/shared/services/)
 - [x] Pipe [frontend/src/app/shared/pipes/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/pipes/)
-- [x] Получение данных из Json файла [frontend/src/app/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-block/first-block.component.ts) (строка 58)
+- [x] Получение данных из Json файла [frontend/src/app/shared/components/first-block/first-block.component.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/first-block/first-block.component.ts) (строка 58)
 - [x] Роутеры:  
  * Пользовательской части [frontend/src/app/app-routing.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app-routing.module.ts)
  * Админки с защитой роутов [frontend/src/app/admin/admin.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/admin.module.ts)
 - [x] Формы обратной связи, содержат валидатор с обработкой ошибок, выполняют отправку данных, получают и обрабатывают ответ от сервера:
- * Форма заказа 1 [frontend/src/app/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/callorder-form/)
- * Форма заказа 2 [frontend/src/app/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/first-form/)
- * Форма заказа 3 [frontend/src/app/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/footer-form/)
- * Форма заказа 4 [frontend/src/app/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/question-form/)
- * Форма заказа 5 [frontend/src/app/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/top-form/)
+ * Форма заказа 1 [frontend/src/app/shared/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/callorder-form/)
+ * Форма заказа 2 [frontend/src/app/shared/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/first-form/)
+ * Форма заказа 3 [frontend/src/app/shared/components/footer-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/footer-form/)
+ * Форма заказа 4 [frontend/src/app/shared/components/question-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/question-form/)
+ * Форма заказа 5 [frontend/src/app/shared/components/top-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/top-form/)
  * Форма входа в админку: [frontend/src/app/admin/login-page/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/login-page/)  
  * Форма создания заказа в админке: [frontend/src/app/admin/create-order/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/create-order/) 
  * Кастомные валидаторы для форм: [frontend/src/app/shared/form.validators.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/form.validators.ts)
@@ -64,27 +64,34 @@
  * Проверка валидности токена
  * Обработка ошибок
 - [x] Интерсептор для проверки валидности текущего токена в админке: [frontend/src/app/shared/auth.interceptor.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/auth.interceptor.ts) 
-- [x] Ленивая загрузка изображений с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
+- [x] Ленивая загрузка изображений в пользовательской части с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
 - [x] WYSIWYG редактор [Quill](https://www.npmjs.com/package/quill) для формы создания новых заказов в админке
-- [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент [frontend/src/app/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/scripthack) и пример вывода в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
+- [x] Пагинация на странице списка заказов [frontend/src/app/admin/dashboard-page/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/dashboard-page/) с помощью [jw-angular-pagination](https://github.com/cornflourblue/jw-angular-pagination)
+- [x] Ru локализация в date pipe на странице списка заказов [frontend/src/app/admin/dashboard-page/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/dashboard-page/)
 - [x] Поддержка PWA. Если собрать приложение в режиме prodact, то оно будет работать как PWA, с использованием встроенного Service Worker
-- [x] Unit тестирование пользовательской части Jasmine + Karma
-- [x] End-to-end тестирование пользовательской части Jasmine + Protractor
-  
+- [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент [frontend/src/app/shared/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/scripthack) и пример вывода тега в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
+- [x] Вывод видео с Youtube, url видео загружается из JSON файла [frontend/src/app/shared/components/video-block/](https://github.com/DevAleks/kivi-angular8-example-app/tree/master/frontend/src/app/shared/components/video-block/)
+    
+### Тестирование 
+- [x] Unit тестирование пользовательской части приложения Jasmine + Karma
+- [x] End-to-end тестирование пользовательской части приложения Jasmine + Protractor
+    
 ### Backend 
 - [x] Бекенд работает на PHP и MySQL.    
- * В пользовательской части сайта обработка данных из форм заказа производится PHP скриптом: [backend/requests.add.php](https://github.com/DevAleks/Kivi/tree/master/backend/requests.add.php). При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также PHP скрипт модифицирует полученные данные перед отправкой их обратно на frontend, что служит маркером успешного получения этих данных. При ошибке записи данных в БД сервер также отправляет на frontend сообщение о возникшей проблеме.   
- * Панель администрирования обменивается данными с бекендом через 3 endpoints:
+ * В пользовательской части сайта обработка данных из форм заказа производится PHP скриптом: [backend/requests.add.php](https://github.com/DevAleks/Kivi/tree/master/backend/requests.add.php). При корректном выполнении сценария данные из форм записываются в БД на MySQL. Также PHP скрипт модифицирует полученные данные перед отправкой их обратно на frontend, что служит маркером успешного получения и обработки этих данных бекендом. При ошибке записи данных в БД сервер также отправляет на frontend сообщение о возникшей проблеме.    
+ * Панель администрирования обменивается данными с бекендом через 4 endpoints:  
   * Страница входа в админку (/admin/login), endpoint: [backend/jwt/api/login.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/login.php)  
+  * Страница списка заказов (/admin/dashboard), endpoint: [backend/jwt/api/get_orders.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/get_orders.php) 
   * Страница создания нового заказа (/admin/create-order), endpoint: [backend/jwt/api/create_order.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/create_order.php)  
-  * !!! Будущая страница списка заказов (/admin/dashboard), endpoint: [backend/jwt/api/dashboard.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/dashboard.php)  
+  * Страница редактирования заказа (admin/order/%id заказа%/edit), endpoint: [backend/jwt/api/update_order.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/update_order.php)    
+А также функция удаления заказа через [backend/jwt/api/delete_order.php](https://github.com/DevAleks/Kivi/tree/master/backend/jwt/api/delete_order.php)  
 - [x] Аутентификация c токенами через [библиотеку JWT](https://github.com/firebase/php-jwt) 
   
 ### Виртуализация 
 - [x] Выполнена на Docker и Docker-Compose
 - [x] 2 Dockerfile для:
  * frontend [frontend/Dockerfile](https://github.com/DevAleks/Kivi/tree/master/frontend/Dockerfile)
-  * backend [backend/Dockerfile](https://github.com/DevAleks/Kivi/tree/master/backend/Dockerfile)
+ * backend [backend/Dockerfile](https://github.com/DevAleks/Kivi/tree/master/backend/Dockerfile)
 - [x] 3 конфига Docker-Compose, используемых для:  
  * разработки приложения [docker-compose.yaml](https://github.com/DevAleks/Kivi/tree/master/docker-compose.yaml)  
  * Unit тестирования [dc-angular-unit-tests.yaml](https://github.com/DevAleks/Kivi/tree/master/dc-angular-unit-tests.yaml)  
@@ -138,11 +145,6 @@
 * Отправка данных прошла успешно  
 * Отправить данные не удалось  
 * Сервер неверно обработал полученные данные  
-  
-### Интеграции со сторонним кодом  
-В верстке страниц присутствуют:  
-* Вставка видео с Youtube  
-* Виджет VK  
   
 <br />   
   
