@@ -1,8 +1,10 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import ruLocale from '@angular/common/locales/ru';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -12,6 +14,10 @@ import { EditOrderPageComponent } from './edit-order-page/edit-order-page.compon
 import { AuthGuard } from './shared/auth.guard';
 import { OrdersService } from './shared/services/orders.service';
 import { SearchPipe } from './shared/search.pipe';
+import { AlertComponent } from './shared/components/alert/alert.component';
+import { AlertService } from './shared/services/alert.service';
+
+registerLocaleData(ruLocale, 'ru')
 
 @NgModule({
     declarations: [
@@ -20,7 +26,9 @@ import { SearchPipe } from './shared/search.pipe';
         DashboardPageComponent,
         EditOrderPageComponent,
         CreateOrderComponent,
-        SearchPipe
+        AlertComponent,
+        SearchPipe,
+        JwPaginationComponent        
     ],
     imports: [
         CommonModule,
@@ -40,7 +48,7 @@ import { SearchPipe } from './shared/search.pipe';
         ])
     ],
     exports: [RouterModule, QuillModule],
-    providers: [AuthGuard, OrdersService]
+    providers: [AuthGuard, OrdersService, AlertService]
     
 })
 export class AdminModule {

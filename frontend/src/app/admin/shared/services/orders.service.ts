@@ -17,8 +17,8 @@ export class OrdersService {
                 map((response: OrderCreateResponse) => {
                     return {
                         ...order,
-                        id:response.message,
-                        date: new Date()
+                        id: response.message, // Странная строчка :)
+                        date: new Date(order.date) // Нужен ли order.date?.. 
                     }
                 }),
                 //catchError(this.handleError)
@@ -27,25 +27,53 @@ export class OrdersService {
 
     getOrders():Observable<FormBottom[]> {
         return this.http.get(`${environment.dbUrl}get_orders.php`)
-            .pipe(
-                map( (response: {[key: string]: any}) => {
-                    console.log(response)
+            .pipe(                
+                map(              
+                    (response: {[key: string]: any}) => {                        
+                  
+                    // Прекращаем получение данных если backend вернул ошибку
+                    if (response.message === 'ORDERS_NOT_FOUND') {
+                        return 
+                    }
+
                     return Object
                         .keys(response)
                         .map(key => ({
                             ...response[key],
                             //id: key,
                             date: new Date(response[key].date)
-                        }))
-                }),
-                delay(2500)
+                        }))                    
+                       
+                    }                  
+                ),
+                delay(1000)                  
             )
-                
+    }
+
+    removeOrder(id:string):Observable<void> {
+        return this.http.delete<void>(`${environment.dbUrl}delete_order.php?id=${id}`)
+    }
+
+    getById(id:string):Observable<FormBottom> {
+        return this.http.get<FormBottom>(`${environment.dbUrl}update_order.php?get_id=${id}`)
+            .pipe(                
+                map( (order: FormBottom) => {
+                    return {
+                        ...order,
+                        id,
+                        date: new Date(order.date)
+                    }
+                }),
+                //catchError(this.handleError)
+            )
 
     }
 
+    updateOrder(order: FormBottom):Observable<FormBottom> {
+        return this.http.patch<FormBottom>(`${environment.dbUrl}update_order.php?update_id=${order.id}`, order)
+    }
     
-    /*
+/*
     // Определяем методы для обработки ошибок получения данных с сервера
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

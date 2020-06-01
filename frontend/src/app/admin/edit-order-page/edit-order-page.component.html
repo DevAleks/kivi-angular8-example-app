@@ -1,1 +1,178 @@
-<p>edit-order-page works!</p>
+<div *ngIf="form; else loadingBlock">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <h1>Редактирование заказа № {{ order.id }}</h1>
+
+        <div 
+            [ngClass]="{invalid: form.get('order_name').touched && form.get('order_name').invalid}"
+            class="form-control"
+        >
+            <label>Введите имя клиента: <span class="red">*</span></label>
+            <input id="order_name" type="text" formControlName="order_name">         
+            <div 
+                *ngIf="form.get('order_name').invalid && form.get('order_name').touched" 
+                class="validation"
+            >
+                <small *ngIf="form.get('order_name').errors?.required">
+                Введите поле Имя клиента
+                </small>
+                <small *ngIf="form.get('order_name').errors?.userNamePattern">
+                    Использованы некорректные символы<br>
+                </small>
+                <small *ngIf="form.get('order_name').errors?.minlength">
+                    Должно быть не менее 
+                    {{form.get('order_name').errors.minlength.requiredLength}}
+                    символов, сейчас введено только
+                    {{form.get('order_name').errors.minlength.actualLength}}<br> 
+                </small>
+                <small *ngIf="form.get('order_name').errors?.maxlength">
+                    Должно быть не более
+                    {{form.get('order_name').errors.maxlength.requiredLength}}
+                    символов, сейчас введено 
+                    {{form.get('order_name').errors.maxlength.actualLength}}<br>               
+                </small>
+            </div>
+        </div>
+
+        <div 
+            [ngClass]="{invalid: form.get('order_phone').touched && form.get('order_phone').invalid}"
+            class="form-control"
+        >   
+            <label>Введите телефон клиента: <span class="red">*</span></label>
+            <input id="order_phone" type="text" formControlName="order_phone"          
+            > 
+            <div 
+                *ngIf="form.get('order_phone').invalid && form.get('order_phone').touched"
+                class="validation"
+            >
+                <small *ngIf="form.get('order_phone').errors.required">
+                    Введите поле Телефон клиента<br>
+                </small>
+                <small *ngIf="form.get('order_phone').errors.userPhonePattern">
+                    Использованы некорректные символы<br>
+                </small>
+                <small *ngIf="form.get('order_phone').errors.minlength">
+                    Должно быть не менее 
+                    {{form.get('order_phone').errors.minlength.requiredLength}}
+                    символов, сейчас введено только
+                    {{form.get('order_phone').errors.minlength.actualLength}}<br>
+                </small>
+                <small *ngIf="form.get('order_phone').errors.maxlength">
+                    Должно быть не более
+                    {{form.get('order_phone').errors.maxlength.requiredLength}}
+                    символов, сейчас введено 
+                    {{form.get('order_phone').errors.maxlength.actualLength}}<br>                
+                </small> 
+            </div>
+        </div>
+
+        <div 
+            [ngClass]="{invalid: form.get('order_email').touched && form.get('order_email').invalid}"
+            class="form-control"
+        >  
+            <label for="order_email">Введите email клиента:</label>
+            <input 
+                id="order_email" 
+                type="text" 
+                formControlName="order_email">
+            <div 
+                *ngIf="form.get('order_email').touched && form.get('order_email').invalid"
+                class="validation"
+            >
+                <small *ngIf="form.get('order_email').errors.email">
+                    Недопустимый формат поля Email
+                </small>            
+            </div>        
+        </div>
+
+        <div 
+            [ngClass]="{invalid: form.get('order_typeofact').touched && form.get('order_typeofact').invalid}"
+            class="form-control"
+        >
+            <label>Выберите услугу:<span class="red">*</span></label>
+            <select 
+                id="order_typeofact" 
+                name="order_typeofact" 
+                formControlName="order_typeofact"            
+            >
+                <option value="">...</option>
+                <option *ngFor="let typeoa of typeofacts" [value]="typeoa">
+                    {{typeoa}}
+                </option>   
+            </select> 
+            <div 
+                *ngIf="form.get('order_typeofact').touched && form.get('order_typeofact').invalid"
+                class="validation"
+            >
+                <small *ngIf="form.get('order_typeofact').errors.required">
+                    Для создания заказа необходимо выбрать услугу
+                </small>
+            </div>
+        </div>
+
+        <div class="form-control">
+            <label>Текст заказа: <span class="red">*</span></label>
+            <quill-editor formControlName="order_text"></quill-editor>
+            <div 
+                *ngIf="form.get('order_text').invalid && form.get('order_text').touched"
+                class="validation"
+            >
+                <small *ngIf="form.get('order_text').errors.required">
+                    Введите поле Текст заказа
+                </small>              
+                <small *ngIf="form.get('order_text').errors?.maxlength">
+                    Должно быть не более
+                    {{form.get('order_text').errors.maxlength.requiredLength}}
+                    символов, сейчас введено 
+                    {{form.get('order_text').errors.maxlength.actualLength}}<br>
+                </small>                
+            </div>
+        </div>
+
+        <div 
+            [ngClass]="{invalid: form.get('order_promo').touched && form.get('order_promo').invalid}"
+            class="form-control"
+        >
+            <label for="order_promo">Введите промокод клиента:</label>
+            <input 
+                id="order_promo" 
+                type="text" 
+                formControlName="order_promo"
+            >  
+            <div 
+                *ngIf="form.get('order_promo').invalid && form.get('order_promo').touched"
+                class="validation"
+            >
+                <small *ngIf="form.get('order_promo').errors?.userPromoPattern">
+                    Использованы некорректные символы<br>
+                </small>
+                <small *ngIf="form.get('order_promo').errors?.minlength">
+                    Должно быть не менее 
+                    {{form.get('order_promo').errors.minlength.requiredLength}}
+                    символов, сейчас введено только
+                    {{form.get('order_promo').errors.minlength.actualLength}}<br>
+                </small>
+                <small *ngIf="form.get('order_promo').errors?.maxlength">
+                    Должно быть не более
+                    {{form.get('order_promo').errors.maxlength.requiredLength}}
+                    символов, сейчас введено 
+                    {{form.get('order_promo').errors.maxlength.actualLength}}<br>
+                </small>
+            </div>    
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-primary mb40"
+            [disabled]="form.invalid || submitted"
+        >   
+            Изменить заказ
+        </button>         
+
+    </form>
+</div>
+<ng-template #loadingBlock>
+    <p class="text-center">
+        Идет загрузка...<br>    
+        <img src="../../assets/img/loader2.svg">
+    </p>  
+</ng-template>

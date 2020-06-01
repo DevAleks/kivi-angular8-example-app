@@ -1,0 +1,7 @@
+.alert-wrap {
+    position: fixed;
+    top:50px;
+    right: 50px;
+    max-width: 200px;
+    z-index: 1000;
+}
