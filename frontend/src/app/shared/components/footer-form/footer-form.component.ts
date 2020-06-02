@@ -5,6 +5,7 @@ import { FormBottom } from '../../classes/form-bt-class'
 import { FormsService } from '../../services/forms.service';
 import { FormValidators } from '../../form.validators'
 import { Subscription } from 'rxjs';
+import { Activites } from '../../classes/classes';
 
 @Component({
   selector: 'app-footer-form',
@@ -14,9 +15,8 @@ import { Subscription } from 'rxjs';
 })
 
 export class FooterFormComponent implements OnDestroy {
-
-    // Виды услуг для селектора в шаблоне
-  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"]  
+  
+  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы
 
@@ -39,6 +39,8 @@ export class FooterFormComponent implements OnDestroy {
   loading = false // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {   
+
+    console.log(this.typeofacts)
 
     // Валидация формы
     this.footerForm = new FormGroup({             

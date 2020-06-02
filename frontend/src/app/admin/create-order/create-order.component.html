@@ -95,7 +95,7 @@
                 formControlName="order_typeofact"            
             >
                 <option value="">...</option>
-                <option *ngFor="let typeoa of typeofacts" [value]="typeoa">
+                <option *ngFor="let typeoa of typeofacts.activities" [value]="typeoa">
                     {{typeoa}}
                 </option>   
             </select> 

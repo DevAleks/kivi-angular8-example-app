@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
 import { FormValidators } from '../../shared/form.validators'
 import { FormBottom } from '../../shared/classes/form-bt-class';
 import { OrdersService } from '../shared/services/orders.service';
-import { Subscription } from 'rxjs';
 import { AlertService } from '../shared/services/alert.service';
+import { Activites } from 'src/app/shared/classes/classes';
 
 @Component({
   selector: 'app-create-order',
@@ -17,8 +19,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
 
   createSub: Subscription
 
-  // Виды услуг для селектора в шаблоне
-  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
+  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   constructor(
     private ordersService: OrdersService,

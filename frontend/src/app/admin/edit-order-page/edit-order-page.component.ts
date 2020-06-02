@@ -1,12 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { OrdersService } from '../shared/services/orders.service';
-import { switchMap } from 'rxjs/operators';
-import { FormBottom } from 'src/app/shared/classes/form-bt-class';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FormValidators } from 'src/app/shared/form.validators';
+import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+
+import { FormBottom } from 'src/app/shared/classes/form-bt-class';
+import { OrdersService } from '../shared/services/orders.service';
+import { FormValidators } from 'src/app/shared/form.validators';
 import { AlertService } from '../shared/services/alert.service';
+import { Activites } from 'src/app/shared/classes/classes';
 
 @Component({
   selector: 'app-edit-order-page',
@@ -23,8 +25,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
 
   updateSub: Subscription
 
-  // Виды услуг для селектора в шаблоне
-  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
+  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   constructor(
     private route: ActivatedRoute,

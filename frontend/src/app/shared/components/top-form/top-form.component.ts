@@ -6,6 +6,7 @@ import { FormsService } from '../../services/forms.service';
 import { FormBottom } from '../../classes/form-bt-class';
 import { ClickForm } from 'src/app/shared/classes/click-class';
 import { FormValidators } from '../../form.validators'
+import { Activites } from '../../classes/classes';
 
 @Component({
   selector: 'app-top-form',
@@ -21,8 +22,7 @@ export class TopFormComponent {
 
   servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы  
 
-  // Виды услуг для селектора в шаблоне
-  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"]
+  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   switcher_valid: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
 
