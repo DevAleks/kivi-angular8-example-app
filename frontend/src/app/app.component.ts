@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
+import { Component } from '@angular/core'
+import { ViewEncapsulation } from '@angular/core'
+import { Title, Meta } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-root',

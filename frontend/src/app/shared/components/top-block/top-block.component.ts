@@ -16,9 +16,6 @@ export class TopBlockComponent {
   // Обрабатываем клики для открытия в модальном окне форм topForm, questionForm, callorderForm
   openFormClick(openClick: ClickInt) {
     this.formsService.openForm(openClick)
-    console.log('----- Component ------')
-    console.log(openClick.typeofform)
-    console.log(openClick.typeofact)
   }
 
 }

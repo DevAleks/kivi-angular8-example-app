@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormsService } from '../shared/services/forms.service'
-import { ClickInt } from '../shared/interfaces/interfaces';
+import { ClickInt } from '../shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-rafting',
@@ -9,7 +9,7 @@ import { ClickInt } from '../shared/interfaces/interfaces';
 })
 export class RaftingComponent {
 
-  modal_switcher: boolean; // Свитчер включения окна с формой 
+  //modal_switcher: boolean; // Свитчер включения окна с формой 
 
   // Images LazyLoader
   // Семейный рафтинг
