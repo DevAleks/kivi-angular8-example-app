@@ -89,14 +89,14 @@ export class FirstFormComponent implements OnDestroy {
   }
 
   submitFirst() {  
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию    
-      
     // Проверяем валидность формы перед отправкой
     if (this.firstForm.invalid) {  
       return
     }
 
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию    
+      
     // Заполнение отправляемого на сервер объекта данными из формы
     const formFirst = {
       typeofact: this.typeofact, 
@@ -110,22 +110,22 @@ export class FirstFormComponent implements OnDestroy {
 
     this.loading = true // Включаем отображение индикатора загрузки
     this.switcher = true // Включаем показ окна с результатом отправки формы
-    
-      // Отправка оъекта на сервер и получение ответа от сервера
-      this.servRespSub = this.formsService.postForm(formFirst)
-        .subscribe(
-          (data: OrdersInt) => {
-            this.receivedFormFirst = data // Получаем данные с сервера
-            this.formValidError = false // Отключаем проверку ошибок валидации для формы
-            this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
-            this.loading = false // Выключаем отображение индикатора загрузки
-            this.firstForm.reset() // Очищаем значения успешно отправленной формы
-          },
-          error => {
-            this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
-            this.loading = false // Выключаем отображение индикатора загрузки
-          }
-        )   
+
+    // Отправка оъекта на сервер и получение ответа от сервера
+    this.servRespSub = this.formsService.postForm(formFirst)
+    .subscribe(
+      (data: OrdersInt) => {
+        this.receivedFormFirst = data // Получаем данные с сервера
+        this.formValidError = false // Отключаем проверку ошибок валидации для формы
+        this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
+        this.loading = false // Выключаем отображение индикатора загрузки
+        this.firstForm.reset() // Очищаем значения успешно отправленной формы
+      },
+      error => {
+        this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
+        this.loading = false // Выключаем отображение индикатора загрузки
+      }
+    )         
   }  
 
   ngOnDestroy() {

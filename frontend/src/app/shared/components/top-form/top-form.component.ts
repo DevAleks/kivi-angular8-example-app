@@ -90,13 +90,13 @@ export class TopFormComponent {
   }
 
   submitTop() {  
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
-
     // Проверяем валидность формы перед отправкой
     if (this.topForm.invalid) {  
       return
     }
+
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const topFormToServ = {
