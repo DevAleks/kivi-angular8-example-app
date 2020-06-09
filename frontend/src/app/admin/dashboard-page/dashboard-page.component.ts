@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { OrdersService } from '../shared/services/orders.service';
-import { FormBottom } from 'src/app/shared/classes/form-bt-class';
-import { Subscription } from 'rxjs';
-import { AlertService } from '../shared/services/alert.service';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs'
+
+import { OrdersService } from '../shared/services/orders.service'
+import { AlertService } from '../shared/services/alert.service'
+import { OrdersInt } from 'src/app/shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-dashboard-page',
@@ -11,7 +12,7 @@ import { AlertService } from '../shared/services/alert.service';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
 
-  orders: FormBottom[] = []
+  orders: OrdersInt[] = []
 
   ordersSub: Subscription
   

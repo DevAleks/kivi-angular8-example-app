@@ -1,11 +1,10 @@
-import { Component, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs'
+import { FormGroup, FormControl, Validators} from '@angular/forms'
 
-import { FormsService } from '../../services/forms.service';
-import { FormBottom } from '../../classes/form-bt-class';
-import { ClickForm } from 'src/app/shared/classes/click-class'
+import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
+import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-first-form',
@@ -31,9 +30,7 @@ export class FirstFormComponent implements OnDestroy {
 
   errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  formfirst: FormBottom = new FormBottom() // Данные вводимого заказа для формы firstForm
-
-  receivedFormFirst: FormBottom = new FormBottom() // Данные заказа из формы firstForm, полученные с сервера
+  receivedFormFirst: OrdersInt // Данные заказа из формы firstForm, полученные с сервера
 
   firstForm : FormGroup // Объект FormGroup для формы firstForm
 
@@ -42,12 +39,7 @@ export class FirstFormComponent implements OnDestroy {
   constructor(private formsService: FormsService) {  
     
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickForm) => {
-      
-      // Проверки
-      console.log('----- First-form component ------')
-      console.log(data.typeofform)
-      console.log(data.typeofact)
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
       
       if (data.typeofform == 2) {
         this.modal_switcher = true
@@ -100,44 +92,29 @@ export class FirstFormComponent implements OnDestroy {
     this.errServ = false // Сбрасываем ошибку работы с сервером 
     this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию    
       
-    // Проверки:
-    //console.log(this.firstForm) 
-    console.log(this.firstForm.controls['userName'].valid)
-    console.log(this.firstForm.controls['userPhone'].valid)
-    console.log(this.firstForm.controls['userEmail'].valid)
-    console.log(this.firstForm.controls['userPromo'].valid)
-    console.log(this.typeofact)
-    console.log(this.firstForm.value['userName'])
-    console.log(this.firstForm.value['userPhone'])
-    console.log(this.firstForm.value['userEmail'])
-    console.log(this.firstForm.value['userPromo'])
-    //console.log(this.switcher)    
+    // Проверяем валидность формы перед отправкой
+    if (this.firstForm.invalid) {  
+      return
+    }
 
-    // Условие отправки данных из формы на сервер
-    if ((this.typeofact.length > 0) &&
-    this.firstForm.controls['userName'].valid && 
-    this.firstForm.controls['userPhone'].valid && 
-    this.firstForm.controls['userEmail'].valid && 
-    this.firstForm.controls['userPromo'].valid) 
-    {      
-      // Заполнение отправляемого на сервер объекта данными из формы
-      this.formfirst = {
-        typeofact: this.typeofact, 
-        name: this.firstForm.value['userName'].trim(), 
-        phone: this.firstForm.value['userPhone'].trim(),
-        email: this.firstForm.value['userEmail'].trim(),
-        promo: this.firstForm.value['userPromo'].trim(),
-        typeofform: 2,
-        status: false
-      }
+    // Заполнение отправляемого на сервер объекта данными из формы
+    const formFirst = {
+      typeofact: this.typeofact, 
+      name: this.firstForm.value.userName, 
+      phone: this.firstForm.value.userPhone,
+      email: this.firstForm.value.userEmail,
+      promo: this.firstForm.value.userPromo,
+      typeofform: 2,
+      status: false
+    }
 
-      this.loading = true // Включаем отображение индикатора загрузки
-      this.switcher = true // Включаем показ окна с результатом отправки формы
-
+    this.loading = true // Включаем отображение индикатора загрузки
+    this.switcher = true // Включаем показ окна с результатом отправки формы
+    
       // Отправка оъекта на сервер и получение ответа от сервера
-      this.servRespSub = this.formsService.postForm(this.formfirst)
+      this.servRespSub = this.formsService.postForm(formFirst)
         .subscribe(
-          (data: FormBottom) => {
+          (data: OrdersInt) => {
             this.receivedFormFirst = data // Получаем данные с сервера
             this.formValidError = false // Отключаем проверку ошибок валидации для формы
             this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
@@ -145,13 +122,10 @@ export class FirstFormComponent implements OnDestroy {
             this.firstForm.reset() // Очищаем значения успешно отправленной формы
           },
           error => {
-            console.log(error)
             this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
             this.loading = false // Выключаем отображение индикатора загрузки
           }
-        )                        
-    }
-    
+        )   
   }  
 
   ngOnDestroy() {
@@ -160,11 +134,10 @@ export class FirstFormComponent implements OnDestroy {
       this.clicksSub.unsubscribe()
     }
 
-    // удаляем подписку на продолжение получения ответа сервера
+    // удаляем подписку на продолжение получения ответа сервера с данными заказа
     if (this.servRespSub) {
       this.servRespSub.unsubscribe()
     }
-
   }
 
 }

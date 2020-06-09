@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { FormsService } from '../../services/forms.service';
-
-import { ClickForm } from '../../classes/click-class'
+import { Component } from '@angular/core'
+import { FormsService } from '../../services/forms.service'
+import { ClickInt } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-top-block',
@@ -15,11 +14,11 @@ export class TopBlockComponent {
   constructor(private formsService: FormsService) { }
 
   // Обрабатываем клики для открытия в модальном окне форм topForm, questionForm, callorderForm
-  openFormClick(openClick: ClickForm) {
-    this.formsService.openForm(openClick);
-    console.log('----- Component ------');
-    console.log(openClick.typeofform);
-    console.log(openClick.typeofact);
+  openFormClick(openClick: ClickInt) {
+    this.formsService.openForm(openClick)
+    console.log('----- Component ------')
+    console.log(openClick.typeofform)
+    console.log(openClick.typeofact)
   }
 
 }

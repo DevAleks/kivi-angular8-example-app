@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { FormBottom } from 'src/app/shared/classes/form-bt-class';
+import { OrdersInt } from 'src/app/shared/interfaces/interfaces';
 
 @Pipe({
     name: 'searchOrders'
 })
 export class SearchPipe implements PipeTransform {
-    transform(orders: FormBottom[], search = ''):FormBottom[] {
+    transform(orders: OrdersInt[], search = ''):OrdersInt[] {
         if (!search.trim()) {
             return orders
         }

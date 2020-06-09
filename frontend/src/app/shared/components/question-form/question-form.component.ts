@@ -1,11 +1,10 @@
-import { Component, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Component, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core'
+import { FormGroup, FormControl, Validators} from '@angular/forms'
+import { Subscription } from 'rxjs'
 
-import { FormsService } from '../../services/forms.service';
-import { FormBottom } from '../../classes/form-bt-class';
-import { ClickForm } from 'src/app/shared/classes/click-class';
+import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
+import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-question-form',
@@ -29,9 +28,7 @@ export class QuestionFormComponent implements OnDestroy {
 
   errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  formquestion: FormBottom = new FormBottom() // Данные вводимого заказа для формы questionForm
-
-  receivedFormQuestion: FormBottom = new FormBottom() // Данные заказа из формы questionForm, полученные с сервера
+  receivedFormQuestion: OrdersInt // Данные заказа из формы questionForm, полученные с сервера
 
   questionForm : FormGroup // Объект FormGroup для формы questionForm
 
@@ -40,7 +37,7 @@ export class QuestionFormComponent implements OnDestroy {
   constructor(private formsService: FormsService) { 
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickForm) => {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
       if (data.typeofform == 5) {
         this.modal_switcher = true
       }      
@@ -84,56 +81,41 @@ export class QuestionFormComponent implements OnDestroy {
 
   submitQuestion() {  
     this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
-    
-    // Проверки:
-    //console.log(this.questionForm)
-    console.log(this.questionForm.controls['userText'].valid)
-    console.log(this.questionForm.controls['userPhone'].valid)
-    console.log(this.questionForm.controls['userEmail'].valid)
-    console.log(this.questionForm.value['userText'])
-    console.log(this.questionForm.value['userPhone'])
-    console.log(this.questionForm.value['userEmail'])
-    console.log('switcher = ',this.switcher)
-    console.log('switcher = ',this.switcher)
-    console.log('switcher = ',this.switcher)    
+    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию 
 
-    // Условие отправки данных из формы на сервер
-    if (this.questionForm.controls['userText'].valid && 
-    this.questionForm.controls['userPhone'].valid &&
-    this.questionForm.controls['userEmail'].valid) 
-    {    
-      // Заполнение отправляемого на сервер объекта данными из формы
-      this.formquestion = {
-        typeofact: 'Задать вопрос', 
-        phone: this.questionForm.value['userPhone'].trim(),
-        email: this.questionForm.value['userEmail'].trim(),
-        text: this.questionForm.value['userText'].trim(),
-        typeofform: 5,
-        status: false
-      }
-      
-      this.loading = true // Включаем отображение индикатора загрузки
-      this.switcher = true // Включаем показ окна с индикатором загрузки и результатом отправки формы 
-
-      // Отправка оъекта на сервер и получение ответа от сервера
-      this.servRespSub = this.formsService.postForm(this.formquestion)      
-        .subscribe(
-          (data: FormBottom) => {
-            this.receivedFormQuestion = data // Получаем данные с сервера
-            this.formValidError = false // Отключаем проверку ошибок валидации для формы
-            this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"              
-            this.loading = false // Выключаем отображение индикатора загрузки    
-            this.questionForm.reset() // Очищаем значения успешно отправленной формы                        
-          },
-          error => {
-            console.log(error)
-            this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
-            this.loading = false // Выключаем отображение индикатора загрузки              
-          }
-        )
+    // Проверяем валидность формы перед отправкой
+    if (this.questionForm.invalid) {   
+      return
     }
-     
+
+    // Заполнение отправляемого на сервер объекта данными из формы
+    const formQuestion = {
+      typeofact: 'Задать вопрос', 
+      phone: this.questionForm.value.userPhone,
+      email: this.questionForm.value.userEmail,
+      text: this.questionForm.value.userText,
+      typeofform: 5,
+      status: false
+    }
+
+    this.loading = true // Включаем отображение индикатора загрузки
+    this.switcher = true // Включаем показ окна с индикатором загрузки и результатом отправки формы 
+
+    // Отправка оъекта на сервер и получение ответа от сервера
+    this.servRespSub = this.formsService.postForm(formQuestion)      
+      .subscribe(
+        (data: OrdersInt) => {
+          this.receivedFormQuestion = data // Получаем данные с сервера
+          this.formValidError = false // Отключаем проверку ошибок валидации для формы
+          this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"              
+          this.loading = false // Выключаем отображение индикатора загрузки    
+          this.questionForm.reset() // Очищаем значения успешно отправленной формы                        
+        },
+        error => {
+          this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
+          this.loading = false // Выключаем отображение индикатора загрузки              
+        }
+      )      
   }
 
   ngOnDestroy() {

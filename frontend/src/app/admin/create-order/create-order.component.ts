@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Subscription } from 'rxjs'
 
 import { FormValidators } from '../../shared/form.validators'
-import { FormBottom } from '../../shared/classes/form-bt-class';
-import { OrdersService } from '../shared/services/orders.service';
-import { AlertService } from '../shared/services/alert.service';
-import { Activites } from 'src/app/shared/classes/classes';
+import { OrdersService } from '../shared/services/orders.service'
+import { AlertService } from '../shared/services/alert.service'
+import { Activites } from 'src/app/shared/classes/classes'
+import { OrdersInt } from 'src/app/shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-create-order',
@@ -61,9 +61,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
       return  
     }  
 
-    //console.log('Form is valid')
-
-    const order: FormBottom = {      
+    const order: OrdersInt = {      
       name: this.form.value.order_name, 
       phone: this.form.value.order_phone,
       email: this.form.value.order_email,
@@ -73,14 +71,10 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
       typeofform: 6
     }
 
-    // console.log(order)
-
     this.createSub = this.ordersService.create(order).subscribe(()=> {
-      //console.log('Новый заказ отправлен на бекэнд')
       this.form.reset()
       this.alertService.success('Новый заказ создан')
     })
-
   }
 
   ngOnDestroy() {
@@ -89,6 +83,4 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
     } 
     
   }
-
-
 }

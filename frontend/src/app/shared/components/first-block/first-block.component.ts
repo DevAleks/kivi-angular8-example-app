@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GetJsonService } from '../../services/get-json.service';
-import { FormsService } from '../../services/forms.service';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs'
 
-import { ClickForm } from '../../classes/click-class'
-import { PagesInt } from 'src/app/shared/interfaces/pages-int';
-import { Subscription } from 'rxjs';
+import { GetJsonService } from '../../services/get-json.service'
+import { FormsService } from '../../services/forms.service'
+import { ClickInt } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-first-block',
@@ -14,7 +13,9 @@ import { Subscription } from 'rxjs';
 
 export class FirstBlockComponent implements OnInit, OnDestroy {
   
-  h1:any // Заголовок h1
+  //h1:any // Заголовок h1
+
+  h1: string
   
   modal_switcher: boolean // Свитчер включения окна с формой  
   
@@ -57,7 +58,7 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
   ) { }
 
   // Обрабатываем клики для открытия формы firstForm в модальном окне
-  openFormClick(openClick: ClickForm) {
+  openFormClick(openClick: ClickInt) {
     this.formsService.openForm(openClick)
   }
 
@@ -65,9 +66,9 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
     // Включаем отображение индикатора загрузки заголовка Hh1
     this.loading = true 
     // Получаем значение для заголовка h1 из json файла
-    this.getjsonService.getPagesJson()
+    this.jsonSub = this.getjsonService.getPagesJson()
       .subscribe(
-        (data:PagesInt) => {
+        (data) => {
           this.h1 = data["index"][0]["h1"]
           this.loading = false // Выключаем отображение индикатора загрузки заголовка h1
         },

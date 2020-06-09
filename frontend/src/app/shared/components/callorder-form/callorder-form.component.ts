@@ -1,11 +1,10 @@
-import { Component, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs'
+import { FormGroup, FormControl, Validators} from '@angular/forms'
 
-import { FormsService } from '../../services/forms.service';
-import { FormBottom } from '../../classes/form-bt-class';
-import { ClickForm } from 'src/app/shared/classes/click-class';
+import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
+import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-callorder-form',
@@ -29,9 +28,7 @@ export class CallorderFormComponent implements OnDestroy {
 
   errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  formcallorder: FormBottom = new FormBottom() // Данные вводимого заказа для формы callorderForm
-
-  receivedFormCallOrder: FormBottom = new FormBottom() // Данные заказа из формы callorderForm, полученные с сервера
+  receivedFormCallOrder: OrdersInt // Данные заказа из формы callorderForm, полученные с сервера
 
   callorderForm : FormGroup // Объект FormGroup для формы callorderForm
 
@@ -40,11 +37,11 @@ export class CallorderFormComponent implements OnDestroy {
   constructor(private formsService: FormsService) {
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickForm) => {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
       if (data.typeofform == 4) {
         this.modal_switcher = true
       }      
-    }); 
+    })
 
     // Валидация формы
     this.callorderForm = new FormGroup({
@@ -60,7 +57,7 @@ export class CallorderFormComponent implements OnDestroy {
         Validators.maxLength(20),
         FormValidators.userPhone
       ])
-    });
+    })
   }
 
   // Закрытие формы кликами мыши
@@ -83,50 +80,40 @@ export class CallorderFormComponent implements OnDestroy {
 
   submitCallOrder() {  
     this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
-    
-    // Проверки:
-    //console.log(this.callorderForm)
-    console.log(this.callorderForm.controls['userName'].valid)
-    console.log(this.callorderForm.controls['userPhone'].valid)
-    console.log(this.callorderForm.value['userName'])
-    console.log(this.callorderForm.value['userPhone'])
-    //console.log(this.switcher)    
+    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию 
 
-    // Условие отправки данных из формы на сервер
-    if (this.callorderForm.controls['userName'].valid && 
-    this.callorderForm.controls['userPhone'].valid) 
-    { 
-      // Заполнение отправляемого на сервер объекта данными из формы
-      this.formcallorder = {
-        typeofact: 'Заказать звонок', 
-        name: this.callorderForm.value['userName'].trim(), 
-        phone: this.callorderForm.value['userPhone'].trim(),
-        typeofform: 4,
-        status: false
-      }; 
+    // Проверяем валидность формы перед отправкой
+    if (this.callorderForm.invalid) {
+      return 
+    } 
 
-      this.loading = true // Включаем отображение индикатора загрузки
-      this.switcher = true // Включаем показ окна с результатом отправки формы
+    // Заполнение отправляемого на сервер объекта данными из формы
+    const formCallOrder = {
+      typeofact: 'Заказать звонок', 
+      name: this.callorderForm.value.userName, 
+      phone: this.callorderForm.value.userPhone,
+      typeofform: 4,
+      status: false
+    }      
 
-      // Отправка оъекта на сервер и получение ответа от сервера
-      this.servRespSub = this.formsService.postForm(this.formcallorder)
-        .subscribe(
-          (data: FormBottom) => {
-            this.receivedFormCallOrder = data // Получаем данные с сервера
-            this.formValidError = false // Отключаем проверку ошибок валидации для формы
-            this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-            this.loading = false // Выключаем отображение индикатора загрузки
-            this.callorderForm.reset() // Очищаем значения успешно отправленной формы
-          },
-          error => {
-            console.log(error)
-            this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
-            this.loading = false // Выключаем отображение индикатора загрузки
-          }
-        )        
-    }
-        
+    this.loading = true // Включаем отображение индикатора загрузки
+    this.switcher = true // Включаем показ окна с результатом отправки формы
+
+    // Отправка оъекта на сервер и получение ответа от сервера
+    this.servRespSub = this.formsService.postForm(formCallOrder)      
+      .subscribe(
+        (data: OrdersInt) => {
+          this.receivedFormCallOrder = data // Получаем данные с сервера
+          this.formValidError = false // Отключаем проверку ошибок валидации для формы
+          this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+          this.loading = false // Выключаем отображение индикатора загрузки
+          this.callorderForm.reset() // Очищаем значения успешно отправленной формы
+        },
+        error => {
+          this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
+          this.loading = false // Выключаем отображение индикатора загрузки
+        }
+      )       
   }
 
   ngOnDestroy() {

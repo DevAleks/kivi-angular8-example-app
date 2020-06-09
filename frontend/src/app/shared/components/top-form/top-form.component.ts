@@ -1,12 +1,11 @@
-import { Component, HostListener, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, HostListener, ViewEncapsulation } from '@angular/core'
+import { Subscription } from 'rxjs'
+import { FormGroup, FormControl, Validators} from '@angular/forms'
 
-import { FormsService } from '../../services/forms.service';
-import { FormBottom } from '../../classes/form-bt-class';
-import { ClickForm } from 'src/app/shared/classes/click-class';
+import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
-import { Activites } from '../../classes/classes';
+import { Activites } from '../../classes/classes'
+import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-top-form',
@@ -32,9 +31,7 @@ export class TopFormComponent {
 
   errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  topFormToServ: FormBottom = new FormBottom() // Данные вводимого заказа для формы topForm
-
-  receivedFormTop: FormBottom = new FormBottom() // Данные заказа из формы topForm, полученные с сервера
+  receivedFormTop: OrdersInt // Данные заказа из формы topForm, полученные с сервера
 
   topForm: FormGroup // Объект FormGroup для формы topForm
 
@@ -43,7 +40,7 @@ export class TopFormComponent {
   constructor(private formsService: FormsService) {
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickForm) => {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
       if (data.typeofform == 3) {
         this.modal_switcher = true
       }      
@@ -95,59 +92,41 @@ export class TopFormComponent {
   submitTop() {  
     this.errServ = false // Сбрасываем ошибку работы с сервером 
     this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
-    
-    // Проверки:
-    console.log(this.topForm.controls['userTypeofact'].valid)
-    console.log(this.topForm.controls['userName'].valid)
-    console.log(this.topForm.controls['userPhone'].valid)
-    console.log(this.topForm.controls['userEmail'].valid)
-    console.log(this.topForm.controls['userPromo'].valid)
-    console.log(this.topForm.value['userTypeofact'])
-    console.log(this.topForm.value['userName'])
-    console.log(this.topForm.value['userPhone'])
-    console.log(this.topForm.value['userEmail'])
-    console.log(this.topForm.value['userPromo'])
-    console.log(this.switcher)    
 
-    // Условие отправки данных из формы на сервер
-    if (this.topForm.controls['userTypeofact'].valid &&
-    this.topForm.controls['userName'].valid && 
-    this.topForm.controls['userPhone'].valid && 
-    this.topForm.controls['userEmail'].valid && 
-    this.topForm.controls['userPromo'].valid) 
-    {      
-      // Заполнение отправляемого на сервер объекта данными из формы
-      this.topFormToServ = {
-        typeofact: this.topForm.value['userTypeofact'], 
-        name: this.topForm.value['userName'].trim(), 
-        phone: this.topForm.value['userPhone'].trim(),
-        email: this.topForm.value['userEmail'].trim(),
-        promo: this.topForm.value['userPromo'].trim(),
-        typeofform: 3,
-        status: false
+    // Проверяем валидность формы перед отправкой
+    if (this.topForm.invalid) {  
+      return
+    }
+
+    // Заполнение отправляемого на сервер объекта данными из формы
+    const topFormToServ = {
+      typeofact: this.topForm.value.userTypeofact, 
+      name: this.topForm.value.userName, 
+      phone: this.topForm.value.userPhone,
+      email: this.topForm.value.userEmail,
+      promo: this.topForm.value.userPromo,
+      typeofform: 3,
+      status: false
+    }  
+
+    this.loading = true // Включаем отображение индикатора загрузки
+    this.switcher = true // Включаем показ окна с результатом отправки формы    
+
+    // Отправка оъекта на сервер и получение ответа от сервера
+    this.servRespSub = this.formsService.postForm(topFormToServ)
+    .subscribe(
+      (data: OrdersInt) => {
+        this.receivedFormTop = data // Получаем данные с сервера
+        this.formValidError = false // Отключаем проверку ошибок валидации для формы
+        this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+        this.loading = false // Выключаем отображение индикатора загрузки
+        this.topForm.reset() // Очищаем значения успешно отправленной формы
+      },
+      error => {
+        this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
+        this.loading = false // Выключаем отображение индикатора загрузки
       }
-
-      this.loading = true // Включаем отображение индикатора загрузки
-      this.switcher = true // Включаем показ окна с результатом отправки формы  
-
-      // Отправка оъекта на сервер и получение ответа от сервера
-      this.servRespSub = this.formsService.postForm(this.topFormToServ)
-        .subscribe(
-          (data: FormBottom) => {
-            this.receivedFormTop = data // Получаем данные с сервера
-            this.formValidError = false // Отключаем проверку ошибок валидации для формы
-            this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-            this.loading = false // Выключаем отображение индикатора загрузки
-            this.topForm.reset() // Очищаем значения успешно отправленной формы
-          },
-          error => {
-            console.log(error)
-            this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
-            this.loading = false // Выключаем отображение индикатора загрузки
-          }
-        )                        
-    }      
-        
+    )      
   }
 
   ngOnDestroy() {

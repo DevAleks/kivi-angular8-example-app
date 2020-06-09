@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsService } from '../../services/forms.service';
-
-import { ClickForm } from '../../classes/click-class'
+import { Component, OnInit } from '@angular/core'
+import { FormsService } from '../../services/forms.service'
+import { ClickInt } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-footer-block',
@@ -14,8 +13,8 @@ export class FooterBlockComponent implements OnInit {
   constructor(private formsService: FormsService) { }
 
   // Обрабатываем клики для открытия в модальном окне форм questionForm, callorderForm
-  openFormClick(openClick: ClickForm) {
-    this.formsService.openForm(openClick);
+  openFormClick(openClick: ClickInt) {
+    this.formsService.openForm(openClick)
   }
 
   ngOnInit() {

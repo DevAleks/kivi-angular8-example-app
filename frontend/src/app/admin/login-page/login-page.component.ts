@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../admin/shared/interfaces';
-import { AuthService } from '../shared/services/auth.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Router, ActivatedRoute, Params } from '@angular/router'
+import { User } from '../../admin/shared/interfaces'
+import { AuthService } from '../shared/services/auth.service'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-login-page',
