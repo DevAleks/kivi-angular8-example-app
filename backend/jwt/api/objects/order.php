@@ -104,8 +104,6 @@ class Order {
         // Если выполнение успешно, то отправляем информацию о всех заказах
         try {
             $stmt->execute();
-            $stmt = null;
-            $this->conn = null;
         } catch (Exception $exception) {
             error_log("Unable to execute statement: " . $exception->getMessage());
             return false;
@@ -183,8 +181,6 @@ class Order {
         // Если выполнение успешно, то отправляем информацию о выбранном заказе
         try {
             $stmt->execute();
-            $stmt = null;
-            $this->conn = null;
         } catch (Exception $exception) {
             error_log("Unable to execute statement: " . $exception->getMessage());
             return false;
