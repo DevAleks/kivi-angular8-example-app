@@ -58,16 +58,16 @@ if($formbt) {
 
       // Готовим данные для ответа на фронтенд, если заказ успешно создан 
       // Обязательные 
-      $formbt_back->phone = 'Телефон: '.$formbt['phone'];    
-      $formbt_back->typeofact = 'Тип активности: '.$formbt['typeofact'];
-      $formbt_back->typeofform = $formbt['typeofform']; // Тип формы
-      $formbt_back->status = false; // Статус ошибки запроса в БД   
+      $formbt_back['phone'] = 'Телефон: '.$formbt['phone'];    
+      $formbt_back['typeofact'] = 'Тип активности: '.$formbt['typeofact'];
+      $formbt_back['typeofform'] = $formbt['typeofform']; // Тип формы
+      $formbt_back['status'] = false; // Статус ошибки запроса в БД   
 
       // Необязательные
-      $formbt_back->name = isset($formbt['name']) ? 'Имя: '.$formbt['name'] : '';
-      $formbt_back->email = isset($formbt['email']) ? 'Email: '.$formbt['email'] : '';
-      $formbt_back->promo = isset($formbt['promo']) ? 'Promo: '.$formbt['promo'] : '';
-      $formbt_back->text = isset($formbt['text']) ? 'Вопрос: '.$formbt['text'] : '';
+      $formbt_back['name'] = isset($formbt['name']) ? 'Имя: '.$formbt['name'] : '';
+      $formbt_back['email'] = isset($formbt['email']) ? 'Email: '.$formbt['email'] : '';
+      $formbt_back['promo'] = isset($formbt['promo']) ? 'Promo: '.$formbt['promo'] : '';
+      $formbt_back['text'] = isset($formbt['text']) ? 'Вопрос: '.$formbt['text'] : '';
 
       // Отправляем ответ на фронтенд
       $answer = json_encode($formbt_back);
