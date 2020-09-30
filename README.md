@@ -66,7 +66,7 @@
  * Обработка ошибок
 - [x] Интерсептор для проверки валидности текущего токена в админке: [frontend/src/app/shared/auth.interceptor.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/auth.interceptor.ts) 
 - [x] Ленивая загрузка изображений в пользовательской части с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
-- [x] WYSIWYG редактор [Quill](https://www.npmjs.com/package/quill) для формы создания новых заказов в админке
+- [x] WYSIWYG редактор [ngx-quill](https://www.npmjs.com/package/ngx-quill) для формы создания новых заказов в админке
 - [x] Пагинация на странице списка заказов [frontend/src/app/admin/dashboard-page/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/dashboard-page/) с помощью [jw-angular-pagination](https://github.com/cornflourblue/jw-angular-pagination)
 - [x] Ru локализация в date pipe на странице списка заказов [frontend/src/app/admin/dashboard-page/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/dashboard-page/)
 - [x] Поддержка PWA. Если собрать приложение в режиме prodact, то оно будет работать как PWA, с использованием встроенного Service Worker
