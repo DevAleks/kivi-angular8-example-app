@@ -5,7 +5,7 @@
         <label>Выберите услугу:<span class="req">*</span></label>
         <select id="serviceFooterForm" name="typeofact" formControlName="userTypeofact" [ngClass]="{gr_error: switcher && footerForm.controls['userTypeofact'].invalid}">
           <option value="">...</option>
-          <option *ngFor="let typeoa of typeofacts" [value]="typeoa">
+          <option *ngFor="let typeoa of typeofacts.activities" [value]="typeoa">
             {{typeoa}}
           </option>
         </select>         

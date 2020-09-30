@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsService } from '../shared/services/forms.service';
-
-import { ClickForm } from '../shared/classes/click-class'
+import { Component, OnInit } from '@angular/core'
+import { FormsService } from '../shared/services/forms.service'
+import { ClickInt } from '../shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-rafting',
@@ -10,7 +9,7 @@ import { ClickForm } from '../shared/classes/click-class'
 })
 export class RaftingComponent {
 
-  modal_switcher: boolean; // Свитчер включения окна с формой 
+  //modal_switcher: boolean; // Свитчер включения окна с формой 
 
   // Images LazyLoader
   // Семейный рафтинг
@@ -28,8 +27,8 @@ export class RaftingComponent {
   constructor(private formsService: FormsService) { }
 
   // Обрабатываем клики для открытия в модальном окне формы firstForm
-  openFormClick(openClick: ClickForm) {
-    this.formsService.openForm(openClick);
+  openFormClick(openClick: ClickInt) {
+    this.formsService.openForm(openClick)
   }
 
 }

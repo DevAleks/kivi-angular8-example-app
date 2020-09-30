@@ -73,7 +73,8 @@
             <input 
                 id="order_email" 
                 type="text" 
-                formControlName="order_email">
+                formControlName="order_email"
+            >
             <div 
                 *ngIf="form.get('order_email').touched && form.get('order_email').invalid"
                 class="validation"
@@ -95,7 +96,7 @@
                 formControlName="order_typeofact"            
             >
                 <option value="">...</option>
-                <option *ngFor="let typeoa of typeofacts" [value]="typeoa">
+                <option *ngFor="let typeoa of typeofacts.activities" [value]="typeoa">
                     {{typeoa}}
                 </option>   
             </select> 

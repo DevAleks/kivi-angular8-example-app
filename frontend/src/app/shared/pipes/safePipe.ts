@@ -1,12 +1,12 @@
-import { Pipe, PipeTransform, SecurityContext } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Pipe, PipeTransform, SecurityContext } from '@angular/core'
+import { DomSanitizer } from '@angular/platform-browser'
 
 // Pipe для ссылки на Youtube видео в шаблоне компонента VideoBlockComponent
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
     transform(url:any) {
-      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url)
   }
 } 
 

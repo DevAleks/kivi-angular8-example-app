@@ -80,7 +80,7 @@ if($jwt) {
         
             // покажем сообщение о том, что новый заказ был создан 
             $answer = json_encode(array(
-                "message" => "A new order was successfully created"
+                "message" => "Новый заказ успешно создан"
             ));
         }
  
@@ -90,7 +90,7 @@ if($jwt) {
             $httpResponseCode = 400;
         
             // покажем сообщение о том, что создать новый заказ не удалось 
-            $answer = json_encode(array("message" => "Can't create a new order"));
+            $answer = json_encode(array("message" => "Не удалось создать заказ"));
         }
 
     }

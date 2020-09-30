@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS users (
   id int(11) unsigned NOT NULL auto_increment,
   firstname varchar(256) NOT NULL,
   lastname varchar(256) NOT NULL,
-  email varchar(256) NOT NULL,
+  email varchar(256) NOT NULL UNIQUE,
   password varchar(2048) NOT NULL,
   created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   modified timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -121,6 +121,8 @@ ALTER TABLE autorization ADD email varchar(256) NOT NULL AFTER lastname;
 ALTER TABLE autorization ADD password varchar(2048) NOT NULL AFTER email;
 
 RENAME TABLE autorization TO users;
+
+ALTER TABLE users MODIFY email varchar(256) NOT NULL UNIQUE;
 */
 
 $mysqli->close();

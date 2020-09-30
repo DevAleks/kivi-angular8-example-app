@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { OrdersService } from '../shared/services/orders.service';
-import { switchMap } from 'rxjs/operators';
-import { FormBottom } from 'src/app/shared/classes/form-bt-class';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FormValidators } from 'src/app/shared/form.validators';
-import { Subscription } from 'rxjs';
-import { AlertService } from '../shared/services/alert.service';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { ActivatedRoute, Params } from '@angular/router'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { switchMap } from 'rxjs/operators'
+import { Subscription } from 'rxjs'
+
+import { OrdersService } from '../shared/services/orders.service'
+import { FormValidators } from 'src/app/shared/form.validators'
+import { AlertService } from '../shared/services/alert.service'
+import { Activites } from 'src/app/shared/classes/classes'
+import { OrdersInt } from 'src/app/shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-edit-order-page',
@@ -17,14 +19,13 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup
 
-  order: FormBottom
+  order: OrdersInt
 
   submitted = false
 
   updateSub: Subscription
 
-  // Виды услуг для селектора в шаблоне
-  typeofacts: string[] = ["Рафтинг", "Проведение мероприятий", "Туры / Походы", "Аренда площадок", "Аренда байдарок", "Прогулки на каяках", "Другое"];    
+  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +38,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
       switchMap( (params: Params) => {
         return this.orderService.getById(params['id'])
       })
-    ).subscribe( (order: FormBottom) => {
+    ).subscribe( (order: OrdersInt) => {
       this.order = order,
       this.form = new FormGroup({
         order_name: new FormControl(order.name, [
