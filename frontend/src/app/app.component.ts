@@ -16,9 +16,6 @@ export class AppComponent {
   ) {
     this.title.setTitle('Кивиниеми - база рафтинга и активного отдыха. Лосево, Ленинградская область')
     this.meta.addTags([
-      {charset: 'UTF-8'},
-      {httpEquiv: 'X-UA-Compatible', content: 'IE=edge', title: '123'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {name: 'decriptions', content: 'Активный отдых, рафтинг, аренда площадок и проведение корпоративных мероприятий в Лосево. Почувствуйте вкус лета!'},
       {name: 'keywords', content: 'активный отдых, база рафтинга, проведение мероприятий, аренда площадок'},
       {property: 'og:title', content: 'Кивиниеми - база рафтинга и активного отдыха. Почувствуй вкус лета!'},
