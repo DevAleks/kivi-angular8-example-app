@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://angular.io/">
-    <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Logo" width=72 height=72>
+    <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Logo" width="72" height="72">
   </a>
   <h1 align="center">Kivi-App, учебное приложение на Angular 8.3.23 и Typescript</h1>
 </p>
