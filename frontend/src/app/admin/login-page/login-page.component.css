@@ -1,3 +1,5 @@
+@import '../../../assets/css/admin.css'; /* Стили админки */
+
 form {
     max-width:600px;
     margin: 0 auto;
