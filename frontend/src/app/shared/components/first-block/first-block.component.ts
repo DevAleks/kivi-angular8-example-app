@@ -13,8 +13,6 @@ import { ClickInt } from '../../interfaces/interfaces'
 
 export class FirstBlockComponent implements OnInit, OnDestroy {
   
-  //h1:any // Заголовок h1
-
   h1: string
   
   modal_switcher: boolean // Свитчер включения окна с формой  
@@ -23,34 +21,24 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
 
   jsonSub: Subscription // Переменная для подписки на получение заголовка h1 из json файла
 
-  // Images LazyLoader
-  // Рафтинг
-  defaultImage1 = '../../assets/img/img-ldr-wht-312px.svg'
-  lazyLoad1 = '../../assets/img/icons/rafting.jpg' 
+  // Images LazyLoader  
+  defaultImage = '../../assets/img/img-ldr-wht-312px.svg' // Default
 
-  // Аренда площадок
-  defaultImage2 = '../../assets/img/img-ldr-wht-312px.svg'
-  lazyLoad2 = '../../assets/img/icons/arenda-ploshadok-dlya-meropriyatiy.jpg'   
-
-  // Проведение мероприятий
-  defaultImage3 = '../../assets/img/img-ldr-wht-312px.svg'
-  lazyLoad3 = '../../assets/img/icons/provedenie-meropriyatiy.jpg'
-
-  // Аренда байдарок и каяков
-  defaultImage4 = '../../assets/img/img-ldr-wht-312px.svg'
-  lazyLoad4 = '../../assets/img/icons/arenda-baydarok-i-kayakov.jpg'
+  lazyLoad0 = '../../assets/img/logo.png' // Logo  
   
-   // Туры, походы
-  defaultImage5 = '../../assets/img/img-ldr-wht-312px.svg'
-  lazyLoad5 = '../../assets/img/icons/turi-pohodi.jpg'
-
-  // Другие активности
-  defaultImage6 = '../../assets/img/img-ldr-wht-312px.svg'
-  lazyLoad6 = '../../assets/img/icons/drugie-aktivnosti.jpg'  
-
-  // Подарочные сертификаты
-  defaultImage7 = '../../assets/img/img-ldr-wht-312px.svg'
-  lazyLoad7 = '../../assets/img/podarochnie-sertifikati.jpg'
+  lazyLoad1 = '../../assets/img/icons/rafting.jpg' // Рафтинг
+  
+  lazyLoad2 = '../../assets/img/icons/arenda-ploshadok-dlya-meropriyatiy.jpg' // Аренда площадок   
+  
+  lazyLoad3 = '../../assets/img/icons/provedenie-meropriyatiy.jpg' // Проведение мероприятий
+  
+  lazyLoad4 = '../../assets/img/icons/arenda-baydarok-i-kayakov.jpg' // Аренда байдарок и каяков
+  
+  lazyLoad5 = '../../assets/img/icons/turi-pohodi.jpg' // Туры, походы
+  
+  lazyLoad6 = '../../assets/img/icons/drugie-aktivnosti.jpg' // Другие активности 
+  
+  lazyLoad7 = '../../assets/img/podarochnie-sertifikati.jpg' // Подарочные сертификаты
 
   constructor(
     private getjsonService: GetJsonService, 

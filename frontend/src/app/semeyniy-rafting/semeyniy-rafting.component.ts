@@ -9,7 +9,12 @@ import { ClickInt } from '../shared/interfaces/interfaces'
 })
 export class SemeyniyRaftingComponent {
 
-  //modal_switcher: boolean // Свитчер включения окна с формой 
+  // Images LazyLoader
+  // Default
+  defaultImage = '../../assets/img/img-ldr-wht-312px.svg'
+
+  // Cover background
+  lazyLoad1 = '../../assets/img/semeyniy-rafting.jpg'
 
   constructor(private formsService: FormsService) { }
 

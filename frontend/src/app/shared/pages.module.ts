@@ -19,7 +19,7 @@ import { InViewDirective } from '../shared/inview.directive'
         GuidesBlockComponent,
         SubscribeBlockComponent,
         FirstFormComponent,
-        InViewDirective,
+        InViewDirective, 
     ],
     exports: [
         VideoBlockComponent,
@@ -31,7 +31,7 @@ import { InViewDirective } from '../shared/inview.directive'
     ],    
     imports: [
         CommonModule,
-        SharedModule,   
+        SharedModule,          
     ],
 })
 export class PagesModule {
