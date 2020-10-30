@@ -42,7 +42,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    PagesModule,
+    PagesModule,   
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })     
   ],
   providers: [INTERCEPTOR_PROVIDER],
