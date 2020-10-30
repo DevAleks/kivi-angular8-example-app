@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
-import { PagesModule } from '../shared/pages.module';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import { SharedModule } from '../shared/shared.module'
+import { PagesModule } from '../shared/pages.module'
 
-import { MainComponent } from './main.component';
-import { FirstBlockComponent } from '../shared/components/first-block/first-block.component';
+import { MainComponent } from './main.component'
+import { FirstBlockComponent } from '../shared/components/first-block/first-block.component'
 
 @NgModule ({
     declarations: [
         MainComponent, 
-        FirstBlockComponent        
+        FirstBlockComponent,       
     ],
     imports: [
         CommonModule,
