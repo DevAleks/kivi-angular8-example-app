@@ -17,8 +17,10 @@ export class VideoBlockComponent implements OnInit {
   error: any
 
   videoLoader = false
-
-  constructor(private getjsonService: GetJsonService) { }
+ 
+  constructor(
+    private getjsonService: GetJsonService,
+    ) { }
 
   ngOnInit() {    
     this.videoLoader = true // включаем отображение лоадера на время загрузки видео

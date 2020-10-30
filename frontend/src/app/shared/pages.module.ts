@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core"
+import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { SharedModule } from '../shared/shared.module'
 
@@ -9,6 +9,8 @@ import { GuidesBlockComponent } from './components/guides-block/guides-block.com
 import { SubscribeBlockComponent } from './components/subscribe-block/subscribe-block.component'
 import { FirstFormComponent } from './components/first-form/first-form.component'
 
+import { InViewDirective } from '../shared/inview.directive'
+
 @NgModule({
     declarations: [
         VideoBlockComponent,
@@ -16,7 +18,8 @@ import { FirstFormComponent } from './components/first-form/first-form.component
         FourIconsBlockComponent,    
         GuidesBlockComponent,
         SubscribeBlockComponent,
-        FirstFormComponent
+        FirstFormComponent,
+        InViewDirective,
     ],
     exports: [
         VideoBlockComponent,
