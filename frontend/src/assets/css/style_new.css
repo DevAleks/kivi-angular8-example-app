@@ -1537,7 +1537,7 @@ body.nav-open {
   width: 150px;
   height: 150px;
   border: 1px rgba(255, 255, 255, 0.1) solid;
-  background: #0195df url(../src/assets/img/loader.gif) 50% 50% no-repeat;
+  background: #0195df url('src/assets/img/loader.gif') 50% 50% no-repeat;
 }
 .msg-wrapper {
   position: absolute;

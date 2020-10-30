@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core"
+import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { LazyLoadImageModule } from 'ng-lazyload-image'

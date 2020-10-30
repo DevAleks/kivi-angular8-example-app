@@ -1,7 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'main.css';
-@import 'style_new.css';
-@import 'admin.css'; /* Стили админки */
-@import '~quill/dist/quill.core.css';
-@import '~quill/dist/quill.snow.css';
-@import '~quill/dist/quill.bubble.css';

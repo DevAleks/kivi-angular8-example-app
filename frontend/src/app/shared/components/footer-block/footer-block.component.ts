@@ -10,6 +10,11 @@ import { ClickInt } from '../../interfaces/interfaces'
 
 export class FooterBlockComponent {
 
+  // Images LazyLoader  
+  defaultImage = '../../assets/img/img-ldr-wht-312px.svg' // Default
+    
+  lazyLoad0 = '../../assets/img/logo.png' // Logo
+
   constructor(private formsService: FormsService) { }
 
   // Обрабатываем клики для открытия в модальном окне форм questionForm, callorderForm

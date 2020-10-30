@@ -1,7 +1,9 @@
 <div class="container container-main">	  
         
     <div class="logo-mobile">
-        <a [routerLink]="['/']"><img src="../../assets/img/logo.png" title="База рафтинга в Лосево «Кивиниеми»" alt="База рафтинга в Лосево «Кивиниеми»"></a>
+        <a [routerLink]="['/']" title="База рафтинга в Лосево «Кивиниеми»">
+            <img [defaultImage]="defaultImage" [lazyLoad]="lazyLoad0" alt="База рафтинга в Лосево «Кивиниеми»">
+        </a>
     </div>
  
     <!-- Рафтинг -->
@@ -28,7 +30,7 @@
                                 <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Семейный рафтинг'})" value="Заказать сейчас" />
                              </div>
                          </div>
-                         <img class="raft-photo" [defaultImage]="defaultImage1" [lazyLoad]="lazyLoad1" alt="Семейный рафтинг - катаем детей от 7-ми лет, аквапарк на природе!">
+                         <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad1" alt="Семейный рафтинг - катаем детей от 7-ми лет, аквапарк на природе!">
                      </div>
                      <div class="item-add">Катаем детей от 7-ми лет, <br>аквапарк на природе</div>					
                 </div>
@@ -49,7 +51,7 @@
                                 <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Классический рафтинг'})" value="Заказать сейчас" />                                
                              </div>
                          </div>
-                         <img class="raft-photo" [defaultImage]="defaultImage2" [lazyLoad]="lazyLoad2" alt="Классический рафтинг - сплав на рафтах для всех!">
+                         <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad2" alt="Классический рафтинг - сплав на рафтах для всех!">
                      </div>
                      <div class="item-add">Сплав на рафтах для всех</div>					
                 </div>
@@ -70,7 +72,7 @@
                                 <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Экстрим рафтинг'})" value="Заказать сейчас" />
                              </div>
                          </div>
-                         <img class="raft-photo" [defaultImage]="defaultImage3" [lazyLoad]="lazyLoad3" alt="Экстрим рафтинг - море позитива и адреналина!">
+                         <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad3" alt="Экстрим рафтинг - море позитива и адреналина!">
                      </div>
                      <div class="item-add">Море позитива и адреналина</div>					
                 </div> 
