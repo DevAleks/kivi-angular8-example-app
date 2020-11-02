@@ -154,7 +154,8 @@ body.nav-open {
   padding: 10px 38px;
 }
 
-.nav-mobile-body .nav > li > a > .cur {
+.nav-mobile-body .nav > li > a > .cur,
+.nav-mobile-body .nav > li > .container > ul > li > a > .cur {
   color: #ccc !important;
 }
 
