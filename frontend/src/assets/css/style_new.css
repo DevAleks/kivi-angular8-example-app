@@ -140,6 +140,11 @@ body.nav-open {
 .nav-mobile-body .nav > li:first-child {
   border-top: none;
 }
+.nav-mobile-body .nav > li:last-child {
+  margin-bottom: 2rem;
+  border-bottom: 1px rgba(255, 255, 255, 0.2) dotted;
+}
+
 .nav-mobile-body .nav > li > span {
   cursor: default;
 }
