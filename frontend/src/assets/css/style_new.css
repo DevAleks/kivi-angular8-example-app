@@ -842,12 +842,14 @@ body.nav-open {
 }
 .guides .all-guides {
   margin: 0;
-  display: flex;
+  /*display: flex;*/
   padding: 0;
 }
 .guides .all-guides .item {
+  /*
   float: none;
   position: relative;
+  */
   padding-bottom: 40px;
   flex-grow: 1;
   flex-basis: 0;
@@ -857,17 +859,13 @@ body.nav-open {
   height: auto;
   border-radius: 500px;
 }
-.guides .all-guides .item .name {
-  max-width: none;
-  min-height: 50px;
-}
+
 .guides .all-guides .item .about-guide {
   min-height: 0;
 }
 .guides .all-guides .item .vk-link {
-  position: absolute;
+  position: relative;
   bottom: 0;
-  left: 15px;
   width: 100%;
 }
 /*!guides*/
