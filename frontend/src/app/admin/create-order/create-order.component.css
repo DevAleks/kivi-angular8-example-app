@@ -1,4 +1,1 @@
-form {
-    max-width: 500px;
-    margin: auto 0;
-}
+@import '../../../assets/css/admin.css'; /* Стили админки */

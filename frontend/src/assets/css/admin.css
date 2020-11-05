@@ -225,7 +225,8 @@ img {
 .form-control {
   display: block;
   color: #888;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
+  padding: 0.7rem;
 }
 
 .form-control.invalid {
@@ -318,4 +319,8 @@ table th {
 
 .red {
   color: red;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
 }
