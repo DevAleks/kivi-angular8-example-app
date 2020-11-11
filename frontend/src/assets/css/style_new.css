@@ -59,7 +59,7 @@ body.nav-open {
   height: 41px;
   min-width: 120px;
   border-radius: 0;
-  font-size: 15px;
+  font-size: 1.0rem;
   color: #fff;
   border: 1px rgba(255, 255, 255, 0.2) solid;
   background: #e52200;
@@ -74,7 +74,7 @@ body.nav-open {
 }
 .nav-mobile-panel .phones li {
   display: none;
-  font-size: 20px;
+  font-size: 1.3rem;
   margin-left: 15px;
   white-space: nowrap;
 }
@@ -103,7 +103,7 @@ body.nav-open {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAATCAMAAABBexbDAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAtUExURQAAAP///////////////////////////////////////////////////////6FIq5sAAAAOdFJOUwC9ZPB054esIhCVQdBLITSSygAAAGdJREFUGNNlkNsOwCAIQ2HemDr+/3OHJIuV9cmcVFogolGYDj2qWhHcuiRAqpMGZDopQJKTDKREQByjKEeLp6ezYTfUT9NKu35r6LCHMI/9z1wC5ua1veqHWLcIXC7GouEIUmcqbFNekw0GGpwy1gAAAAAASUVORK5CYII=');
 }
 .nav-mobile-panel .phones li small {
-  font-size: 15px;
+  font-size: 1.0rem;
 }
 .nav-mobile-body {
   display: none;
@@ -150,7 +150,7 @@ body.nav-open {
 }
 .nav-mobile-body .nav > li > a,
 .nav-mobile-body .nav > li > span {
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 .nav-mobile-body .nav > li > a > .container,
 .nav-mobile-body .nav > li > span > .container {
@@ -198,7 +198,7 @@ body.nav-open {
   margin-top: 0;
 }
 .nav-mobile-body .nav > li > .container > ul > li > a {
-  font-size: 18px;
+  font-size: 1.1rem;
   position: relative;
   line-height: 1;
   padding-left: 15px;
@@ -340,7 +340,7 @@ body.nav-open {
   background-clip: padding-box;
   color: #fff;
   text-align: center;
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: bold;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
   white-space: nowrap;
@@ -460,7 +460,7 @@ body.nav-open {
 }
 .page-title-wrapper .page-title {
   margin: 0 0 1.4em;
-  font-size: 30px;
+  font-size: 2.2rem;
   color: #515151;
 }
 .page-title-wrapper .page-title-second {
@@ -483,7 +483,7 @@ body.nav-open {
 }
 @media (min-width: 1200px) {
   .page-title-wrapper .page-title {
-    font-size: 40px;
+    font-size: 2.4rem;
     margin-bottom: .7em;
   }
   .page-title-wrapper .page-title-second {
@@ -501,7 +501,7 @@ body.nav-open {
   max-width: 350px;
 }
 .raft-list .item .item-title {
-  font-size: 20px;
+  font-size: 1.4rem;
   font-weight: bold;
   margin: 0 0 .5em;
   color: #515151;
@@ -509,7 +509,7 @@ body.nav-open {
   min-height: 40px;
 }
 .raft-list .item .item-add {
-  font-size: 17px;
+  font-size: 1rem;
   min-height: 3em;
   color: #515151;
   margin-top: .7em;
@@ -531,7 +531,7 @@ body.nav-open {
   flex-wrap: wrap;
   align-items: flex-end;
   color: #fff;
-  font-size: 17px;
+  font-size: 1.1rem;
   padding: 4%;
   border-radius: 1000%;
   overflow: hidden;
@@ -596,7 +596,7 @@ body.nav-open {
 .raft-list .item .primary-wrapper .info-wrapper .prices-wrapper .old-price {
   position: relative;
   top: 2%;
-  font-size: 20px;
+  font-size: 1.2rem;
   color: #e52200;
   text-shadow: 0 1px 0 #ffffff, 0 -1px 0 #ffffff, 1px 0 0 #ffffff, -1px 0 0 #ffffff, 1px 1px 0 #ffffff, -1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px -1px 0 #ffffff;
 }
@@ -617,7 +617,7 @@ body.nav-open {
 .raft-list .item .primary-wrapper .info-wrapper .prices-wrapper .current-price {
   position: relative;
   top: 2%;
-  font-size: 26px;
+  font-size: 1.6rem;
   font-weight: bold;
   margin-top: 5px;
   color: #005178;
@@ -1758,7 +1758,7 @@ body.nav-open {
 }
 .table.table-custom1 {
   text-align: center;
-  font-size: 13px;
+  font-size: 0.8rem;
 }
 .table.table-custom1 thead td,
 .table.table-custom1 thead th {
