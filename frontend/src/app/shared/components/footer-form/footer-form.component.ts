@@ -63,7 +63,6 @@ export class FooterFormComponent implements OnDestroy {
     this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
     this.errServ = false // Сбрасываем ошибку работы с сервером 
     this.formValidError = true // Сбрасываем ошибки валидации формы  
-    this.receivedFormFooter.status = false // Сбрасываем ошибку записи данных из формы в БД на сервере  
     this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"  
   }
 
@@ -76,14 +75,14 @@ export class FooterFormComponent implements OnDestroy {
   }
 
   submitFooter() {
+    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию    
+
     // Проверяем валидность формы перед отправкой
     if (this.footerForm.invalid) {   
       return
-    } 
+    }     
 
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию    
-    
     // Заполнение отправляемого на сервер объекта данными из формы
     const formfooter = {
       typeofact: this.footerForm.value.userTypeofact, 

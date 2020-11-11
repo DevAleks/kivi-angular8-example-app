@@ -17,7 +17,7 @@
                             </li>								
                         </ul>
                     </div>
-                    <div class="cell cell-toggle" (click)="navMobToggle=true">
+                    <div class="cell cell-toggle" (click)="navMobToggle=!navMobToggle">
                         <div class="nav-mobile-panel-toggle" id="nav-mobile-panel-toggle">
                             <i></i><i></i><i></i>
                         </div>
@@ -37,7 +37,7 @@
                         <div class="container">
                             <ul class="nav-child">
                                 <li>
-                                    <a [routerLink]="['/rafting']" (click)="navMobToggle=false"><span id="rafting" class="link-inner">Рафтинг</span></a>
+                                    <a [routerLink]="['/rafting']" (click)="navMobToggle=false"><span id="rafting" class="link-inner" routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}">Рафтинг</span></a>
                                 </li>
                                 <li>
                                     <a href="/arenda-ploshadok-dlya-meropriyatiy"><span class="link-inner">Аренда площадок</span></a>

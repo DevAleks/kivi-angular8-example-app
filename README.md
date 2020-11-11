@@ -8,7 +8,7 @@
 ## Технологии  
 - [x] Frontend: Angular 8.3.23 и Typescript
 - [x] Backend: PHP и MySQL
-- [x] Unit тестирование: Jasmine + Karma
+- [x] Unit тестирование для Angular: Jasmine + Karma
 - [x] E2E тестирование: Jasmine + Protractor
 - [x] Виртуализация: Docker и Docker-Compose
   
@@ -65,7 +65,7 @@
  * Проверка валидности токена
  * Обработка ошибок
 - [x] Интерсептор для проверки валидности текущего токена в админке: [frontend/src/app/shared/auth.interceptor.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/auth.interceptor.ts) 
-- [x] Ленивая загрузка изображений в пользовательской части с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image)
+- [x] Ленивая загрузка изображений в пользовательской части с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image) и youtube видео с помощью директивы [inView](https://github.com/DevAleks/kivi-angular8-example-app/blob/master/frontend/src/app/shared/inview.directive.ts) 
 - [x] WYSIWYG редактор [ngx-quill](https://www.npmjs.com/package/ngx-quill) для формы создания новых заказов в админке
 - [x] Пагинация на странице списка заказов [frontend/src/app/admin/dashboard-page/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/dashboard-page/) с помощью [jw-angular-pagination](https://github.com/cornflourblue/jw-angular-pagination)
 - [x] Ru локализация в date pipe на странице списка заказов [frontend/src/app/admin/dashboard-page/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/dashboard-page/)

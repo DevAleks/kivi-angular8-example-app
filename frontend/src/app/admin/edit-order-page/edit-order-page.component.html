@@ -1,4 +1,4 @@
-<div *ngIf="form; else loadingBlock">
+<div *ngIf="form; else loadingBlock" class="mb-5">
     <form [formGroup]="form" (ngSubmit)="submit()">
         <h1>Редактирование заказа № {{ order.id }}</h1>
 
@@ -162,7 +162,7 @@
 
         <button
             type="submit"
-            class="btn btn-primary mb40"
+            class="btn btn-primary"
             [disabled]="form.invalid || submitted"
         >   
             Изменить заказ

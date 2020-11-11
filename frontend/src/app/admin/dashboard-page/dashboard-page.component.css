@@ -1,3 +1,7 @@
+@import '../../../assets/css/admin.css'; /* Стили админки */
+html {
+    width: 100%    
+}
 .open {
     margin: 10px;
 }
