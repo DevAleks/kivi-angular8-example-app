@@ -658,12 +658,6 @@ dl.row > dd + dt {
   clear: left;
 }
 
-.img-fluid, .carousel-inner > .carousel-item > img,
-.carousel-inner > .carousel-item > a > img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
 
 .img-rounded {
   border-radius: 0.3rem;
@@ -6559,10 +6553,6 @@ h2.rafting-title {
   width: 100%;
   height: 96%;
 }
-.carousel {
-  margin-bottom: 35px;
-  width: 100%;
-}
 
 /* Гиды */
 .guides {
@@ -6616,180 +6606,6 @@ h2.rafting-title {
   text-align: center;
   /*content: url('img/vk_link.png');*/
   content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAADqUExURT1mkExxlVF4n1Z+pGOHql2DqEtymmOIqll9oEVtlDJdiV+Epr3P2er292SIqniZteTx8IunwIWgtmeGpGuPsXCSs1iApz9nkUFqk1qBqP///1yDqVyFrV2Eqj9pklmApkZuljxolEFsmE52n0NtlE1zmzdjkFF4oS5bilZ+pbvI0/r5+ElxmDJfjOHj5JeuwilXh7S9xf/++V1/n+no6PP0856uu/fy6nmWscDN11h8nxpNgEhznwo9doOcsvHp4v/98tri5a7Azv727NXY2B1PhFyBo2GFp4iju26Kpqa0vbHAy6m7yMzT1mJGKJMAAAAXdFJOU/Lp8PLy8/Ly6fLw6lgD8s8NoZi7z9770DWBbQAAATFJREFUGNNti4dugzAURV/S0ISM7irgpoBtMGYHAtl7d/3/79ROVVVKeixfX533DK3mk1KpnripVMWpKI37O2iSaecMndzC87TzeoELiv5yiQIN/R+E9kzTE9d0KZWPKeMKap5OMSaefjjsqWkS0U1PaJfMR37C9qugSDBJfH9NXanxECE03q0R8idjUVfMLUONunyE0Gh2RCiZ+QgVDpF6SllP7PTEn6MsQ+5SoUOHdj9RUMRBEBcZSibUca6hZjkObsdZEeR5hvLgg2OpyyQMHT4ebOI4334N4qXPtPAaSpYg7Pa2g8WyP/E3iyyNbBVKtvQWN+bv6duu3U/TvqEJbdgSi3UjzkLGWRTZchtrvxinkKmC+qd/ZsIbACo32udoDB5mF1rjEbQe63BGvd78BuY4OxH0t+peAAAAAElFTkSuQmCC');
-
-
-}
-
-/* Отзывы */
-.reviews {
-  width: 100%;
-  max-width: 100%;
-  background-color: #e4dd9f;
-  padding-top: 40px;
-}
-.reviews h2.title {
-  text-transform: uppercase;
-  text-align: center;
-  margin: 0px auto;
-  font-size: 26px;
-}
-.reviews .subtitle {
-  font-size: 15px;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 15px 0px 50px 0px;
-}
-
-.reviews .review .face {
-  display: table-cell;
-  vertical-align: top;
-  text-align: center;
-  font-size: 15px;
-  width: 180px;
-}
-.reviews .review .face img {
-  text-align: left;
-  display: block;
-  margin: 0px auto 10px;
-}
-.reviews .review .face .vk-link::before {
-  /*content: url('../../assets/img/vk_link.png');*/
-  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAADqUExURT1mkExxlVF4n1Z+pGOHql2DqEtymmOIqll9oEVtlDJdiV+Epr3P2er292SIqniZteTx8IunwIWgtmeGpGuPsXCSs1iApz9nkUFqk1qBqP///1yDqVyFrV2Eqj9pklmApkZuljxolEFsmE52n0NtlE1zmzdjkFF4oS5bilZ+pbvI0/r5+ElxmDJfjOHj5JeuwilXh7S9xf/++V1/n+no6PP0856uu/fy6nmWscDN11h8nxpNgEhznwo9doOcsvHp4v/98tri5a7Azv727NXY2B1PhFyBo2GFp4iju26Kpqa0vbHAy6m7yMzT1mJGKJMAAAAXdFJOU/Lp8PLy8/Ly6fLw6lgD8s8NoZi7z9770DWBbQAAATFJREFUGNNti4dugzAURV/S0ISM7irgpoBtMGYHAtl7d/3/79ROVVVKeixfX533DK3mk1KpnripVMWpKI37O2iSaecMndzC87TzeoELiv5yiQIN/R+E9kzTE9d0KZWPKeMKap5OMSaefjjsqWkS0U1PaJfMR37C9qugSDBJfH9NXanxECE03q0R8idjUVfMLUONunyE0Gh2RCiZ+QgVDpF6SllP7PTEn6MsQ+5SoUOHdj9RUMRBEBcZSibUca6hZjkObsdZEeR5hvLgg2OpyyQMHT4ebOI4334N4qXPtPAaSpYg7Pa2g8WyP/E3iyyNbBVKtvQWN+bv6duu3U/TvqEJbdgSi3UjzkLGWRTZchtrvxinkKmC+qd/ZsIbACo32udoDB5mF1rjEbQe63BGvd78BuY4OxH0t+peAAAAAElFTkSuQmCC');
-  margin-left: -26px;
-  position: absolute;
-  text-align: center;
-}
-.reviews .review .face .vk-link a {
-  font-size: 13px;
-  color: #39739c;
-}
-.reviews .review .quote {
-  display: table-cell;
-  font-size: 165px;
-  font-weight: bold;
-  line-height: 110px;
-  color: black;
-  vertical-align: top;
-}
-.reviews .review .text-block {
-  display: table-cell;
-  font-size: 15px;
-  font-style: italic;
-  vertical-align: top;
-}
-.reviews .subtitle2 {
-  font-size: 15px;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 15px 0px 10px 0px;
-}
-.reviews .banner {
-  width: 100%;
-  display: flex;
-  height: 138px;
-  margin-top: 50px;
-  align-items: center;
-  justify-content: center;
-  /*color: black;*/
-  color: #fff;
-  font-size: 23px;
-  text-transform: uppercase;
-  background-size: cover;
-}
-.reviews .btn-danger {
-  margin: 30px auto;
-  display: block;
-  width: 360px;
-  text-transform: uppercase;
-  border-radius: 100px;
-}
-
-/* Достижения */
-.achievments {
-  width: 100%;
-  max-width: 100%;
-  padding-top: 40px;
-}
-.achievments .about-achievments {
-  font-size: 15px;
-  text-align: center;
-}
-.achievments h2.title {
-  text-transform: uppercase;
-  text-align: center;
-  margin: 0px auto 40px;
-  font-size: 26px;
-}
-.achievments .item img {
-  margin-bottom: 10px;
-}
-.achievments .item .content {
-  font-size: 14px;
-}
-
-/* Вопросы-ответы */
-.questions {
-  width: 100%;
-  max-width: 100%;
-  padding-top: 40px;
-  background-color: #f6f0d3;
-}
-.question {
-  margin-bottom: 30px;
-}
-.questions .question .ask {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.questions .question .answer {
-  font-size: 15px;
-  margin-left: 30px;
-}
-.questions .question .more a {
-  color: #3b3024;
-  font-size: 13px;
-  margin-left: 30px;
-  font-style: italic;
-  text-decoration: underline;
-}
-.questions .more-questions {
-  font-weight: bold;
-  font-size: 20px;
-  text-align: center;
-}
-.questions .btn-danger {
-  margin: 20px auto;
-  display: block;
-  width: 360px;
-  text-transform: uppercase;
-  border-radius: 100px;
-}
-.questions .phones {
-  text-align: center;
-  margin-bottom: 30px;
-}
-.questions .phones a {
-  font-weight: bold;
-  font-size: 25px;
-  text-decoration: none;
-  color: #3b3024;
-}
-.questions .phones a:first-child::after {
-  content: '|';
-  font-size: 20px;
-  font-weight: normal;
-  margin: 0px 15px 0px 15px;
-}
-
-/* Карта */
-.map {
-  width: 100%;
-  max-width: 100%;
-  padding: 0px;
-  display: flex;
-  max-height: 480px;
-  overflow: hidden;
 }
 
 /* Футер */
@@ -7308,18 +7124,6 @@ h2.rafting-title {
     font-size: 18px;
   }
 
-  .map {
-    height: 240px;
-    min-height: initial;
-  }
-  .map .ymaps-2-1-47-map {
-    height: 240px !important;
-  }
-  .map #ymaps1502824988407158570 {
-    height: 240px;
-  }
-
-
   .footer .logo,
   .footer .phones,
   .footer .work-time,
@@ -7537,22 +7341,6 @@ h2.rafting-title {
   }
 }
 
-@media (min-width: 320px) and (max-width: 800px) {
-  .carousel .item img {
-    width: 100%;
-  }
-}
-@media (min-width: 320px) and (max-width: 550px) {
-  .carousel .item img {
-    width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-  .video-and-photo .carousel .item:nth-child(2),
-  .video-and-photo .carousel .item:nth-child(3) {
-    display: none;
-  }
-}
 @media (min-width: 320px) and (max-width: 358px) {
   .reviews .review .face {
     margin-top: 20px;
@@ -7593,18 +7381,6 @@ h2.rafting-title {
 
 
 /* Alex Css */
-.div_otzivi {text-align:center;margin:100px 0 30px 0;}
-
-a.a_otzivi, a.a_otzivi:hover {font-size: 20px;}
-a.a_otzivi {text-decoration: none;}
-a.a_otzivi:hover {text-decoration: underline;}
-
-.otzivi_icons {border-radius:100px;border:solid 1px #3b3024;height:50px;}
-
-div.rating_y_g {height:60px;width:100%;text-align:center;padding-bottom:120px;}
-div.rating_y_g .rating_span {text-align:left;margin:10px;width:190px;display:inline-block;vertical-align: bottom;}
-div.rating_y_g img.stars {padding-bottom:4px;}
-
 .bottom60 {padding-bottom:60px !important;} 
 
 .img_border {border-radius:89px;border:solid 1px #3b3024;}
@@ -7624,22 +7400,7 @@ a.policy_link_foot:hover {text-decoration:none}
 .ft_forms {text-decoration: underline !important;}
 .ft_forms:hover {text-decoration: none !important;}
 .center {text-align: center}
-.formloader {
-  display: block; 
-  text-align: center; 
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(255, 255, 255, 0.5);
-  z-index: 2500;
-}
-.formloader img {  
-  display: inline-block;
-  text-align: center; 
-  margin-top: 250px;
-}
+
 .txt_blc {color:black}
 
 

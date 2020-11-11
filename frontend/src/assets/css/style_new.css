@@ -1019,10 +1019,6 @@ body.nav-open {
     min-height: 45px !important;
   }
 }
-.carousel-wrapper5.custom .owl-carousel .owl-stage-outer .owl-stage .item .zagolovok {
-  line-height: 1.1;
-  height: 43px !important;
-}
 .nav-mobile-panel .phones a,
 .footer .phones a {
   white-space: nowrap;
@@ -1714,9 +1710,6 @@ hr {
     padding-left: 0;
     padding-top: 30px;
   }
-}
-.carousel-wrapper5.custom .owl-carousel .owl-stage-outer .owl-stage .item .content {
-  min-height: 20px;
 }
 body.body-page-empty {
   padding-top: 20px !important;

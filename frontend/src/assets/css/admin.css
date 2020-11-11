@@ -38,12 +38,6 @@ ul {
   list-style: none;
 }
 
-/*
-img {
-  width: 100%;
-}
-*/
-
 .main-container {
   margin-top:-46px;
 }
@@ -56,7 +50,6 @@ img {
 
 
 .container-admin {
-  /*max-width: 1100px;*/
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
