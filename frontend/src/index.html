@@ -8,20 +8,18 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" href="favicon.ico" type="image/x-icon">  
   <link rel="manifest" href="manifest.webmanifest">
+
   <style type="text/css">
-  .carousel-wrapper5.custom .owl-carousel .owl-stage-outer .owl-stage .item .zagolovok {
-    min-height: 20px;
-    font-weight: bold;
-  }
-  .justify-content-center {
-    -ms-flex-pack: center !important;
-    justify-content: center !important;
-  }
-  .d-flex {
-    display: -ms-flexbox !important;
-    display: flex !important;
-  }   
+    .justify-content-center {
+      -ms-flex-pack: center !important;
+      justify-content: center !important;
+    }
+    .d-flex {
+      display: -ms-flexbox !important;
+      display: flex !important;
+    }   
   </style>
+
 </head>
 <body>
 
@@ -33,218 +31,10 @@
     </div> 
   </app-root>
   
-<script src="assets/js/jquery/3.2.1/jquery.min.js"></script>
-<script src="assets/js/owlCarousel/2.2.1/js/owl.carousel.min.js"></script>
-<script src="assets/js/fancybox/3.2.0/js/jquery.fancybox.min.js"></script>
-<script src="assets/js/jquery.validate.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/custom.min.js"></script>
 
+<noscript>Please enable JavaScript to continue using this application.</noscript>
 
-
-<!-- Scripts -->
-
-<script>
-    $(function(){
-       $(window).scroll(function() {
-          if ($(this).scrollTop() > 1){
-          $('.navbar-fixed-top').addClass("sticky");
-             }
-          else{
-             $('.navbar-fixed-top').removeClass("sticky");
-          }
-       });	 
-   
-   
-   $(function() {
-        $.fn.scrollToTop = function() {
-            $(this).hide().removeAttr("href");
-            if ($(window).scrollTop() != "0") {
-                $(this).fadeIn("slow")
-            }
-            var scrollDiv = $(this);
-            $(window).scroll(function() {
-                if ($(window).scrollTop() == "0") {
-                    $(scrollDiv).fadeOut("slow")
-                } else {
-                    $(scrollDiv).fadeIn("slow")
-                }
-            });
-            $(this).click(function() {
-                $("html, body").animate({
-                    scrollTop: 0
-                }, "slow")
-            })
-        }
-    });
-    $(function() {
-        $("#go-top").scrollToTop();
-    });
-    $(function() {
-        $(window).resize(function() {
-            var width = $(window).outerWidth();
-            if (width < 1025) {
-                $("#go-top").addClass("go-top");
-            } else {
-                $("#go-top").removeClass("go-top");
-            }
-        });
-        $(window).resize();
-    });
-   
-   
-   $("#questions .more a").click(function(e) {
-      e.preventDefault();
-      $(this).closest(".question").addClass("question-expanded");
-     });
-     
-     $("#questions  .link-hide-wrapper a").click(function(e) {
-      e.preventDefault();
-      $(this).closest(".question").removeClass("question-expanded");
-     });
-   
-   
-   $("#nav-mobile #nav-mobile-panel-toggle").click(function(){
-      $("#nav-mobile-body").slideToggle();
-      $(this).toggleClass("active");
-      $("body").toggleClass("nav-open");
-    });
-    
-    var slider1 = $("#slider1");
-    slider1.on('initialize.owl.carousel initialized.owl.carousel resized.owl.carousel changed.owl.carousel',function(elem){
-      $(elem.currentTarget).find(".owl-item.cloned > .item > a").removeAttr("data-fancybox").removeAttr("data-type").removeAttr("data-srcset");
-    });
-    
-    slider1.owlCarousel({
-      items:1,
-      loop:true,
-      nav:true,
-      margin: 15,
-      responsive : {
-        0: {
-          items : 1
-        },
-        576: {
-          items : 2
-        },				
-        768: {
-          items : 3
-        },
-        992: {
-          margin: 25,
-          items : 3
-        }
-      }
-    });
-    
-    $("[data-fancybox='test-srcset']").fancybox({
-      transitionEffect : "slide",
-      loop : true
-    });
-    
-    
-    
-    $('#slider2').owlCarousel({
-      items:1,
-      loop:true,
-      nav:true,
-      margin: 5,
-      responsive : {
-        0: {
-          items : 1
-        },					
-        500: {
-          items : 2
-        },				
-        768: {
-          items : 3
-        },
-        992: {
-          items : 4
-        },
-        1200: {
-          items : 5
-        }
-      }
-    });
-    
-    $('#slider3').owlCarousel({
-      items:1,
-      loop:true,
-      nav:true				
-    });
-    
-    $('#slider4').owlCarousel({
-      items:1,
-      loop:true,
-      nav:true				
-    });
-    
-    
-    var slider5 = $("#slider5");
-    slider5.on('initialize.owl.carousel initialized.owl.carousel resized.owl.carousel changed.owl.carousel',function(elem){      
-    });
-    
-    slider5.owlCarousel({
-      items:1,
-      loop:true,
-      nav:true,
-      margin: 15,
-      responsive : {
-        0: {
-          items : 1
-        },
-        576: {
-          items : 2
-        },				
-        768: {
-          items : 3
-        },
-        992: {
-          margin: 25,
-          items : 3
-        }
-      }
-    });	
-    
-    var slider6 = $("#slider6");
-    slider6.on('initialize.owl.carousel initialized.owl.carousel resized.owl.carousel changed.owl.carousel',function(elem){
-      
-    });
-    
-    slider6.owlCarousel({
-      items:1,
-      loop:true,
-      nav:true,
-      margin: 15,
-      responsive : {
-        0: {
-          items : 1
-        },
-        576: {
-          items : 2
-        },				
-        768: {
-          items : 3
-        },
-        992: {
-          margin: 25,
-          items : 3
-        }
-      }
-    });	
-    
-    
-    $("[data-fancybox='test-srcset2']").fancybox({
-      transitionEffect : "slide",
-      loop : true
-    });
- 
-    
-    });
-    
-    </script>
-
-<!-- / Scripts -->
-
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 </html>
