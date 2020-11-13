@@ -8,6 +8,7 @@
 ## Технологии  
 - [x] Frontend: Angular 8.3.23 и Typescript
 - [x] Backend: PHP и MySQL
+- [x] JWT Authentication
 - [x] Unit тестирование для Angular: Jasmine + Karma
 - [x] E2E тестирование: Jasmine + Protractor
 - [x] Виртуализация: Docker и Docker-Compose
@@ -15,19 +16,20 @@
 <br /> 
    
 ## Приложение  
-Приложение Kivi-App представляет собой "набросок" будущего сайта с панелью администрирования и бекендом с использованием принципов REST API.  
+Приложение Kivi-App представляет собой "набросок" будущего сайта с панелью администрирования и бекендом, включая CRUD взаимодействия между ними. 
 - [x] Пользовательская часть сайта имеет 4 страницы:  
  * /  
  * /rafting  
  * /semeyniy-rafting  
  * /error404 (страница ошибки 404)      
-На всех страницах отличаются только верхние блоки с контентом.    
+На этих страницах можно оставлять заказы через 5 видов форм.    
      
-- [x] Панель администрирования имеет систему авторизации через JWT и 4 страницы:  
+- [x] Панель администрирования имеет систему авторизации через JWT Auth и 4 страницы:  
  * /admin/login (страница входа)
  * /admin/dashboard (страница со списком заказов с ссылками на изменение и удаление заказов)
  * /admin/create-order (страница создания нового заказа)
  * /admin/order/%ID заказа%/edit (страница изменения заказа)
+В админпанели можно посмотреть список всех заказов, создавать новые заказы, а также редактировать и удалять уже имеющиеся.
   
 <br /> 
    
@@ -73,7 +75,7 @@
 - [x] Вывод тегов <script ...> в шаблонах. Обеспечивающий компонент [frontend/src/app/shared/components/scripthack](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/scripthack) и пример вывода тега в шаблоне [frontend/src/app/components/subscribe-block/subscribe-block.component.html](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/components/subscribe-block/subscribe-block.component.html)
 - [x] Вывод видео с Youtube, url видео загружается из JSON файла [frontend/src/app/shared/components/video-block/](https://github.com/DevAleks/kivi-angular8-example-app/tree/master/frontend/src/app/shared/components/video-block/)
     
-### Тестирование 
+### Тестирование frontend
 - [x] Unit тестирование пользовательской части приложения Jasmine + Karma
 - [x] End-to-end тестирование пользовательской части приложения Jasmine + Protractor
     
@@ -111,7 +113,7 @@
  ```bash
  docker-compose up --build -d
  ```
-  Последующие запуски:  
+Последующие запуски:  
  ```bash
  docker-compose up -d
  ```
@@ -132,7 +134,7 @@
   
 ### Демонстрация возможностей приложения  
 1. Вход в пользовательску часть: http://localhost:4200/. Здесь можно заполнить и отправить любую форму обратной связи. Если данные из корректно заполненной формы успешно попали на сервер, то появится сообщение об успешной отправке запроса.  
-2. Вход в панель администрирования: http://localhost:4200/admin/login (admin@kiviapp.com / 11111111). Здесь можно создать новый заказ на странице "Новый заказ" http://localhost:4200/admin/create-order.  
+2. Вход в панель администрирования: http://localhost:4200/admin/login (admin@kiviapp.com / 11111111). Здесь можно создать новый заказ на странице "Новый заказ", а также редактировать или удалять уже созданные заказы. 
   
 ### Формы обратной связи в пользовательской части
 На каждой станице есть 5 различных форм обратной связи, позволяющих посетителям отправлять заказы услуг. 4 формы в модальных окнах доступны по кнопкам:  
@@ -150,7 +152,7 @@
 <br />   
   
 ## Unit тестирование  
-Тестами покрыто примерно 80% всех функций. Код тестов содержится рядом с кодом приложения: [frontend/src/app/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/)  
+Тестами покрыто примерно 80% всех функций модуля сайта (app.module.ts). Код тестов содержится рядом с кодом приложения: [frontend/src/app/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/)  
   
 ### Работа с Unit тестами (через Docker и Docker-Compose)  
 1. Запуск:  
