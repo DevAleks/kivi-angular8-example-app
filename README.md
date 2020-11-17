@@ -66,11 +66,7 @@
 - [x] Механизм авторизации через JWT токены для админки: 
  * Получение токена, его хранение в Local Storage и удаление токена
  * Проверка валидности токена
-<<<<<<< HEAD
  * Обработка ошибок    
-=======
- * Обработка ошибок
->>>>>>> ca9af14d112392a92ecff37051df01847f827443
 [frontend/src/app/admin/shared/services/auth.service.ts](https://github.com/DevAleks/kivi-angular8-example-app/blob/master/frontend/src/app/admin/shared/services/auth.service.ts)
 - [x] Интерсептор для проверки валидности текущего токена в админке: [frontend/src/app/shared/auth.interceptor.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/auth.interceptor.ts) 
 - [x] Ленивая загрузка изображений в пользовательской части с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image) и youtube видео с помощью директивы [inView](https://github.com/DevAleks/kivi-angular8-example-app/blob/master/frontend/src/app/shared/inview.directive.ts) 
