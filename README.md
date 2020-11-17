@@ -8,7 +8,7 @@
 ## Технологии  
 - [x] Frontend: Angular 8.3.23 и Typescript
 - [x] Backend: PHP и MySQL
-- [x] JWT Authentication
+- [x] JWT Authentication c HTTP Interceptors, Guards
 - [x] Unit тестирование для Angular: Jasmine + Karma
 - [x] E2E тестирование: Jasmine + Protractor
 - [x] Виртуализация: Docker и Docker-Compose
@@ -45,6 +45,7 @@
 - [x] Роутеры:  
  * Пользовательской части [frontend/src/app/app-routing.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/app-routing.module.ts)
  * Админки с защитой роутов [frontend/src/app/admin/admin.module.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/admin/admin.module.ts)
+ * AuthGuard [frontend/src/app/admin/shared/auth.guard.ts](https://github.com/DevAleks/kivi-angular8-example-app/blob/master/frontend/src/app/admin/shared/auth.guard.ts)
 - [x] Формы обратной связи, содержат валидатор с обработкой ошибок, выполняют отправку данных, получают и обрабатывают ответ от сервера:
  * Форма заказа 1 [frontend/src/app/shared/components/callorder-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/callorder-form/)
  * Форма заказа 2 [frontend/src/app/shared/components/first-form/](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/components/first-form/)
@@ -66,6 +67,7 @@
  * Получение токена, его хранение в Local Storage и удаление токена
  * Проверка валидности токена
  * Обработка ошибок
+[frontend/src/app/admin/shared/services/auth.service.ts](https://github.com/DevAleks/kivi-angular8-example-app/blob/master/frontend/src/app/admin/shared/services/auth.service.ts)
 - [x] Интерсептор для проверки валидности текущего токена в админке: [frontend/src/app/shared/auth.interceptor.ts](https://github.com/DevAleks/Kivi/tree/master/frontend/src/app/shared/auth.interceptor.ts) 
 - [x] Ленивая загрузка изображений в пользовательской части с [ng-lazyload-image](https://github.com/tjoskar/ng-lazyload-image) и youtube видео с помощью директивы [inView](https://github.com/DevAleks/kivi-angular8-example-app/blob/master/frontend/src/app/shared/inview.directive.ts) 
 - [x] WYSIWYG редактор [ngx-quill](https://www.npmjs.com/package/ngx-quill) для формы создания новых заказов в админке
