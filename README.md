@@ -124,10 +124,9 @@
 * Запустив скрипт: http://localhost:80/create.new.table.php 
 * Через PhpMyAdmin, http://localhost:8081/ (root / root), запросы с таблицами лежат в файле [backend/create.new.table.php](https://github.com/DevAleks/Kivi/tree/master/backend/create.new.table.php))  
   
-### Остановка приложения и очистка контейнеров Docker
+### Остановка приложения
  ```bash
  docker-compose kill
- docker-compose down 
  ```  
   
 <br /> 
@@ -216,5 +215,4 @@
  ```bash
  ng e2e
  ``` 
-При этом можно воспользоваться запущенными в Docker контейнерами с PHP и MySQL.  
-  
+При этом можно воспользоваться запущенными в Docker контейнерами с PHP и MySQL.    
