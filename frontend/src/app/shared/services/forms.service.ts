@@ -11,35 +11,35 @@ import { ClickInt, OrdersInt } from '../interfaces/interfaces'
 export class FormsService {
 
   // Переменная и стрим для открытия форм firstForm, topForm, questionForm, callorderForm в модальных окне 
-  private clicks = new Subject<ClickInt>() 
+  private clicks = new Subject<ClickInt>()
 
-  observableclicks$ = this.clicks.asObservable()
+  observableclicks$ = this.clicks.asObservable() // this var is never used!
 
   constructor(private http: HttpClient) { }
 
   // Передаем в стрим событие открытия формы
   openForm(openClick: ClickInt) {
     this.clicks.next(openClick)
-  }  
+  }
 
   // Отправка и получение данных с сервера для всех форм
-  postForm(formbt: OrdersInt): Observable<OrdersInt>{         
+  postForm(formbt: OrdersInt): Observable<OrdersInt> {
     const body = {
       name: formbt.name ? formbt.name.trim() : '',
-      phone: formbt.phone ? formbt.phone.trim() : '', 
-      email: formbt.email ? formbt.email.trim() : '', 
-      typeofact: formbt.typeofact, 
+      phone: formbt.phone ? formbt.phone.trim() : '',
+      email: formbt.email ? formbt.email.trim() : '',
+      typeofact: formbt.typeofact,
       promo: formbt.promo ? formbt.promo.trim() : '',
-      typeofform: formbt.typeofform, 
+      typeofform: formbt.typeofform,
       status: formbt.status,
       text: formbt.text ? formbt.text.trim() : ''
-    }    
+    }
     return this.http.post<OrdersInt>('http://localhost:80/requests.add.php', body)
-      .pipe( 
+      .pipe(
         delay(2000), // Задержка для отображения индикатора загрузки
         retry(2), // Пробуем получить успешный ответ 2 раза  
         catchError(this.handleError) // Обработка ошибок
-      )      
+      )
   }
 
   // Определяем методы для обработки ошибок получения данных с сервера

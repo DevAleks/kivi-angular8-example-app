@@ -1,6 +1,6 @@
 import { Component, HostListener, ViewEncapsulation } from '@angular/core'
 import { Subscription } from 'rxjs'
-import { FormGroup, FormControl, Validators} from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
@@ -15,27 +15,38 @@ import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
 })
 export class TopFormComponent {
 
-  modal_switcher: boolean = false // Свичер для модальных окон новых форм и "ответов" форм
+  // Свичер для модальных окон новых форм и "ответов" форм
+  modal_switcher: boolean = false // isModalSwitcherOpen - may be better naming
 
-  clicksSub: Subscription // Переменная для подписки на клики по кнопке открытия окна с формой 
+  // Переменная для подписки на клики по кнопке открытия окна с формой 
+  clicksSub: Subscription
 
-  servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы  
+  // Переменная для подписки на ответ сервера после отправки формы  
+  servRespSub: Subscription
 
-  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
+  // Виды услуг для селектора в шаблоне
+  typeofacts: Activites = new Activites() // typeOfActs - may be better naming
 
-  switcher_valid: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
+  // Индикатор попытки валидации формы после клика на кнопку отправки
+  switcher_valid: boolean = false // isSwitcherValid  - may be better naming
 
-  switcher: boolean = false // Индикатор успешного получения данных с сервера
+  // Индикатор успешного получения данных с сервера
+  switcher: boolean = false // isSwitcherSucceed - may be better naming
 
-  formValidError: boolean = true // Статус ошибки валидации формы перед отправкой
+  // Статус ошибки валидации формы перед отправкой
+  formValidError: boolean = true
 
-  errServ: boolean = false // Статус ошибки передачи данных формы на сервер
+  // Статус ошибки передачи данных формы на сервер
+  errServ: boolean = false // don't use short names for variables
 
-  receivedFormTop: OrdersInt // Данные заказа из формы topForm, полученные с сервера
+  // Данные заказа из формы topForm, полученные с сервера
+  receivedFormTop: OrdersInt
 
-  topForm: FormGroup // Объект FormGroup для формы topForm
+  // Объект FormGroup для формы topForm
+  topForm: FormGroup
 
-  loading = false // Переключатель индикатора загрузки ответа формы
+  // Переключатель индикатора загрузки ответа формы
+  loading = false // isFormLoading - may be better naming
 
   constructor(private formsService: FormsService) {
 
@@ -43,8 +54,8 @@ export class TopFormComponent {
     this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
       if (data.typeofform == 3) {
         this.modal_switcher = true
-      }      
-    }) 
+      }
+    })
 
     // Валидация формы
     this.topForm = new FormGroup({
@@ -56,7 +67,7 @@ export class TopFormComponent {
         FormValidators.userName
       ]),
       userPhone: new FormControl('', [
-        Validators.required, 
+        Validators.required,
         Validators.minLength(6),
         Validators.maxLength(20),
         FormValidators.userPhone
@@ -66,9 +77,9 @@ export class TopFormComponent {
         Validators.minLength(3),
         Validators.maxLength(20),
         FormValidators.userPromo
-      ])      
-    }) 
-    
+      ])
+    })
+
   }
 
   // Закрытие формы кликами мыши
@@ -78,7 +89,7 @@ export class TopFormComponent {
     this.errServ = false // Сбрасываем ошибку работы с сервером 
     this.formValidError = true // Сбрасываем ошибки валидации формы  
     this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
-  }  
+  }
 
   // Закрытие формы кнопкой ESC
   @HostListener('document:keydown', ['$event'])
@@ -88,45 +99,45 @@ export class TopFormComponent {
     }
   }
 
-  submitTop() {  
+  submitTop() {
 
     this.errServ = false // Сбрасываем ошибку работы с сервером 
     this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
 
     // Проверяем валидность формы перед отправкой
-    if (this.topForm.invalid) {  
+    if (this.topForm.invalid) {
       return
     }
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const topFormToServ = {
-      typeofact: this.topForm.value.userTypeofact, 
-      name: this.topForm.value.userName, 
+      typeofact: this.topForm.value.userTypeofact,
+      name: this.topForm.value.userName,
       phone: this.topForm.value.userPhone,
       email: this.topForm.value.userEmail,
       promo: this.topForm.value.userPromo,
       typeofform: 3,
       status: false
-    }  
+    }
 
     this.loading = true // Включаем отображение индикатора загрузки
     this.switcher = true // Включаем показ окна с результатом отправки формы    
 
     // Отправка оъекта на сервер и получение ответа от сервера
     this.servRespSub = this.formsService.postForm(topFormToServ)
-    .subscribe(
-      (data: OrdersInt) => {
-        this.receivedFormTop = data // Получаем данные с сервера
-        this.formValidError = false // Отключаем проверку ошибок валидации для формы
-        this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-        this.loading = false // Выключаем отображение индикатора загрузки
-        this.topForm.reset() // Очищаем значения успешно отправленной формы
-      },
-      error => {
-        this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
-        this.loading = false // Выключаем отображение индикатора загрузки
-      }
-    )      
+      .subscribe(
+        (data: OrdersInt) => {
+          this.receivedFormTop = data // Получаем данные с сервера
+          this.formValidError = false // Отключаем проверку ошибок валидации для формы
+          this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+          this.loading = false // Выключаем отображение индикатора загрузки
+          this.topForm.reset() // Очищаем значения успешно отправленной формы
+        },
+        error => {
+          this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
+          this.loading = false // Выключаем отображение индикатора загрузки
+        }
+      )
   }
 
   ngOnDestroy() {
@@ -140,6 +151,6 @@ export class TopFormComponent {
       this.servRespSub.unsubscribe()
     }
 
-  }  
+  }
 
 }
