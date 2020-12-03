@@ -1,26 +1,26 @@
 /* Source: https://medium.com/allenhwkim/angular-monitor-element-is-in-viewport-after-scrolling-67f4d787647c */
 
-import {Directive, Component, Input, ViewContainerRef, TemplateRef, AfterViewInit} from '@angular/core';
+import { Directive, ViewContainerRef, TemplateRef, AfterViewInit } from '@angular/core';
 
-@Directive({selector: '[inView]'})
+@Directive({ selector: '[inView]' })
 export class InViewDirective implements AfterViewInit {
   alreadyRendered: boolean; // cheking if visible already
-  
+
   constructor(
     private vcRef: ViewContainerRef,
     private tplRef: TemplateRef<any>
-  ) {}
+  ) { }
 
   ngAfterViewInit() {
     const commentEl = this.vcRef.element.nativeElement // template
     const elToObserve = commentEl.parentElement
     this.setMinWidthHeight(elToObserve)
-  
+
     const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          this.renderContents(entry.isIntersecting)
-        })
-      }, {threshold: [0, .1, .9, 1]})
+      entries.forEach(entry => {
+        this.renderContents(entry.isIntersecting)
+      })
+    }, { threshold: [0, .1, .9, 1] })
     observer.observe(elToObserve);
   }
 
