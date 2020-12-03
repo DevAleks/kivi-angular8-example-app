@@ -2,16 +2,16 @@
   <a href="https://angular.io/">
     <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Logo" width="72" height="72">
   </a>
-  <h1 align="center">Kivi-App, учебное приложение на Angular 8.3.23 и Typescript</h1>
+  <h1 align="center">Kivi-App, демо приложение на Angular 8</h1>
 </p>
   
 ## Технологии  
-- [x] Frontend: Angular 8.3.23 и Typescript
+- [x] Frontend: Angular 8 и Typescript
 - [x] Backend: PHP и MySQL
 - [x] JWT Authentication c HTTP Interceptors, Guards
-- [x] Unit тестирование для Angular: Jasmine + Karma
-- [x] E2E тестирование: Jasmine + Protractor
-- [x] Виртуализация: Docker и Docker-Compose
+- [x] Unit тестирование для Angular: Karma + Jasmine
+- [x] E2E тестирование: Protractor + Jasmine
+- [x] Виртуализация: Docker
   
 <br /> 
    
