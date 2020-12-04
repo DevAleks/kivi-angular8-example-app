@@ -9,8 +9,8 @@
 - [x] Frontend: Angular 8 и Typescript
 - [x] Backend: PHP и MySQL
 - [x] JWT Authentication c HTTP Interceptors, Guards
-- [x] Unit тестирование для Angular: Karma + Jasmine
-- [x] E2E тестирование: Protractor + Jasmine
+- [x] Unit тестирование для Angular: Jasmine + Karma 
+- [x] E2E тестирование: Jasmine + Protractor
 - [x] Виртуализация: Docker
   
 <br /> 
