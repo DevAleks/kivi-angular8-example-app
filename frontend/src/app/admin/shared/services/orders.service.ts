@@ -42,7 +42,7 @@ export class OrdersService {
                             .map(key => ({
                                 ...response[key],
                                 //id: key,
-                                date: new Date(response[key].date)
+                                //date: new Date(response[key].date)
                             }))                    
                        
                     }                  
@@ -91,7 +91,5 @@ export class OrdersService {
         return throwError('Что-то пошло не так; попробуйте снова позднее.')
     }
 */
-
-
 
 }
