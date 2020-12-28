@@ -1,95 +1,87 @@
-<div class="container container-main">	  
-        
-    <div class="logo-mobile">
-        <a [routerLink]="['/']" title="База рафтинга в Лосево «Кивиниеми»">
+<div class="container content-block">
+	  
+    <div class="index__logo-mobile">
+           <a [routerLink]="['/']" title="База рафтинга в Лосево «Кивиниеми»">
             <img [defaultImage]="defaultImage" [lazyLoad]="lazyLoad0" alt="База рафтинга в Лосево «Кивиниеми»">
         </a>
     </div>
  
-    <!-- Рафтинг -->
-        <div class="row rafting rafting-section">
-            <div class="page-title-wrapper">
-                <h1 class="page-title">Рафтинг, сплав в Лосево</h1>
-                <h2 class="page-title-second">Индивидуальные программы рафтинга</h2>
-            </div>			
-             
-            <div class="raft-list">
-                <div class="item">
-                     <h3 class="item-title">Семейный рафтинг</h3>
-                     <div class="primary-wrapper">
-                         <a [routerLink]="['/semeyniy-rafting']" class="btn-more" title="Семейный рафтинг - катаем детей от 7-ми лет, аквапарк на природе!">
-                             <span class="btn-more-active"></span>
-                             <span class="btn-more-inner">Подробнее</span>
-                         </a>
-                         <div class="info-wrapper">						
-                             <div class="prices-wrapper">								
-                                 <div class="old-price"><span>600 руб./чел.</span></div>
-                                 <div class="current-price">от 390 руб./чел.</div>								
-                             </div>
-                             <div class="btn-wrapper">
-                                <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Семейный рафтинг'})" value="Заказать сейчас" />
-                             </div>
-                         </div>
-                         <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad1" alt="Семейный рафтинг - катаем детей от 7-ми лет, аквапарк на природе!">
-                     </div>
-                     <div class="item-add">Катаем детей от 7-ми лет, <br>аквапарк на природе</div>					
+    <div class="index__row">
+        <div class="index__title-wrapper">
+            <h1>Рафтинг, сплав в Лосево</h1>
+            <h2>Индивидуальные программы рафтинга</h2>
+        </div>
+
+        <div class="index__list">					
+            <div class="round-block">
+                <h3>Семейный рафтинг</h3>
+                <div class="round-block__body">
+                    <a [routerLink]="['/semeyniy-rafting']" class="round-block__btn-more" title="Семейный рафтинг - катаем детей от 7-ми лет, аквапарк на природе!">								
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner" id="rafting-item">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">								
+                            <div class="round-block__old-price"><span>600 руб./чел.</span></div>
+                            <div class="round-block__current-price">от 390 руб./чел.</div>								
+                        </div>
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Семейный рафтин'})" value="Заказать сейчас" />								
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad1" alt="Семейный рафтинг - катаем детей от 7-ми лет, аквапарк на природе!">
                 </div>
-                 
-                <div class="item">
-                     <h3 class="item-title">Классический рафтинг</h3>
-                     <div class="primary-wrapper">
-                         <a href="/klassicheskiy-rafting" class="btn-more" title="Классический рафтинг - сплав на рафтах для всех!">
-                             <span class="btn-more-active"></span>
-                             <span class="btn-more-inner">Подробнее</span>
-                         </a>
-                         <div class="info-wrapper">						
-                             <div class="prices-wrapper">
-                                 <div class="old-price"><span>600 руб./чел.</span></div>
-                                 <div class="current-price">от 390 руб./чел.</div>								
-                             </div>
-                             <div class="btn-wrapper">
-                                <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Классический рафтинг'})" value="Заказать сейчас" />                                
-                             </div>
-                         </div>
-                         <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad2" alt="Классический рафтинг - сплав на рафтах для всех!">
-                     </div>
-                     <div class="item-add">Сплав на рафтах для всех</div>					
+                <div class="round-block__desc">Катаем детей от 7-ми лет, <br>аквапарк на природе</div>							
+            </div>
+
+            <div class="round-block">
+                <h3>Классический рафтинг</h3>
+                <div class="round-block__body">
+                    <a href="/klassicheskiy-rafting" class="round-block__btn-more" title="Классический рафтинг - сплав на рафтах для всех!">						
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">
+                            <div class="round-block__old-price"><span>600 руб./чел.</span></div>
+                            <div class="round-block__current-price">от 390 руб./чел.</div>								
+                        </div>
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Классический рафтинг'})" value="Заказать сейчас" />
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad2" alt="Классический рафтинг - сплав на рафтах для всех!">
                 </div>
-                 
-                <div class="item">
-                     <h3 class="item-title">Экстрим рафтинг</h3>
-                     <div class="primary-wrapper">
-                         <a href="/ekstremalniy-rafting" class="btn-more" title="Экстрим рафтинг - море позитива и адреналина!">
-                             <span class="btn-more-active"></span>
-                             <span class="btn-more-inner">Подробнее</span>
-                         </a>
-                         <div class="info-wrapper">						
-                             <div class="prices-wrapper">
-                               <div class="old-price"><span>860 руб./чел.</span></div>
-                                 <div class="current-price">от 600 руб./чел.</div>								
-                             </div>
-                             <div class="btn-wrapper">                                
-                                <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Экстрим рафтинг'})" value="Заказать сейчас" />
-                             </div>
-                         </div>
-                         <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad3" alt="Экстрим рафтинг - море позитива и адреналина!">
-                     </div>
-                     <div class="item-add">Море позитива и адреналина</div>					
-                </div> 
-            </div>           
-    
-       <p>&nbsp;</p> 
-     
-       </div><!--/content-page-->	
- 
+                <div class="round-block__desc">Сплав на рафтах для всех</div>									
+            </div>
+                    
+            <div class="round-block">
+                <h3>Экстрим рафтинг</h3>
+                <div class="round-block__body">
+                    <a href="/ekstremalniy-rafting" class="round-block__btn-more" title="Экстрим рафтинг - море позитива и адреналина!">
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">
+                            <div class="round-block__old-price"><span>860 руб./чел.</span></div>
+                            <div class="round-block__current-price">от 600 руб./чел.</div>						
+                        </div>
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Экстрим рафтинг'})" value="Заказать сейчас" />
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad3" alt="Экстрим рафтинг - море позитива и адреналина!">
+                </div>
+                <div class="round-block__desc">Море позитива и адреналина</div>							
+            </div>				
+        </div>
+    </div><!--/content-page-->		 
 </div><!--/container-main-->
+
 <app-first-form></app-first-form>
 
 <app-four-icons-block></app-four-icons-block>
-<div class="container">
-    <div class="row video-and-photo">
-        <app-video-block>Loading...</app-video-block>
-    </div>
-</div>
+<app-video-block></app-video-block>
 <app-guides-block></app-guides-block>
 <app-subscribe-block></app-subscribe-block>
