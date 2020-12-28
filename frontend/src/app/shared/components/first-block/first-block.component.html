@@ -1,164 +1,159 @@
-<div class="container container-main">
+<div class="container content-block">
 	  
-    <div class="logo-mobile">
-       <a [routerLink]="['/']" title="База рафтинга в Лосево «Кивиниеми»"><img [defaultImage]="defaultImage" [lazyLoad]="lazyLoad0" alt="База рафтинга в Лосево «Кивиниеми»"></a>
+    <div class="index__logo-mobile">
+           <a [routerLink]="['/']" title="База рафтинга в Лосево «Кивиниеми»">
+            <img [defaultImage]="defaultImage" [lazyLoad]="lazyLoad0" alt="База рафтинга в Лосево «Кивиниеми»">
+        </a>
     </div>
 
-    <!-- Рафтинг -->
-    <div class="row rafting rafting-section">
-        <div class="page-title-wrapper">
+    <div class="index__row">
+        <div class="index__title-wrapper">
             <div *ngIf="!loading; else loadingBlock">
-                <h1 class="page-title">{{h1}}</h1>
+                <h1>{{h1}}</h1>
             </div>
             <ng-template #loadingBlock>
-                <p>Загрузка заголовка H1...</p>
                 <img src="../../assets/img/loader2.svg">
+                <p>Загрузка заголовка H1...</p>						
             </ng-template>
+            <h2>Летний активный отдых</h2>
         </div>	
         
-        <div class="raft-list">
-
-            <h2>Летний активный отдых</h2>
-            <p>&nbsp;</p>
-            
-            <div class="item">
-                    <h3 class="item-title">Рафтинг</h3>
-                    <div class="primary-wrapper">
-                        <a [routerLink]="['/rafting']" class="btn-more" title="Рафтинг в Лосево, почувствуй вкус лета!">
-                            <span class="btn-more-active"></span>
-                            <span class="btn-more-inner" id="rafting-item">Подробнее</span>
-                        </a>
-                        <div class="info-wrapper">						
-                            <div class="prices-wrapper">								
-                                <div class="old-price"><span>600 руб./чел.</span></div>
-                                <div class="current-price">от 390 руб./чел.</div>								
-                            </div>
-                            <div class="btn-wrapper">
-                              <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Рафтинг'})" value="Заказать сейчас" />								
-                            </div>
+        <div class="index__list">					
+            <div class="round-block">
+                <h3>Рафтинг</h3>
+                <div class="round-block__body">
+                    <a [routerLink]="['/rafting']" class="round-block__btn-more" title="Рафтинг в Лосево, почувствуй вкус лета!">
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner" id="rafting-item">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">								
+                            <div class="round-block__old-price"><span>600 руб./чел.</span></div>
+                            <div class="round-block__current-price">от 390 руб./чел.</div>								
                         </div>
-                        <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad1" alt="Рафтинг в Лосево, почувствуй вкус лета!">
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Рафтинг'})" value="Заказать сейчас" />								
+                        </div>
                     </div>
-                    <div class="item-add">Море позитива и адреналина!</div>					
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad1" alt="Рафтинг в Лосево, почувствуй вкус лета!">
+                </div>
+                <div class="round-block__desc">Море позитива и адреналина!</div>							
             </div> 
 
-            <div class="item">
-                        <h3 class="item-title">Аренда площадок</h3>
-                        <div class="primary-wrapper">
-                            <a href="/arenda-ploshadok-dlya-meropriyatiy" class="btn-more" title="Аренда площадок для отдыха и пикника на природе">
-                                <span class="btn-more-active"></span>
-                                <span class="btn-more-inner">Подробнее</span>
-                            </a>
-                            <div class="info-wrapper">						
-                                <div class="prices-wrapper">							
-                                </div>
-                                <div class="btn-wrapper">
-                                  <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Аренда площадок'})" value="Заказать сейчас" />
-                                </div>
-                            </div>
-                            <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad2" alt="Аренда площадок для отдыха и пикника на природе">
+            <div class="round-block">
+                <h3>Аренда площадок</h3>
+                <div class="round-block__body">
+                    <a href="/arenda-ploshadok-dlya-meropriyatiy" class="round-block__btn-more" title="Аренда площадок для отдыха и пикника на природе">
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">							
                         </div>
-                        <div class="item-add">Площадки от 10 до 1000 человек<br>под разный формат мероприятий.</div>					
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Аренда площадок'})" value="Заказать сейчас" />
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad2" alt="Аренда площадок для отдыха и пикника на природе">
+                </div>
+                <div class="round-block__desc">Площадки от 10 до 1000 человек<br>под разный формат мероприятий.</div>									
             </div>
                     
-            <div class="item">
-                        <h3 class="item-title">Проведение мероприятий</h3>
-                        <div class="primary-wrapper">
-                            <a href="/provedenie-meropriyatiy" class="btn-more" title="Проведение мероприятий. Корпоративные, спортивные, развлекательные.">
-                                <span class="btn-more-active"></span>
-                                <span class="btn-more-inner">Подробнее</span>
-                            </a>
-                            <div class="info-wrapper">						
-                                <div class="prices-wrapper">						
-                                </div>
-                                <div class="btn-wrapper">
-                                  <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Проведение мероприятий'})" value="Заказать сейчас" />
-                                </div>
-                            </div>
-                            <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad3" alt="Проведение мероприятий. Корпоративные, спортивные, развлекательные.">
+            <div class="round-block">
+                <h3>Проведение мероприятий</h3>
+                <div class="round-block__body">
+                    <a href="/provedenie-meropriyatiy" class="round-block__btn-more" title="Проведение мероприятий. Корпоративные, спортивные, развлекательные.">
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">						
                         </div>
-                        <div class="item-add">Опыт, индивидуальность, стиль.</div>					
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Проведение мероприятий'})" value="Заказать сейчас" />
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad3" alt="Проведение мероприятий. Корпоративные, спортивные, развлекательные.">
+                </div>
+                <div class="round-block__desc">Опыт, индивидуальность, стиль.</div>							
             </div>
                     
-            <div class="item">
-                        <h3 class="item-title">Аренда байдарок и каяков</h3>
-                        <div class="primary-wrapper">
-                            <a href="/arenda-baydarok-i-kayakov" class="btn-more" title="Аренда байдарок и каяков в Санкт-Петербурге и Ленинградской области">
-                                <span class="btn-more-active"></span>
-                                <span class="btn-more-inner">Подробнее</span>
-                            </a>
-                            <div class="info-wrapper">						
-                                <div class="prices-wrapper">								
-                                </div>
-                                <div class="btn-wrapper">
-                                  <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Аренда байдарок и каяков'})" value="Заказать сейчас" />
-                                </div>
-                            </div>
-                            <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad4" alt="Аренда байдарок и каяков в Санкт-Петербурге и Ленинградской области">
+            <div class="round-block">
+                <h3>Аренда байдарок и каяков</h3>
+                <div class="round-block__body">
+                    <a href="/arenda-baydarok-i-kayakov" class="round-block__btn-more" title="Аренда байдарок и каяков в Санкт-Петербурге и Ленинградской области">
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">								
                         </div>
-                        <div class="item-add">Классные современные лодки<br>для ваших путешествий!</div>					
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Аренда байдарок и каяков'})" value="Заказать сейчас" />
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad4" alt="Аренда байдарок и каяков в Санкт-Петербурге и Ленинградской области">
+                </div>
+                <div class="round-block__desc">Классные современные лодки<br>для ваших путешествий!</div>							
             </div>
                     
-            <div class="item">
-                        <h3 class="item-title">Туры, походы</h3>
-                        <div class="primary-wrapper">
-                            <a href="/turi-pohodi" class="btn-more" title="Туры и походы по Вуоксе и Ладоге на байдарках, каяках">
-                                <span class="btn-more-active"></span>
-                                <span class="btn-more-inner">Подробнее</span>
-                            </a>
-                            <div class="info-wrapper">						
-                                <div class="prices-wrapper">							
-                                </div>
-                                <div class="btn-wrapper">
-                                  <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Туры / Походы'})" value="Заказать сейчас" />
-                                </div>
-                            </div>
-                            <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad5" alt="Туры и походы по Вуоксе и Ладоге на байдарках, каяках">
+            <div class="round-block">
+                <h3>Туры, походы</h3>
+                <div class="round-block__body">
+                    <a href="/turi-pohodi" class="round-block__btn-more" title="Туры и походы по Вуоксе и Ладоге на байдарках, каяках">
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">							
                         </div>
-                        <div class="item-add">Незабываемые впечатления<br>от летнего отдыха!</div>					
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Туры / Походы'})" value="Заказать сейчас" />
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad5" alt="Туры и походы по Вуоксе и Ладоге на байдарках, каяках">
+                </div>
+                <div class="round-block__desc">Незабываемые впечатления<br>от летнего отдыха!</div>							
             </div>
                 
-            <div class="item">
-                        <h3 class="item-title">Другие активности</h3>
-                        <div class="primary-wrapper">
-                            <a href="/drugie-aktivnosti" class="btn-more" title="Активные программы отдыха на земле">
-                                <span class="btn-more-active"></span>
-                                <span class="btn-more-inner">Подробнее</span>
-                            </a>
-                            <div class="info-wrapper">						
-                                <div class="prices-wrapper">						
-                                </div>
-                                <div class="btn-wrapper">
-                                  <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Другие активности'})" value="Заказать сейчас" />
-                                </div>
-                            </div>
-                            <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad6" alt="Активные программы отдыха на земле">
+            <div class="round-block">
+                <h3>Другие активности</h3>
+                <div class="round-block__body">
+                    <a href="/drugie-aktivnosti" class="round-block__btn-more" title="Активные программы отдыха на земле">
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">						
                         </div>
-                        <div class="item-add">Активные программы<br>отдыха на земле.</div>					
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Другие активности'})" value="Заказать сейчас" />
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad6" alt="Активные программы отдыха на земле">
+                </div>
+                <div class="round-block__desc">Активные программы<br>отдыха на земле.</div>							
             </div>
 
-            <div class="item">
-                        <h3 class="item-title">Подарочные сертификаты</h3>
-                        <div class="primary-wrapper">
-                            <a href="/podarochnie-sertifikati" class="btn-more" title="Подарочные сертификаты">
-                                <span class="btn-more-active"></span>
-                                <span class="btn-more-inner">Подробнее</span>
-                            </a>
-                            <div class="info-wrapper">						
-                                <div class="prices-wrapper">
-                                    <div class="current-price">от 1800 руб.</div>								
-                                </div>
-                                <div class="btn-wrapper">
-                                  <input class="btn-modal btn-custom" (click)="openFormClick({typeofform:2, typeofact:'Подарочный сертификат'})" value="Заказать сейчас" />
-                                </div>
-                            </div>
-                            <img class="raft-photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad7" alt="Подарочные сертификаты">                            
+            <div class="round-block">
+                <h3>Подарочные сертификаты</h3>
+                <div class="round-block__body">
+                    <a href="/podarochnie-sertifikati" class="round-block__btn-more" title="Подарочные сертификаты">
+                        <span class="round-block__btn-more--active"></span>
+                        <span class="round-block__btn-more-inner">Подробнее</span>
+                    </a>
+                    <div class="round-block__info-wrapper">						
+                        <div class="round-block__prices-wrapper">
+                            <div class="round-block__current-price">от 1800 руб.</div>								
                         </div>
-                        <div class="item-add">Подари активный отдых друзьям</div>					
-            </div> 
-           
-        </div>     
-
-    </div><!-- /content-page -->		
-
+                        <div class="btn-order">
+                          <input class="btn-order__btn" (click)="openFormClick({typeofform:2, typeofact:'Подарочный сертификат'})" value="Заказать сейчас" />
+                        </div>
+                    </div>
+                    <img class="round-block__photo" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad7" alt="Подарочные сертификаты">                            
+                </div>
+                <div class="round-block__desc">Подари активный отдых друзьям</div>							
+            </div>			   
+        </div> 
+    </div><!-- /content-page -->	
 </div><!-- /container-main -->
