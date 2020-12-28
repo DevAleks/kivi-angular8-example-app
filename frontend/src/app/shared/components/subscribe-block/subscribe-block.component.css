@@ -1,0 +1,19 @@
+/* Feed-block */
+
+.feed-block {
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .feed-block h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    margin-top: 0;
+  }
+  
+  /* / Feed-block */
+  
