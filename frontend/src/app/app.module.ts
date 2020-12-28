@@ -16,6 +16,7 @@ import { FooterFormComponent } from './shared/components/footer-form/footer-form
 import { TopFormComponent } from './shared/components/top-form/top-form.component'
 import { QuestionFormComponent } from './shared/components/question-form/question-form.component'
 import { CallorderFormComponent } from './shared/components/callorder-form/callorder-form.component'
+import { GoToTopComponent } from './shared/components/go-to-top/go-to-top.component'
 
 import { environment } from '../environments/environment'
 
@@ -37,6 +38,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     TopFormComponent,
     QuestionFormComponent,
     CallorderFormComponent,
+    GoToTopComponent,
   ],  
   imports: [
     BrowserModule,
