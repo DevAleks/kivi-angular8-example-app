@@ -1,12 +1,11 @@
-<div *inView>
-  <div *ngIf="!isVideoLoading; else loadingBlock" class="videoWrapper">
-      <iframe class="inner" frameborder="0" allowfullscreen="1" title="YouTube video player" width="100%" height="100%" [src]="videourl|safe"></iframe>
-      <!-- [src]="videourl| safe" -->
-  </div>
-  <ng-template #loadingBlock>
-      <div class="videoWrapper center">
-        <p class="txt_blc">Загрузка видео...</p>
-        <img src="../../assets/img/formloader200.svg">
-      </div>
-  </ng-template>
+<div *inView class="video">
+    <div *ngIf="!isVideoLoading; else loadingBlock" class="video__wrapper">
+        <iframe class="inner" frameborder="0" allowfullscreen="1" title="YouTube video player" width="100%" height="100%" [src]="videourl|safe"></iframe>
+    </div>
+    <ng-template #loadingBlock>
+        <div class="video__wrapper video__wrapper--center">
+            <p class="txt_blc">Загрузка видео...</p>
+            <img src="../../assets/img/formloader200.svg">
+        </div>
+    </ng-template>
 </div>
