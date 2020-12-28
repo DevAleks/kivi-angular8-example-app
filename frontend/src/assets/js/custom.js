@@ -1,4 +1,5 @@
 $(function(){
+/*
     $(window).scroll(function() {
       if ($(this).scrollTop() > 1){
         $('.navbar-fixed-top').addClass("sticky");
@@ -24,9 +25,11 @@ $(function(){
     }); 
 
     $(".nav-menu__burgerbody").click(function(){
-//      $(".nav-menu__burger, .nav-dropdown, .order-btn").toggleClass("active");
-//      $("body").toggleClass("lock");
+      $(".nav-menu__burger, .nav-dropdown, .order-btn").toggleClass("active");
+      $("body").toggleClass("lock");
     });     
+
+*/
 
     $(function() {
       $.fn.scrollToTop = function() {
