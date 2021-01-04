@@ -177,6 +177,7 @@
   .header__ordercall {
     margin-left: 30px;
     display: block;
+    cursor:pointer;
   }
   
   .header__ordercall {
@@ -191,6 +192,7 @@
     width: 23px;
     height: 23px;
     background-repeat: no-repeat;
+    cursor:pointer;
   }
   
   .header__askquestion > .icon-question {
