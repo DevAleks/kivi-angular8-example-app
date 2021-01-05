@@ -7,12 +7,12 @@
             </div>
             <div class="modal-window__container">
                 <form [formGroup]="callorderForm" novalidate>
-                    <div class="gr">
-                        <label>Введите ваше имя:<span class="req">*</span></label>
-                        <input name="name" type="text" formControlName="userName" [ngClass]="{gr_error: switcher_valid && callorderForm.controls['userName'].invalid}" />  
+                    <div class="forms__row">
+                        <label class="forms__label">Введите ваше имя:<span class="forms__req">*</span></label>
+                        <input class="forms__input" name="name" type="text" formControlName="userName" [ngClass]="{'forms__row--error': switcher_valid && callorderForm.controls['userName'].invalid}" />  
                     </div>
                     <div *ngIf="switcher_valid">
-                        <div *ngIf="callorderForm.controls['userName'].invalid && callorderForm.controls['userName'].touched" class="error-form-text">
+                        <div *ngIf="callorderForm.controls['userName'].invalid && callorderForm.controls['userName'].touched" class="forms__errors-text">
                             Поле Имя заполнено неверно:
                             <div *ngIf="callorderForm.controls['userName'].errors?.userNamePattern">
                                 - Использованы некорректные символы
@@ -24,7 +24,7 @@
                                 - Должно быть не более 30 символов
                             </div>
                         </div>
-                        <div *ngIf="callorderForm.controls['userName'].untouched && callorderForm.controls['userName'].invalid" class="error-form-text">
+                        <div *ngIf="callorderForm.controls['userName'].untouched && callorderForm.controls['userName'].invalid" class="forms__errors-text">
                             Поле Имя не заполнено
                         </div>
                     </div>
