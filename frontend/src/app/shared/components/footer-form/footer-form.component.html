@@ -1,173 +1,27 @@
-<div class="title">Оставить заявку</div>
-<form [formGroup]="footerForm" novalidate>
-    <div class="textareas">                 
-      <div class="gr">
-        <label>Выберите услугу:<span class="req">*</span></label>
-        <select id="serviceFooterForm" name="typeofact" formControlName="userTypeofact" [ngClass]="{gr_error: switcher && footerForm.controls['userTypeofact'].invalid}">
-          <option value="">...</option>
-          <option *ngFor="let typeoa of typeofacts.activities" [value]="typeoa">
-            {{typeoa}}
-          </option>
-        </select>         
-        <div *ngIf="switcher_valid">
-          <div *ngIf="footerForm.controls['userTypeofact'].invalid" class="error-form-text">
-            Для отправки заказа необходимо выбрать услугу
-          </div>
-        </div>
-      </div>                     
-
-      <div class="gr">
-        <input name="name" type="text" placeholder="Введите ваше имя" formControlName="userName" [ngClass]="{gr_error: switcher && footerForm.controls['userName'].invalid}" />
-      </div>
-      <div *ngIf="switcher_valid">
-            <div *ngIf="footerForm.controls['userName'].invalid && footerForm.controls['userName'].touched" class="error-form-text">
-              Поле Имя заполнено неверно:
-              <div *ngIf="footerForm.controls['userName'].errors?.userNamePattern">
-                - Использованы некорректные символы
-              </div>
-              <div *ngIf="footerForm.controls['userName'].errors?.minlength">
-                - Должно быть от 2 до 30 символов
-              </div>
-              <div *ngIf="footerForm.controls['userName'].errors?.maxlength">
-               -  Должно быть не более 30 символов
-              </div>
-            </div>
-            <div *ngIf="footerForm.controls['userName'].untouched && footerForm.controls['userName'].invalid" class="error-form-text">
-              Поле Имя не заполнено
-            </div>
-      </div>
-
-      <div class="gr">
-         <input name="phone" type="text" placeholder="Введите телефон" formControlName="userPhone" [ngClass]="{gr_error: switcher && footerForm.controls['userPhone'].invalid}" />
-      </div>
-      <div *ngIf="switcher_valid">
-            <div *ngIf="footerForm.controls['userPhone'].invalid && footerForm.controls['userPhone'].touched" class="error-form-text">
-              Поле Телефон заполнено неверно:
-              <div *ngIf="footerForm.controls['userPhone'].errors?.userPhonePattern">
-                - Использованы некорректные символы
-              </div>
-              <div *ngIf="footerForm.controls['userPhone'].errors?.minlength">
-                - Должно быть от 6 до 20 символов
-              </div>
-              <div *ngIf="footerForm.controls['userPhone'].errors?.maxlength">
-               -  Должно быть не более 20 символов
-              </div>          
-            </div>
-            <div *ngIf="footerForm.controls['userPhone'].untouched" class="error-form-text">
-              Поле Телефон не заполнено
-            </div>
-      </div>
-
-      <div class="gr">
-         <input name="email" type="email" placeholder="Введите e-mail" formControlName="userEmail" [ngClass]="{gr_error: switcher && footerForm.controls['userEmail'].invalid}" />
-      </div>
-      <div *ngIf="switcher_valid">
-            <div *ngIf="footerForm.controls['userEmail'].invalid && footerForm.controls['userEmail'].touched" class="error-form-text">
-              Поле Email заполнено неверно
-            </div>
-      </div> 
-    </div>
-    <input type="submit" class="submit" (click)="submitFooter()" value="Заказать">
-</form>
-
-<div *ngIf="switcher" id="modal-form-bg" class="modal-form-bg" [ngClass]="{hide_: !modal_switcher}" [style.display]="modal_switcher ? 'block' : 'none'">
-  <div class="modal-form-wrapper" id="form1-box" [style.display]="modal_switcher ? 'block' : 'none'">
-    <div class="modal-form">
-
-      <div *ngIf="!loading; else loadingBlock">
-
-        <div class="modal-form-header">
-          Заказ услуги <span class="no-wrap">{{ footerForm.value['userTypeofact'] }}</span>
-          <div class="close" (click)="closeForm()"></div>
-        </div>      
-  
-        <div *ngIf="switcher && !formValidError && !receivedFormFooter?.status && !errServ" class="modal-form-body">
-          <br><br>
-          <div class="txt_blc"><b>Заказ успешно отправлен!</b></div>
-          <br>
-          <div class="col-black">
-            <label>Ответ сервера:</label>
-            <ul>
-              <li>{{receivedFormFooter.name}}</li>
-              <li>{{receivedFormFooter.phone}}</li>
-              <li>{{receivedFormFooter.email}}</li>
-              <li>{{receivedFormFooter.typeofact}}</li>
-              <li>Тип формы: {{receivedFormFooter.typeofform}}</li>
-              <li>Статус ошибки при отправке заказа: {{receivedFormFooter.status}}</li>
-            </ul>
-          </div>
-          <div class="btn-wrapper">					
-            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-          </div>          
-        </div>
-
-        <div *ngIf="switcher && errServ" class="modal-form-body center">
-          <div class="col-black">
-            Ошибка отправки данных. Повторите заказ позднее.
-            <br><br>
-          </div>
-          <div class="btn-wrapper">					
-            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-          </div>          
-        </div>
-
-        <div *ngIf="switcher && receivedFormFooter?.status" class="modal-form-body center"> 
-          <div class="col-black">         
-            Ошибка записи в БД. Повторите заказ позднее.
-            <br><br>
-          </div>
-          <div class="btn-wrapper">					
-            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-          </div> 
-        </div>
-    
-      </div>
-    
-      <ng-template #loadingBlock>
-        <div class="modal-form-body center">
-          <p class="txt_blc">Отправка...</p>
-          <img src="../../assets/img/formloader200.svg">
-        </div>
-      </ng-template>
-
-    </div>
-  
-  </div>  
-
-</div>
-
-
-
-
-
-
-
-
 <div class="footer-form">
-
     <div class="footer-form__title">Оставить заявку</div>
     <form [formGroup]="footerForm" novalidate class="footer-form__form">
         <div class="footer-form__body">                 
-            <div class="footer-form__row">
-                <label class="footer-form__label">Выберите услугу:<span class="footer-form__req">*</span></label>
-                <select class="footer-form__select" id="serviceFooterForm" name="typeofact" formControlName="userTypeofact" [ngClass]="{footer_form__row__error: switcher_valid && footerForm.controls['userTypeofact'].invalid}">
+            <div class="forms__row">
+                <label class="forms__label">Выберите услугу:<span class="forms__req">*</span></label>
+                <select class="forms__select" name="typeofact" formControlName="userTypeofact" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userTypeofact'].invalid}">
                     <option value="">...</option>
                     <option *ngFor="let typeoa of typeofacts.activities" [value]="typeoa">
                         {{typeoa}}
                     </option>
                 </select>         
                 <div *ngIf="switcher_valid">
-                    <div *ngIf="footerForm.controls['userTypeofact'].invalid" class="footer-form__errors-text">
+                    <div *ngIf="footerForm.controls['userTypeofact'].invalid" class="forms__errors-text">
                         Для отправки заказа необходимо выбрать услугу
                     </div>
                 </div>
             </div>                     
 
-            <div class="footer-form__row">
-                <input class="footer-form__input" name="name" type="text" placeholder="Введите ваше имя" formControlName="userName" [ngClass]="{footer_form__row__error: switcher_valid && footerForm.controls['userName'].invalid}" />
+            <div class="forms__row">
+                <input class="forms__input" name="name" type="text" placeholder="Введите ваше имя" formControlName="userName" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userName'].invalid}" />
             </div>
             <div *ngIf="switcher_valid">
-                <div *ngIf="footerForm.controls['userName'].invalid && footerForm.controls['userName'].touched" class="footer-form__errors-text">
+                <div *ngIf="footerForm.controls['userName'].invalid && footerForm.controls['userName'].touched" class="forms__errors-text">
                     Поле Имя заполнено неверно:
                     <div *ngIf="footerForm.controls['userName'].errors?.userNamePattern">
                         - Использованы некорректные символы
@@ -179,16 +33,16 @@
                         - Должно быть не более 30 символов
                     </div>
                 </div>
-                <div *ngIf="footerForm.controls['userName'].untouched && footerForm.controls['userName'].invalid" class="footer-form__errors-text">
+                <div *ngIf="footerForm.controls['userName'].untouched && footerForm.controls['userName'].invalid" class="forms__errors-text">
                     Поле Имя не заполнено
                 </div>  
             </div>
 
-            <div class="footer-form__row">
-                <input class="footer-form__input" name="phone" type="text" placeholder="Введите телефон" formControlName="userPhone" [ngClass]="{footer_form__row__error: switcher_valid && footerForm.controls['userPhone'].invalid}" />
+            <div class="forms__row">
+                <input class="forms__input" name="phone" type="text" placeholder="Введите телефон" formControlName="userPhone" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userPhone'].invalid}" />
             </div>
             <div *ngIf="switcher_valid">
-                <div *ngIf="footerForm.controls['userPhone'].invalid && footerForm.controls['userPhone'].touched" class="footer-form__errors-text">
+                <div *ngIf="footerForm.controls['userPhone'].invalid && footerForm.controls['userPhone'].touched" class="forms__errors-text">
                     Поле Телефон заполнено неверно:
                     <div *ngIf="footerForm.controls['userPhone'].errors?.userPhonePattern">
                         - Использованы некорректные символы
@@ -200,21 +54,21 @@
                         - Должно быть не более 20 символов
                     </div>          
                 </div>
-                <div *ngIf="footerForm.controls['userPhone'].untouched" class="footer-form__errors-text">
+                <div *ngIf="footerForm.controls['userPhone'].untouched" class="forms__errors-text">
                     Поле Телефон не заполнено
                 </div>  
             </div>
 
-            <div class="footer-form__row">
-                <input class="footer-form__input" name="email" type="email" placeholder="Введите e-mail" formControlName="userEmail" [ngClass]="{footer_form__row__error: switcher_valid && footerForm.controls['userEmail'].invalid}" />
+            <div class="forms__row">
+                <input class="forms__input" name="email" type="email" placeholder="Введите e-mail" formControlName="userEmail" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userEmail'].invalid}" />
             </div>
             <div *ngIf="switcher_valid">
-                <div *ngIf="footerForm.controls['userEmail'].invalid && footerForm.controls['userEmail'].touched" class="footer-form__errors-text">
+                <div *ngIf="footerForm.controls['userEmail'].invalid && footerForm.controls['userEmail'].touched" class="forms__errors-text">
                     Поле Email заполнено неверно
                 </div>
             </div> 
         </div>
-        <input class="footer-form__submit-btn" type="submit" (click)="submitFooter()" value="Заказать">
+        <input class="forms__submit-btn" type="submit" (click)="submitFooter()" value="Заказать">
     </form>
 
     <div *ngIf="switcher" class="modal-window" [style.display]="modal_switcher ? 'block' : 'none'">
@@ -222,19 +76,16 @@
             <div class="modal-window__body">
 
                 <div *ngIf="!loading; else loadingBlock">
-
                     <div class="modal-window__header">
                         Заказ услуги <span class="modal-window__nowrap">{{ footerForm.value['userTypeofact'] }}</span>
                         <div class="modal-window__btn-close" (click)="closeForm()"></div>
                     </div>      
             
-                    <div *ngIf="switcher && !formValidError && !receivedFormFooter?.status && !errServ" class="modal-form-body">
-                        <br><br>
-                        <div class="txt_blc"><b>Заказ успешно отправлен!</b></div>
-                        <br>
-                        <div class="col-black">
+                    <div class="modal-window__container" *ngIf="switcher && !formValidError && !receivedFormFooter?.status && !errServ">
+                        <div class="modal-window__title">Заказ успешно отправлен!</div>
+                        <div class="modal-window__text-left">
                             <label>Ответ сервера:</label>
-                            <ul>
+                            <ul class="modal-window__list">
                                 <li>{{receivedFormFooter.name}}</li>
                                 <li>{{receivedFormFooter.phone}}</li>
                                 <li>{{receivedFormFooter.email}}</li>
@@ -243,31 +94,30 @@
                                 <li>Статус ошибки при отправке заказа: {{receivedFormFooter.status}}</li>
                             </ul>
                         </div>
-                        <div class="btn-wrapper">					
-                            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-                        </div>          
+                        <div class="btn-order">
+                            <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
+                        </div>
                     </div>
 
-                    <div *ngIf="switcher && errServ" class="modal-form-body center">
-                        <div class="col-black">
+                    <div *ngIf="switcher && errServ" class="modal-window__container">
+                        <div class="modal-window__text-center">
                             Ошибка отправки данных. Повторите заказ позднее.
                             <br><br>
                         </div>
-                        <div class="btn-wrapper">					
-                            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
+                        <div class="btn-order">
+                            <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
                         </div>          
                     </div>
 
-                    <div *ngIf="switcher && receivedFormFooter?.status" class="modal-form-body center"> 
-                        <div class="col-black">         
+                    <div *ngIf="switcher && receivedFormFooter?.status" class="modal-window__container"> 
+                        <div class="modal-window__text-center">         
                             Ошибка записи в БД. Повторите заказ позднее.
                             <br><br>
                         </div>
-                        <div class="btn-wrapper">					
-                            <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-                        </div> 
-                    </div>
-              
+                        <div class="btn-order">
+                            <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
+                        </div>   
+                    </div>              
                 </div>
               
                 <ng-template #loadingBlock>
@@ -279,5 +129,4 @@
             </div>        
         </div> 
     </div>
-
 </div>

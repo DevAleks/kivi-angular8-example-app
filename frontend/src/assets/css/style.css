@@ -131,6 +131,10 @@ body {
   cursor: pointer;
 }
 
+.btn-order__btn--slim {
+  width: 200px !important;
+}
+
 .btn-order__btn::after {
   margin-left: 12px;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAASCAMAAAC+XgR6AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAqUExURQAAAP///////////////////////////////////////////////////4a7yi8AAAANdFJOUwClQSxXjuzzZ4F0zBwWf/wwAAAARElEQVQI113OSQ4AIAgEQfe9//9dPQyayKkCAcaV6VTgpQhZDDDEBEkcEMQMUfTUdVle85t222h25Vxu9q1/CV6qm3QDxB4CLdfw0IYAAAAASUVORK5CYII=);
@@ -603,117 +607,6 @@ body {
 /* / Service page */
 
 
-/* Footer form */
-
-.footer-form {
-  margin: 0;
-  padding: 0;
-}
-
-.footer-form__title {
-  margin: 40px 0 10px;
-  text-transform: uppercase;
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-}
-
-.footer-form__form {
-  background-color: #fff;
-}
-
-.footer-form__body {
-  padding: 12px;
-  width: 100%;
-}
-
-.footer-form__row:first-child ~ .footer-form__row {
-  margin: 8px 0 0 0;
-}
-
-.footer-form__label {
-  display: block;
-  color: #575757;
-  font-size: 20px;
-  padding: 0 0 0 14px;
-  margin-bottom: 3px;
-  touch-action: manipulation;
-}
-
-.footer-form__req {
-  vertical-align: top;
-  color: #e62101;
-  font-size: 25px;
-  margin-left: 4px;
-  position: relative;
-  line-height: 1;
-}
-
-.footer-form__select {
-  height: 54px;
-  border-radius: 5px;
-  display: block;
-  width: 100%;
-  border: 1px #d4d4d4 solid;
-  padding: 10px 14px;
-  font-size: 1.1rem;
-  color: #585858;
-  margin: 0;
-  line-height: inherit;
-  touch-action: manipulation;
-  text-transform: none;
-  overflow: visible;
-}
-
-/* BEM class names is not works to the ngClass directive */
-.footer_form__row__error {
-  border-color: #e62101 !important;
-}
-
-.footer-form__errors-text {
-  font-size: 15px;
-  padding: 1px 0 0;
-  color: #e62101;
-}
-
-.footer-form__input {
-  padding: 12px;
-  width: 100%;
-  height: 54px;
-  margin-bottom: 4px;
-  font-size: 0.8rem;
-  color: #585858;
-  border: 1px solid #b4b4b4;
-  border-radius: 5px;
-  overflow: visible;
-  touch-action: manipulation;
-  display: block;
-}
-
-.footer-form__submit-btn {
-  background-color: #fb031a;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1rem;
-  border: 0;
-  width: 100%;
-  margin: 0;
-  padding: 12px;
-  line-height: inherit;
-  border-radius: 0;
-  -webkit-appearance: button;
-  touch-action: manipulation;
-  overflow: visible;
-  cursor: pointer;
-}
-
-.footer-form__submit-btn:hover[type="submit"] {
-  background-color: #e52200;
-}
-
-/* / Footer form */
-
-
 /* Modal Loading */
 
 .modal-loading {
@@ -862,4 +755,132 @@ body {
   }
 }
 
+.modal-window__container {
+  padding: 30px 24px 25px 24px;
+  color:black;
+}
+.modal-window__container:last-child {
+  padding-bottom: 50px;
+}
+
+@media (min-width: 768px) {
+  .modal-window__container {
+    padding-left: 42px;
+    padding-right: 42px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-window__container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+.modal-window__title {  
+  font: 1.2rem bold Arial;
+  padding: 1rem 0;
+}
+
+.modal-window__text-left {
+  padding: 0.5rem 0;
+}
+.modal-window__text-center {
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.modal-window__list {
+  margin-left: 40px;
+}
+
 /* / Modal Window */
+
+
+/* Forms */
+
+.forms__row:first-child ~ .forms__row {
+  margin: 8px 0 0 0;
+}
+
+.forms__label {
+  display: block;
+  color: #575757;
+  font-size: 20px;
+  padding: 0 0 0 14px;
+  margin-bottom: 3px;
+  touch-action: manipulation;
+}
+
+.forms__req {
+  vertical-align: top;
+  color: #e62101;
+  font-size: 25px;
+  margin-left: 4px;
+  position: relative;
+  line-height: 1;
+}
+
+.forms__select {
+  height: 54px;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  border: 1px #d4d4d4 solid;
+  padding: 10px 14px;
+  font-size: 1.1rem;
+  color: #585858;
+  margin: 0;
+  line-height: inherit;
+  touch-action: manipulation;
+  text-transform: none;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.forms__row--error {
+  border-color: #e62101 !important;
+}
+
+.forms__errors-text {
+  font-size: 15px;
+  padding: 1px 0 0;
+  color: #e62101;
+}
+
+.forms__input {
+  padding: 12px;
+  width: 100%;
+  height: 54px;
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+  color: #585858;
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
+  overflow: visible;
+  touch-action: manipulation;
+  display: block;
+}
+
+.forms__submit-btn {
+  background-color: #fb031a;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border: 0;
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+  line-height: inherit;
+  border-radius: 0;
+  -webkit-appearance: button;
+  touch-action: manipulation;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.forms__submit-btn:hover[type="submit"] {
+  background-color: #e52200;
+}
+
+/* / Forms */
