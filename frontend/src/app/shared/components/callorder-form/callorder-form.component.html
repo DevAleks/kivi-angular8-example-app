@@ -29,12 +29,12 @@
                         </div>
                     </div>
 
-                    <div class="gr">
-                        <label>Введите телефон:<span class="req">*</span></label>
-                        <input name="phone" type="text" formControlName="userPhone" [ngClass]="{gr_error: switcher_valid && callorderForm.controls['userPhone'].invalid}" /> 
+                    <div class="forms__row">
+                        <label class="forms__label">Введите телефон:<span class="forms__req">*</span></label>
+                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': switcher_valid && callorderForm.controls['userPhone'].invalid}" /> 
                     </div>
                     <div *ngIf="switcher_valid">
-                        <div *ngIf="callorderForm.controls['userPhone'].invalid && callorderForm.controls['userPhone'].touched" class="error-form-text">
+                        <div *ngIf="callorderForm.controls['userPhone'].invalid && callorderForm.controls['userPhone'].touched" class="forms__errors-text">
                           Поле Телефон заполнено неверно:
                           <div *ngIf="callorderForm.controls['userPhone'].errors?.userPhonePattern">
                               - Использованы некорректные символы
@@ -46,22 +46,22 @@
                               - Должно быть не более 20 символов
                           </div>          
                         </div>
-                        <div *ngIf="callorderForm.controls['userPhone'].untouched" class="error-form-text">
+                        <div *ngIf="callorderForm.controls['userPhone'].untouched" class="forms__errors-text">
                             Поле Телефон не заполнено
                         </div>
                     </div>
                   
-                    <div class="req-info">
+                    <div class="forms__req-info">
                         Поля отмеченные знаком * обязательны для заполнения
                     </div>
                     
-                    <div class="btn-wrapper">					
-                        <input type="submit" class="btn-custom btn-send submit" (click)="submitCallOrder()" value="Заказать обратный звонок">
-                    </div>
+                    <div class="btn-order">
+                        <input class="btn-order__btn" (click)="submitCallOrder()" value="Заказать обратный звонок" />
+                    </div>                     
 
                 </form>
 
-                <div class="policy_form">
+                <div class="forms__policy_form">
                     Нажимая на кнопку "Заказать обратный звонок" вы даете согласие на обработку персональных данных в
                     соответствии с нашей <a href="/policy" target="_blank">политикой конфиденциальности</a>.
                 </div>  
@@ -69,55 +69,54 @@
             </div>
         </div>  
 
-        <div *ngIf="switcher" class="modal-form">
+        <div *ngIf="switcher" class="modal-window__body">
 
             <div *ngIf="!loading; else loadingBlock">
 
-              <div class="modal-form-header">
-                  Заказать обратный звонок
-                  <div class="close" (click)="closeForm()"></div>
-              </div>
+                <div class="modal-window__header">
+                    Заказать обратный звонок
+                    <div class="modal-window__btn-close" (click)="closeForm()"></div>
+                </div>
               
-              <div *ngIf="switcher && !formValidError && !errServ && !receivedFormCallOrder.status" class="modal-form-body">
-                  <br><br>
-                  <div id="success"><b>Заказ успешно отправлен!</b></div>
-                  <br>
-                  <label>Ответ сервера:</label>
-                  <ul>
-                      <li>{{receivedFormCallOrder?.name}}</li>
-                      <li>{{receivedFormCallOrder?.phone}}</li>
-                      <li>Тип формы: {{receivedFormCallOrder?.typeofform}}</li>
-                      <li>Статус ошибки при отправке заказа: {{receivedFormCallOrder?.status}}</li>
-                  </ul>
-                  <br><br>
-                  <div class="btn-wrapper">					
-                      <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-                  </div>
-              </div>
+                <div *ngIf="switcher && !formValidError && !errServ && !receivedFormCallOrder.status" class="modal-window__container">
+                    <div class="modal-window__title">Заказ успешно отправлен!</div>
+                    <div class="modal-window__text-left">
+                        <label>Ответ сервера:</label>
+                        <ul class="modal-window__list">
+                            <li>{{receivedFormCallOrder?.name}}</li>
+                            <li>{{receivedFormCallOrder?.phone}}</li>
+                            <li>Тип формы: {{receivedFormCallOrder?.typeofform}}</li>
+                            <li>Статус ошибки при отправке заказа: {{receivedFormCallOrder?.status}}</li>
+                        </ul>
+                        <div class="btn-order">
+                            <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
+                        </div>                        
+                    </div>
+                </div>
 
-              <div *ngIf="switcher && errServ" class="modal-form-body center">    
-                  <br><br>
-                  Ошибка отправки данных. Повторите заказ позднее.
-                  <br><br>
-                  <div class="btn-wrapper">					
-                      <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-                  </div>           
-              </div>
+                <div *ngIf="switcher && errServ" class="modal-window__container">    
+                    <div class="modal-window__text-center">
+                        Ошибка отправки данных. Повторите заказ позднее.
+                    </div>
+                    <div class="btn-order">
+                        <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
+                    </div>          
+                </div>
 
-              <div *ngIf="switcher && receivedFormCallOrder?.status" class="modal-form-body center">    
-                  <br><br>
-                  Ошибка записи в БД. Повторите заказ позднее.
-                  <br><br>
-                  <div class="btn-wrapper">					
-                      <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
-                  </div>         
-              </div> 
+                <div *ngIf="switcher && receivedFormCallOrder?.status" class="modal-form-body center">    
+                    <div class="modal-window__text-center">         
+                        Ошибка записи в БД. Повторите заказ позднее.
+                    </div>
+                    <div class="btn-wrapper">					
+                        <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
+                    </div>         
+                </div> 
 
             </div>
 
             <ng-template #loadingBlock>
-                <div class="modal-form-body center">
-                    <p>Отправка...</p>
+                <div class="modal-loading">
+                    <p class="modal-loading__text">Отправка...</p>
                     <img src="../../assets/img/formloader200.svg">
                 </div>
             </ng-template>

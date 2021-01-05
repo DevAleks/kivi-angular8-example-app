@@ -883,4 +883,17 @@ body {
   background-color: #e52200;
 }
 
+.forms__req-info {
+  text-align: center;
+  font-size: 15px;
+  color: #e62101;
+  padding: 25px 0;
+}
+
+.forms__policy_form {
+  margin: 20px 0 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
 /* / Forms */
