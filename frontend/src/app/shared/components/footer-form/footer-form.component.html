@@ -102,7 +102,6 @@
                     <div *ngIf="switcher && errServ" class="modal-window__container">
                         <div class="modal-window__text-center">
                             Ошибка отправки данных. Повторите заказ позднее.
-                            <br><br>
                         </div>
                         <div class="btn-order">
                             <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
@@ -112,7 +111,6 @@
                     <div *ngIf="switcher && receivedFormFooter?.status" class="modal-window__container"> 
                         <div class="modal-window__text-center">         
                             Ошибка записи в БД. Повторите заказ позднее.
-                            <br><br>
                         </div>
                         <div class="btn-order">
                             <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
