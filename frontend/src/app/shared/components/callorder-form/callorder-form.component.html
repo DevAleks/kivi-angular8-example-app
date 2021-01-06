@@ -35,16 +35,16 @@
                     </div>
                     <div *ngIf="switcher_valid">
                         <div *ngIf="callorderForm.controls['userPhone'].invalid && callorderForm.controls['userPhone'].touched" class="forms__errors-text">
-                          Поле Телефон заполнено неверно:
-                          <div *ngIf="callorderForm.controls['userPhone'].errors?.userPhonePattern">
-                              - Использованы некорректные символы
-                          </div>
-                          <div *ngIf="callorderForm.controls['userPhone'].errors?.minlength">
-                              - Должно быть от 6 до 20 символов
-                          </div>
-                          <div *ngIf="callorderForm.controls['userPhone'].errors?.maxlength">
-                              - Должно быть не более 20 символов
-                          </div>          
+                            Поле Телефон заполнено неверно:
+                            <div *ngIf="callorderForm.controls['userPhone'].errors?.userPhonePattern">
+                                - Использованы некорректные символы
+                            </div>
+                            <div *ngIf="callorderForm.controls['userPhone'].errors?.minlength">
+                                - Должно быть от 6 до 20 символов
+                            </div>
+                            <div *ngIf="callorderForm.controls['userPhone'].errors?.maxlength">
+                                - Должно быть не более 20 символов
+                            </div>          
                         </div>
                         <div *ngIf="callorderForm.controls['userPhone'].untouched" class="forms__errors-text">
                             Поле Телефон не заполнено
@@ -56,7 +56,7 @@
                     </div>
                     
                     <div class="btn-order">
-                        <input class="btn-order__btn" (click)="submitCallOrder()" value="Заказать обратный звонок" />
+                        <input class="btn-order__btn" type="submit" (click)="submitCallOrder()" value="Заказать обратный звонок" />
                     </div>                     
 
                 </form>
