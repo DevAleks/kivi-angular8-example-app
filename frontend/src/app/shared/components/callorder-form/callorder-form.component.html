@@ -89,7 +89,7 @@
                             <li>Статус ошибки при отправке заказа: {{receivedFormCallOrder?.status}}</li>
                         </ul>
                         <div class="btn-order">
-                            <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
+                            <input type="submit" class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
                         </div>                        
                     </div>
                 </div>
@@ -99,16 +99,16 @@
                         Ошибка отправки данных. Повторите заказ позднее.
                     </div>
                     <div class="btn-order">
-                        <input class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
+                        <input type="submit" class="btn-order__btn btn-order__btn--slim" value="Закрыть окно" (click)="closeForm()" />
                     </div>          
                 </div>
 
-                <div *ngIf="switcher && receivedFormCallOrder?.status" class="modal-form-body center">    
+                <div *ngIf="switcher && receivedFormCallOrder?.status" class="modal-window__container">    
                     <div class="modal-window__text-center">         
                         Ошибка записи в БД. Повторите заказ позднее.
                     </div>
                     <div class="btn-wrapper">					
-                        <input type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
+                        <input type="submit" type="submit" class="btn-custom btn-send" value="Закрыть окно" (click)="closeForm()">
                     </div>         
                 </div> 
 
