@@ -896,4 +896,30 @@ body {
   font-size: 0.9rem;
 }
 
+.forms__textarea {
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  border: 1px #d4d4d4 solid;
+  padding: 10px 14px;
+  margin: 0;
+  color: #585858;  
+  resize: vertical;
+  min-height: 100px;
+  max-height: 200px;
+  font-size: 1rem;
+  line-height: 1.25;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  touch-action: manipulation;
+  overflow: auto;  
+}
+
+.forms__counter {
+  font-size: 0.9rem;
+  color: #000;
+  opacity: .5;
+}
+
 /* / Forms */
