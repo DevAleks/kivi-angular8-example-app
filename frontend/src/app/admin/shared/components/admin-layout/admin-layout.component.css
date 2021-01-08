@@ -1,1 +1,14 @@
+/*
+@import '../../../../../assets/css/main.min.css';
+@import '../../../../../assets/css/style_new.min.css';
+*/
 @import '../../../../../assets/css/admin.min.css'; /* Стили админки */
+
+.admin-body {
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
+
+
