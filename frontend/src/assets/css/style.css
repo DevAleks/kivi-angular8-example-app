@@ -681,15 +681,11 @@ body {
 .modal-window__header {
   position: relative;
   background: #0195df;
-  font-size: 23px;
+  font-size: 1.4rem;
   color: #fff;
   text-align: center;
   padding: 20px 45px 20px 24px;
-  line-height: 1.2em;
-}
-
-.modal-window__nowrap {
-  white-space: nowrap;
+  line-height: 1.4rem;
 }
 
 @media (min-width: 400px) {
@@ -711,6 +707,10 @@ body {
     padding-left: 50px;
     padding-right: 50px;
   }
+}
+
+.modal-window__nowrap {
+  white-space: nowrap;
 }
 
 .modal-window__btn-close {
