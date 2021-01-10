@@ -1,134 +1,163 @@
-<div class="nav-mobile" id="nav-mobile">
-        <div class="nav-mobile-panel">
-            <div class="container">
-                <div class="cells">
-                    <div class="cell cell-btn">                        
-                        <a id="bt2-topForm" class="btn btn-check btn-modal colwh" (click)="openFormClick({typeofform:3})">Заказать</a>                        
-                    </div>
-                    <div class="cell cell-phones">
-                        <ul class="phones">
-                            <li class="phone1">
-                                <span class="icon"></span>
-                                <a href="tel:+78129223319"><small>8 (812)</small> 922-33-19</a>
-                            </li>
-                            <li class="phone2">
-                                <span class="icon"></span>
-                                <a href="tel:88002341345"><small>8 (800)</small> 234-13-45</a>
-                            </li>								
-                        </ul>
-                    </div>
-                    <div class="cell cell-toggle" (click)="navMobToggle=!navMobToggle">
-                        <div class="nav-mobile-panel-toggle" id="nav-mobile-panel-toggle">
-                            <i></i><i></i><i></i>
-                        </div>
-                    </div>
+<div class="nav-menu">
+    <div class="container">
+        <div class="nav-menu__body">
+            <div class="order-btn order-btn--navmenu" [ngClass]="{active:isNavToggle}">
+                <a class="order-btn__link" id="bt2-topForm" (click)="openFormClick({typeofform:3})">
+                    Заказать
+                </a> 
+            </div>					
+            <div class="nav-menu__tel">
+                <span></span>
+                <a href="tel:88126797550">
+                    <small>8 (812)</small> 679-75-50
+                </a>
+            </div>
+            <div class="nav-menu__burgerbody" (click)="isNavToggle=!isNavToggle;isNavDropdown(isNavToggle)">
+                <div class="nav-menu__burger" [ngClass]="{active:isNavToggle}">
+                    <span></span>
                 </div>
             </div>
-        </div><!--/nav-mobile-panel-->
-    
-        <div class="nav-mobile-body" id="nav-mobile-body" [style.display]="navMobToggle ? 'block' : 'none'">
-            <div class="nav-mobile-body-inner">
-                <ul class="nav menu">
+        </div>	
+    </div>		
+</div>
+
+<div class="nav-dropdown" [ngClass]="{active:isNavToggle}">
+    <ul class="nav-dropdown__menu">
+        <li>
+            <a [routerLink]="['/']" (click)="isNavToggle=false"><span routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}">Главная</span></a>
+        </li>
+        <li>
+            <span class="container">Услуги:</span>
+            <div class="container">
+                <ul class="nav-dropdown__ul">
                     <li>
-                        <a [routerLink]="['/']" (click)="navMobToggle=false"><span class="container" routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}">Главная</span></a>
-                    </li>
-                    <li class="parent">
-                        <span><span class="container">Услуги</span></span>
-                        <div class="container">
-                            <ul class="nav-child">
-                                <li>
-                                    <a [routerLink]="['/rafting']" (click)="navMobToggle=false"><span id="rafting" class="link-inner" routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}">Рафтинг</span></a>
-                                </li>
-                                <li>
-                                    <a href="/arenda-ploshadok-dlya-meropriyatiy"><span class="link-inner">Аренда площадок</span></a>
-                                </li>
-                                <li>
-                                    <a href="/provedenie-meropriyatiy"><span class="link-inner">Проведение мероприятий</span></a>
-                                </li>
-                                <li>
-                                    <a href="/arenda-baydarok-i-kayakov"><span class="link-inner">Аренда байдарок</span></a>
-                                </li>
-                                <li>
-                                    <a href="/turi-pohodi"><span class="link-inner">Туры, походы</span></a>
-                                </li>
-                                <li>
-                                    <a href="/drugie-aktivnosti"><span class="link-inner">Другие активности</span></a>
-                                </li>
-                                <li>
-                                    <a href="/zimniy-aktivniy-otdih"><span class="link-inner">Зимний отдых</span></a>
-                                </li>
-                                <li>
-                                    <a href="/podarochnie-sertifikati"><span class="link-inner">Подарочные сертификаты</span></a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a [routerLink]="['/rafting']" (click)="isNavToggle=false"><span class="nav-dropdown__link" routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}">Рафтинг</span></a>                        
                     </li>
                     <li>
-                        <a href="/otzivi"><span class="container">Отзывы</span></a>
+                        <a href="/arenda-ploshadok-dlya-meropriyatiy"><span class="nav-dropdown__link">Аренда площадок</span></a>
                     </li>
                     <li>
-                        <a href="/skidki" class="yellow-item"><span class="container">Скидки</span></a>
-                    </li>	
+                        <a href="/provedenie-meropriyatiy"><span class="nav-dropdown__link">Проведение мероприятий</span></a>
+                    </li>
                     <li>
-                        <a href="/novosti"><span class="container">Новости</span></a>
-                    </li>						
+                        <a href="/arenda-baydarok-i-kayakov"><span class="nav-dropdown__link">Аренда байдарок</span></a>
+                    </li>
                     <li>
-                        <a href="/kontakti"><span class="container">Контакты</span></a>
+                        <a href="/turi-pohodi"><span class="nav-dropdown__link">Туры, походы</span></a>
+                    </li>
+                    <li>
+                        <a href="/drugie-aktivnosti"><span class="nav-dropdown__link">Другие активности</span></a>
+                    </li>									
+                    <li>
+                        <a href="/uksun-rafting-tur"><span class="nav-dropdown__link">Рафтинг в Карелии, Укса</span></a>
+                    </li>									
+                    <li>
+                        <a href="/zimniy-aktivniy-otdih"><span class="nav-dropdown__link">Зимний отдых</span></a>
+                    </li>
+                    <li>
+                        <a href="/podarochnie-sertifikati"><span class="nav-dropdown__link">Подарочные сертификаты</span></a>
                     </li>
                 </ul>
-                
             </div>
-        </div><!--/nav-mobile-body-->
-    </div><!--nav-mobile-->
-    
-    <!-- Верхнее меню -->
-    <div id="top-nav" class="container header navbar-fixed-top">
-     <div class="row">
-        <div class="logo col-sm-2 col-xs-3 nopadding">
-          <a [routerLink]="['/']" title="База рафтинга в Лосево «Кивиниеми»">
-            <img [defaultImage]="defaultImage" [lazyLoad]="lazyLoad0" alt="База рафтинга в Лосево «Кивиниеми»">
-          </a>
-        </div>
-        <div class="top-menu col-sm-6 col-xs-9">
-           <a [routerLink]="['/rafting']" routerLinkActive="cur" class="btn btn-secondary">Рафтинг</a>
-           <a href="/arenda-ploshadok-dlya-meropriyatiy" class="btn btn-secondary">Аренда площадок</a>
-           <a href="/provedenie-meropriyatiy" class="btn btn-secondary">Проведение мероприятий</a>
-           <a href="/arenda-baydarok-i-kayakov" class="btn btn-secondary">Аренда байдарок</a>
-           <a href="/turi-pohodi" class="btn btn-secondary">Туры, походы</a>
-           <a href="/drugie-aktivnosti" class="btn btn-secondary">Другие активности</a>
-        </div>
-        <div class="col-sm-4 col-xs-12 header-right-block nopadding">
-           <div class="phones">
-              <div><a href="tel:88002341345" style="color:#3b3024;text-decoration:none;">8 (800) 234-13-45</a></div>
-              <div><a href="tel:88129223319" style="color:#3b3024;text-decoration:none;">8 (812) 922-33-19</a></div>
-           </div>
-           <div class="mobileMenu">Меню</div>
-           <div class="askquestions">
-              <a class="btn-modal ask-question cu_pointer" (click)="openFormClick({typeofform:5})"><span class="icon"></span>Задать вопрос</a>
-              <a class="btn-modal order-call cu_pointer" (click)="openFormClick({typeofform:4})"><span class="icon"></span>Заказать звонок</a>
+        </li>
+        <li>
+            <a href="/otzivi"><span>Отзывы</span></a>
+        </li>
+        <li>
+            <a href="/skidki" class="nav-dropdown__menu--yellow"><span>Скидки</span></a>
+        </li>	
+        <li>
+            <a href="/novosti"><span>Новости</span></a>
+        </li>
+        <li>
+            <a href="/kontakti"><span>Контакты</span></a>
+        </li>
+    </ul>			
+</div>
+
+<div class="header" [ngClass]="{'header--sticky':isOnScroll}">
+    <div class="container">
+        <div class="header__row">					
+            <div class="header__logo">
+                <a [routerLink]="['/']" title="База рафтинга в Лосево «Кивиниеми»">
+                    <img [defaultImage]="defaultImage" [lazyLoad]="lazyLoad0" alt="База рафтинга в Лосево «Кивиниеми»">
+                </a>
             </div>
-           <div class="work-time" style="white-space: nowrap;">
-            <span class="icon"></span>
-              время работы: <span class="bold-time">10:00 - 19:00</span>, <span class="bold">ежедневно</span>
-           </div>
+            <div class="header__menu">
+                <a [routerLink]="['/rafting']" routerLinkActive="cur" class="header__btn btn">Рафтинг</a>
+                <a class="header__btn btn" href="/arenda-ploshadok-dlya-meropriyatiy">Аренда площадок</a>
+                <a class="header__btn btn" href="/provedenie-meropriyatiy">Проведение мероприятий</a>
+                <a class="header__btn btn" href="/arenda-baydarok-i-kayakov">Аренда байдарок</a>
+                <a class="header__btn btn" href="/turi-pohodi">Туры, походы</a>
+                <a class="header__btn btn" href="/drugie-aktivnosti">Другие активности</a>
+            </div>
+            <div class="header__rightblock">
+                <div class="header__phones">
+                    <a href="tel:88126797550">8 (812) 679-75-50</a>
+                    <a href="tel:88129223319">8 (812) 922-33-19</a>
+                </div>
+                <div class="header__forms">
+                    <a class="header__askquestion" (click)="openFormClick({typeofform:5})">
+                        <span class="icon-question"></span>Задать вопрос
+                    </a>
+                    <a class="header__ordercall" (click)="openFormClick({typeofform:4})">
+                        <span class="icon-tel"></span>Заказать звонок
+                    </a>      
+                </div>
+                <div class="header__worktime">
+                    <span class="header__timeicon"></span>
+                    время работы: 
+                    <span class="header__timetext">10:00 - 19:00</span>,
+                    <span class="bold">ежедневно</span>
+                </div>
+            </div>
         </div>
-     </div>
     </div>
-    
-    <!-- Меню -->
-    <div id="primary-nav" class="container menu-container">
-      <div class="container nopadding">
-        <nav class="menu navbar navbar-light bg-faded">
-           <ul class="nav navbar-nav text-center justify-content-center">
-              <li class="nav-item"><a [routerLink]="['/']" routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav-with-slash">Главная <span class="sr-only">(current)</span></a> </li>
-              <li class="nav-item"><a href="/otzivi" class="nav-link nav-with-slash">Отзывы</a></li>
-              <li class="nav-item"><a href="/skidki" class="nav-link nav-with-slash yellow-item">Скидки</a></li>
-              <li class="nav-item"><a href="/novosti" class="nav-link nav-with-slash">Новости</a></li>                  
-              <li class="nav-item"><a href="/zimniy-aktivniy-otdih" class="nav-link">Зимний отдых</a></li>
-              <li class="nav-item"><a href="/kontakti" class="nav-link">Контакты</a></li>
-           </ul>               
-           <a id="bt-topForm" class="form-inline pull-xs-right red-menu-item btn-modal colwh" (click)="openFormClick({typeofform:3})">Заказать</a>
-        </nav>
-      </div>
+</div>
+
+<div class="menu2">
+    <div class="container">
+        <div class="menu__body">						
+            <div class="menu__bottom">
+                <ul class="menu__list">
+                    <li class="menu__item">
+                        <a [routerLink]="['/']" routerLinkActive="cur" [routerLinkActiveOptions]="{exact: true}" class="menu__link">
+                            Главная
+                        </a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">
+                            Отзывы
+                        </a>
+                    </li>							
+                    <li class="menu__item">
+                        <a href="#" class="menu__link menu__link--yellow">
+                            Скидки
+                        </a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">
+                            Рафтинг в Карелии
+                        </a>
+                    </li>							
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">
+                            Подарочные сертификаты
+                        </a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">
+                            Контакты
+                        </a>
+                    </li>							
+                </ul>
+            </div>
+            <div class="order-btn">
+                <a id="bt-topForm" class="order-btn__link" (click)="openFormClick({typeofform:3})">
+                    Заказать
+                </a>
+            </div>					
+        </div>
     </div>
+</div>
     

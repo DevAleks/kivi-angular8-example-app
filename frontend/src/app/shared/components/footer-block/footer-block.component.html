@@ -1,27 +1,27 @@
 <!-- Footer -->  
-<div class="container footer">
-   <div class="container nopadding">
-      <div class="row">
-         <div class="col-sm-5 info">
-            <div class="col-sm-5 nopadding logo">
+<div class="footer container">
+   <div class="container">
+      <div class="footer__body">
+         <div class="footer__left">
+            <div class="footer__logo-body">
                <a [routerLink]="['/']" title="База рафтинга в Лосево «Кивиниеми»">
-                  <img [defaultImage]="defaultImage" [lazyLoad]="lazyLoad0" alt="База рафтинга в Лосево «Кивиниеми»">
-               </a>
+                  <img class="footer__logo-img" [defaultImage]="defaultImage" [lazyLoad]="lazyLoad0" alt="База рафтинга в Лосево «Кивиниеми»">
+               </a>                    
             </div>
-            <div class="col-sm-7 nopadding phones">
-               <span class="ph"><a href="tel:88129223319">8 (812) 922-33-19</a></span><br>
-               <span class="ph"><a href="tel:88002341345">8 (800) 234-13-45</a></span>
+            <div class="footer__phonecol">
+               <span class="footer__ph"><a href="tel:88129223319">8 (812) 922-33-19</a></span><br>
+               <span class="footer__ph"><a href="tel:88002341345">8 (800) 234-13-45</a></span>
             </div>
             <div class="clearfix"></div>
-            <div class="work-time">
+            <div class="footer__worktime">
                Время приема звонков: 10:00-19:00, <span class="notbold">ежедневно</span>
             </div>
-            <div class="askquestions">
-               <a class="btn-modal ask-question ft_forms" (click)="openFormClick({typeofform:5})"><span class="icon"></span>Задать вопрос</a>
-               <a class="btn-modal order-call ft_forms" (click)="openFormClick({typeofform:4})"><span class="icon"></span>Заказать звонок</a>
+            <div class="footer__askquestions">
+               <a class="footer__form-questions" (click)="openFormClick({typeofform:5})"><span class="icon-question"></span>Задать вопрос</a>
+               <a class="footer__form-callorder" (click)="openFormClick({typeofform:4})"><span class="icon-tel"></span>Заказать звонок</a>
             </div>
-            <div class="content">
-               <p><b>e-mail:</b> <a href="mailto:info@kiviniemi.ru">info@kiviniemi.ru</a></p>      
+            <div class="footer__content">
+               <p><b>E-mail:</b>&nbsp;<a href="mailto:info@kiviniemi.ru">info@kiviniemi.ru</a></p>      
                <p><b>База рафтинга в Лосево:</b> время работы с 10:00 до 19:00, ежедневно. </p>
                <p><b>Администратор в Лосево:</b>&nbsp;<span class="text-nowrap"><a href="tel:+79110023303">+7(911) 002-33-03</a></span></p>
                <p><b>Адрес:</b> Ленинградская область, Приозерский район, поселок при ж/д станции Лосево, Гостиничная улица д.28 </p>      	 
@@ -30,12 +30,11 @@
                <p><b>Адрес:</b> Санкт-Петербург, Дегтярная ул, д. 4</p>
                <p><b>Администратор в Санкт-Петербурге:</b>&nbsp;<span class="text-nowrap"><a href="tel:88129223319">8(812) 922-33-19</a></span></p>
                <br><br>
-               <a href="/policy" class="policy_link_foot" target="_blank">Политика конфиденциальности</a>
-            </div>
-
+               <a href="/policy" class="footer__policy-link" target="_blank">Политика конфиденциальности</a>
+            </div>			
          </div>
-         <div class="col-sm-3 links">                  
-            <li><a href="/rafting">Рафтинг</a></li>
+         <div class="footer__center">                  
+            <li><a [routerLink]="['/rafting']">Рафтинг</a></li>
             <li><a href="/arenda-ploshadok-dlya-meropriyatiy">Аренда площадок</a></li>
             <li><a href="/provedenie-meropriyatiy">Проведение мероприятий</a></li>
             <li><a href="/arenda-baydarok-i-kayakov">Аренда байдарок</a></li>
@@ -51,14 +50,12 @@
             <li><a href="/zimniy-aktivniy-otdih">Зимний отдых</a></li>
             <li><a href="/kontakti">Контакты</a></li>
          </div>
-         <div class="col-sm-4 form">
-
-            <app-footer-form></app-footer-form>
-
-            <div class="policy_footer">
-               Нажимая на кнопку "Заказать" вы даете согласие на обработку персональных данных в соответствии с нашей <a href="/policy" target="_blank">политикой конфиденциальности</a>.
+         <div class="footer__right">			
+            <app-footer-form></app-footer-form>			
+            <div class="footer__policy">
+               Нажимая на кнопку "Заказать" вы даете согласие на обработку персональных данных в соответствии с нашей <a href="/policy" target="_blank" class="footer__policy-link">политикой конфиденциальности</a>.
             </div>  
-
+   
             <script-hack src="//vk.com/js/api/openapi.js?146" type="text/javascript"></script-hack>
             <!-- VK Widget -->
             <div id="vk_groups"></div>
@@ -77,11 +74,9 @@
    </div>
 </div>
 
-<div class="container footer2">
-   <div class="container nopadding">
-      <div class="row copyright">
-         © База рафтинга и активного отдыха "Кивиниеми", 2006 - 2020, п.Лосево, Ленинградская область
-      </div>
+<div class="footer2 container">
+   <div class="footer2__text container">
+      © База рафтинга и активного отдыха "Кивиниеми", 2006 - 2020, п.Лосево, Ленинградская область
    </div>
 </div>	
 <!-- / Footer --> 

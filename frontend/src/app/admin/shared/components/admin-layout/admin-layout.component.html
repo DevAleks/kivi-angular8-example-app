@@ -1,25 +1,49 @@
 <app-alert></app-alert>
 
-<div class="main-container">
-    <nav class="navbar-admin bg-primary-admin">
-        <h1>Admin Panel</h1>    
-        <ul *ngIf="auth.isAuthenticated()">
-            <li routerLinkActive="active">
-                <a [routerLink]="['/admin', 'dashboard']">Главная</a>
-            </li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/admin', 'create-order']">Новый заказ</a>
-            </li> 
-            <li>
-                <a routerLink="/">Вернуться на сайт</a>
-            </li>     
-            <li>
-                <a href="#" (click)="logout($event)">Выход</a>
-            </li>        
-        </ul>
+<div class="admin-container">
+    <nav class="nav-admin">
+        <h1 class="nav-admin__title">Admin Panel</h1>  
+        <div *ngIf="auth.isAuthenticated()">  
+            <ul class="nav-admin__menu">
+                <li routerLinkActive="active">
+                    <a class="nav-admin__menu-link" [routerLink]="['/admin', 'dashboard']">Главная</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a class="nav-admin__menu-link" [routerLink]="['/admin', 'create-order']">Новый заказ</a>
+                </li> 
+                <li>
+                    <a class="nav-admin__menu-link" routerLink="/">Вернуться на сайт</a>
+                </li>     
+                <li>
+                    <a class="nav-admin__menu-link" href="#" (click)="logout($event)">Выход</a>
+                </li>        
+            </ul>
+            <div class="nav-admin__burgerbody" (click)="isNavToggle=!isNavToggle;isNavDropdown(isNavToggle)">
+                <div class="nav-admin__burger" [ngClass]="{active:isNavToggle}">
+                    <span></span>                    
+                </div>
+            </div>
+            <div class="nav-admin__dropdown" [ngClass]="{active:isNavToggle}">
+                <ul class="nav-admin__dropdown-menu">
+                    <li routerLinkActive="active">
+                        <a class="nav-admin__dropdown-link" [routerLink]="['/admin', 'dashboard']" (click)="isNavToggle=false">Главная</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a class="nav-admin__dropdown-link" [routerLink]="['/admin', 'create-order']" (click)="isNavToggle=false">Новый заказ</a>
+                    </li> 
+                    <li>
+                        <a class="nav-admin__dropdown-link" routerLink="/" (click)="isNavToggle=false">Вернуться на сайт</a>
+                    </li>     
+                    <li>
+                        <a class="nav-admin__dropdown-link" href="#" (click)="logout($event)" (click)="isNavToggle=false">Выход</a>
+                    </li> 
+                </ul>	
+            </div>
+        </div>
+
     </nav>
 
-    <div class="container-admin d-flex justify-content-center"> 
+    <div class="admin-body"> 
         <router-outlet></router-outlet>
     </div>
 </div>

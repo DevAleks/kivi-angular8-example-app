@@ -1,0 +1,25 @@
+/* Footer form */
+
+.footer-form {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-form__title {
+  margin: 40px 0 10px;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+.footer-form__form {
+  background-color: #fff;
+}
+
+.footer-form__body {
+  padding: 12px;
+  width: 100%;
+}
+
+/* / Footer form */
