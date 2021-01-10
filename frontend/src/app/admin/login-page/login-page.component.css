@@ -1,6 +1,3 @@
-@import '../../../assets/css/admin.min.css'; /* Стили админки */
+@import '../../../assets/css/admin.css'; /* Стили админки */
 
-form {
-    max-width:600px;
-    margin: 0 auto;
-}
+
