@@ -4,14 +4,7 @@
 /*
 */
 
-/* Common Site Styles */
-
-.app-root-loader {
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -ms-flex-pack: center !important;
-  justify-content: center !important;
-}      
+/* Common Site Styles */    
   
 .btn {
   display: inline-block;
@@ -826,7 +819,6 @@
 }
 
 .forms__counter { 
-
   font-size: 0.9rem;
   color: #000;
   opacity: .5;

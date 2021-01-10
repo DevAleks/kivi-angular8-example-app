@@ -12,12 +12,12 @@
 }
 
 .admin-container {
-  margin-top:-46px;
+  margin-top:26px;
 }
 
 @media (min-width: 1200px) {
   .admin-container {
-    margin-top: -196px;
+    margin-top: -110px;
   }
 } 
 
@@ -35,9 +35,10 @@
   width: 100%;
   opacity: 1;
   margin-bottom: 1rem;
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background:#0095de;
   color: #fff;
 }

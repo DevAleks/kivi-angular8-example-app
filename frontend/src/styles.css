@@ -105,4 +105,11 @@ body {
   padding: 0;
 }
 
+.app-root-loader {
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}  
+
 /* / Common Styles */
