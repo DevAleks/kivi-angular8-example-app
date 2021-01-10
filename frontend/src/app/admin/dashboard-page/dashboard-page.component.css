@@ -1,19 +1,53 @@
-@import '../../../assets/css/admin.min.css'; /* Стили админки */
+@import '../../../assets/css/admin.css'; /* Стили админки */
+
 html {
-    width: 100%    
+  width: 100%    
 }
-.open {
-    margin: 10px;
+
+.dash__title {
+  font-size: 2.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  margin-bottom: 1rem;
 }
+
+.dash__paginator {
+  padding: .75rem 1.25rem;
+  border-top: 1px solid rgba(0,0,0,.125);
+  background-color: transparent;
+}
+
+.dash__paginator::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+  
+.dash__paginator:last-child {
+  border-radius: 0 0 0.25rem 0.25rem;
+}  
+
+.dash__table {
+  display: block;
+  width: 100%;
+  min-height: .01%;
+  overflow-x: auto;
+}
+
 table,
 table th,
 table td {
-    border:1px black solid;
-    text-align: center;
+  border:1px black solid;
+  text-align: center;
 }
+
 table {
-    margin: 40px 0;
+  margin: 0..2rem 0;
+  width: 100%;
 }
-a.redlink {
-    color:red;
+
+a.dash__redlink {
+  color:red;
 }

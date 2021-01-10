@@ -71,9 +71,7 @@ ul {
   color: #dc3545;
 }
 
-.text-center {
-  text-align: center;
-}
+
 
 .card {
   padding: 1rem;
@@ -96,26 +94,6 @@ ul {
 }
 .list  li {
   padding-bottom: 0.3rem;
-}
-
-
-
-
-.btn-link {
-  background: none;
-  padding: 0;
-  margin: 0;
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
-.btn-sm {
-  font-size: 0.8rem;
-  padding: 0.3rem 1rem;
-  margin-right: 0.2rem;
 }
 
 .badge {
@@ -277,14 +255,14 @@ table th {
   color: inherit;
 }
 
-.admin-form__row {
+.form-row {
   display: block;
   color: #888;
   /*margin-bottom: 0.8rem;*/
   padding: 0.7rem 0;
 }
 
-.admin-form__row.invalid {
+.form-row.invalid {
   color: #dc3545;
 }
 
@@ -301,15 +279,15 @@ textarea {
   border: 1px solid #ccc;
 }
 
-.admin-form__row.invalid input {
+.form-row.invalid input {
   border-color: #dc3545;
 }    
 
-.admin-form__row-validation {
+.form-row__validation {
   color: #dc3545;
 }
 
-.admin-form__row-label {
+.form-row__label {
   padding-top:0.2rem;
 }
 
@@ -338,35 +316,52 @@ textarea {
   opacity: 0.8;
 }
 
-.btn__primary {
+.btn--primary {
   background: #dc3545;
   color: #fff;
 }
 
-.btn__light {
+.btn--light {
   background: #f4f4f4;
   color: #333;
 }
 
-.btn__dark {
+.btn--dark {
   background: #333333;
   color: #fff;
 }
 
-.btn__danger {
+.btn--danger {
   background: #dc3545;
   color: #fff;
 }
 
-.btn__success {
+.btn--success {
   background: #28a745;
   color: #fff;
 }
 
-.btn__white {
+.btn--white {
   background: #fff;
   color: #333;
   border: #ccc solid 1px;
+}
+
+.btn--link {
+  background: none;
+  padding: 0;
+  margin: 10px;
+}
+
+.btn--block {
+  display: block;
+  width: 100%;
+}
+
+.btn--sm {
+  font-size: 0.8rem;
+  padding: 0.3rem 1rem;
+  margin-right: 0.2rem;
 }
 
 /* / Btn */
@@ -409,3 +404,7 @@ textarea {
 }
 
 /* / Alerts */
+
+.text-center {
+  text-align: center;
+}
