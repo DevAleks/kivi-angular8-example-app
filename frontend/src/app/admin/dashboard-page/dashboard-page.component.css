@@ -1,4 +1,4 @@
-@import '../../../assets/css/admin.css'; /* Стили админки */
+@import '../../../assets/css/admin.min.css'; /* Стили админки */
 
 html {
   width: 100%    
@@ -42,11 +42,18 @@ table th,
 table td {
   border:1px black solid;
   text-align: center;
+  padding: 1rem;
+}
+
+table th {
+  background: #f4f4f4;
 }
 
 table {
   margin: 0..2rem 0;
   width: 100%;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 a.dash__redlink {
