@@ -7,14 +7,14 @@
 
     <ng-template #ordersList>
         <div class="dash" *ngIf="orders?.length; else loadingBlock">
-            <div class="form-control">
+            <div class="form__body">
                 <input type="text" placeholder="Найти заказ..." [(ngModel)]="searchStr">
             </div>
 
             <div class="dash__paginator">
                 <jw-pagination [items]="orders" (changePage)="onChangePage($event)"></jw-pagination>
             </div>
-
+          
             <div class="dash__table">
                 <table>
                     <thead>
@@ -47,10 +47,6 @@
                         </tr>
                     </tbody>
                 </table> 
-            </div>
-
-            <div class="dash__paginator">
-                <jw-pagination [items]="orders" (changePage)="onChangePage($event)"></jw-pagination>
             </div>
 
         </div>

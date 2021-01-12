@@ -1,8 +1,4 @@
-/*
-@import '../../../../../assets/css/main.min.css';
-@import '../../../../../assets/css/style_new.min.css';
-*/
-@import '../../../../../assets/css/admin.css'; /* Стили админки */
+@import '../../../../../assets/css/admin.min.css'; /* Стили админки */
 
 .admin-body {
   display: -ms-flexbox !important;
@@ -58,6 +54,7 @@
 
 .nav-admin__menu {
   display: flex;
+  list-style: none;
 }
 
 @media (max-width: 800px) {
@@ -198,6 +195,7 @@
 .nav-admin__dropdown-menu {
   display: block;
   color: #fff;
+  list-style: none;
 }
 
 .nav-admin__dropdown-link {
@@ -221,6 +219,5 @@
 .nav-admin__dropdown-menu li.active a:hover {
   text-decoration: none;
 }
-
 
 /* / Nav Menu */
