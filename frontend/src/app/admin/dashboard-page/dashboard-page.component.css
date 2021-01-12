@@ -17,6 +17,7 @@ html {
   padding: .75rem 1.25rem;
   border-top: 1px solid rgba(0,0,0,.125);
   background-color: transparent;
+  cursor: pointer;
 }
 
 .dash__paginator::after {

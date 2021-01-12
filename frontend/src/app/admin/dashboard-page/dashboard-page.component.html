@@ -7,7 +7,7 @@
 
     <ng-template #ordersList>
         <div class="dash" *ngIf="orders?.length; else loadingBlock">
-            <div class="form-control">
+            <div class="form__body">
                 <input type="text" placeholder="Найти заказ..." [(ngModel)]="searchStr">
             </div>
 
