@@ -79,7 +79,7 @@
 
         <div class="form-row">
             <label class="form-row__label">Текст заказа: <span class="form-row__req">*</span></label>
-            <quill-editor formControlName="order_text"></quill-editor>
+            <quill-editor class="form-row__quill" formControlName="order_text"></quill-editor>
             <div class="form-row__validation" *ngIf="form.get('order_text').invalid && form.get('order_text').touched">
                 <small *ngIf="form.get('order_text').errors.required">
                     Введите поле Текст заказа
