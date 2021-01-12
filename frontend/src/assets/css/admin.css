@@ -235,6 +235,8 @@ table th {
 
 /* New !!! */
 
+/* Forms */
+
 .admin-form {
   padding: 1rem;
   border: #ccc 1px dotted;
@@ -253,6 +255,37 @@ table th {
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
+}
+
+.form {
+  -webkit-box-pack: center!important;
+  justify-content: center!important;
+  margin-bottom: 3rem !important;
+}
+
+.form__title {
+  font-size: 2.5rem;
+  margin-bottom: .5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;      
+}
+
+.form__body {
+  display: block;
+  color: #888;
+  margin-bottom: 0.8rem;
+  padding: 0.7rem;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.25;
+  background-color: #fff;
+  background-image: none;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;    
 }
 
 .form-row {
@@ -290,6 +323,23 @@ textarea {
 .form-row__label {
   padding-top:0.2rem;
 }
+
+.form-row__req {
+  vertical-align: top;
+  color: #e62101;
+  font-size: 1.5rem;
+  margin-left: 4px;
+  position: relative;
+  line-height: 1;
+}
+
+.form-row__quill {
+  display: block;
+  height: 40vh;
+  margin-bottom: 2.7rem;  
+}
+
+/* / Forms */ 
 
 
 /* Btn */
@@ -362,6 +412,10 @@ textarea {
   font-size: 0.8rem;
   padding: 0.3rem 1rem;
   margin-right: 0.2rem;
+}
+
+.btn--short {
+  width: 14vw;
 }
 
 /* / Btn */
