@@ -24,17 +24,17 @@ export class FirstFormComponent implements OnDestroy {
 
   isValidSwitcher: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
 
-  switcher: boolean = false // Индикатор успешного получения данных с сервера
+  isSuccesAnswer: boolean = false // Индикатор успешного получения данных с сервера
 
-  formValidError: boolean = true // Статус ошибки валидации формы перед отправкой
+  isFormValidError: boolean = true // Статус ошибки валидации формы перед отправкой
 
-  errServ: boolean = false // Статус ошибки передачи данных формы на сервер
+  isErrServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
   receivedFormFirst: Orders // Данные заказа из формы firstForm, полученные с сервера
 
   firstForm : FormGroup // Объект FormGroup для формы firstForm
 
-  loading = false // Переключатель индикатора загрузки ответа формы
+  isLoading = false // Переключатель индикатора загрузки ответа формы
  
   constructor(private formsService: FormsService) {  
     
@@ -72,9 +72,9 @@ export class FirstFormComponent implements OnDestroy {
   // Закрытие формы кликами мыши
   closeForm() {
     this.isModalSwitcher = false // Закрываем модальное окно с формой
-    this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.formValidError = true // Сбрасываем ошибки валидации формы  
+    this.isSuccesAnswer = false // Сбрасываем индикатор успешного получения данных с сервера
+    this.isErrServ = false // Сбрасываем ошибку работы с сервером 
+    this.isFormValidError = true // Сбрасываем ошибки валидации формы  
     this.isValidSwitcher = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
   }  
 
@@ -87,7 +87,7 @@ export class FirstFormComponent implements OnDestroy {
   }
 
   submitFirst() {  
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
+    this.isErrServ = false // Сбрасываем ошибку работы с сервером 
     this.isValidSwitcher = true // Кнопка отправки нажата, но форма не прошла валидацию    
 
     // Проверяем валидность формы перед отправкой
@@ -106,22 +106,22 @@ export class FirstFormComponent implements OnDestroy {
       status: false
     }
 
-    this.loading = true // Включаем отображение индикатора загрузки
-    this.switcher = true // Включаем показ окна с результатом отправки формы
+    this.isLoading = true // Включаем отображение индикатора загрузки
+    this.isSuccesAnswer = true // Включаем показ окна с результатом отправки формы
 
     // Отправка оъекта на сервер и получение ответа от сервера
     this.servRespSub = this.formsService.postForm(formFirst)
     .subscribe(
       (data: Orders) => {
         this.receivedFormFirst = data // Получаем данные с сервера
-        this.formValidError = false // Отключаем проверку ошибок валидации для формы
+        this.isFormValidError = false // Отключаем проверку ошибок валидации для формы
         this.isValidSwitcher = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
-        this.loading = false // Выключаем отображение индикатора загрузки
+        this.isLoading = false // Выключаем отображение индикатора загрузки
         this.firstForm.reset() // Очищаем значения успешно отправленной формы
       },
       error => {
-        this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
-        this.loading = false // Выключаем отображение индикатора загрузки
+        this.isErrServ = true // Включаем статус ошибки передачи данных формы на сервер
+        this.isLoading = false // Выключаем отображение индикатора загрузки
       }
     )         
   }  

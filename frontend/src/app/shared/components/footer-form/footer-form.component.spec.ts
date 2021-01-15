@@ -43,9 +43,9 @@ describe('FooterFormComponent', () => {
   it('should amended some variables after closeForm() calling', () => {
     component.closeForm();
     expect(component.isModalSwitcher).toBe(false); 
-    expect(component.switcher).toBe(false); 
-    expect(component.errServ).toBe(false);  
-    expect(component.formValidError).toBe(true); 
+    expect(component.isSuccesAnswer).toBe(false); 
+    expect(component.isErrServ).toBe(false);  
+    expect(component.isFormValidError).toBe(true); 
     expect(component.receivedFormFooter.status).toBe(false); 
     expect(component.isValidSwitcher).toBe(false);     
   });

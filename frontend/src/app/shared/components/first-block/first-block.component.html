@@ -8,7 +8,7 @@
 
     <div class="index__row">
         <div class="index__title-wrapper">
-            <div *ngIf="!loading; else loadingBlock">
+            <div *ngIf="!isLoading; else loadingBlock">
                 <h1>{{h1}}</h1>
             </div>
             <ng-template #loadingBlock>

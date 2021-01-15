@@ -71,17 +71,17 @@
         <input class="forms__submit-btn" type="submit" (click)="submitFooter()" value="Заказать">
     </form>
 
-    <div *ngIf="switcher" class="modal-window" [style.display]="isModalSwitcher ? 'block' : 'none'">
+    <div *ngIf="isSuccesAnswer" class="modal-window" [style.display]="isModalSwitcher ? 'block' : 'none'">
         <div class="modal-window__wrapper" [style.display]="isModalSwitcher ? 'block' : 'none'">
             <div class="modal-window__body">
 
-                <div *ngIf="!loading; else loadingBlock">
+                <div *ngIf="!isLoading; else loadingBlock">
                     <div class="modal-window__header">
                         Заказ услуги <span class="modal-window__nowrap">{{ footerForm.value['userTypeofact'] }}</span>
                         <div class="modal-window__btn-close" (click)="closeForm()"></div>
                     </div>      
             
-                    <div class="modal-window__container" *ngIf="switcher && !formValidError && !receivedFormFooter?.status && !errServ">
+                    <div class="modal-window__container" *ngIf="isSuccesAnswer && !isFormValidError && !receivedFormFooter?.status && !isErrServ">
                         <div class="modal-window__title">Заказ успешно отправлен!</div>
                         <div class="modal-window__text-left">
                             <label>Ответ сервера:</label>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="switcher && errServ" class="modal-window__container">
+                    <div *ngIf="isSuccesAnswer && isErrServ" class="modal-window__container">
                         <div class="modal-window__text-center">
                             Ошибка отправки данных. Повторите заказ позднее.
                         </div>
@@ -108,7 +108,7 @@
                         </div>          
                     </div>
 
-                    <div *ngIf="switcher && receivedFormFooter?.status" class="modal-window__container"> 
+                    <div *ngIf="isSuccesAnswer && receivedFormFooter?.status" class="modal-window__container"> 
                         <div class="modal-window__text-center">         
                             Ошибка записи в БД. Повторите заказ позднее.
                         </div>
