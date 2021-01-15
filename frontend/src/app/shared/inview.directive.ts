@@ -4,7 +4,7 @@ import { Directive, ViewContainerRef, TemplateRef, AfterViewInit } from '@angula
 
 @Directive({ selector: '[inView]' })
 export class InViewDirective implements AfterViewInit {
-  alreadyRendered: boolean; // cheking if visible already
+  isAlreadyRendered: boolean; // cheking if visible already
 
   constructor(
     private vcRef: ViewContainerRef,
@@ -25,10 +25,10 @@ export class InViewDirective implements AfterViewInit {
   }
 
   renderContents(isInView: boolean) {
-    if (isInView && !this.alreadyRendered) {
+    if (isInView && !this.isAlreadyRendered) {
       this.vcRef.clear()
       this.vcRef.createEmbeddedView(this.tplRef)
-      this.alreadyRendered = true
+      this.isAlreadyRendered = true
     }
   }
 

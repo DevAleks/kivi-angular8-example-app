@@ -13,20 +13,20 @@ import { JsonObject } from '../../interfaces/interfaces'
 
 export class VideoBlockComponent implements OnInit {
 
-  videourl: string // why any?
+  videoUrl: string // why any?
   error: string // why any? - this variable is never used
   isVideoLoading = false
 
   constructor(
-    private getjsonService: GetJsonService,
+    private getJsonService: GetJsonService,
   ) { }
 
   ngOnInit() {
     this.isVideoLoading = true // включаем отображение лоадера на время загрузки видео
     // Получаем url видео из JSON файла
-    this.getjsonService.getPagesJson()
+    this.getJsonService.getPagesJson()
       .subscribe((jsonObject: JsonObject[]) => {
-        this.videourl = jsonObject["index"][0]["videoUrl"]
+        this.videoUrl = jsonObject["index"][0]["videoUrl"]
         this.isVideoLoading = false
       },
         error => { this.error = error }

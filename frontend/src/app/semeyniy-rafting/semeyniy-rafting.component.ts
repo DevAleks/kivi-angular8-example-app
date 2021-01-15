@@ -9,12 +9,11 @@ import { ClickInterface } from '../shared/interfaces/interfaces'
 })
 export class SemeyniyRaftingComponent {
 
-  // Images LazyLoader
-  // Default
-  defaultImage = '../../assets/img/img-ldr-wht-312px.svg'
+  // Images LazyLoader  
+  defaultImage = '../../assets/img/img-ldr-wht-312px.svg' // Default
 
-  // Cover background
-  lazyLoad1 = '../../assets/img/semeyniy-rafting.jpg'
+  
+  lazyLoad1 = '../../assets/img/semeyniy-rafting.jpg' // Cover background
 
   constructor(private formsService: FormsService) { }
 

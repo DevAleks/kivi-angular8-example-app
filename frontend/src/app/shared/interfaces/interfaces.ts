@@ -16,8 +16,8 @@ export interface Orders {
     name?: string
     phone: string
     email?: string
-    typeOfAct: string // camelCase is better to name variables, typeOfAction - may be better naming
-    typeOfForm?: number // camelCase is better to name variables, typeOfForm - easier to read
+    typeOfAct: string 
+    typeOfForm?: number 
     status?: boolean
     promo?: string
     text?: string

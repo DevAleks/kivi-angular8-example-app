@@ -12,8 +12,7 @@ export class FormsService {
 
   // Переменная и стрим для открытия форм firstForm, topForm, questionForm, callorderForm в модальных окне 
   private clicks = new Subject<ClickInterface>()
-
-  observableclicks$ = this.clicks.asObservable() // this var is never used!
+  observableclicks$ = this.clicks.asObservable()
 
   constructor(private http: HttpClient) { }
 

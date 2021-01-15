@@ -39,8 +39,7 @@ export class FirstFormComponent implements OnDestroy {
   constructor(private formsService: FormsService) {  
     
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {
-      
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {      
       if (data.typeOfForm == 2) {
         this.modal_switcher = true
         this.typeOfAct = data.typeOfAct
