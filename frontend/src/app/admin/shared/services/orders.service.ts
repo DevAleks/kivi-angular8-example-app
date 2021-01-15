@@ -5,14 +5,14 @@ import { map, catchError, delay} from 'rxjs/operators'
 
 import { environment } from 'src/environments/environment'
 import { OrderCreateResponse } from '../interfaces'
-import { OrdersInt } from 'src/app/shared/interfaces/interfaces'
+import { Orders } from 'src/app/shared/interfaces/interfaces'
 
 @Injectable()
 export class OrdersService {
 
     constructor(private http: HttpClient) { }
 
-    create(order: OrdersInt):Observable<OrdersInt> {
+    create(order: Orders): Observable<Orders> {
         return this.http.post(`${environment.dbUrl}create_order.php`, order)
             .pipe(                
                 map((response: OrderCreateResponse) => {
@@ -26,7 +26,7 @@ export class OrdersService {
             )
     }
 
-    getOrders():Observable<OrdersInt[]> {
+    getOrders():Observable<Orders[]> {
         return this.http.get(`${environment.dbUrl}get_orders.php`)
             .pipe(                
                 map(              
@@ -55,10 +55,10 @@ export class OrdersService {
         return this.http.delete<void>(`${environment.dbUrl}delete_order.php?id=${id}`)
     }
 
-    getById(id:string):Observable<OrdersInt> {
-        return this.http.get<OrdersInt>(`${environment.dbUrl}update_order.php?get_id=${id}`)
+    getById(id:string):Observable<Orders> {
+        return this.http.get<Orders>(`${environment.dbUrl}update_order.php?get_id=${id}`)
             .pipe(                
-                map( (order: OrdersInt) => {
+                map( (order: Orders) => {
                     return {
                         ...order,
                         id,
@@ -70,8 +70,8 @@ export class OrdersService {
 
     }
 
-    updateOrder(order: OrdersInt):Observable<OrdersInt> {
-        return this.http.patch<OrdersInt>(`${environment.dbUrl}update_order.php?update_id=${order.id}`, order)
+    updateOrder(order: Orders): Observable<Orders> {
+        return this.http.patch<Orders>(`${environment.dbUrl}update_order.php?update_id=${order.id}`, order)
     }
     
 /*

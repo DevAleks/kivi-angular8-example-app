@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs'
 
 import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
-import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
+import { ClickInterface, Orders } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-question-form',
@@ -28,7 +28,7 @@ export class QuestionFormComponent implements OnDestroy {
 
   errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  receivedFormQuestion: OrdersInt // Данные заказа из формы questionForm, полученные с сервера
+  receivedFormQuestion: Orders // Данные заказа из формы questionForm, полученные с сервера
 
   questionForm : FormGroup // Объект FormGroup для формы questionForm
 
@@ -37,8 +37,8 @@ export class QuestionFormComponent implements OnDestroy {
   constructor(private formsService: FormsService) { 
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
-      if (data.typeofform == 5) {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {
+      if (data.typeOfForm == 5) {
         this.modal_switcher = true
       }      
     }) 
@@ -89,11 +89,11 @@ export class QuestionFormComponent implements OnDestroy {
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const formQuestion = {
-      typeofact: 'Задать вопрос', 
+      typeOfAct: 'Задать вопрос', 
       phone: this.questionForm.value.userPhone,
       email: this.questionForm.value.userEmail,
       text: this.questionForm.value.userText,
-      typeofform: 5,
+      typeOfForm: 5,
       status: false
     }
 
@@ -103,7 +103,7 @@ export class QuestionFormComponent implements OnDestroy {
     // Отправка оъекта на сервер и получение ответа от сервера
     this.servRespSub = this.formsService.postForm(formQuestion)      
       .subscribe(
-        (data: OrdersInt) => {
+        (data: Orders) => {
           this.receivedFormQuestion = data // Получаем данные с сервера
           this.formValidError = false // Отключаем проверку ошибок валидации для формы
           this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"              

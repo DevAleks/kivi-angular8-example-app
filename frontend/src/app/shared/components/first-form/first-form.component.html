@@ -3,7 +3,7 @@
         <div *ngIf="!switcher" class="modal-window__body">
           
             <div class="modal-window__header">
-                Заказ услуги <span class="modal-window__nowrap">{{typeofact}}</span>
+                Заказ услуги <span class="modal-window__nowrap">{{typeOfAct}}</span>
                 <div class="modal-window__btn-close" (click)="closeForm()"></div>
             </div>
 
@@ -106,7 +106,7 @@
             <div *ngIf="!loading; else loadingBlock">
 
                 <div class="modal-window__header">
-                    Заказ услуги <span class="modal-window__nowrap">{{typeofact}}</span>
+                    Заказ услуги <span class="modal-window__nowrap">{{typeOfAct}}</span>
                     <div class="modal-window__btn-close" (click)="closeForm()"></div>
                 </div>
 
@@ -118,9 +118,9 @@
                             <li>{{receivedFormFirst.name}}</li>
                             <li>{{receivedFormFirst.phone}}</li>
                             <li>{{receivedFormFirst.email}}</li>
-                            <li>{{receivedFormFirst.typeofact}}</li>
+                            <li>{{receivedFormFirst.typeOfAct}}</li>
                             <li>{{receivedFormFirst.promo}}</li>
-                            <li>Тип формы: {{receivedFormFirst.typeofform}}</li>
+                            <li>Тип формы: {{receivedFormFirst.typeOfForm}}</li>
                             <li>Статус ошибки при отправке заказа: {{receivedFormFirst.status}}</li>
                         </ul>
                         <div class="btn-order">

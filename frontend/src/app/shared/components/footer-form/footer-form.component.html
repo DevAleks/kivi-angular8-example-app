@@ -4,9 +4,9 @@
         <div class="footer-form__body">                 
             <div class="forms__row">
                 <label class="forms__label">Выберите услугу:<span class="forms__req">*</span></label>
-                <select class="forms__select" name="typeofact" formControlName="userTypeofact" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userTypeofact'].invalid}">
+                <select class="forms__select" name="typeOfAct" formControlName="userTypeofact" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userTypeofact'].invalid}">
                     <option value="">...</option>
-                    <option *ngFor="let typeoa of typeofacts.activities" [value]="typeoa">
+                    <option *ngFor="let typeoa of typeOfActs.activities" [value]="typeoa">
                         {{typeoa}}
                     </option>
                 </select>         
@@ -89,8 +89,8 @@
                                 <li>{{receivedFormFooter.name}}</li>
                                 <li>{{receivedFormFooter.phone}}</li>
                                 <li>{{receivedFormFooter.email}}</li>
-                                <li>{{receivedFormFooter.typeofact}}</li>
-                                <li>Тип формы: {{receivedFormFooter.typeofform}}</li>
+                                <li>{{receivedFormFooter.typeOfAct}}</li>
+                                <li>Тип формы: {{receivedFormFooter.typeOfForm}}</li>
                                 <li>Статус ошибки при отправке заказа: {{receivedFormFooter.status}}</li>
                             </ul>
                         </div>

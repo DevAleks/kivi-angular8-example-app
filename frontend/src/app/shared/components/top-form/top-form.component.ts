@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
 import { Activites } from '../../classes/classes'
-import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
+import { ClickInterface, Orders } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-top-form',
@@ -25,7 +25,7 @@ export class TopFormComponent {
   servRespSub: Subscription
 
   // Виды услуг для селектора в шаблоне
-  typeofacts: Activites = new Activites() // typeOfActs - may be better naming
+  typeOfActs: Activites = new Activites() // typeOfActs - may be better naming
 
   // Индикатор попытки валидации формы после клика на кнопку отправки
   switcher_valid: boolean = false // isSwitcherValid  - may be better naming
@@ -40,7 +40,7 @@ export class TopFormComponent {
   errServ: boolean = false // don't use short names for variables
 
   // Данные заказа из формы topForm, полученные с сервера
-  receivedFormTop: OrdersInt
+  receivedFormTop: Orders
 
   // Объект FormGroup для формы topForm
   topForm: FormGroup
@@ -51,8 +51,8 @@ export class TopFormComponent {
   constructor(private formsService: FormsService) {
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
-      if (data.typeofform == 3) {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {
+      if (data.typeOfForm == 3) {
         this.modal_switcher = true
       }
     })
@@ -111,12 +111,12 @@ export class TopFormComponent {
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const topFormToServ = {
-      typeofact: this.topForm.value.userTypeofact,
+      typeOfAct: this.topForm.value.userTypeofact,
       name: this.topForm.value.userName,
       phone: this.topForm.value.userPhone,
       email: this.topForm.value.userEmail,
       promo: this.topForm.value.userPromo,
-      typeofform: 3,
+      typeOfForm: 3,
       status: false
     }
 
@@ -126,7 +126,7 @@ export class TopFormComponent {
     // Отправка оъекта на сервер и получение ответа от сервера
     this.servRespSub = this.formsService.postForm(topFormToServ)
       .subscribe(
-        (data: OrdersInt) => {
+        (data: Orders) => {
           this.receivedFormTop = data // Получаем данные с сервера
           this.formValidError = false // Отключаем проверку ошибок валидации для формы
           this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"

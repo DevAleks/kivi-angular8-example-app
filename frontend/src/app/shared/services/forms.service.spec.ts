@@ -28,12 +28,12 @@ describe('FormsService', () => {
   it('подписка на клик для открытия форм работает', fakeAsync( 
     inject([FormsService], (service: FormsService) => {
       const click: ClickForm ={
-        typeofform: 2,
-        typeofact: 'Рафтинг'
+        typeOfForm: 2,
+        typeOfAct: 'Рафтинг'
       }
       const expectedData: ClickForm ={
-        typeofform: 2,
-        typeofact: 'Рафтинг'
+        typeOfForm: 2,
+        typeOfAct: 'Рафтинг'
       }
       service.openForm(click);
       service.observableclicks$.subscribe((data) => {
@@ -49,8 +49,8 @@ describe('FormsService', () => {
       "name":'Alex', 
       "phone":'+7(921) 354-90 17',
       "email": 'sdfsdf@mail.com',
-      "typeofact": 'Рафтинг',
-      "typeofform": 1,
+      "typeOfAct": 'Рафтинг',
+      "typeOfForm": 1,
       "status": false,
       "promo": 'Promo 2019',
       "text": 'Текст вопроса 123'
@@ -59,8 +59,8 @@ describe('FormsService', () => {
       "name":'Имя: Alex', 
       "phone":'Телефон: +7(921) 354-90 17',
       "email": 'Email: sdfsdf@mail.com',
-      "typeofact": 'Тип активности: Рафтинг',
-      "typeofform": 1,
+      "typeOfAct": 'Тип активности: Рафтинг',
+      "typeOfForm": 1,
       "status": false,
       "promo": 'Promo: Promo 2019',
       "text": 'Вопрос: Текст вопроса 123123'

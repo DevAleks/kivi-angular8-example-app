@@ -10,9 +10,9 @@
                 <form [formGroup]="topForm" novalidate>
                     <div class="forms__row">
                         <label class="forms__label">Выберите услугу:<span class="forms__req">*</span></label>
-                        <select class="forms__select" name="typeofact" formControlName="userTypeofact" [ngClass]="{'forms__row--error': switcher && topForm.controls['userTypeofact'].invalid}">
+                        <select class="forms__select" name="typeOfAct" formControlName="userTypeofact" [ngClass]="{'forms__row--error': switcher && topForm.controls['userTypeofact'].invalid}">
                             <option value="">...</option>
-                            <option *ngFor="let typeoa of typeofacts.activities" [value]="typeoa">
+                            <option *ngFor="let typeoa of typeOfActs.activities" [value]="typeoa">
                                 {{typeoa}}
                             </option>   
                         </select> 
@@ -132,9 +132,9 @@
                             <li>{{receivedFormTop.name}}</li>
                             <li>{{receivedFormTop.phone}}</li>
                             <li>{{receivedFormTop.email}}</li>
-                            <li>{{receivedFormTop.typeofact}}</li>
+                            <li>{{receivedFormTop.typeOfAct}}</li>
                             <li>{{receivedFormTop.promo}}</li>
-                            <li>Тип формы: {{receivedFormTop.typeofform}}</li>
+                            <li>Тип формы: {{receivedFormTop.typeOfForm}}</li>
                             <li>Статус ошибки при отправке заказа: {{receivedFormTop.status}}</li>
                         </ul>
                     </div>

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs'
 import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
 import { Activites } from '../../classes/classes'
-import { OrdersInt } from '../../interfaces/interfaces'
+import { Orders } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-footer-form',
@@ -16,7 +16,7 @@ import { OrdersInt } from '../../interfaces/interfaces'
 
 export class FooterFormComponent implements OnDestroy {
   
-  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
+  typeOfActs: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы
 
@@ -30,7 +30,7 @@ export class FooterFormComponent implements OnDestroy {
 
   errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  receivedFormFooter: OrdersInt // Данные заказа, полученные с сервера
+  receivedFormFooter: Orders // Данные заказа, полученные с сервера
 
   footerForm : FormGroup // Объект FormGroup для формы footerForm
 
@@ -85,11 +85,11 @@ export class FooterFormComponent implements OnDestroy {
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const formfooter = {
-      typeofact: this.footerForm.value.userTypeofact, 
+      typeOfAct: this.footerForm.value.userTypeofact, 
       name: this.footerForm.value.userName, 
       phone: this.footerForm.value.userPhone,
       email: this.footerForm.value.userEmail,
-      typeofform: 1,
+      typeOfForm: 1,
       status: false
     }
 
@@ -98,7 +98,7 @@ export class FooterFormComponent implements OnDestroy {
 
     this.servRespSub = this.formsService.postForm(formfooter)
       .subscribe(
-        (data: OrdersInt) => {
+        (data: Orders) => {
           this.receivedFormFooter = data
           this.formValidError = false // Отключаем проверку ошибок валидации для формы
           this.switcher_valid = false // Отключаем вызов проверки ошибок при получении

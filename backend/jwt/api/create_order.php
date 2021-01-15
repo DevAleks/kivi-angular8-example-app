@@ -59,8 +59,8 @@ if($jwt) {
         $data = json_decode(file_get_contents("php://input"));
 
         // устанавливаем значения для записи в БД
-        $order->order_form_type = $data->typeofform;
-        $order->order_typeofact = $data->typeofact;
+        $order->order_form_type = $data->typeOfForm;
+        $order->order_typeOfAct = $data->typeOfAct;
         $order->order_name = $data->name;
         $order->order_phone = $data->phone;
         $order->order_email = $data->email;
@@ -71,7 +71,7 @@ if($jwt) {
         if (
             !empty($order->order_name) &&
             !empty($order->order_phone) &&
-            !empty($order->order_typeofact) &&
+            !empty($order->order_typeOfAct) &&
             !empty($order->order_text) &&
             $order->createOrder()
         ) {

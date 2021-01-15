@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms'
 
 import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
-import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
+import { ClickInterface, Orders } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-first-form',
@@ -16,7 +16,7 @@ export class FirstFormComponent implements OnDestroy {
 
   modal_switcher: boolean = false // Свичер для модальных окон новых форм и "ответов" форм
 
-  typeofact: string = '' // Переменная для выбранной услуги
+  typeOfAct: string = '' // Переменная для выбранной услуги
 
   clicksSub: Subscription // Переменная для подписки на клики по кнопке открытия окна с формой 
 
@@ -30,7 +30,7 @@ export class FirstFormComponent implements OnDestroy {
 
   errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  receivedFormFirst: OrdersInt // Данные заказа из формы firstForm, полученные с сервера
+  receivedFormFirst: Orders // Данные заказа из формы firstForm, полученные с сервера
 
   firstForm : FormGroup // Объект FormGroup для формы firstForm
 
@@ -39,11 +39,11 @@ export class FirstFormComponent implements OnDestroy {
   constructor(private formsService: FormsService) {  
     
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {
       
-      if (data.typeofform == 2) {
+      if (data.typeOfForm == 2) {
         this.modal_switcher = true
-        this.typeofact = data.typeofact
+        this.typeOfAct = data.typeOfAct
       }      
     }) 
 
@@ -98,12 +98,12 @@ export class FirstFormComponent implements OnDestroy {
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const formFirst = {
-      typeofact: this.typeofact, 
+      typeOfAct: this.typeOfAct, 
       name: this.firstForm.value.userName, 
       phone: this.firstForm.value.userPhone,
       email: this.firstForm.value.userEmail,
       promo: this.firstForm.value.userPromo,
-      typeofform: 2,
+      typeOfForm: 2,
       status: false
     }
 
@@ -113,7 +113,7 @@ export class FirstFormComponent implements OnDestroy {
     // Отправка оъекта на сервер и получение ответа от сервера
     this.servRespSub = this.formsService.postForm(formFirst)
     .subscribe(
-      (data: OrdersInt) => {
+      (data: Orders) => {
         this.receivedFormFirst = data // Получаем данные с сервера
         this.formValidError = false // Отключаем проверку ошибок валидации для формы
         this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      

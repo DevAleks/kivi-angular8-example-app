@@ -52,11 +52,11 @@ describe('FooterFormComponent', () => {
 
   it('should post and recived form data success from FormsService', () => {
     const expectForm:FormBottom = {
-      typeofact: 'Тип активности: Заказать звонок', 
+      typeOfAct: 'Тип активности: Заказать звонок', 
       name: 'Имя: Алекс', 
       phone: 'Телефон: +7(933) 888-99-00',
       email: 'Email: test@mail.com',
-      typeofform: 1,
+      typeOfForm: 1,
       status: false
     };
     const spyObj = jasmine.createSpyObj('FormsService', {postForm: expectForm});

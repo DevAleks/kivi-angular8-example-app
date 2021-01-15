@@ -5,7 +5,7 @@ import { throwError, Observable } from 'rxjs';
 import { catchError, retry, delay } from 'rxjs/operators';
 //import { enableProdMode } from '@angular/core';
 
-import { JsonInt } from '../interfaces/interfaces';
+import { JsonObject } from '../interfaces/interfaces';
 
 //enableProdMode();
 
@@ -17,8 +17,8 @@ export class GetJsonService {
   constructor(private http: HttpClient) { }
 
   // Отправка запроса и получение данных из json файла
-  getPagesJson(): Observable<JsonInt[]> {
-    return this.http.get<JsonInt[]>('/assets/from-server/pages.json')
+  getPagesJson(): Observable<JsonObject[]> {
+    return this.http.get<JsonObject[]>('/assets/from-server/pages.json')
       .pipe(
         delay(1500), // Делаем задержку для отображения индикатора загрузки
         retry(3), // Пробуем получить успешный ответ 3 раза

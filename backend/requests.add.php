@@ -37,8 +37,8 @@ if($formbt) {
     $order = new Order($db);  
     
     // устанавливаем значения для записи в БД
-    $order->order_form_type = $formbt['typeofform'];
-    $order->order_typeofact = $formbt['typeofact'];
+    $order->order_form_type = $formbt['typeOfForm'];
+    $order->order_typeOfAct = $formbt['typeOfAct'];
     $order->order_phone = $formbt['phone'];
     $order->order_name = $formbt['name'];
     $order->order_email = $formbt['email'];
@@ -48,7 +48,7 @@ if($formbt) {
     // создание нового заказа c проверкой наличия необходимых значений
     if (
       !empty($order->order_phone) &&
-      !empty($order->order_typeofact) &&
+      !empty($order->order_typeOfAct) &&
       !empty($order->order_form_type) &&
       $order->createOrderFront()
     ) {
@@ -59,8 +59,8 @@ if($formbt) {
       // Готовим данные для ответа на фронтенд, если заказ успешно создан 
       // Обязательные 
       $formbt_back['phone'] = 'Телефон: '.$formbt['phone'];    
-      $formbt_back['typeofact'] = 'Тип активности: '.$formbt['typeofact'];
-      $formbt_back['typeofform'] = $formbt['typeofform']; // Тип формы
+      $formbt_back['typeOfAct'] = 'Тип активности: '.$formbt['typeOfAct'];
+      $formbt_back['typeOfForm'] = $formbt['typeOfForm']; // Тип формы
       $formbt_back['status'] = false; // Статус ошибки запроса в БД   
 
       // Необязательные

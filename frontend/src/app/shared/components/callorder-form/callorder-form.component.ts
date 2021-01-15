@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms'
 
 import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
-import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
+import { ClickInterface, Orders } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-callorder-form',
@@ -28,7 +28,7 @@ export class CallorderFormComponent implements OnDestroy {
 
   errServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  receivedFormCallOrder: OrdersInt // Данные заказа из формы callorderForm, полученные с сервера
+  receivedFormCallOrder: Orders // Данные заказа из формы callorderForm, полученные с сервера
 
   callorderForm : FormGroup // Объект FormGroup для формы callorderForm
 
@@ -37,8 +37,8 @@ export class CallorderFormComponent implements OnDestroy {
   constructor(private formsService: FormsService) {
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
-      if (data.typeofform == 4) {
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {
+      if (data.typeOfForm == 4) {
         this.modal_switcher = true
       }      
     })
@@ -88,10 +88,10 @@ export class CallorderFormComponent implements OnDestroy {
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const formCallOrder = {
-      typeofact: 'Заказать звонок', 
+      typeOfAct: 'Заказать звонок', 
       name: this.callorderForm.value.userName, 
       phone: this.callorderForm.value.userPhone,
-      typeofform: 4,
+      typeOfForm: 4,
       status: false
     }      
 
@@ -101,7 +101,7 @@ export class CallorderFormComponent implements OnDestroy {
     // Отправка оъекта на сервер и получение ответа от сервера
     this.servRespSub = this.formsService.postForm(formCallOrder)      
       .subscribe(
-        (data: OrdersInt) => {
+        (data: Orders) => {
           this.receivedFormCallOrder = data // Получаем данные с сервера
           this.formValidError = false // Отключаем проверку ошибок валидации для формы
           this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"

@@ -27,15 +27,15 @@
                     <tbody>
                         <tr *ngFor="let order of pageOfItems | searchOrders:searchStr; let idx = index">
                             <td>{{ order.id }}</td>
-                            <td>{{ order.typeofact }}</td>
+                            <td>{{ order.typeOfAct }}</td>
                             <td>
-                                <span *ngIf="order.typeofform==1">Форма 1,<br>подвал</span>
-                                <span *ngIf="order.typeofform==2">Форма 2,<br>круглый блок</span>
-                                <span *ngIf="order.typeofform==3">Форма 3,<br>шапка</span>
-                                <span *ngIf="order.typeofform==4">Форма 4,<br>заказать звонок</span>
-                                <span *ngIf="order.typeofform==5">Форма 5,<br>задать вопрос</span>
-                                <span *ngIf="order.typeofform==6">Форма 6,<br>из админки</span>
-                                <span *ngIf="order.typeofform==0" class="red">Форма не задана</span>                                                                                
+                                <span *ngIf="order.typeOfForm==1">Форма 1,<br>подвал</span>
+                                <span *ngIf="order.typeOfForm==2">Форма 2,<br>круглый блок</span>
+                                <span *ngIf="order.typeOfForm==3">Форма 3,<br>шапка</span>
+                                <span *ngIf="order.typeOfForm==4">Форма 4,<br>заказать звонок</span>
+                                <span *ngIf="order.typeOfForm==5">Форма 5,<br>задать вопрос</span>
+                                <span *ngIf="order.typeOfForm==6">Форма 6,<br>из админки</span>
+                                <span *ngIf="order.typeOfForm==0" class="red">Форма не задана</span>                                                                                
                             </td>
                             <td>{{ order.date | date: 'medium':'GMT+3':'ru' }}</td>
                             <td>

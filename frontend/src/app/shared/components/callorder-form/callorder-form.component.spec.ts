@@ -41,11 +41,11 @@ describe('CallorderFormComponent', () => {
     });
   }));
 
-  it('should have typeofform == 4 after observableclicks$.subscribe() call', async((done: DoneFn) => {
-    const openClick: ClickForm = {typeofform: 4, typeofact: 'Рафтинг'};
+  it('should have typeOfForm == 4 after observableclicks$.subscribe() call', async((done: DoneFn) => {
+    const openClick: ClickForm = {typeOfForm: 4, typeOfAct: 'Рафтинг'};
     forms.openForm(openClick); 
     forms.observableclicks$.subscribe((data) => {
-      expect(data.typeofform).toBe(4);
+      expect(data.typeOfForm).toBe(4);
       done();                      
     });     
   }));
@@ -62,10 +62,10 @@ describe('CallorderFormComponent', () => {
 
   it('should post and recived form data success from FormsService', () => {
     const expectForm:FormBottom = {
-      typeofact: 'Тип активности: Заказать звонок', 
+      typeOfAct: 'Тип активности: Заказать звонок', 
       name: 'Имя: Алекс', 
       phone: 'Телефон: +7(933) 888-99-00',
-      typeofform: 4,
+      typeOfForm: 4,
       status: false
     };
     const spyObj = jasmine.createSpyObj('FormsService', {postForm: expectForm});

@@ -41,11 +41,11 @@ describe('FirstFormComponent', () => {
     });
   }));
 
-  it('should have typeofform == 2 after observableclicks$.subscribe() call', async((done: DoneFn) => {
-    const openClick: ClickForm = {typeofform: 2, typeofact: 'Рафтинг'};
+  it('should have typeOfForm == 2 after observableclicks$.subscribe() call', async((done: DoneFn) => {
+    const openClick: ClickForm = {typeOfForm: 2, typeOfAct: 'Рафтинг'};
     forms.openForm(openClick); 
     forms.observableclicks$.subscribe((data) => {
-      expect(data.typeofform).toBe(2);
+      expect(data.typeOfForm).toBe(2);
       done();                      
     });     
   }));
@@ -62,12 +62,12 @@ describe('FirstFormComponent', () => {
 
   it('should post and recived form data success from FormsService', () => {
     const expectForm: FormBottom = {
-      typeofact: 'Тип активности: Рафтинг', 
+      typeOfAct: 'Тип активности: Рафтинг', 
       name: 'Имя: Алекс', 
       phone: 'Телефон: +7(933) 888-99-00',
       email: 'Email: test@mail.com',
       promo: 'Promo: Promo 123',
-      typeofform: 2,
+      typeOfForm: 2,
       status: false
     };
     const spyObj = jasmine.createSpyObj('FormsService', {postForm: expectForm});

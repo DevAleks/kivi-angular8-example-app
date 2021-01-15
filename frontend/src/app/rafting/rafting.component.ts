@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormsService } from '../shared/services/forms.service'
-import { ClickInt } from '../shared/interfaces/interfaces'
+import { ClickInterface } from '../shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-rafting',
@@ -23,7 +23,7 @@ export class RaftingComponent {
   constructor(private formsService: FormsService) { }
 
   // Обрабатываем клики для открытия в модальном окне формы firstForm
-  openFormClick(openClick: ClickInt) {
+  openFormClick(openClick: ClickInterface) {
     this.formsService.openForm(openClick)    
   }
 

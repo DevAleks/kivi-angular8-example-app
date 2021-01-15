@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs'
 
 import { GetJsonService } from '../../services/get-json.service'
 import { FormsService } from '../../services/forms.service'
-import { ClickInt } from '../../interfaces/interfaces'
+import { ClickInterface } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-first-block',
@@ -46,7 +46,7 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
   ) { }
 
   // Обрабатываем клики для открытия формы firstForm в модальном окне
-  openFormClick(openClick: ClickInt) {
+  openFormClick(openClick: ClickInterface) {
     this.formsService.openForm(openClick)
   }
 

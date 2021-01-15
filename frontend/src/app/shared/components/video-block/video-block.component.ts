@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ViewEncapsulation } from '@angular/core'
 
 import { GetJsonService } from '../../services/get-json.service'
-import { JsonInt } from '../../interfaces/interfaces'
+import { JsonObject } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-video-block',
@@ -25,7 +25,7 @@ export class VideoBlockComponent implements OnInit {
     this.isVideoLoading = true // включаем отображение лоадера на время загрузки видео
     // Получаем url видео из JSON файла
     this.getjsonService.getPagesJson()
-      .subscribe((jsonObject: JsonInt[]) => {
+      .subscribe((jsonObject: JsonObject[]) => {
         this.videourl = jsonObject["index"][0]["videoUrl"]
         this.isVideoLoading = false
       },

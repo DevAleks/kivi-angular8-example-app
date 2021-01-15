@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormsService } from '../shared/services/forms.service'
-import { ClickInt } from '../shared/interfaces/interfaces'
+import { ClickInterface } from '../shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-semeyniy-rafting',
@@ -19,7 +19,7 @@ export class SemeyniyRaftingComponent {
   constructor(private formsService: FormsService) { }
 
   // Обрабатываем клики для открытия в модальном окне форм topForm, questionForm, callorderForm
-  openFormClick(openClick: ClickInt) {
+  openFormClick(openClick: ClickInterface) {
     this.formsService.openForm(openClick)
   }
 

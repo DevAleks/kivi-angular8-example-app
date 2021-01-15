@@ -62,16 +62,16 @@
             </div>        
         </div>
 
-        <div class="form-row" [ngClass]="{invalid: form.get('order_typeofact').touched && form.get('order_typeofact').invalid}">
+        <div class="form-row" [ngClass]="{invalid: form.get('order_typeOfAct').touched && form.get('order_typeOfAct').invalid}">
             <label class="form-row__label">Выберите услугу:<span class="form-row__req">*</span></label>
-            <select name="order_typeofact" formControlName="order_typeofact">
+            <select name="order_typeOfAct" formControlName="order_typeOfAct">
                 <option value="">...</option>
-                <option *ngFor="let typeoa of typeofacts.activities" [value]="typeoa">
+                <option *ngFor="let typeoa of typeOfActs.activities" [value]="typeoa">
                     {{typeoa}}
                 </option>   
             </select> 
-            <div class="form-row__validation" *ngIf="form.get('order_typeofact').touched && form.get('order_typeofact').invalid">
-                <small *ngIf="form.get('order_typeofact').errors.required">
+            <div class="form-row__validation" *ngIf="form.get('order_typeOfAct').touched && form.get('order_typeOfAct').invalid">
+                <small *ngIf="form.get('order_typeOfAct').errors.required">
                     Для создания заказа необходимо выбрать услугу
                 </small>
             </div>
