@@ -24,7 +24,7 @@ export class InViewDirective implements AfterViewInit {
     observer.observe(elToObserve);
   }
 
-  renderContents(isInView) {
+  renderContents(isInView: boolean) {
     if (isInView && !this.alreadyRendered) {
       this.vcRef.clear()
       this.vcRef.createEmbeddedView(this.tplRef)
@@ -32,7 +32,7 @@ export class InViewDirective implements AfterViewInit {
     }
   }
 
-  setMinWidthHeight(el) { // prevent issue being visible all together
+  setMinWidthHeight(el: any) { // prevent issue being visible all together
     const style = window.getComputedStyle(el)
     const [width, height] = [parseInt(style.width), parseInt(style.height)]
     !width && (el.style.minWidth = '40px')
