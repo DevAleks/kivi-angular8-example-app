@@ -46,7 +46,7 @@ export class TopFormComponent {
   topForm: FormGroup
 
   // Переключатель индикатора загрузки ответа формы
-  isLoading = false // isFormLoading - may be better naming
+  isFormLoading: boolean = false
 
   constructor(private formsService: FormsService) {
 
@@ -120,7 +120,7 @@ export class TopFormComponent {
       status: false
     }
 
-    this.isLoading = true // Включаем отображение индикатора загрузки
+    this.isFormLoading = true // Включаем отображение индикатора загрузки
     this.isSuccesAnswer = true // Включаем показ окна с результатом отправки формы    
 
     // Отправка оъекта на сервер и получение ответа от сервера
@@ -130,12 +130,12 @@ export class TopFormComponent {
           this.receivedFormTop = data // Получаем данные с сервера
           this.isFormValidError = false // Отключаем проверку ошибок валидации для формы
           this.isValidSwitcher = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-          this.isLoading = false // Выключаем отображение индикатора загрузки
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
           this.topForm.reset() // Очищаем значения успешно отправленной формы
         },
         error => {
           this.isErrServ = true // Включаем статус ошибки передачи данных формы на сервер
-          this.isLoading = false // Выключаем отображение индикатора загрузки
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
         }
       )
   }

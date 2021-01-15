@@ -30,9 +30,9 @@ export class CallorderFormComponent implements OnDestroy {
 
   receivedFormCallOrder: Orders // Данные заказа из формы callorderForm, полученные с сервера
 
-  callorderForm : FormGroup // Объект FormGroup для формы callorderForm
+  callorderForm: FormGroup // Объект FormGroup для формы callorderForm
 
-  isLoading = false // Переключатель индикатора загрузки ответа формы
+  isFormLoading: boolean = false // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {
 
@@ -95,7 +95,7 @@ export class CallorderFormComponent implements OnDestroy {
       status: false
     }      
 
-    this.isLoading = true // Включаем отображение индикатора загрузки
+    this.isFormLoading = true // Включаем отображение индикатора загрузки
     this.isSuccesAnswer = true // Включаем показ окна с результатом отправки формы
 
     // Отправка оъекта на сервер и получение ответа от сервера
@@ -105,12 +105,12 @@ export class CallorderFormComponent implements OnDestroy {
           this.receivedFormCallOrder = data // Получаем данные с сервера
           this.isFormValidError = false // Отключаем проверку ошибок валидации для формы
           this.isValidSwitcher = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-          this.isLoading = false // Выключаем отображение индикатора загрузки
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
           this.callorderForm.reset() // Очищаем значения успешно отправленной формы
         },
         error => {
           this.isErrServ = true // Включаем статус ошибки передачи данных формы на сервер
-          this.isLoading = false // Выключаем отображение индикатора загрузки
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
         }
       )       
   }

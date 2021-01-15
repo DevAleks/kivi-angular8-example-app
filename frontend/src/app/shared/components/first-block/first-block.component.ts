@@ -17,7 +17,7 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
   
   isModalSwitcher: boolean // Свитчер включения окна с формой  
   
-  isLoading = false // Переключатель индикатора загрузки заголовка h1
+  isFormLoading = false // Переключатель индикатора загрузки заголовка h1
 
   jsonSub: Subscription // Переменная для подписки на получение заголовка h1 из json файла
 
@@ -52,13 +52,13 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Включаем отображение индикатора загрузки заголовка Hh1
-    this.isLoading = true 
+    this.isFormLoading = true 
     // Получаем значение для заголовка h1 из json файла
     this.jsonSub = this.getjsonService.getPagesJson()
       .subscribe(
         (data) => {
           this.h1 = data["index"][0]["h1"]
-          this.isLoading = false // Выключаем отображение индикатора загрузки заголовка h1
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки заголовка h1
         },
         (error:any) => console.log(error)
       )

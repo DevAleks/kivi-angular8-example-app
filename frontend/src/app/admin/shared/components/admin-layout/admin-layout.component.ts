@@ -16,9 +16,7 @@ export class AdminLayoutComponent implements OnInit {
     private router: Router,
     public auth: AuthService,
     @Inject(DOCUMENT) private _document: Document
-    ) {
-
-  }
+    ) { }
 
   // Устанавливаем в body стиль для блокировки прокрутки экрана
   isNavDropdown(isNavToggle: boolean) {
@@ -37,9 +35,6 @@ export class AdminLayoutComponent implements OnInit {
     this.router.navigate(['/admin', 'login']);
   }
 
-  ngOnInit() {
-  }
-
-
+  ngOnInit() { }
 
 }

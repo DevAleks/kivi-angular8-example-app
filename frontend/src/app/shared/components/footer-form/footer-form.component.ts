@@ -34,7 +34,7 @@ export class FooterFormComponent implements OnDestroy {
 
   footerForm : FormGroup // Объект FormGroup для формы footerForm
 
-  isLoading = false // Переключатель индикатора загрузки ответа формы
+  isFormLoading: boolean = false // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {   
 
@@ -93,7 +93,7 @@ export class FooterFormComponent implements OnDestroy {
       status: false
     }
 
-    this.isLoading = true // Включаем отображение индикатора загрузки
+    this.isFormLoading = true // Включаем отображение индикатора загрузки
     this.isSuccesAnswer = true // Включаем показ результатов отправки формы
 
     this.servRespSub = this.formsService.postForm(formfooter)
@@ -102,12 +102,12 @@ export class FooterFormComponent implements OnDestroy {
           this.receivedFormFooter = data
           this.isFormValidError = false // Отключаем проверку ошибок валидации для формы
           this.isValidSwitcher = false // Отключаем вызов проверки ошибок при получении
-          this.isLoading = false // Выключаем отображение индикатора загрузки
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
           this.footerForm.reset() // Очищаем значения успешно отправленной формы
         },
         error => {
           this.isErrServ = true
-          this.isLoading = false // Выключаем отображение индикатора загрузки
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
         }
       )      
     this.isModalSwitcher = true // Включаем модальное окно для показа результатов отправки формы                 
