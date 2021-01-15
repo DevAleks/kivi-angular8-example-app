@@ -16,7 +16,7 @@ import { ClickInterface, Orders } from '../../interfaces/interfaces'
 export class TopFormComponent {
 
   // Свичер для модальных окон новых форм и "ответов" форм
-  modal_switcher: boolean = false // isModalSwitcherOpen - may be better naming
+  isModalSwitcher: boolean = false // isModalSwitcherOpen - may be better naming
 
   // Переменная для подписки на клики по кнопке открытия окна с формой 
   clicksSub: Subscription
@@ -28,7 +28,7 @@ export class TopFormComponent {
   typeOfActs: Activites = new Activites() // typeOfActs - may be better naming
 
   // Индикатор попытки валидации формы после клика на кнопку отправки
-  switcher_valid: boolean = false // isSwitcherValid  - may be better naming
+  isValidSwitcher: boolean = false // isSwitcherValid  - may be better naming
 
   // Индикатор успешного получения данных с сервера
   switcher: boolean = false // isSwitcherSucceed - may be better naming
@@ -53,7 +53,7 @@ export class TopFormComponent {
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
     this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {
       if (data.typeOfForm == 3) {
-        this.modal_switcher = true
+        this.isModalSwitcher = true
       }
     })
 
@@ -84,11 +84,11 @@ export class TopFormComponent {
 
   // Закрытие формы кликами мыши
   closeForm() {
-    this.modal_switcher = false // Закрываем модальное окно с формой
+    this.isModalSwitcher = false // Закрываем модальное окно с формой
     this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
     this.errServ = false // Сбрасываем ошибку работы с сервером 
     this.formValidError = true // Сбрасываем ошибки валидации формы  
-    this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
+    this.isValidSwitcher = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
   }
 
   // Закрытие формы кнопкой ESC
@@ -102,7 +102,7 @@ export class TopFormComponent {
   submitTop() {
 
     this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию
+    this.isValidSwitcher = true // Кнопка отправки нажата, но форма не прошла валидацию
 
     // Проверяем валидность формы перед отправкой
     if (this.topForm.invalid) {
@@ -129,7 +129,7 @@ export class TopFormComponent {
         (data: Orders) => {
           this.receivedFormTop = data // Получаем данные с сервера
           this.formValidError = false // Отключаем проверку ошибок валидации для формы
-          this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+          this.isValidSwitcher = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
           this.loading = false // Выключаем отображение индикатора загрузки
           this.topForm.reset() // Очищаем значения успешно отправленной формы
         },

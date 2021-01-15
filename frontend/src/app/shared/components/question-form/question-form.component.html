@@ -1,5 +1,5 @@
-<div class="modal-window" [style.display]="modal_switcher ? 'block' : 'none'">
-    <div class="modal-window__wrapper" [style.display]="modal_switcher ? 'block' : 'none'">
+<div class="modal-window" [style.display]="isModalSwitcher ? 'block' : 'none'">
+    <div class="modal-window__wrapper" [style.display]="isModalSwitcher ? 'block' : 'none'">
         <div *ngIf="!switcher" class="modal-window__body">
             <div class="modal-window__header">
                 Задать вопрос
@@ -9,10 +9,10 @@
                 <form [formGroup]="questionForm" novalidate>
                     <div class="forms__row">
                         <label class="forms__label">Введите вопрос:<span class="forms__req">*</span></label>
-                        <textarea type="text" class="forms__textarea" formControlName="userText" #question [ngClass]="{'forms__row--error': switcher_valid && questionForm.controls['userText'].invalid}"></textarea>
+                        <textarea type="text" class="forms__textarea" formControlName="userText" #question [ngClass]="{'forms__row--error': isValidSwitcher && questionForm.controls['userText'].invalid}"></textarea>
                         <div class="forms__counter">Осталось символов: {{500 - question.value.length}}</div>
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="questionForm.controls['userText'].invalid && questionForm.controls['userText'].touched" class="forms__errors-text">
                             Поле Вопрос заполнено неверно:
                             <div *ngIf="questionForm.controls['userText'].errors?.userTextPattern">
@@ -32,9 +32,9 @@
 
                     <div class="forms__row">
                         <label class="forms__label">Введите телефон:<span class="forms__req">*</span></label>
-                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': switcher_valid && questionForm.controls['userPhone'].invalid}" /> 
+                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': isValidSwitcher && questionForm.controls['userPhone'].invalid}" /> 
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="questionForm.controls['userPhone'].invalid && questionForm.controls['userPhone'].touched" class="forms__errors-text">
                             Поле Телефон заполнено неверно:
                             <div *ngIf="questionForm.controls['userPhone'].errors?.userPhonePattern">
@@ -54,9 +54,9 @@
                     
                     <div class="forms__row">
                         <label class="forms__label">Введите e-mail:</label>
-                        <input class="forms__input" name="email" type="email" formControlName="userEmail" [ngClass]="{'forms__row--error': switcher_valid && questionForm.controls['userEmail'].invalid}" />  
+                        <input class="forms__input" name="email" type="email" formControlName="userEmail" [ngClass]="{'forms__row--error': isValidSwitcher && questionForm.controls['userEmail'].invalid}" />  
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="questionForm.controls['userEmail'].invalid && questionForm.controls['userEmail'].touched" class="forms__errors-text">
                             Поле Email заполнено неверно
                         </div>

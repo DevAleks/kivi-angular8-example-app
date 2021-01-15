@@ -14,7 +14,7 @@ import { ClickInterface, Orders } from '../../interfaces/interfaces'
 })
 export class FirstFormComponent implements OnDestroy {
 
-  modal_switcher: boolean = false // Свичер для модальных окон новых форм и "ответов" форм
+  isModalSwitcher: boolean = false // Свичер для модальных окон новых форм и "ответов" форм
 
   typeOfAct: string = '' // Переменная для выбранной услуги
 
@@ -22,7 +22,7 @@ export class FirstFormComponent implements OnDestroy {
 
   servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы 
 
-  switcher_valid: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
+  isValidSwitcher: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
 
   switcher: boolean = false // Индикатор успешного получения данных с сервера
 
@@ -41,7 +41,7 @@ export class FirstFormComponent implements OnDestroy {
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
     this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {      
       if (data.typeOfForm == 2) {
-        this.modal_switcher = true
+        this.isModalSwitcher = true
         this.typeOfAct = data.typeOfAct
       }      
     }) 
@@ -71,11 +71,11 @@ export class FirstFormComponent implements OnDestroy {
 
   // Закрытие формы кликами мыши
   closeForm() {
-    this.modal_switcher = false // Закрываем модальное окно с формой
+    this.isModalSwitcher = false // Закрываем модальное окно с формой
     this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
     this.errServ = false // Сбрасываем ошибку работы с сервером 
     this.formValidError = true // Сбрасываем ошибки валидации формы  
-    this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
+    this.isValidSwitcher = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
   }  
 
   // Закрытие формы кнопкой ESC
@@ -88,7 +88,7 @@ export class FirstFormComponent implements OnDestroy {
 
   submitFirst() {  
     this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию    
+    this.isValidSwitcher = true // Кнопка отправки нажата, но форма не прошла валидацию    
 
     // Проверяем валидность формы перед отправкой
     if (this.firstForm.invalid) {  
@@ -115,7 +115,7 @@ export class FirstFormComponent implements OnDestroy {
       (data: Orders) => {
         this.receivedFormFirst = data // Получаем данные с сервера
         this.formValidError = false // Отключаем проверку ошибок валидации для формы
-        this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
+        this.isValidSwitcher = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
         this.loading = false // Выключаем отображение индикатора загрузки
         this.firstForm.reset() // Очищаем значения успешно отправленной формы
       },

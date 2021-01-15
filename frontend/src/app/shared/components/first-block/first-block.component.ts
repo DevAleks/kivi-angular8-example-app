@@ -15,7 +15,7 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
   
   h1: string
   
-  modal_switcher: boolean // Свитчер включения окна с формой  
+  isModalSwitcher: boolean // Свитчер включения окна с формой  
   
   loading = false // Переключатель индикатора загрузки заголовка h1
 

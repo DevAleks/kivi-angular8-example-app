@@ -1,5 +1,5 @@
-<div class="modal-window" [style.display]="modal_switcher ? 'block' : 'none'">
-    <div class="modal-window__wrapper" [style.display]="modal_switcher ? 'block' : 'none'">
+<div class="modal-window" [style.display]="isModalSwitcher ? 'block' : 'none'">
+    <div class="modal-window__wrapper" [style.display]="isModalSwitcher ? 'block' : 'none'">
         <div *ngIf="!switcher" class="modal-window__body">
             <div class="modal-window__header">
                 Заказать обратный звонок
@@ -9,9 +9,9 @@
                 <form [formGroup]="callorderForm" novalidate>
                     <div class="forms__row">
                         <label class="forms__label">Введите ваше имя:<span class="forms__req">*</span></label>
-                        <input class="forms__input" name="name" type="text" formControlName="userName" [ngClass]="{'forms__row--error': switcher_valid && callorderForm.controls['userName'].invalid}" />  
+                        <input class="forms__input" name="name" type="text" formControlName="userName" [ngClass]="{'forms__row--error': isValidSwitcher && callorderForm.controls['userName'].invalid}" />  
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="callorderForm.controls['userName'].invalid && callorderForm.controls['userName'].touched" class="forms__errors-text">
                             Поле Имя заполнено неверно:
                             <div *ngIf="callorderForm.controls['userName'].errors?.userNamePattern">
@@ -31,9 +31,9 @@
 
                     <div class="forms__row">
                         <label class="forms__label">Введите телефон:<span class="forms__req">*</span></label>
-                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': switcher_valid && callorderForm.controls['userPhone'].invalid}" /> 
+                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': isValidSwitcher && callorderForm.controls['userPhone'].invalid}" /> 
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="callorderForm.controls['userPhone'].invalid && callorderForm.controls['userPhone'].touched" class="forms__errors-text">
                             Поле Телефон заполнено неверно:
                             <div *ngIf="callorderForm.controls['userPhone'].errors?.userPhonePattern">

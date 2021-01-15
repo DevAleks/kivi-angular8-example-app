@@ -1,5 +1,5 @@
-<div class="modal-window" [style.display]="modal_switcher ? 'block' : 'none'">
-    <div class="modal-window__wrapper" [style.display]="modal_switcher ? 'block' : 'none'">
+<div class="modal-window" [style.display]="isModalSwitcher ? 'block' : 'none'">
+    <div class="modal-window__wrapper" [style.display]="isModalSwitcher ? 'block' : 'none'">
         <div *ngIf="!switcher" class="modal-window__body">          
             <div class="modal-window__header">
                 Заказ услуги
@@ -16,7 +16,7 @@
                                 {{typeoa}}
                             </option>   
                         </select> 
-                        <div *ngIf="switcher_valid">
+                        <div *ngIf="isValidSwitcher">
                             <div *ngIf="topForm.controls['userTypeofact'].invalid" class="forms__errors-text">
                                 Для отправки заказа необходимо выбрать услугу
                             </div>
@@ -25,9 +25,9 @@
 
                     <div class="forms__row">
                         <label class="forms__label">Введите ваше имя:<span class="forms__req">*</span></label>
-                        <input class="forms__input" name="name" type="text" formControlName="userName" [ngClass]="{'forms__row--error': switcher_valid && topForm.controls['userName'].invalid}" />  
+                        <input class="forms__input" name="name" type="text" formControlName="userName" [ngClass]="{'forms__row--error': isValidSwitcher && topForm.controls['userName'].invalid}" />  
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="topForm.controls['userName'].invalid && topForm.controls['userName'].touched" class="forms__errors-text">
                             Поле Имя заполнено неверно:
                             <div *ngIf="topForm.controls['userName'].errors?.userNamePattern">
@@ -47,9 +47,9 @@
 
                     <div class="forms__row">
                         <label class="forms__label">Введите телефон:<span class="forms__req">*</span></label>
-                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': switcher_valid && topForm.controls['userPhone'].invalid}" /> 
+                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': isValidSwitcher && topForm.controls['userPhone'].invalid}" /> 
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="topForm.controls['userPhone'].invalid && topForm.controls['userPhone'].touched" class="forms__errors-text">
                             Поле Телефон заполнено неверно:
                             <div *ngIf="topForm.controls['userPhone'].errors?.userPhonePattern">
@@ -69,9 +69,9 @@
                 
                     <div class="forms__row">
                         <label class="forms__label">Введите e-mail:</label>
-                        <input class="forms__input" name="email" type="email" formControlName="userEmail" [ngClass]="{'forms__row--error': switcher_valid && topForm.controls['userEmail'].invalid}" />  
+                        <input class="forms__input" name="email" type="email" formControlName="userEmail" [ngClass]="{'forms__row--error': isValidSwitcher && topForm.controls['userEmail'].invalid}" />  
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="topForm.controls['userEmail'].invalid && topForm.controls['userEmail'].touched" class="forms__errors-text">
                             Поле Email заполнено неверно
                         </div>
@@ -79,9 +79,9 @@
 
                     <div class="forms__row">
                         <label class="forms__label">Введите промокод (если он есть):</label>
-                        <input class="forms__input" name="promo" type="text" formControlName="userPromo" [ngClass]="{'forms__row--error': switcher_valid && topForm.controls['userPromo'].invalid}" />  
+                        <input class="forms__input" name="promo" type="text" formControlName="userPromo" [ngClass]="{'forms__row--error': isValidSwitcher && topForm.controls['userPromo'].invalid}" />  
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="topForm.controls['userPromo'].invalid && topForm.controls['userPromo'].touched" class="forms__errors-text">
                             Поле Промокод заполнено неверно:
                             <div *ngIf="topForm.controls['userPromo'].errors?.userPromoPattern">

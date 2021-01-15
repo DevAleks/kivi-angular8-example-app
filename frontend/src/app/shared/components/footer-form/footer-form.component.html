@@ -4,13 +4,13 @@
         <div class="footer-form__body">                 
             <div class="forms__row">
                 <label class="forms__label">Выберите услугу:<span class="forms__req">*</span></label>
-                <select class="forms__select" name="typeOfAct" formControlName="userTypeofact" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userTypeofact'].invalid}">
+                <select class="forms__select" name="typeOfAct" formControlName="userTypeofact" [ngClass]="{'forms__row--error': isValidSwitcher && footerForm.controls['userTypeofact'].invalid}">
                     <option value="">...</option>
                     <option *ngFor="let typeoa of typeOfActs.activities" [value]="typeoa">
                         {{typeoa}}
                     </option>
                 </select>         
-                <div *ngIf="switcher_valid">
+                <div *ngIf="isValidSwitcher">
                     <div *ngIf="footerForm.controls['userTypeofact'].invalid" class="forms__errors-text">
                         Для отправки заказа необходимо выбрать услугу
                     </div>
@@ -18,9 +18,9 @@
             </div>                     
 
             <div class="forms__row">
-                <input class="forms__input" name="name" type="text" placeholder="Введите ваше имя" formControlName="userName" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userName'].invalid}" />
+                <input class="forms__input" name="name" type="text" placeholder="Введите ваше имя" formControlName="userName" [ngClass]="{'forms__row--error': isValidSwitcher && footerForm.controls['userName'].invalid}" />
             </div>
-            <div *ngIf="switcher_valid">
+            <div *ngIf="isValidSwitcher">
                 <div *ngIf="footerForm.controls['userName'].invalid && footerForm.controls['userName'].touched" class="forms__errors-text">
                     Поле Имя заполнено неверно:
                     <div *ngIf="footerForm.controls['userName'].errors?.userNamePattern">
@@ -39,9 +39,9 @@
             </div>
 
             <div class="forms__row">
-                <input class="forms__input" name="phone" type="text" placeholder="Введите телефон" formControlName="userPhone" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userPhone'].invalid}" />
+                <input class="forms__input" name="phone" type="text" placeholder="Введите телефон" formControlName="userPhone" [ngClass]="{'forms__row--error': isValidSwitcher && footerForm.controls['userPhone'].invalid}" />
             </div>
-            <div *ngIf="switcher_valid">
+            <div *ngIf="isValidSwitcher">
                 <div *ngIf="footerForm.controls['userPhone'].invalid && footerForm.controls['userPhone'].touched" class="forms__errors-text">
                     Поле Телефон заполнено неверно:
                     <div *ngIf="footerForm.controls['userPhone'].errors?.userPhonePattern">
@@ -60,9 +60,9 @@
             </div>
 
             <div class="forms__row">
-                <input class="forms__input" name="email" type="email" placeholder="Введите e-mail" formControlName="userEmail" [ngClass]="{'forms__row--error': switcher_valid && footerForm.controls['userEmail'].invalid}" />
+                <input class="forms__input" name="email" type="email" placeholder="Введите e-mail" formControlName="userEmail" [ngClass]="{'forms__row--error': isValidSwitcher && footerForm.controls['userEmail'].invalid}" />
             </div>
-            <div *ngIf="switcher_valid">
+            <div *ngIf="isValidSwitcher">
                 <div *ngIf="footerForm.controls['userEmail'].invalid && footerForm.controls['userEmail'].touched" class="forms__errors-text">
                     Поле Email заполнено неверно
                 </div>
@@ -71,8 +71,8 @@
         <input class="forms__submit-btn" type="submit" (click)="submitFooter()" value="Заказать">
     </form>
 
-    <div *ngIf="switcher" class="modal-window" [style.display]="modal_switcher ? 'block' : 'none'">
-        <div class="modal-window__wrapper" [style.display]="modal_switcher ? 'block' : 'none'">
+    <div *ngIf="switcher" class="modal-window" [style.display]="isModalSwitcher ? 'block' : 'none'">
+        <div class="modal-window__wrapper" [style.display]="isModalSwitcher ? 'block' : 'none'">
             <div class="modal-window__body">
 
                 <div *ngIf="!loading; else loadingBlock">

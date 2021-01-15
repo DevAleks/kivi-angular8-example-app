@@ -52,12 +52,12 @@ describe('TopFormComponent', () => {
 
   it('should amended some variables after closeForm() calling', () => {
     component.closeForm();
-    expect(component.modal_switcher).toBe(false); 
+    expect(component.isModalSwitcher).toBe(false); 
     expect(component.switcher).toBe(false); 
     expect(component.errServ).toBe(false);  
     expect(component.formValidError).toBe(true); 
     expect(component.receivedFormTop.status).toBe(false); 
-    expect(component.switcher_valid).toBe(false);     
+    expect(component.isValidSwitcher).toBe(false);     
   });
 
   it('should post and recived form data success from FormsService', () => {
