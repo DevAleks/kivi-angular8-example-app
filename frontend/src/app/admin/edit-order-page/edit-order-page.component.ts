@@ -21,7 +21,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
 
   order: Orders
 
-  submitted = false
+  isSubmitted = false
 
   updateSub: Subscription
 
@@ -75,7 +75,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
       return 
     }
 
-    this.submitted = true
+    this.isSubmitted = true
 
     this.updateSub = this.orderService.updateOrder({
       ...this.order,
@@ -86,7 +86,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
       text: this.form.value.order_text, 
       promo: this.form.value.order_promo
     }).subscribe( ()=> {
-      this.submitted = false
+      this.isSubmitted = false
       this.alertService.warning(`Заказ № ${this.order.id} был обновлен`)
     })
 

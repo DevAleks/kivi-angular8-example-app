@@ -14,7 +14,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup
 
-  submitted = false
+  isSubmitted = false
 
   message: string
 
@@ -52,7 +52,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       return  
     }  
 
-    this.submitted = true
+    this.isSubmitted = true
 
     const user: User = {
       email: this.form.value.email,
@@ -61,9 +61,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.submitSubcr = this.auth.login(user).subscribe(()=> {
         this.form.reset()
         this.router.navigate(['/admin','dashboard'])
-        this.submitted = false      
+        this.isSubmitted = false      
       }, () => {
-        this.submitted = false
+        this.isSubmitted = false
     })    
 
   }
