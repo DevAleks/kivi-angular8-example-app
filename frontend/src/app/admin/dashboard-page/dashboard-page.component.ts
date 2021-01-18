@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs'
 
 import { OrdersService } from '../shared/services/orders.service'
 import { AlertService } from '../shared/services/alert.service'
-import { OrdersInt } from 'src/app/shared/interfaces/interfaces'
+import { Orders } from 'src/app/shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-dashboard-page',
@@ -12,7 +12,7 @@ import { OrdersInt } from 'src/app/shared/interfaces/interfaces'
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
 
-  orders: OrdersInt[] = []
+  orders: Orders[] = []
 
   ordersSub: Subscription
   

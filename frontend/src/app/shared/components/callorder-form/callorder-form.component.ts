@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms'
 
 import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
-import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
+import { ClickInterface, Orders } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-callorder-form',
@@ -14,32 +14,32 @@ import { ClickInt, OrdersInt } from '../../interfaces/interfaces'
 })
 export class CallorderFormComponent implements OnDestroy {
 
-  modal_switcher: boolean = false // Свичер для модальных окон новых форм и "ответов" форм
+  isModalSwitcher: boolean = false // Свичер для модальных окон новых форм и "ответов" форм
 
   clicksSub: Subscription // Переменная для подписки на клики по кнопке открытия окна с формой 
 
   servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы 
 
-  switcher_valid: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
+  isValidSwitcher: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
 
-  switcher: boolean = false // Индикатор успешного получения данных с сервера
+  isSuccesAnswer: boolean = false // Индикатор успешного получения данных с сервера
 
-  formValidError: boolean = true // Статус ошибки валидации формы перед отправкой
+  isFormValidError: boolean = true // Статус ошибки валидации формы перед отправкой
 
-  errServ: boolean = false // Статус ошибки передачи данных формы на сервер
+  isErrServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  receivedFormCallOrder: OrdersInt // Данные заказа из формы callorderForm, полученные с сервера
+  receivedFormCallOrder: Orders // Данные заказа из формы callorderForm, полученные с сервера
 
-  callorderForm : FormGroup // Объект FormGroup для формы callorderForm
+  callorderForm: FormGroup // Объект FormGroup для формы callorderForm
 
-  loading = false // Переключатель индикатора загрузки ответа формы
+  isFormLoading: boolean = false // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {
 
     // Слушаем стрим для получения клика по кнопке открытия окна с формой
-    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInt) => {
-      if (data.typeofform == 4) {
-        this.modal_switcher = true
+    this.clicksSub = formsService.observableclicks$.subscribe((data: ClickInterface) => {
+      if (data.typeOfForm == 4) {
+        this.isModalSwitcher = true
       }      
     })
 
@@ -62,11 +62,11 @@ export class CallorderFormComponent implements OnDestroy {
 
   // Закрытие формы кликами мыши
   closeForm() {
-    this.modal_switcher = false // Закрываем модальное окно с формой
-    this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.formValidError = true // Сбрасываем ошибки валидации формы      
-    this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
+    this.isModalSwitcher = false // Закрываем модальное окно с формой
+    this.isSuccesAnswer = false // Сбрасываем индикатор успешного получения данных с сервера
+    this.isErrServ = false // Сбрасываем ошибку работы с сервером 
+    this.isFormValidError = true // Сбрасываем ошибки валидации формы      
+    this.isValidSwitcher = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"
   }  
 
   // Закрытие формы кнопкой ESC
@@ -78,8 +78,8 @@ export class CallorderFormComponent implements OnDestroy {
   }
 
   submitCallOrder() {  
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию 
+    this.isErrServ = false // Сбрасываем ошибку работы с сервером 
+    this.isValidSwitcher = true // Кнопка отправки нажата, но форма не прошла валидацию 
 
     // Проверяем валидность формы перед отправкой
     if (this.callorderForm.invalid) {
@@ -88,29 +88,29 @@ export class CallorderFormComponent implements OnDestroy {
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const formCallOrder = {
-      typeofact: 'Заказать звонок', 
+      typeOfAct: 'Заказать звонок', 
       name: this.callorderForm.value.userName, 
       phone: this.callorderForm.value.userPhone,
-      typeofform: 4,
+      typeOfForm: 4,
       status: false
     }      
 
-    this.loading = true // Включаем отображение индикатора загрузки
-    this.switcher = true // Включаем показ окна с результатом отправки формы
+    this.isFormLoading = true // Включаем отображение индикатора загрузки
+    this.isSuccesAnswer = true // Включаем показ окна с результатом отправки формы
 
     // Отправка оъекта на сервер и получение ответа от сервера
     this.servRespSub = this.formsService.postForm(formCallOrder)      
       .subscribe(
-        (data: OrdersInt) => {
+        (data: Orders) => {
           this.receivedFormCallOrder = data // Получаем данные с сервера
-          this.formValidError = false // Отключаем проверку ошибок валидации для формы
-          this.switcher_valid = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
-          this.loading = false // Выключаем отображение индикатора загрузки
+          this.isFormValidError = false // Отключаем проверку ошибок валидации для формы
+          this.isValidSwitcher = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
           this.callorderForm.reset() // Очищаем значения успешно отправленной формы
         },
         error => {
-          this.errServ = true // Включаем статус ошибки передачи данных формы на сервер
-          this.loading = false // Выключаем отображение индикатора загрузки
+          this.isErrServ = true // Включаем статус ошибки передачи данных формы на сервер
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
         }
       )       
   }

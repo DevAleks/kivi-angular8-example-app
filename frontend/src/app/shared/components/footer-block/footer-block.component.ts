@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormsService } from '../../services/forms.service'
-import { ClickInt } from '../../interfaces/interfaces'
+import { ClickInterface } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-footer-block',
@@ -18,7 +18,7 @@ export class FooterBlockComponent {
   constructor(private formsService: FormsService) { }
 
   // Обрабатываем клики для открытия в модальном окне форм questionForm, callorderForm
-  openFormClick(openClick: ClickInt) {
+  openFormClick(openClick: ClickInterface) {
     this.formsService.openForm(openClick)
   }
 

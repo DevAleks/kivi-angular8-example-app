@@ -70,7 +70,7 @@ if($jwt) {
                     extract($row);
 
                     $order_for_update = array(
-                        "typeofact" => $order_typeofact,
+                        "typeOfAct" => $order_typeofact,
                         "name" => $order_name,
                         "phone" => $order_phone,
                         "email" => $order_email,
@@ -107,7 +107,7 @@ if($jwt) {
 
             // устанавливаем значения для записи в БД
             $order->order_id = $data->id;
-            $order->order_typeofact = $data->typeofact;
+            $order->order_typeOfAct = $data->typeOfAct;
             $order->order_name = $data->name;
             $order->order_phone = $data->phone;
             $order->order_email = $data->email;
@@ -118,7 +118,7 @@ if($jwt) {
             if (
                 !empty($order->order_name) &&
                 !empty($order->order_phone) &&
-                !empty($order->order_typeofact) &&
+                !empty($order->order_typeOfAct) &&
                 !empty($order->order_text) &&
                 $order->updateOrder()
             ) {
@@ -138,8 +138,7 @@ if($jwt) {
             
                 // покажем сообщение о том, что создать новый заказ не удалось 
                 $answer = json_encode(array("message" => "Can't update an order"));
-            }
-          
+            }          
 
         } 
 

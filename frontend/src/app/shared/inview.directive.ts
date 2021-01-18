@@ -4,7 +4,7 @@ import { Directive, ViewContainerRef, TemplateRef, AfterViewInit } from '@angula
 
 @Directive({ selector: '[inView]' })
 export class InViewDirective implements AfterViewInit {
-  alreadyRendered: boolean; // cheking if visible already
+  isAlreadyRendered: boolean; // cheking if visible already
 
   constructor(
     private vcRef: ViewContainerRef,
@@ -24,15 +24,15 @@ export class InViewDirective implements AfterViewInit {
     observer.observe(elToObserve);
   }
 
-  renderContents(isInView) {
-    if (isInView && !this.alreadyRendered) {
+  renderContents(isInView: boolean) {
+    if (isInView && !this.isAlreadyRendered) {
       this.vcRef.clear()
       this.vcRef.createEmbeddedView(this.tplRef)
-      this.alreadyRendered = true
+      this.isAlreadyRendered = true
     }
   }
 
-  setMinWidthHeight(el) { // prevent issue being visible all together
+  setMinWidthHeight(el: any) { // prevent issue being visible all together
     const style = window.getComputedStyle(el)
     const [width, height] = [parseInt(style.width), parseInt(style.height)]
     !width && (el.style.minWidth = '40px')

@@ -40,7 +40,7 @@ describe('SemeyniyRaftingComponent', () => {
 
   it('should called openForm', () => {
     spy = spyOn(forms, 'openForm');
-    const openClick: ClickForm = {typeofform: 2, typeofact: 'Рафтинг'};
+    const openClick: ClickForm = {typeOfForm: 2, typeOfAct: 'Рафтинг'};
     forms.openForm(openClick);    
     expect(spy.calls.any()).toBeTruthy();
   });

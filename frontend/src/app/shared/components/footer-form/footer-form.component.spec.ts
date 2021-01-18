@@ -42,21 +42,21 @@ describe('FooterFormComponent', () => {
 
   it('should amended some variables after closeForm() calling', () => {
     component.closeForm();
-    expect(component.modal_switcher).toBe(false); 
-    expect(component.switcher).toBe(false); 
-    expect(component.errServ).toBe(false);  
-    expect(component.formValidError).toBe(true); 
+    expect(component.isModalSwitcher).toBe(false); 
+    expect(component.isSuccesAnswer).toBe(false); 
+    expect(component.isErrServ).toBe(false);  
+    expect(component.isFormValidError).toBe(true); 
     expect(component.receivedFormFooter.status).toBe(false); 
-    expect(component.switcher_valid).toBe(false);     
+    expect(component.isValidSwitcher).toBe(false);     
   });
 
   it('should post and recived form data success from FormsService', () => {
     const expectForm:FormBottom = {
-      typeofact: 'Тип активности: Заказать звонок', 
+      typeOfAct: 'Тип активности: Заказать звонок', 
       name: 'Имя: Алекс', 
       phone: 'Телефон: +7(933) 888-99-00',
       email: 'Email: test@mail.com',
-      typeofform: 1,
+      typeOfForm: 1,
       status: false
     };
     const spyObj = jasmine.createSpyObj('FormsService', {postForm: expectForm});

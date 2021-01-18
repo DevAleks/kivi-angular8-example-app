@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormsService } from '../shared/services/forms.service'
-import { ClickInt } from '../shared/interfaces/interfaces'
+import { ClickInterface } from '../shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-semeyniy-rafting',
@@ -9,17 +9,16 @@ import { ClickInt } from '../shared/interfaces/interfaces'
 })
 export class SemeyniyRaftingComponent {
 
-  // Images LazyLoader
-  // Default
-  defaultImage = '../../assets/img/img-ldr-wht-312px.svg'
+  // Images LazyLoader  
+  defaultImage = '../../assets/img/img-ldr-wht-312px.svg' // Default
 
-  // Cover background
-  lazyLoad1 = '../../assets/img/semeyniy-rafting.jpg'
+  
+  lazyLoad1 = '../../assets/img/semeyniy-rafting.jpg' // Cover background
 
   constructor(private formsService: FormsService) { }
 
   // Обрабатываем клики для открытия в модальном окне форм topForm, questionForm, callorderForm
-  openFormClick(openClick: ClickInt) {
+  openFormClick(openClick: ClickInterface) {
     this.formsService.openForm(openClick)
   }
 

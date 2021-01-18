@@ -41,31 +41,31 @@ describe('CallorderFormComponent', () => {
     });
   }));
 
-  it('should have typeofform == 4 after observableclicks$.subscribe() call', async((done: DoneFn) => {
-    const openClick: ClickForm = {typeofform: 4, typeofact: 'Рафтинг'};
+  it('should have typeOfForm == 4 after observableclicks$.subscribe() call', async((done: DoneFn) => {
+    const openClick: ClickForm = {typeOfForm: 4, typeOfAct: 'Рафтинг'};
     forms.openForm(openClick); 
     forms.observableclicks$.subscribe((data) => {
-      expect(data.typeofform).toBe(4);
+      expect(data.typeOfForm).toBe(4);
       done();                      
     });     
   }));
 
   it('should amended some variables after closeForm() calling', () => {
     component.closeForm();
-    expect(component.modal_switcher).toBe(false); 
-    expect(component.switcher).toBe(false); 
-    expect(component.errServ).toBe(false);  
-    expect(component.formValidError).toBe(true); 
+    expect(component.isModalSwitcher).toBe(false); 
+    expect(component.isSuccesAnswer).toBe(false); 
+    expect(component.isErrServ).toBe(false);  
+    expect(component.isFormValidError).toBe(true); 
     expect(component.receivedFormCallOrder.status).toBe(false); 
-    expect(component.switcher_valid).toBe(false);     
+    expect(component.isValidSwitcher).toBe(false);     
   });
 
   it('should post and recived form data success from FormsService', () => {
     const expectForm:FormBottom = {
-      typeofact: 'Тип активности: Заказать звонок', 
+      typeOfAct: 'Тип активности: Заказать звонок', 
       name: 'Имя: Алекс', 
       phone: 'Телефон: +7(933) 888-99-00',
-      typeofform: 4,
+      typeOfForm: 4,
       status: false
     };
     const spyObj = jasmine.createSpyObj('FormsService', {postForm: expectForm});

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs'
 
 import { GetJsonService } from '../../services/get-json.service'
 import { FormsService } from '../../services/forms.service'
-import { ClickInt } from '../../interfaces/interfaces'
+import { ClickInterface } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-first-block',
@@ -15,9 +15,9 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
   
   h1: string
   
-  modal_switcher: boolean // Свитчер включения окна с формой  
+  isModalSwitcher: boolean // Свитчер включения окна с формой  
   
-  loading = false // Переключатель индикатора загрузки заголовка h1
+  isFormLoading = false // Переключатель индикатора загрузки заголовка h1
 
   jsonSub: Subscription // Переменная для подписки на получение заголовка h1 из json файла
 
@@ -46,19 +46,19 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
   ) { }
 
   // Обрабатываем клики для открытия формы firstForm в модальном окне
-  openFormClick(openClick: ClickInt) {
+  openFormClick(openClick: ClickInterface) {
     this.formsService.openForm(openClick)
   }
 
   ngOnInit() {
     // Включаем отображение индикатора загрузки заголовка Hh1
-    this.loading = true 
+    this.isFormLoading = true 
     // Получаем значение для заголовка h1 из json файла
     this.jsonSub = this.getjsonService.getPagesJson()
       .subscribe(
         (data) => {
           this.h1 = data["index"][0]["h1"]
-          this.loading = false // Выключаем отображение индикатора загрузки заголовка h1
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки заголовка h1
         },
         (error:any) => console.log(error)
       )

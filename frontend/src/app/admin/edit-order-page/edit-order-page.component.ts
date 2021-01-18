@@ -8,7 +8,7 @@ import { OrdersService } from '../shared/services/orders.service'
 import { FormValidators } from 'src/app/shared/form.validators'
 import { AlertService } from '../shared/services/alert.service'
 import { Activites } from 'src/app/shared/classes/classes'
-import { OrdersInt } from 'src/app/shared/interfaces/interfaces'
+import { Orders } from 'src/app/shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-edit-order-page',
@@ -19,13 +19,13 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup
 
-  order: OrdersInt
+  order: Orders
 
-  submitted = false
+  isSubmitted = false
 
   updateSub: Subscription
 
-  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
+  typeOfActs: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +38,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
       switchMap( (params: Params) => {
         return this.orderService.getById(params['id'])
       })
-    ).subscribe( (order: OrdersInt) => {
+    ).subscribe( (order: Orders) => {
       this.order = order,
       this.form = new FormGroup({
         order_name: new FormControl(order.name, [
@@ -56,7 +56,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
         order_email: new FormControl(order.email, [
           Validators.email
         ]),
-        order_typeofact: new FormControl(order.typeofact, Validators.required),
+        order_typeOfAct: new FormControl(order.typeOfAct, Validators.required),
         order_text: new FormControl(order.text, [
           Validators.required,
           Validators.maxLength(500)
@@ -75,18 +75,18 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
       return 
     }
 
-    this.submitted = true
+    this.isSubmitted = true
 
     this.updateSub = this.orderService.updateOrder({
       ...this.order,
       name: this.form.value.order_name, 
       phone: this.form.value.order_phone,
       email: this.form.value.order_email,
-      typeofact: this.form.value.order_typeofact, 
+      typeOfAct: this.form.value.order_typeOfAct, 
       text: this.form.value.order_text, 
       promo: this.form.value.order_promo
     }).subscribe( ()=> {
-      this.submitted = false
+      this.isSubmitted = false
       this.alertService.warning(`Заказ № ${this.order.id} был обновлен`)
     })
 

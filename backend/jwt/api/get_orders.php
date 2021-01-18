@@ -70,8 +70,8 @@ if($jwt) {
 
                 $order_item=array(
                     "id" => $order_id,
-                    "typeofact" => $order_typeofact,
-                    "typeofform" => $order_form_type,
+                    "typeOfAct" => $order_typeofact,
+                    "typeOfForm" => $order_form_type,
                     "date" => $order_created
                 );
 

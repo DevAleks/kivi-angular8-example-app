@@ -38,7 +38,7 @@ describe('Kivi-app, using topForm', () => {
     expect(element(by.id('modal-form-bg')).getAttribute('style')).toContain('none');
   });  
 
-  it('Use case 2 (trying to send wrong data): in the topForm with novalid data after clicking to send button should see the "typeofact" input error', () => {    
+  it('Use case 2 (trying to send wrong data): in the topForm with novalid data after clicking to send button should see the "typeOfAct" input error', () => {    
     openForm();
     sendOrder();
     expect(element(by.id('sel-er')).getText()).toContain('Для отправки заказа необходимо выбрать услугу');

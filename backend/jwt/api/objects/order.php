@@ -9,7 +9,7 @@ class Order {
     // свойства объекта 
     public $order_id;
     public $order_form_type;
-    public $order_typeofact;
+    public $order_typeOfAct;
     public $order_name;
     public $order_phone;
     public $order_email;
@@ -30,7 +30,7 @@ class Order {
                 SET
                     order_name = :order_name,
                     order_phone = :order_phone,
-                    order_typeofact = :order_typeofact,
+                    order_typeofact = :order_typeOfAct,
                     order_email = :order_email,
                     order_text = :order_text,
                     order_promo = :order_promo,
@@ -47,7 +47,7 @@ class Order {
         // инъекция 
         $this->order_name=htmlspecialchars(strip_tags($this->order_name));
         $this->order_phone=htmlspecialchars(strip_tags($this->order_phone));
-        $this->order_typeofact=htmlspecialchars(strip_tags($this->order_typeofact));
+        $this->order_typeOfAct=htmlspecialchars(strip_tags($this->order_typeOfAct));
         $this->order_email=htmlspecialchars(strip_tags($this->order_email));
         $this->order_promo=htmlspecialchars(strip_tags($this->order_promo));
         $this->order_form_type=htmlspecialchars(strip_tags($this->order_form_type));
@@ -58,7 +58,7 @@ class Order {
         // привязываем значения 
         $stmt->bindParam(':order_name', $this->order_name);
         $stmt->bindParam(':order_phone', $this->order_phone);
-        $stmt->bindParam(':order_typeofact', $this->order_typeofact);
+        $stmt->bindParam(':order_typeOfAct', $this->order_typeOfAct);
         $stmt->bindParam(':order_email', $this->order_email);
         $stmt->bindParam(':order_text', $this->order_text);
         $stmt->bindParam(':order_promo', $this->order_promo);   
@@ -197,7 +197,7 @@ class Order {
                 SET
                     order_name = :order_name,
                     order_phone = :order_phone,
-                    order_typeofact = :order_typeofact,
+                    order_typeofact = :order_typeOfAct,
                     order_email = :order_email,
                     order_text = :order_text,
                     order_promo = :order_promo
@@ -215,7 +215,7 @@ class Order {
         // инъекция 
         $this->order_name=htmlspecialchars(strip_tags($this->order_name));
         $this->order_phone=htmlspecialchars(strip_tags($this->order_phone));
-        $this->order_typeofact=htmlspecialchars(strip_tags($this->order_typeofact));
+        $this->order_typeOfAct=htmlspecialchars(strip_tags($this->order_typeOfAct));
         $this->order_email=htmlspecialchars(strip_tags($this->order_email));
         $this->order_promo=htmlspecialchars(strip_tags($this->order_promo));
         $this->order_form_type=htmlspecialchars(strip_tags($this->order_form_type));
@@ -227,7 +227,7 @@ class Order {
         $stmt->bindParam(':order_id', $this->order_id);
         $stmt->bindParam(':order_name', $this->order_name);
         $stmt->bindParam(':order_phone', $this->order_phone);
-        $stmt->bindParam(':order_typeofact', $this->order_typeofact);
+        $stmt->bindParam(':order_typeOfAct', $this->order_typeOfAct);
         $stmt->bindParam(':order_email', $this->order_email);
         $stmt->bindParam(':order_text', $this->order_text);
         $stmt->bindParam(':order_promo', $this->order_promo);   
@@ -255,7 +255,7 @@ class Order {
                 SET
                     order_name = :order_name,
                     order_phone = :order_phone,
-                    order_typeofact = :order_typeofact,
+                    order_typeofact = :order_typeOfAct,
                     order_email = :order_email,
                     order_text = :order_text,
                     order_promo = :order_promo,
@@ -272,7 +272,7 @@ class Order {
         // инъекция 
         $this->order_name=htmlspecialchars(strip_tags($this->order_name));
         $this->order_phone=htmlspecialchars(strip_tags($this->order_phone));
-        $this->order_typeofact=htmlspecialchars(strip_tags($this->order_typeofact));
+        $this->order_typeOfAct=htmlspecialchars(strip_tags($this->order_typeOfAct));
         $this->order_email=htmlspecialchars(strip_tags($this->order_email));
         $this->order_promo=htmlspecialchars(strip_tags($this->order_promo));
         $this->order_form_type=htmlspecialchars(strip_tags($this->order_form_type));
@@ -283,7 +283,7 @@ class Order {
         // привязываем значения 
         $stmt->bindParam(':order_name', $this->order_name);
         $stmt->bindParam(':order_phone', $this->order_phone);
-        $stmt->bindParam(':order_typeofact', $this->order_typeofact);
+        $stmt->bindParam(':order_typeOfAct', $this->order_typeOfAct);
         $stmt->bindParam(':order_email', $this->order_email);
         $stmt->bindParam(':order_text', $this->order_text);
         $stmt->bindParam(':order_promo', $this->order_promo);   

@@ -9,11 +9,10 @@ import { DOCUMENT } from '@angular/common';
 })
 export class GoToTopComponent {
 
-  isOnScroll: boolean // Есть ли скрол вниз, да / нет
+  isOnScroll: boolean
 
   constructor(@Inject(DOCUMENT) private _document: Document) { }
 
-  // Включаем / выключаем "раздвигание" верхнего десктопного меню
   @HostListener("window:scroll", ["$event"])
   onWindowScroll() {
     let pos = (document.documentElement.scrollTop || document.body.scrollTop)

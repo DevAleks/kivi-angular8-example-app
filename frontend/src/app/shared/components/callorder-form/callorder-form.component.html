@@ -1,6 +1,6 @@
-<div class="modal-window" [style.display]="modal_switcher ? 'block' : 'none'">
-    <div class="modal-window__wrapper" [style.display]="modal_switcher ? 'block' : 'none'">
-        <div *ngIf="!switcher" class="modal-window__body">
+<div class="modal-window" [style.display]="isModalSwitcher ? 'block' : 'none'">
+    <div class="modal-window__wrapper" [style.display]="isModalSwitcher ? 'block' : 'none'">
+        <div *ngIf="!isSuccesAnswer" class="modal-window__body">
             <div class="modal-window__header">
                 Заказать обратный звонок
                 <div class="modal-window__btn-close" (click)="closeForm()"></div>
@@ -9,9 +9,9 @@
                 <form [formGroup]="callorderForm" novalidate>
                     <div class="forms__row">
                         <label class="forms__label">Введите ваше имя:<span class="forms__req">*</span></label>
-                        <input class="forms__input" name="name" type="text" formControlName="userName" [ngClass]="{'forms__row--error': switcher_valid && callorderForm.controls['userName'].invalid}" />  
+                        <input class="forms__input" name="name" type="text" formControlName="userName" [ngClass]="{'forms__row--error': isValidSwitcher && callorderForm.controls['userName'].invalid}" />  
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="callorderForm.controls['userName'].invalid && callorderForm.controls['userName'].touched" class="forms__errors-text">
                             Поле Имя заполнено неверно:
                             <div *ngIf="callorderForm.controls['userName'].errors?.userNamePattern">
@@ -31,9 +31,9 @@
 
                     <div class="forms__row">
                         <label class="forms__label">Введите телефон:<span class="forms__req">*</span></label>
-                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': switcher_valid && callorderForm.controls['userPhone'].invalid}" /> 
+                        <input class="forms__input" name="phone" type="text" formControlName="userPhone" [ngClass]="{'forms__row--error': isValidSwitcher && callorderForm.controls['userPhone'].invalid}" /> 
                     </div>
-                    <div *ngIf="switcher_valid">
+                    <div *ngIf="isValidSwitcher">
                         <div *ngIf="callorderForm.controls['userPhone'].invalid && callorderForm.controls['userPhone'].touched" class="forms__errors-text">
                             Поле Телефон заполнено неверно:
                             <div *ngIf="callorderForm.controls['userPhone'].errors?.userPhonePattern">
@@ -69,23 +69,23 @@
             </div>
         </div>  
 
-        <div *ngIf="switcher" class="modal-window__body">
+        <div *ngIf="isSuccesAnswer" class="modal-window__body">
 
-            <div *ngIf="!loading; else loadingBlock">
+            <div *ngIf="!isFormLoading; else loadingBlock">
 
                 <div class="modal-window__header">
                     Заказать обратный звонок
                     <div class="modal-window__btn-close" (click)="closeForm()"></div>
                 </div>
               
-                <div *ngIf="switcher && !formValidError && !errServ && !receivedFormCallOrder.status" class="modal-window__container">
+                <div *ngIf="isSuccesAnswer && !isFormValidError && !isErrServ && !receivedFormCallOrder.status" class="modal-window__container">
                     <div class="modal-window__title">Заказ успешно отправлен!</div>
                     <div class="modal-window__text-left">
                         <label>Ответ сервера:</label>
                         <ul class="modal-window__list">
                             <li>{{receivedFormCallOrder?.name}}</li>
                             <li>{{receivedFormCallOrder?.phone}}</li>
-                            <li>Тип формы: {{receivedFormCallOrder?.typeofform}}</li>
+                            <li>Тип формы: {{receivedFormCallOrder?.typeOfForm}}</li>
                             <li>Статус ошибки при отправке заказа: {{receivedFormCallOrder?.status}}</li>
                         </ul>
                         <div class="btn-order">
@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="switcher && errServ" class="modal-window__container">    
+                <div *ngIf="isSuccesAnswer && isErrServ" class="modal-window__container">    
                     <div class="modal-window__text-center">
                         Ошибка отправки данных. Повторите заказ позднее.
                     </div>
@@ -103,7 +103,7 @@
                     </div>          
                 </div>
 
-                <div *ngIf="switcher && receivedFormCallOrder?.status" class="modal-window__container">    
+                <div *ngIf="isSuccesAnswer && receivedFormCallOrder?.status" class="modal-window__container">    
                     <div class="modal-window__text-center">         
                         Ошибка записи в БД. Повторите заказ позднее.
                     </div>

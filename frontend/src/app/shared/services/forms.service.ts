@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Subject, throwError, Observable } from 'rxjs'
 import { catchError, retry, delay } from 'rxjs/operators'
 
-import { ClickInt, OrdersInt } from '../interfaces/interfaces'
+import { ClickInterface, Orders } from '../interfaces/interfaces'
 
 @Injectable({
   providedIn: 'root'
@@ -11,30 +11,29 @@ import { ClickInt, OrdersInt } from '../interfaces/interfaces'
 export class FormsService {
 
   // Переменная и стрим для открытия форм firstForm, topForm, questionForm, callorderForm в модальных окне 
-  private clicks = new Subject<ClickInt>()
-
-  observableclicks$ = this.clicks.asObservable() // this var is never used!
+  private clicks = new Subject<ClickInterface>()
+  observableclicks$ = this.clicks.asObservable()
 
   constructor(private http: HttpClient) { }
 
   // Передаем в стрим событие открытия формы
-  openForm(openClick: ClickInt) {
+  openForm(openClick: ClickInterface) {
     this.clicks.next(openClick)
   }
 
   // Отправка и получение данных с сервера для всех форм
-  postForm(formbt: OrdersInt): Observable<OrdersInt> {
+  postForm(formbt: Orders): Observable<Orders> {
     const body = {
       name: formbt.name ? formbt.name.trim() : '',
       phone: formbt.phone ? formbt.phone.trim() : '',
       email: formbt.email ? formbt.email.trim() : '',
-      typeofact: formbt.typeofact,
+      typeOfAct: formbt.typeOfAct,
       promo: formbt.promo ? formbt.promo.trim() : '',
-      typeofform: formbt.typeofform,
+      typeOfForm: formbt.typeOfForm,
       status: formbt.status,
       text: formbt.text ? formbt.text.trim() : ''
     }
-    return this.http.post<OrdersInt>('http://localhost:80/requests.add.php', body)
+    return this.http.post<Orders>('http://localhost:80/requests.add.php', body)
       .pipe(
         delay(2000), // Задержка для отображения индикатора загрузки
         retry(2), // Пробуем получить успешный ответ 2 раза  

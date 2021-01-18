@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject } from '@angular/core'
 import { DOCUMENT } from '@angular/common';
 import { FormsService } from '../../services/forms.service'
-import { ClickInt } from '../../interfaces/interfaces'
+import { ClickInterface } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-top-block',
@@ -25,7 +25,7 @@ export class TopBlockComponent {
   ) { }
 
   // Обрабатываем клики для открытия в модальном окне форм topForm, questionForm, callorderForm
-  openFormClick(openClick: ClickInt) {
+  openFormClick(openClick: ClickInterface) {
     this.formsService.openForm(openClick)
   }
 

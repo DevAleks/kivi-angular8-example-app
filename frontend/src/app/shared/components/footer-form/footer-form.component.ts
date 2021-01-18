@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs'
 import { FormsService } from '../../services/forms.service'
 import { FormValidators } from '../../form.validators'
 import { Activites } from '../../classes/classes'
-import { OrdersInt } from '../../interfaces/interfaces'
+import { Orders } from '../../interfaces/interfaces'
 
 @Component({
   selector: 'app-footer-form',
@@ -16,25 +16,25 @@ import { OrdersInt } from '../../interfaces/interfaces'
 
 export class FooterFormComponent implements OnDestroy {
   
-  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
+  typeOfActs: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   servRespSub: Subscription // Переменная для подписки на ответ сервера после отправки формы
 
-  switcher_valid: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
+  isValidSwitcher: boolean = false // Индикатор попытки валидации формы после клика на кнопку отправки
   
-  switcher: boolean = false // Индикатор успешного получения данных с сервера
+  isSuccesAnswer: boolean = false // Индикатор успешного получения данных с сервера
 
-  modal_switcher: boolean = false //Свичер для модальных окон новых форм и "ответов" форм
+  isModalSwitcher: boolean = false //Свичер для модальных окон новых форм и "ответов" форм
 
-  formValidError: boolean = true // Статус ошибки валидации формы перед отправкой
+  isFormValidError: boolean = true // Статус ошибки валидации формы перед отправкой
 
-  errServ: boolean = false // Статус ошибки передачи данных формы на сервер
+  isErrServ: boolean = false // Статус ошибки передачи данных формы на сервер
 
-  receivedFormFooter: OrdersInt // Данные заказа, полученные с сервера
+  receivedFormFooter: Orders // Данные заказа, полученные с сервера
 
   footerForm : FormGroup // Объект FormGroup для формы footerForm
 
-  loading = false // Переключатель индикатора загрузки ответа формы
+  isFormLoading: boolean = false // Переключатель индикатора загрузки ответа формы
 
   constructor(private formsService: FormsService) {   
 
@@ -59,11 +59,11 @@ export class FooterFormComponent implements OnDestroy {
   
   // Выключаем всплывающие окно нажатием на крестик или кнопку Закрыть окно
   closeForm() {
-    this.modal_switcher = false // Закрываем модальное окно с формой
-    this.switcher = false // Сбрасываем индикатор успешного получения данных с сервера
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.formValidError = true // Сбрасываем ошибки валидации формы  
-    this.switcher_valid = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"  
+    this.isModalSwitcher = false // Закрываем модальное окно с формой
+    this.isSuccesAnswer = false // Сбрасываем индикатор успешного получения данных с сервера
+    this.isErrServ = false // Сбрасываем ошибку работы с сервером 
+    this.isFormValidError = true // Сбрасываем ошибки валидации формы  
+    this.isValidSwitcher = false // Сбрасываем индикатор валидации формы после клика на кнопку "Отправить заказ"  
   }
 
   // Выключаем всплывающие окна нажатием Esc
@@ -75,8 +75,8 @@ export class FooterFormComponent implements OnDestroy {
   }
 
   submitFooter() {
-    this.errServ = false // Сбрасываем ошибку работы с сервером 
-    this.switcher_valid = true // Кнопка отправки нажата, но форма не прошла валидацию    
+    this.isErrServ = false // Сбрасываем ошибку работы с сервером 
+    this.isValidSwitcher = true // Кнопка отправки нажата, но форма не прошла валидацию    
 
     // Проверяем валидность формы перед отправкой
     if (this.footerForm.invalid) {   
@@ -85,32 +85,32 @@ export class FooterFormComponent implements OnDestroy {
 
     // Заполнение отправляемого на сервер объекта данными из формы
     const formfooter = {
-      typeofact: this.footerForm.value.userTypeofact, 
+      typeOfAct: this.footerForm.value.userTypeofact, 
       name: this.footerForm.value.userName, 
       phone: this.footerForm.value.userPhone,
       email: this.footerForm.value.userEmail,
-      typeofform: 1,
+      typeOfForm: 1,
       status: false
     }
 
-    this.loading = true // Включаем отображение индикатора загрузки
-    this.switcher = true // Включаем показ результатов отправки формы
+    this.isFormLoading = true // Включаем отображение индикатора загрузки
+    this.isSuccesAnswer = true // Включаем показ результатов отправки формы
 
     this.servRespSub = this.formsService.postForm(formfooter)
       .subscribe(
-        (data: OrdersInt) => {
+        (data: Orders) => {
           this.receivedFormFooter = data
-          this.formValidError = false // Отключаем проверку ошибок валидации для формы
-          this.switcher_valid = false // Отключаем вызов проверки ошибок при получении
-          this.loading = false // Выключаем отображение индикатора загрузки
+          this.isFormValidError = false // Отключаем проверку ошибок валидации для формы
+          this.isValidSwitcher = false // Отключаем вызов проверки ошибок при получении
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
           this.footerForm.reset() // Очищаем значения успешно отправленной формы
         },
         error => {
-          this.errServ = true
-          this.loading = false // Выключаем отображение индикатора загрузки
+          this.isErrServ = true
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
         }
       )      
-    this.modal_switcher = true // Включаем модальное окно для показа результатов отправки формы                 
+    this.isModalSwitcher = true // Включаем модальное окно для показа результатов отправки формы                 
   }  
 
   ngOnDestroy() {

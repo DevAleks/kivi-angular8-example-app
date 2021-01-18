@@ -6,7 +6,7 @@ import { FormValidators } from '../../shared/form.validators'
 import { OrdersService } from '../shared/services/orders.service'
 import { AlertService } from '../shared/services/alert.service'
 import { Activites } from 'src/app/shared/classes/classes'
-import { OrdersInt } from 'src/app/shared/interfaces/interfaces'
+import { Orders } from 'src/app/shared/interfaces/interfaces'
 
 @Component({
   selector: 'app-create-order',
@@ -19,7 +19,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
 
   createSub: Subscription
 
-  typeofacts: Activites = new Activites() // Виды услуг для селектора в шаблоне
+  typeOfActs: Activites = new Activites() // Виды услуг для селектора в шаблоне
 
   constructor(
     private ordersService: OrdersService,
@@ -43,7 +43,7 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
       order_email: new FormControl(null, [
         Validators.email
       ]),
-      order_typeofact: new FormControl(null, Validators.required),
+      order_typeOfAct: new FormControl(null, Validators.required),
       order_text: new FormControl(null, [
         Validators.required,
         Validators.maxLength(500)
@@ -61,14 +61,14 @@ export class CreateOrderComponent implements OnInit, OnDestroy {
       return  
     }  
 
-    const order: OrdersInt = {      
+    const order: Orders = {      
       name: this.form.value.order_name, 
       phone: this.form.value.order_phone,
       email: this.form.value.order_email,
-      typeofact: this.form.value.order_typeofact, 
+      typeOfAct: this.form.value.order_typeOfAct, 
       text: this.form.value.order_text, 
       promo: this.form.value.order_promo,
-      typeofform: 6
+      typeOfForm: 6
     }
 
     this.createSub = this.ordersService.create(order).subscribe(()=> {
