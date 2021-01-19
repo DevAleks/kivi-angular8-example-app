@@ -51,25 +51,23 @@ export class FirstBlockComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Включаем отображение индикатора загрузки заголовка Hh1
+    // Включаем отображение индикатора загрузки заголовка H1
     this.isH1Loading = true 
     // Получаем значение для заголовка h1 из json файла
     this.jsonSub = this.getjsonService.getPagesJson()
       .subscribe(
         (data) => {
           this.h1 = data["index"][0]["h1"]
-          this.isH1Loading = false // Выключаем отображение индикатора загрузки заголовка h1
+          this.isH1Loading = false
         },
         (error:any) => console.log(error)
       )
   }
 
   ngOnDestroy() {
-    // удаляем подписку на продолжение получения заголовка h1 из json файла
     if (this.jsonSub) {
       this.jsonSub.unsubscribe()
     }
-
   }
 
 }

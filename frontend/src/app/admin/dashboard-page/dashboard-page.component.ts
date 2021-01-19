@@ -18,9 +18,9 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   
   delSub: Subscription
 
-  searchStr = ''
+  searchStr: string = ''
 
-  noOrders: boolean // Флаг наличия хотя бы одного заказа
+  isNoOrders: boolean // Флаг наличия хотя бы одного заказа
 
   pageOfItems: Array<any>
 
@@ -29,22 +29,20 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     private alertService: AlertService
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
 
     this.ordersSub = this.ordersService.getOrders().subscribe( orders => {
       this.orders = orders 
       
       // Проверяем есть ли хотя бы один заказ
       if (!this.orders) {
-        this.noOrders = true
-      }  
-
+        this.isNoOrders = true
+      } 
     })
 
   }
 
   onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
     this.pageOfItems = pageOfItems;
   }
 
@@ -56,9 +54,8 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
       // Проверяем осталься ли хотя бы один заказ после удаления
       if (this.orders.length < 1 && !this.orders.length) {
-        this.noOrders = true
-      }  
-
+        this.isNoOrders = true
+      }
     })
 
   }
@@ -71,6 +68,6 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     if (this.delSub) {
       this.delSub.unsubscribe()
     }    
-    
   }
+  
 }

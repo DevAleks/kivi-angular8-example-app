@@ -18,8 +18,8 @@ export class OrdersService {
                 map((response: OrderCreateResponse) => {
                     return {
                         ...order,
-                        id: response.message, // Странная строчка :)
-                        date: new Date(order.date) // Нужен ли order.date?.. 
+                        id: response.message, 
+                        date: new Date(order.date)
                     }
                 }),
                 //catchError(this.handleError)

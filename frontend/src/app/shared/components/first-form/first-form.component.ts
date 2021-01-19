@@ -111,19 +111,19 @@ export class FirstFormComponent implements OnDestroy {
 
     // Отправка оъекта на сервер и получение ответа от сервера
     this.servRespSub = this.formsService.postForm(formFirst)
-    .subscribe(
-      (data: Orders) => {
-        this.receivedFormFirst = data // Получаем данные с сервера
-        this.isFormValidError = false // Отключаем проверку ошибок валидации для формы
-        this.isValidSwitcher = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
-        this.isFormLoading = false // Выключаем отображение индикатора загрузки
-        this.firstForm.reset() // Очищаем значения успешно отправленной формы
-      },
-      error => {
-        this.isErrServ = true // Включаем статус ошибки передачи данных формы на сервер
-        this.isFormLoading = false // Выключаем отображение индикатора загрузки
-      }
-    )         
+      .subscribe(
+        (data: Orders) => {
+          this.receivedFormFirst = data // Получаем данные с сервера
+          this.isFormValidError = false // Отключаем проверку ошибок валидации для формы
+          this.isValidSwitcher = false // Отключаем вызов проверки ошибок по нажатию кнопки "Отправить заказ"                      
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
+          this.firstForm.reset() // Очищаем значения успешно отправленной формы
+        },
+        error => {
+          this.isErrServ = true // Включаем статус ошибки передачи данных формы на сервер
+          this.isFormLoading = false // Выключаем отображение индикатора загрузки
+        }
+      )         
   }  
 
   ngOnDestroy() {

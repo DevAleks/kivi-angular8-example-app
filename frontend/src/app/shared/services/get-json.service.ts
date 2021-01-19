@@ -3,11 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { catchError, retry, delay } from 'rxjs/operators';
-//import { enableProdMode } from '@angular/core';
 
 import { JsonObject } from '../interfaces/interfaces';
-
-//enableProdMode();
 
 @Injectable({
   providedIn: 'root'
@@ -21,21 +18,16 @@ export class GetJsonService {
     return this.http.get<JsonObject[]>('/assets/from-server/pages.json')
       .pipe(
         delay(1500), // Делаем задержку для отображения индикатора загрузки
-        retry(3), // Пробуем получить успешный ответ 3 раза
-        catchError(this.handleError) // Обработка ошибок
+        retry(3), 
+        catchError(this.handleError) 
       )
-
   }
 
   // Определяем объект для обработки ошибок получения данных из файла
   private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // Обработка ошибки на стороне клиента или при передаче данных
+    if (error.error instanceof ErrorEvent) {      
       console.error('Произошла ошибка:', error.error.message)
     } else {
-
-      // Backend вернул код неудачного запроса
-      // Запрос может содержать ключи ошибок
       console.error(
         `Backend вернул код ${error.status}, ` +
         `тело запроса: ${error.error}`)

@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="dash__title">Список заказов</h1>
 
-    <div class="alert alert--danger" *ngIf="noOrders; else ordersList">    
+    <div class="alert alert--danger" *ngIf="isNoOrders; else ordersList">    
         Заказов не найдено
     </div>
 
