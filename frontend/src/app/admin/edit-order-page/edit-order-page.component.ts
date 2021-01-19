@@ -95,8 +95,7 @@ export class EditOrderPageComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.updateSub) {
       this.updateSub.unsubscribe()
-    } 
-    
+    }    
   }
 
 }

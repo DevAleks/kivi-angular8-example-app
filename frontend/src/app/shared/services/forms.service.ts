@@ -36,19 +36,16 @@ export class FormsService {
     return this.http.post<Orders>('http://localhost:80/requests.add.php', body)
       .pipe(
         delay(2000), // Задержка для отображения индикатора загрузки
-        retry(2), // Пробуем получить успешный ответ 2 раза  
-        catchError(this.handleError) // Обработка ошибок
+        retry(2), 
+        catchError(this.handleError) 
       )
   }
 
   // Определяем методы для обработки ошибок получения данных с сервера
   private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // Обработка ошибки на стороне клиента или при передаче данных
+    if (error.error instanceof ErrorEvent) {      
       console.error('Произошла ошибка:', error.error.message)
     } else {
-      // Backend вернул код неудачного запроса
-      // Запрос может содержать ключи ошибок
       console.error(
         `Backend вернул код ${error.status}, ` +
         `тело запроса: ${error.error}`)
@@ -56,4 +53,5 @@ export class FormsService {
     // Возвращает наблюдаемый объект с сообщением об ошибке пользователя
     return throwError('Что-то пошло не так; попробуйте снова позднее.')
   }
+  
 }
