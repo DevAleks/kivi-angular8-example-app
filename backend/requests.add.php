@@ -79,7 +79,7 @@ if($formbt) {
       $httpResponseCode = 400;
 
       // покажем сообщение о том, что создать новый заказ не удалось 
-      $answer = json_encode(array("message" => "Не удалось создать заказ"));
+      $answer = json_encode(array("message" => "Читай инструкции перед использованием"));
     }    
 
   }
